@@ -20,15 +20,13 @@ noncomputable def selfComm {n : ℕ} (L : Matrix (Fin n) (Fin n) ℂ) : Matrix (
 
 theorem frobSq_two (M : Matrix (Fin 2) (Fin 2) ℂ) :
     frobSq M = ‖M 0 0‖ ^ 2 + ‖M 0 1‖ ^ 2 + ‖M 1 0‖ ^ 2 + ‖M 1 1‖ ^ 2 := by
-  simp only [frobSq, Fin.sum_univ_two]
-  ring
+  simp only [frobSq, Fin.sum_univ_two] <;> ring
 
 theorem frobSq_three (M : Matrix (Fin 3) (Fin 3) ℂ) :
     frobSq M = ‖M 0 0‖ ^ 2 + ‖M 0 1‖ ^ 2 + ‖M 0 2‖ ^ 2
       + (‖M 1 0‖ ^ 2 + ‖M 1 1‖ ^ 2 + ‖M 1 2‖ ^ 2)
       + (‖M 2 0‖ ^ 2 + ‖M 2 1‖ ^ 2 + ‖M 2 2‖ ^ 2) := by
-  simp only [frobSq, Fin.sum_univ_three]
-  ring
+  simp only [frobSq, Fin.sum_univ_three] <;> ring
 
 /-- The norm squared of `I * x` for real `x`. -/
 theorem norm_sq_I_mul_real (x : ℝ) : ‖I * (x : ℂ)‖ ^ 2 = x ^ 2 := by
