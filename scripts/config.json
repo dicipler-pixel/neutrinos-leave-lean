@@ -1,0 +1,48 @@
+{
+ "modules": [
+  {
+   "module": "Neutrinos.CrossLink",
+   "path": "Neutrinos/CrossLink.lean"
+  },
+  {
+   "module": "Neutrinos.Frobenius",
+   "path": "Neutrinos/Frobenius.lean"
+  },
+  {
+   "module": "Neutrinos.TwoMoment",
+   "path": "Neutrinos/TwoMoment.lean"
+  },
+  {
+   "module": "Neutrinos.SplitRate",
+   "path": "Neutrinos/SplitRate.lean"
+  },
+  {
+   "module": "Neutrinos.Shear",
+   "path": "Neutrinos/Shear.lean"
+  },
+  {
+   "module": "Neutrinos.ShearComplex",
+   "path": "Neutrinos/ShearComplex.lean"
+  },
+  {
+   "module": "Neutrinos.Propagator",
+   "path": "Neutrinos/Propagator.lean"
+  },
+  {
+   "module": "Neutrinos.KillLine",
+   "path": "Neutrinos/KillLine.lean"
+  }
+ ],
+ "expected_theorems": 76,
+ "expected_false_controls": 9,
+ "root_imports": [
+  "Neutrinos.CrossLink",
+  "Neutrinos.Frobenius",
+  "Neutrinos.TwoMoment",
+  "Neutrinos.SplitRate",
+  "Neutrinos.Shear",
+  "Neutrinos.ShearComplex",
+  "Neutrinos.Propagator",
+  "Neutrinos.KillLine"
+ ]
+}

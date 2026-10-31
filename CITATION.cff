@@ -1,0 +1,38 @@
+cff-version: 1.2.0
+message: "If you use these Lean proofs, please cite them as below, together with the paper."
+title: "When the Neutrinos Leave: Decoupling History and the Threshold for Primordial Black Hole Formation: Lean proofs"
+authors:
+  - family-names: "Beasley"
+    given-names: "Jeromie"
+version: 1.0.0
+date-released: 2026-10-31
+license:
+  - MIT
+  - CC-BY-4.0
+keywords:
+  - Lean 4
+  - Mathlib
+  - formal verification
+  - primordial black holes
+  - neutrino free streaming
+  - Legendre moment hierarchy
+references:
+  - type: article
+    title: "When the Neutrinos Leave: Decoupling History and the Threshold for Primordial Black Hole Formation (version 3)"
+    authors:
+      - family-names: "Beasley"
+        given-names: "Jeromie"
+    year: 2026
+  - type: article
+    title: "Free-streaming neutrinos raise the threshold for primordial black hole formation"
+    authors:
+      - family-names: "McCormick"
+        given-names: "Stephen"
+    year: 2026
+  - type: software
+    title: "Code record for McCormick's preprint"
+    authors:
+      - family-names: "McCormick"
+        given-names: "Stephen"
+    doi: "10.5281/zenodo.23808375"
+    year: 2026

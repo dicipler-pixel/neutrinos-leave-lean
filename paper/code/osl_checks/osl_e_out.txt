@@ -1,0 +1,26 @@
+VALIDATION single mode (k=1): first max Delta: pf 4.2548 at tau=4.75 ; inst 3.8784 at tau=4.54 ; ratio 0.9116 (Steve 0.911 +-0.003 / 0.907 for delta^pl)
+(gaussian pf+inst took 36s)
+VALIDATION Gaussian centre: first max Delta pf 10.47 at eps=1.73, inst 9.879 at eps=1.71 -> ratio 0.9437 (Steve 0.944, eps~1.7)
+                            first max delta^pl_gamma: ratio 0.9646 (Steve 0.938)
+VALIDATION PASS
+
+G_pred at Gaussian centre vs Steve G = [0.959 0.867 0.683 0.431 0.19  0.063]
+  eps*=1.70 DS          G_pred=[0.923 0.653 0.079 0.162 0.024 1.291] max err 1.227 FAIL
+  eps*=1.70 DSG         G_pred=[0.991 0.93  0.875 1.056 0.577 0.669] max err 0.625 FAIL
+  eps*=1.70 SNAP_Delta  G_pred=[ 0.865  0.597  0.195 -0.04  -0.028  0.467] max err 0.488 FAIL
+  eps*=1.70 SNAP_dpl    G_pred=[ 0.86   0.648  0.356  0.028 -0.037 -0.   ] max err 0.403 FAIL
+  eps*=4.00 DS          G_pred=[1.006 1.015 1.026 1.019 0.607 0.033] max err 0.588 FAIL
+  eps*=4.00 DSG         G_pred=[1.006 1.022 1.06  1.064 0.847 0.318] max err 0.657 FAIL
+  eps*=4.00 SNAP_Delta  G_pred=[1.002 1.013 1.05  1.106 0.938 0.244] max err 0.748 FAIL
+  eps*=4.00 SNAP_dpl    G_pred=[0.952 0.971 1.274 2.108 5.6   3.103] max err 5.410 FAIL
+  eps*=4.25 DS          G_pred=[1.005 1.015 1.027 1.031 0.672 0.035] max err 0.600 FAIL
+  eps*=4.25 DSG         G_pred=[1.006 1.02  1.055 1.065 0.833 0.319] max err 0.643 FAIL
+  eps*=4.25 SNAP_Delta  G_pred=[1.001 1.008 1.036 1.076 0.944 0.256] max err 0.754 FAIL
+  eps*=4.25 SNAP_dpl    G_pred=[0.959 0.937 1.061 1.395 3.584 2.303] max err 3.394 FAIL
+  eps*=4.50 DS          G_pred=[1.005 1.015 1.028 1.04  0.735 0.036] max err 0.609 FAIL
+  eps*=4.50 DSG         G_pred=[1.005 1.018 1.05  1.065 0.826 0.319] max err 0.635 FAIL
+  eps*=4.50 SNAP_Delta  G_pred=[1.    1.005 1.027 1.056 0.947 0.268] max err 0.757 FAIL
+  eps*=4.50 SNAP_dpl    G_pred=[0.965 0.931 0.983 1.113 2.64  2.013] max err 2.450 FAIL
+  D1 first-max Delta (sum reading): G_pred=[ 0.859  0.587  0.185 -0.05  -0.031  0.   ] max err 0.498
+  (first-max epochs: 0.25:1.71, 0.5:1.71, 1:1.73, 2:1.75, 4:1.74, 8:1.73)
+finished
