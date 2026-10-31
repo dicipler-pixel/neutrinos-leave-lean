@@ -19,7 +19,8 @@ shear response was checked against the full complex `3 x 3` resolvent.
 **Toolchain.** Lean v4.34.1, Mathlib v4.34.1, the same pins as the sibling repository
 `votkp-lean`.
 
-**Verification status.** First verified at: not yet. The files were written on a machine that
-could not download the Mathlib cache, so they were not compiled there. The workflow in
-`.github/workflows/build.yml` is the check of record; record its first green commit and run
-number here once it exists.
+**Verification status.** First verified at commit `5b7b5cb55032cf7ffb46f67cc1dc591cb22419f1`
+(GitHub Actions run 41253552358, 31 October 2026): every module built, every module replayed in
+the independent kernel checker, 76 theorems audited using only the axioms `propext`,
+`Quot.sound` and `Classical.choice`, and all 9 false controls rejected. The workflow in
+`.github/workflows/build.yml` is the check of record and runs again on every push.

@@ -8,7 +8,8 @@ and replayed by an independent kernel checker on every push, every theorem's axi
 and every false control must be rejected for the check to pass. Those checks run in the GitHub
 Actions workflow. When the files were written, they had not been compiled on the machine that
 wrote them (the Mathlib cache could not be downloaded there), so the first green run of the
-workflow is the first evidence that they are correct; until then they are unverified. What the
+workflow is the first evidence that they are correct. That first green run is recorded in
+`PROVENANCE.md`. What the
 statements mean, and what they do not claim, is set out in plain words in `README.md` and
 `LIMITATIONS.md`.
 

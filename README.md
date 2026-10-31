@@ -24,9 +24,10 @@ Legendre moments of the neutrino distribution), and the plain arithmetic by whic
 decides whether each test result matches its prediction. If a number or an inequality in those
 parts were misstated, Lean would refuse to accept it.
 
-**Status.** The files were written on a machine that could not download the Mathlib cache, so
-they have not yet been compiled. The workflow in `.github/workflows/build.yml` is the check of
-record; see [`PROVENANCE.md`](PROVENANCE.md).
+**Status.** Verified by the workflow in `.github/workflows/build.yml`: all modules build, every
+module is replayed in the independent kernel checker, 76 theorems use only the standard axioms
+(`propext`, `Quot.sound`, `Classical.choice`), and all 9 false controls are rejected. First green
+commit and run are recorded in [`PROVENANCE.md`](PROVENANCE.md).
 
 ## What is proved
 
