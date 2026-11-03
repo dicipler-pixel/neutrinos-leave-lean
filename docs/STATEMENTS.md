@@ -118,3 +118,49 @@ theorem testB_verdict :
     |G (50743 / 100000) - 246 / 1000| < 8 / 100
       ∧ 8 / 100 < |G (50743 / 100000) - 431 / 1000|
 ```
+
+## Memory (What the Present Must Keep)
+
+```lean
+theorem selfadjoint_line_iff (y : ℝ) (hy : |y| < 1 / 4) : y ^ 2 = -y ↔ y = 0
+```
+
+```lean
+theorem rank_one_nilpotent (r0 r1 v0 v1 : ℂ) (h : v0 * r0 + v1 * r1 = 0) :
+    !![r0 * v0, r0 * v1; r1 * v0, r1 * v1] * !![r0 * v0, r0 * v1; r1 * v0, r1 * v1] = 0
+```
+
+```lean
+theorem nilpotent_null (D : Matrix (Fin 2) (Fin 2) ℂ) (h : D * D = 0) :
+    (Matrix.trace (D * D)).re / 2 = 0
+```
+
+```lean
+theorem offset_gap_identity (c cd br bi dr di : ℝ)
+    (h1 : br ^ 2 + bi ^ 2 = c * (1 - c))
+    (h2 : 2 * (br * dr + bi * di) = cd * (1 - 2 * c)) :
+    4 * (cd ^ 2 + (dr ^ 2 + di ^ 2)) * (c * (1 - c)) - cd ^ 2 = 4 * (br * di - bi * dr) ^ 2
+```
+
+```lean
+theorem offset_gap_nonneg (c cd br bi dr di : ℝ)
+    (h1 : br ^ 2 + bi ^ 2 = c * (1 - c))
+    (h2 : 2 * (br * dr + bi * di) = cd * (1 - 2 * c)) :
+    cd ^ 2 ≤ 4 * (cd ^ 2 + (dr ^ 2 + di ^ 2)) * (c * (1 - c))
+```
+
+```lean
+theorem one_mode_speed (A Ad g : ℝ) (hA0 : 0 < A) (hA1 : A < 1)
+    (h : (Ad / (A * (1 - A))) ^ 2 ≤ 4 * g * (1 / (A * (1 - A)))) :
+    Ad ^ 2 ≤ 4 * g * A * (1 - A)
+```
+
+```lean
+theorem ladder_middle_rung {n : ℕ} (a Δ : Fin n → ℝ) (hΔ : ∀ i, Δ i ≠ 0) :
+    (∑ i, a i ^ 2) ^ 2 ≤ (∑ i, (a i / Δ i) ^ 2) * (∑ i, (a i * Δ i) ^ 2)
+```
+
+```lean
+theorem ledger_reads_constant (lam c : ℝ) (hl : 0 < lam) (hlc : 0 < lam + c) :
+    Real.log (lam + c) = Real.log lam + Real.log (1 + c / lam)
+```
