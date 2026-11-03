@@ -25,8 +25,8 @@ decides whether each test result matches its prediction. If a number or an inequ
 parts were misstated, Lean would refuse to accept it.
 
 **Status.** Verified by the workflow in `.github/workflows/build.yml`: all modules build, every
-module is replayed in the independent kernel checker, 76 theorems use only the standard axioms
-(`propext`, `Quot.sound`, `Classical.choice`), and all 9 false controls are rejected. First green
+module is replayed in the independent kernel checker, 84 theorems use only the standard axioms
+(`propext`, `Quot.sound`, `Classical.choice`), and all 11 false controls are rejected. First green
 commit and run are recorded in [`PROVENANCE.md`](PROVENANCE.md).
 
 ## What is proved
@@ -41,7 +41,8 @@ commit and run are recorded in [`PROVENANCE.md`](PROVENANCE.md).
 | [`Neutrinos/ShearComplex.lean`](Neutrinos/ShearComplex.lean) | 14 | shear counterexample | the same response as the `(0,0)` entry of the inverse of the explicit complex matrix `s I + i k M + D`: it equals `cf(κ2)` for `a² = 1/3`, `b² = 4/15`, `κ2 > -1`, and `32/37` at `κ2 = 1` |
 | [`Neutrinos/Propagator.lean`](Neutrinos/Propagator.lean) | 6 | hidden propagator | `exp(t (X - σ 1)) = exp(-σ t) exp(t X)`; all `X - σ(t) 1` commute pairwise; the two-step product formula |
 | [`Neutrinos/KillLine.lean`](Neutrinos/KillLine.lean) | 6 | pre-registered verdicts | `G = (dc - 49773/100000)/(52832/100000 - 49773/100000)`; Test D `G = 472/3059`, Test C `G = 1983/3059`, Test B `G = 970/3059`, and each tolerance comparison with `0.08` |
-| | **76** | | |
+| [`Neutrinos/Memory.lean`](Neutrinos/Memory.lean) | 8 | *What the Present Must Keep* | the sign wall sits on the self-adjoint line (`y² = -y ↔ y = 0` for `\|y\| < 1/4`); a rank-one `r vᵀ` with `v·r = 0` squares to zero, so its trace form is null; the exact one-mode gap of the offset speed limit, `4(ċ² + \|ḃ\|²)c(1-c) - ċ² = 4(Im b̄ḃ)²`, and its sign; the one-mode speed limit `Ȧ² <= 4gA(1-A)`; the middle ladder rung `S₀² <= S₋₂ S₂`; the ledger's reading of a constant `log(λ+c) = log λ + log(1 + c/λ)` |
+| | **84** | | |
 
 The headline statements, exactly as written in Lean, are listed in
 [`docs/STATEMENTS.md`](docs/STATEMENTS.md).
@@ -50,9 +51,17 @@ The shear counterexample in one line: at equal damping rates the connection ener
 in `κ2` (derivative `0`) while the linear response is not (derivative `-5/1369`), so the energy
 alone cannot control the response there.
 
+## The joint paper
+
+*What the Present Must Keep: the Weight Between, the Speed of the Record, and the Wall It Survives*
+(version 1.0, 1 November 2026) joins this neutrino work to *The Weight Between*, *The Offset Speed
+Limit*, *Light Keeps the Ledger* and *The Ledger Outlives the Metric*. Its finite statements that
+are pure algebra are in [`Neutrinos/Memory.lean`](Neutrinos/Memory.lean); the analytic, contour and
+variational steps are written proofs in the paper's Appendix A. The paper (version 1.1: PDF, HTML and source) is in [`paper/joint/`](paper/joint/).
+
 ## False controls
 
-[`FalseControls/`](FalseControls/) holds nine files, each stating something deliberately false.
+[`FalseControls/`](FalseControls/) holds eleven files, each stating something deliberately false.
 Each must fail to compile, and fail for a mathematical reason rather than a typo:
 
 | File | The false claim |
@@ -66,6 +75,8 @@ Each must fail to compile, and fail for a mathematical reason rather than a typo
 | `PropagatorSign.lean` | collision factor `exp(+σ t)` instead of `exp(-σ t)` |
 | `KillLineTestD.lean` | Test D lies within `0.08` of `0.30` |
 | `KillLineTestB.lean` | Test B lies within `0.08` of `0.431` |
+| `MemoryWallNoBox.lean` | `y² = -y` forces `y = 0` without the box (false: `y = -1`) |
+| `MemoryGapFactor.lean` | the one-mode gap with `2` in place of `4` (false at `c = 1/2`, `b = 1/2`, `ḃ = i`) |
 
 ## How to check
 

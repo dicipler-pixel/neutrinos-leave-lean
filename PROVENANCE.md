@@ -24,3 +24,16 @@ shear response was checked against the full complex `3 x 3` resolvent.
 the independent kernel checker, 76 theorems audited using only the axioms `propext`,
 `Quot.sound` and `Classical.choice`, and all 9 false controls rejected. The workflow in
 `.github/workflows/build.yml` is the check of record and runs again on every push.
+
+## What the Present Must Keep (joint paper)
+
+**Paper.** *What the Present Must Keep: the Weight Between, the Speed of the Record, and the Wall It
+Survives*, Jeromie Beasley, version 1.1, 2 November 2026, in [`paper/joint/`](paper/joint/). It joins
+this neutrino work to *The Weight Between*, *The Offset Speed Limit*, *Light Keeps the Ledger* and
+*The Ledger Outlives the Metric*.
+
+**Lean.** `Neutrinos/Memory.lean` (8 theorems) and the false controls `MemoryWallNoBox.lean` and
+`MemoryGapFactor.lean` were written from the paper's finite statements; each identity was first
+checked in SymPy or NumPy. First verified at commit `d08388c496a0fc9bb342c5bc2fcfc44b23fb39da`
+(GitHub Actions run 41551124976, 2 November 2026): 84 theorems using only `propext`,
+`Quot.sound` and `Classical.choice`, and all 11 false controls rejected.
