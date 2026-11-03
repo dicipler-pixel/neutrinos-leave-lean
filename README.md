@@ -57,7 +57,7 @@ alone cannot control the response there.
 (version 1.0, 1 November 2026) joins this neutrino work to *The Weight Between*, *The Offset Speed
 Limit*, *Light Keeps the Ledger* and *The Ledger Outlives the Metric*. Its finite statements that
 are pure algebra are in [`Neutrinos/Memory.lean`](Neutrinos/Memory.lean); the analytic, contour and
-variational steps are written proofs in the paper's Appendix A. The paper is in [`paper/`](paper/).
+variational steps are written proofs in the paper's Appendix A. The paper (version 1.1: PDF, HTML and source) is in [`paper/joint/`](paper/joint/).
 
 ## False controls
 
