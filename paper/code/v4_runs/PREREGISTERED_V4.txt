@@ -1,0 +1,108 @@
+# SCRIPT: PREREGISTERED_V4  (written 2026-11-04, before any run below)
+Follow-up to "When the Neutrinos Leave" v3.1.  Frozen predictor: kept-sector memory form, two-epoch weight w = 0.890
+(fitted on n = 3 at R_nu = 0.409 only), values from paper/code/main/memory_curve.json, never refitted.
+
+TEST E (independence of R_nu; paper v3.1 Sec. "Tests for McCormick's code", item 3)
+  Gaussian (alpha = 1), kappa/H = (eps_dec/eps)^3, eps_dec = 2, R_nu = 0.2.  N = 400, N_mu = 32, eps0 = 0.1.
+  Reference thresholds at R_nu = 0.2 (McCormick's archive): fluid 0.49773 (R_nu-free), instant 0.51297 +- 0.00016
+  (res_nu20_K32.json).  G = (dc - 0.49773)/(0.51297 - 0.49773).
+  Why this test proves what it claims: the kept-sector operator L = -ik mu - kappa(I - P) contains no R_nu.  R_nu only
+  sets how much of the radiation sits in the kept sector, i.e. the size of the instant shift, which G divides out.
+  If G moves with R_nu, the memory is not a property of the cut alone.
+  In the author's coordinate: G is the kept share, so its disk point Gamma_G = 1 - 2G and rapidity ln((1-G)/G)
+  must be R_nu-free.  At R_nu = 0.409, G = 0.431: Gamma_G = 0.138.
+  Predictions:  memory form G = 0.411.   R_nu-free reading (McCormick's own n = 3 value) G = 0.431.
+  Kill: the memory form dies if |G - 0.411| > 0.08.  R_nu-independence dies if |G - 0.431| > 0.05
+        (G error from the brackets is about +-0.01 at tolerance 1e-4, since the instant shift is only 0.0152).
+  Opposite (written now): if G instead scales with R_nu, the R_nu = 0.2 value would sit near 0.431 * 0.2/0.409 = 0.21
+  or, inverted, near 0.88; both lie outside the R_nu-free band, so the test can tell.
+  Search: trisect, bracket [0.4977, 0.5130], tolerance 1e-4, eps_max 15.
+
+TEST F (shear against flux; paper v3.1 item 2), written 2026-11-04 before any split-rate run.
+  Gaussian, n = 3, eps_dec = 2, R_nu = 0.409.  Flux relaxes at kappa1 = kappa (as before, and the plasma drag uses kappa1);
+  every moment l >= 2 relaxes at kappa2 = r kappa1, r = 0.25 and 4.  One change to McCormick's ms_nuc.py: the collision term
+  kappa(eps/4pi - I) becomes kappa2(eps/4pi - I) + (kappa2 - kappa1) d_k, d_k the discrete dipole part of I (energy and the
+  flux balance untouched); the stiff time-step cap uses max(kappa1, kappa2).  Regression first: r = 1 must reproduce the
+  unmodified code (delta = 0.5109 -> BH at eps 6.61).
+  Reference: r = 1 is McCormick's run, G = 0.431.  G = (dc - 0.49773)/(0.52832 - 0.49773).  dG = G(r) - 0.431.
+  In the author's coordinate the flux-shear link is one reflecting step (Atlas B189): Gamma12 = (r - 1)/(r + 1) = -0.6, +0.6.
+  Three readings, each with its opposite built in:
+   (a) frozen memory form (w = 0.890; split diagonal (0, 1, r, r, ...)): dG = -0.004 (r = 0.25), +0.003 (r = 4).
+       Dies if |dG| > 0.05 at either r.
+   (b) connection energy controls the threshold: E/E(1) = 1.45 (r = 0.25), 8.2 (r = 4); stationary at r = 1, so both shifts
+       share a sign and |dG(4)| > |dG(0.25)|.  Dies if the two shifts have opposite signs with both |dG| > 0.02.
+   (c) the threshold reads the link's reflection coefficient Gamma12 (odd in Gamma12): shifts of opposite sign and similar
+       size.  Dies if both |dG| > 0.02 with the same sign, or if |dG(4) + dG(0.25)| > 0.5 max|dG| when max|dG| > 0.02.
+  If both |dG| < 0.02 the threshold does not see the shear rate at this decoupling time: (a) survives, (b) and (c) untested.
+  Search: trisect, bracket [0.5023, 0.5207], tolerance 1e-4, eps_max 15.
+
+RESULTS (appended after the runs; nothing above was edited)
+  Test E: dc = 0.50396 +- 0.00003, G = 0.409 +- 0.005.  Memory form miss 0.002 (line 0.08): survives.
+          R_nu-free miss 0.022 (line 0.05): survives.
+  Test F: regression r = 1 reproduces the unmodified code (BH at eps 6.61).
+          r = 0.25 (Gamma12 = -0.6): dc = 0.51650 +- 0.00004, G = 0.614, dG = +0.183.
+          r = 4    (Gamma12 = +0.6): dc = 0.50544 +- 0.00004, G = 0.252, dG = -0.179.
+          (a) frozen memory form: DIES (|dG| 0.18 > 0.05, and the wrong sign at r = 4).
+          (b) connection energy: DIES (opposite signs, both > 0.02).
+          (c) odd in Gamma12: SURVIVES (|dG(4) + dG(0.25)| = 0.004 against 0.5 max|dG| = 0.09).
+          Offset of G, ln((1-G)/G), moves by -0.740 and +0.810 against the link rapidity (1/2) ln r = -0.693, +0.693.
+
+TEST F2 (written after Test F, before any run below): which odd law.  Gaussian, n = 3, eps_dec = 2, R_nu = 0.409.
+  r = 1/16 (Gamma12 = -0.8824), then r = 16 (Gamma12 = +0.8824).  Three laws, each fixed now:
+   (L) linear in the reflection coefficient, slope -0.3013 from Test F:  G = 0.431 - 0.3013 Gamma12
+        -> 0.697 (r = 1/16), 0.165 (r = 16).
+   (P) peel law, parameter-free: the offset of G moves by exactly the link rapidity, ln((1-G)/G) = 0.2784 + (1/2) ln r
+        -> 0.752 (r = 1/16), 0.159 (r = 16).
+   (P') peel law with the factor 1.118 fitted on Test F:  -> 0.781 (r = 1/16), 0.139 (r = 16).
+  Kill: each law dies at a given r if |G - its value| > 0.02 (bracket 0.002, reference 0.006).
+  r = 1/16 separates all three (0.697 / 0.752 / 0.781); r = 16 separates (P') from the others only weakly.
+  Opposite built in: if G saturates (does not keep moving past |Gamma12| = 0.6), all three die at r = 1/16.
+
+F2 r = 1/16 RESULT: dc = 0.52148 +- 0.00004, G = 0.776.  (L) 0.697 dies (0.079); (P) 0.752 dies (0.024 > 0.02); (P') 0.781 survives (0.005).
+
+TEST H (written 2026-11-04 after F2 r = 1/16 and BEFORE the F2 r = 16 search finished; r = 16 bracket at that time [0.50134, 0.5100]).
+  Close look at the near miss.  The three measured points (r = 1/16, 1/4, 4) lie on ONE straight line in the author's
+  coordinates, offset of G against link rapidity:  ln((1-G)/G) = tau0 + c (1/2) ln r,  free fit tau0 = 0.3116, c = 1.1212,
+  residuals -0.0021, +0.0031, -0.0010.  The line's own anchor is G(r = 1) = 0.4227, while every law above used McCormick's
+  midpoint 0.431 (his bracket 0.51074-0.51109, i.e. G in [0.4253, 0.4367]).  The parameter-free law (P) assumed c = 1;
+  the fitted c sits at 1.121, close to sqrt(5/4) = 1.118 = c0/c1, the ratio of the density-flux and flux-shear link
+  weights (k/sqrt3 against 2k/sqrt15).  That match is noticed after the fact and is NOT claimed.
+  Candidate overlooked factor: the anchor, taken from McCormick's bracket midpoint instead of measured here at the same
+  tolerance and with the same (split) code.
+  H1 (anchor): measure r = 1 with the split code, tolerance 1e-4.  The line predicts G(1) = 0.4227.
+      Kill: the line's anchor dies if |G(1) - 0.4227| > 0.006.  McCormick's midpoint dies if |G(1) - 0.431| > 0.006.
+  H2 (r = 16, from the line, fixed now): G = 0.134 (free fit); 0.1345 with c = sqrt(5/4) and tau0 = 0.3116.
+      Kill: the line dies if |G(16) - 0.134| > 0.01.
+
+H RESULTS: H2 r = 16: dc = 0.50167 +- 0.00003, G = 0.129; line value 0.134, miss 0.005 (line 0.01): the line survives.
+  H1 r = 1 (split code, tolerance 1e-4): dc = 0.51074 +- 0.00002, G(1) = 0.4253 +- 0.0006.  Line anchor 0.4227: miss 0.0026,
+  survives.  McCormick midpoint 0.431: miss 0.0057, survives (barely).  The true anchor sits at the low edge of his bracket.
+  Against the measured anchor the peel rate (offset shift / link rapidity) is 1.115 (r=1/16), 1.102 (1/4), 1.135 (4), 1.162 (16).
+
+TEST I (written before the run): is the r > 1 excess a time-step effect?  Only r > 1 runs shrink the stiff time step (by r).
+  Rerun r = 1/4 with the time step shrunk by 4, as the r = 4 run had it.  If the step is the factor, the r = 1/4 peel rate
+  should rise from 1.102 toward the r > 1 value (about 1.14), i.e. G(1/4) should fall by about 0.008 (from 0.6136 to ~0.606).
+  Kill: the time-step reading dies if |G - 0.6136| < 0.002.  It survives if G <= 0.609.  Between: undecided, reported as such.
+
+TEST I RESULT: r = 1/4 with the step shrunk by 4: dc = 0.51650 +- 0.00002, G = 0.6136, unchanged to 1e-4.
+  The time-step reading DIES.  The r > 1 excess is not numerical.
+  Split into odd and even parts in x = (1/2) ln r (the anchor cancels from the odd part):
+   odd rate [tau(r) - tau(1/r)]/(2x): 1.1182 at |x| = 0.693, 1.1387 at |x| = 1.386.  Even part 0.0115 and 0.0325.
+  The odd rate at |x| = 0.693 equals sqrt(5/4) = 1.11803 to 4 digits.  Noticed after the data; not claimed.
+
+TEST J (written before the runs): the odd rate near the matched link.  r = 2 and r = 1/2 (|x| = 0.3466).
+  If the odd rate tends to c0/c1 = sqrt(5/4) as the link is matched, J predicts [tau(2) - tau(1/2)]/ln 2 = 1.118.
+  Trend reading (rate grows with |x| from 1.118 at 0.693): between 1.110 and 1.120.
+  Kill: the sqrt(5/4) limit dies if the odd rate lies outside [1.108, 1.128] (bracket error on the rate about +-0.004).
+  Opposite built in: if the odd rate falls toward 1 (the parameter-free peel law) as |x| -> 0, it lands below 1.10.
+
+TEST J RESULT: r = 2: dc = 0.50797 +- 0.00001, G = 0.3349; r = 1/2: dc = 0.51366 +- 0.00001, G = 0.5206.
+  Odd rate at |x| = 0.347: 1.1093 +- 0.0031.  Window [1.108, 1.128]: survives at the edge.  Even part +0.0008.
+  Odd rate against |x|: 1.109 (0.347), 1.118 (0.693), 1.139 (1.386): rising about 0.03 per unit |x|; a straight
+  extrapolation to the matched link gives about 1.100, below sqrt(5/4) = 1.118 and well above the plain peel law 1.
+  The sqrt(5/4) reading is not supported by the trend; one point matching it was a coincidence of placement.
+
+TEST K (written before the runs): the matched-link limit of the odd rate.  r = 1.25 and r = 0.8 (|x| = 0.1116), tolerance 1e-5.
+  Trend reading (straight in |x| through 1.109 at 0.347 and 1.118 at 0.693): odd rate = 1.103.  Kill if outside [1.093, 1.113].
+  sqrt(5/4) limit: 1.118.  Kill if outside [1.108, 1.128].   Plain peel law limit 1: kill if outside [0.99, 1.01].
+  Rate error at this |x| is about +-0.004 (each G to +-0.0002).

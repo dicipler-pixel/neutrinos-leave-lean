@@ -1,0 +1,9 @@
+H1_r1 delta=0.51050: dispersed eps=6.45
+H1_r1 delta=0.51150: BH eps=5.83
+H1_r1 delta=0.51083: BH eps=6.89
+H1_r1 delta=0.51117: BH eps=6.13
+H1_r1 delta=0.51061: dispersed eps=6.65
+H1_r1 delta=0.51072: dispersed eps=7.03
+H1_r1 delta=0.51076: BH eps=7.36
+H1_r1 delta=0.51080: BH eps=7.19
+RESULT H1_r1: delta_c = 0.51074 +- 0.00002 (5.0 min)
