@@ -130,3 +130,25 @@ AUDIT 1 (4 Nov, after Test K): the r = 0.8 search counted two crashed runs (delt
   Test K, both points clean at 1e-6: odd rate 1.1128, corner range [1.1124, 1.1131]; even part -0.003.
   sqrt(5/4) = 1.1180 lies outside the range (by bracket error alone); the trend value 1.103 lies outside it too.
   Neither reading holds at the bracket precision; whether the other systematics widen the range is the open question.
+
+TEST L (designed by the independent audit, written here before any run): shear-only split.
+  Only the l = 2 part relaxes at kappa2 = r kappa1; the flux (l = 1) and every l >= 3 relax at kappa1.  Collision term
+  kappa1 (eps/4pi - I) + (kappa1 - kappa2) s_mu, s_mu the discrete l = 2 projection on the angle bins (P2 = mu^2 - c with c
+  set so P2 is orthogonal to 1 and mu on the midpoint bins); momentum drag kappa1 q; stiff step uses the larger rate.
+  Regression first: r = 1 must reproduce the unchanged code (delta = 0.5109 -> BH at eps 6.61).
+  Gaussian, n = 3, eps_dec = 2, R_nu = 0.409, r = 4 and r = 1/4, anchor G(1) = 0.4253.
+  Two links now jump, 1->2 by +(1/2) ln r and 2->3 by -(1/2) ln r.
+   (W) any rule in which the offset moves by link-weight ratios times link rapidities: near cancellation,
+       |odd rate| < 0.1, G(4) and G(1/4) within 0.01 of 0.4253.  Dies if |odd rate| > 0.15.
+   (S) the threshold reads the shear (l = 2) damping itself: odd rate 0.9 - 1.25, |dG| about 0.18 as in Test F.
+       Dies if the odd rate < 0.7.
+  Between 0.15 and 0.7: partial cancellation, neither survives clean; reported as such.
+  Search: crash-safe trisect, bracket [0.503, 0.519], tolerance 2e-5.
+
+TEST L RESULT: regression r = 1 reproduces the unchanged code (BH at eps 6.61).  No crashes in either search.
+  r = 4: dc = 0.50523503 +- 0.00000366, G = 0.2453;  r = 1/4: dc = 0.51709419 +- 0.00000366, G = 0.6330.
+  Odd rate 1.2038, corner range [1.2030, 1.2046].
+  (W) link-weight-ratio rules: DIE (predicted |rate| < 0.1; measured 1.20).
+  (S) the threshold reads the shear (l = 2) damping itself: SURVIVES (window 0.9 - 1.25).
+  Damping the shear alone moves the threshold MORE than damping shear and every higher moment together (odd rate 1.118
+  at r = 4 in Test F): the l >= 3 moments, relaxed with the shear, pull the other way by about 0.09.
