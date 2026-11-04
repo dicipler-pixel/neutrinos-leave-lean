@@ -163,3 +163,38 @@ TEST M RESULT: N_mu = 48.  r = 4: dc = 0.50549588 +- 0.00000823 (one run crashed
   r = 1/4: dc = 0.51655761 +- 0.00000412.  Shifts from N_mu = 32: +5.3e-5 and +6.0e-5 (both < 1e-4).
   Odd rate 1.1170, corner range [1.1156, 1.1184], against 1.1177 at N_mu = 32: change -0.0007 (< 0.01).  PASS.
   The resolution shift is common to r and 1/r and cancels from the odd rate to below 0.001.
+
+==== After the external review of v4.1 (4 Nov 2026), written before any run below ====
+Review finding confirmed here: on the 32 angle bins, the collision operators have negative off-diagonal gain (positivity
+can fail) for all-higher at r = 1/4, 4 and shear-only at r = 1/4, 1.25, 4; they are positive for all-higher at r = 0.8,
+1.25 and for both models at r = 1.2 and 1/1.2 (checked: minimum off-diagonal entry 0.0).  The run code labels a numerical
+breakdown after 2M/R > 0.95 as 'BH'; the v2 runners label it 'BH_breakdown', and only a detected horizon moves a bracket.
+
+TEST A1 (shear sensitivity on admissible ground).  Gaussian, n = 3, eps_dec = 2, R_nu = 0.409, N = 400, N_mu = 32.
+  Pair r = 1.2 and r = 1/1.2 (|x| = 0.0912), both collision models positive there.  Four thresholds, tolerance 1e-6,
+  v2 driver (horizon-only BH, breakdown and crash retried once then skipped), min I logged for every run.
+  Shear-only (l = 2 at kappa2): (S) the threshold reads the shear: odd rate between 0.9 and 1.3, and larger than the
+  all-higher odd rate at the same pair.  Dies if the shear-only odd rate < 0.7, or if it is below the all-higher rate.
+  (W) the signed additive link-weight rule (offset = sum over jumped links of (c0/c_link) x link rapidity): shear-only odd
+  rate c0/c1 - c0/c2 = -0.021, |rate| < 0.1.  Dies if |rate| > 0.15.
+  All-higher at the same pair: continuity with Test K: odd rate within 0.02 of 1.1128.  Dies otherwise (reported as a
+  change with |x|, not a kill of the shear reading).
+  Admissibility: every run in A1 must keep min I >= 0.  Any negative min I is reported against that run.
+
+TEST B1 (endpoint classification).  Rerun, with the v2 runners, the run nearest the lower (dispersed) and the upper (BH)
+  edge of every reported threshold (E, F, F2, H1, I, J, K clean, L, M): 30 runs.  Records how each ended, min I, max 2M/R.
+  A reported threshold stands if its upper edge ends as a detected horizon ('BH') and its lower edge as 'dispersed'.
+  If an upper edge ends as 'BH_breakdown', that threshold's bracket is reopened and re-searched with the v2 driver.
+  Every negative min I is reported against its threshold.
+
+A1 RESULT (r = 1.2 and 1/1.2, both collision models positive; v2 driver; minimum intensity positive in every A1 run;
+  crashes retried at CFL 0.3, never used as edges):
+  shear-only: odd rate 1.1895, corner range [1.1892, 1.1898].  all-higher: odd rate 1.1006, range [1.1000, 1.1011].
+  (S) the threshold reads the shear: SURVIVES (in [0.9, 1.3], and above the all-higher rate by 0.089).
+  (W) signed additive link-weight rule (predicted -0.021): DIES.
+  All-higher continuity with Test K (1.1128 at |x| = 0.112): differs by 0.012, inside 0.02: passes.  The 0.012 difference
+  between two nearly equal |x| is many bracket widths: it is a per-point systematic of about 0.01, not bracket noise.
+B1 RESULT: all 30 decisive edges rerun with the v2 runners.  Every upper edge ended as a detected horizon ('BH'), every
+  lower edge as 'dispersed'; no edge was a breakdown.  Every reported threshold stands as reported.  Minimum intensity was
+  positive in 29 of 30 runs; at r = 16 (outside the positive window) the upper-edge run reached min I = -2.4e-10.
+  Note: the logged 'max 2M/R' is dominated by super-horizon shells early in the run and is not a diagnostic.
