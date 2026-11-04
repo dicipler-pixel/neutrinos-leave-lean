@@ -152,3 +152,9 @@ TEST L RESULT: regression r = 1 reproduces the unchanged code (BH at eps 6.61). 
   (S) the threshold reads the shear (l = 2) damping itself: SURVIVES (window 0.9 - 1.25).
   Damping the shear alone moves the threshold MORE than damping shear and every higher moment together (odd rate 1.118
   at r = 4 in Test F): the l >= 3 moments, relaxed with the shear, pull the other way by about 0.09.
+
+TEST M (written before the runs): angular resolution, the largest unmeasured systematic named by the audit.
+  Repeat the Test F pair (all l >= 2 at kappa2, r = 4 and 1/4) at N_mu = 48 instead of 32, N = 400, crash-safe driver,
+  tolerance 2e-5.  At N_mu = 32: dc(4) = 0.5054424 +- 0.0000379, dc(1/4) = 0.5164975 +- 0.0000379, odd rate 1.118.
+  Pass (resolution adequate for the reported rate): |odd rate(48) - odd rate(32)| < 0.01 and each dc shifts by < 1e-4.
+  Fail: the rate moves by more than 0.01; then every reported rate carries that as a resolution error.
