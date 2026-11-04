@@ -42,52 +42,66 @@ theorem cSq_two : cSq 2 = 9 / 35 := by norm_num [cSq]
 theorem weight_ratio_01 : cSq 0 / cSq 1 = 5 / 4 := by norm_num [cSq]
 theorem weight_ratio_12 : cSq 1 / cSq 2 = 28 / 27 := by norm_num [cSq]
 
-/-- McCormick's reference thresholds (inputs). -/
-def dFluid : ℚ := 49773 / 100000
-def dInst : ℚ := 52832 / 100000
+/-! ### The verdicts, in whole numbers
 
-/-- The odds `(1 - G)/G` of a threshold `δ`. -/
-def odds (d : ℚ) : ℚ := (dInst - d) / (d - dFluid)
+All thresholds are written as integers on a common scale (`10¹⁰` for Test K, `10⁹` for Test J); McCormick's reference
+thresholds `δ_fluid = 0.49773` and `δ_inst = 0.52832` are inputs.  With `O(δ) = (δ_inst - δ)/(δ - δ_fluid)` and
+`Q = O(δ_r)/O(δ_{1/r}) = qNum/qDen`, where `qNum = (I - Dr)(D1r - F)` and `qDen = (Dr - F)(I - D1r)`, the odd rate
+`ln Q / ln r` with `r = u/v` is at least `p/q` exactly when `u^p qDen^q ≤ v^p qNum^q`, and at most `p/q` exactly when
+`v^p qNum^q ≤ u^p qDen^q`.  `O` decreases in `δ`, so `Q` is smallest at (upper edge of the `r` bracket, lower edge of the
+`1/r` bracket) and largest at the opposite corner; both corners are checked.  Each comparison is decided by the kernel. -/
 
-/-! ### Test K, `r = 5/4`.  Bracket edges from the clean runs (crashed runs excluded). -/
+abbrev qNum (I F Dr D1r : ℕ) : ℕ := (I - Dr) * (D1r - F)
+abbrev qDen (I F Dr D1r : ℕ) : ℕ := (Dr - F) * (I - D1r)
 
-def kAlo : ℚ := 5098390947 / 10000000000   -- r = 1.25, dispersed
-def kAhi : ℚ := 5098432099 / 10000000000   -- r = 1.25, BH
-def kBlo : ℚ := 5116938272 / 10000000000   -- r = 0.8, dispersed (last clean)
-def kBhi : ℚ := 5117144033 / 10000000000   -- r = 0.8, BH
-/-- The lower edge the first search used, which was a crashed run. -/
-def kBcrash : ℚ := 5117102881 / 10000000000
+/-- The odd rate is at least `p/q` (ratio `r = u/v`). -/
+abbrev rateAtLeast (u v p q : ℕ) (I F Dr D1r : ℕ) : Prop :=
+  u ^ p * qDen I F Dr D1r ^ q ≤ v ^ p * qNum I F Dr D1r ^ q
+/-- The odd rate is at most `p/q` (ratio `r = u/v`). -/
+abbrev rateAtMost (u v p q : ℕ) (I F Dr D1r : ℕ) : Prop :=
+  v ^ p * qNum I F Dr D1r ^ q ≤ u ^ p * qDen I F Dr D1r ^ q
 
-def kQmin : ℚ := odds kAhi / odds kBlo
-def kQmax : ℚ := odds kAlo / odds kBhi
+/-! ### Test K, `r = 5/4`, scale `10¹⁰` -/
 
-/-- With clean edges the whole odd-rate range of Test K lies inside the `√(5/4)` window `[1.108, 1.128]`. -/
-theorem testK_sqrt_window : (5 / 4 : ℚ) ^ 277 ≤ kQmin ^ 250 ∧ kQmax ^ 250 ≤ (5 / 4 : ℚ) ^ 282 := by
-  constructor <;> norm_num [kQmin, kQmax, odds, kAlo, kAhi, kBlo, kBhi, dFluid, dInst]
+/-- First search, clean edges only: `r = 1.25` bracket `[0.5098390947, 0.5098432099]`, `r = 0.8` bracket
+`[0.5116938272, 0.5117144033]`.  The whole odd-rate range lies inside the `√(5/4)` window `[1.108, 1.128]`. -/
+theorem testK_first_sqrt_window :
+    rateAtLeast 5 4 277 250 5283200000 4977300000 5098432099 5116938272 ∧
+    rateAtMost 5 4 282 250 5283200000 4977300000 5098390947 5117144033 := by
+  constructor <;> decide
 
-/-- With clean edges the range reaches below `1.113`, the top of the trend window `[1.093, 1.113]`:
-the trend reading is not killed by Test K. -/
-theorem testK_trend_not_killed : kQmin ^ 1000 < (5 / 4 : ℚ) ^ 1113 := by
-  norm_num [kQmin, odds, kAhi, kBlo, dFluid, dInst]
+/-- First search, clean edges: the range reaches below `1.113`, the top of the trend window: not killed. -/
+theorem testK_first_trend_not_killed :
+    ¬ rateAtLeast 5 4 1113 1000 5283200000 4977300000 5098432099 5116938272 := by decide
 
-/-- With the crashed run used as an edge, the range sat wholly above `1.113`: that is the false kill. -/
-theorem testK_crash_edge_false_kill : (5 / 4 : ℚ) ^ 1113 < (odds kAhi / odds kBcrash) ^ 1000 := by
-  norm_num [odds, kAhi, kBcrash, dFluid, dInst]
+/-- First search with the crashed run `0.5117102881` as the lower `r = 0.8` edge: the whole range sat above `1.113`.
+That was the false kill. -/
+theorem testK_crash_edge_false_kill :
+    rateAtLeast 5 4 1113 1000 5283200000 4977300000 5098432099 5117102881 := by decide
 
-/-! ### Test J, `r = 2`. -/
+/-- Clean reruns at tolerance `10⁻⁶`: `r = 1.25` bracket `[0.5098404700, 0.5098409200]`, `r = 0.8` bracket
+`[0.5116953500, 0.5116961100]`.  The odd rate lies in `[1.112, 1.114]`. -/
+theorem testK_clean_range :
+    rateAtLeast 5 4 1112 1000 5283200000 4977300000 5098409200 5116953500 ∧
+    rateAtMost 5 4 1114 1000 5283200000 4977300000 5098404700 5116961100 := by
+  constructor <;> decide
 
-def jAlo : ℚ := 507962963 / 1000000000    -- r = 2, dispersed
-def jAhi : ℚ := 507983539 / 1000000000    -- r = 2, BH
-def jBlo : ℚ := 513646090 / 1000000000    -- r = 1/2, dispersed
-def jBhi : ℚ := 513666667 / 1000000000    -- r = 1/2, BH
+/-- After the clean reruns, `√(5/4) = 1.1180…` lies above the measured range: the odd rate is below `1.117`. -/
+theorem testK_clean_below_sqrt :
+    rateAtMost 5 4 1117 1000 5283200000 4977300000 5098404700 5116961100 := by decide
 
-def jQmin : ℚ := odds jAhi / odds jBlo
-def jQmax : ℚ := odds jAlo / odds jBhi
+/-- After the clean reruns, the trend value `1.103` lies below the measured range: the odd rate is above `1.11`. -/
+theorem testK_clean_above_trend :
+    rateAtLeast 5 4 111 100 5283200000 4977300000 5098409200 5116953500 := by decide
 
-/-- The odd-rate range of Test J straddles the lower edge `1.108` of the `√(5/4)` window and stays below `1.128`:
-over its full bracket Test J neither passes nor kills that reading. -/
-theorem testJ_straddles : jQmin ^ 250 < (2 : ℚ) ^ 277 ∧ (2 : ℚ) ^ 277 < jQmax ^ 250 ∧
-    jQmax ^ 250 ≤ (2 : ℚ) ^ 282 := by
-  refine ⟨?_, ?_, ?_⟩ <;> norm_num [jQmin, jQmax, odds, jAlo, jAhi, jBlo, jBhi, dFluid, dInst]
+/-! ### Test J, `r = 2`, scale `10⁹` -/
+
+/-- Over its full bracket (`r = 2`: `[0.507962963, 0.507983539]`; `r = 1/2`: `[0.513646090, 0.513666667]`) the odd rate of
+Test J straddles `1.108`, the lower edge of the `√(5/4)` window, and stays at most `1.128`. -/
+theorem testJ_straddles :
+    ¬ rateAtLeast 2 1 277 250 528320000 497730000 507983539 513646090 ∧
+    ¬ rateAtMost 2 1 277 250 528320000 497730000 507962963 513666667 ∧
+    rateAtMost 2 1 282 250 528320000 497730000 507962963 513666667 := by
+  refine ⟨?_, ?_, ?_⟩ <;> decide
 
 end Neutrinos.LinkVerdict
