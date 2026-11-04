@@ -35,10 +35,14 @@
   {
    "module": "Neutrinos.Memory",
    "path": "Neutrinos/Memory.lean"
+  },
+  {
+   "module": "Neutrinos.LinkVerdict",
+   "path": "Neutrinos/LinkVerdict.lean"
   }
  ],
- "expected_theorems": 84,
- "expected_false_controls": 11,
+ "expected_theorems": 95,
+ "expected_false_controls": 12,
  "root_imports": [
   "Neutrinos.CrossLink",
   "Neutrinos.Frobenius",
@@ -48,6 +52,7 @@
   "Neutrinos.ShearComplex",
   "Neutrinos.Propagator",
   "Neutrinos.KillLine",
-  "Neutrinos.Memory"
+  "Neutrinos.Memory",
+  "Neutrinos.LinkVerdict"
  ]
 }
