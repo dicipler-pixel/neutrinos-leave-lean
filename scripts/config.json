@@ -39,9 +39,13 @@
   {
    "module": "Neutrinos.LinkVerdict",
    "path": "Neutrinos/LinkVerdict.lean"
+  },
+  {
+   "module": "Neutrinos.FableAudit",
+   "path": "Neutrinos/FableAudit.lean"
   }
  ],
- "expected_theorems": 98,
+ "expected_theorems": 131,
  "expected_false_controls": 12,
  "root_imports": [
   "Neutrinos.CrossLink",
@@ -53,6 +57,7 @@
   "Neutrinos.Propagator",
   "Neutrinos.KillLine",
   "Neutrinos.Memory",
-  "Neutrinos.LinkVerdict"
+  "Neutrinos.LinkVerdict",
+  "Neutrinos.FableAudit"
  ]
 }
