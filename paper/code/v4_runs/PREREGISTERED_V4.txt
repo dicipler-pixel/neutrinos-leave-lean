@@ -112,3 +112,21 @@ TEST K RESULT: r = 1.25: dc = 0.50984, G = 0.39592; r = 0.8: dc = 0.51171, G = 0
   Trend reading 1.103: DIES (outside [1.093, 1.113]).  Plain peel law 1: DIES.  sqrt(5/4) = 1.118: SURVIVES (window [1.108, 1.128]).
   The three inner odd rates, 1.122 (0.112), 1.109 (0.347), 1.118 (0.693), average 1.116 +- 0.004, against sqrt(5/4) = 1.1180.
   Only the far point, 1.139 at |x| = 1.386, rises above it.
+
+AUDIT 1 (4 Nov, after Test K): the r = 0.8 search counted two crashed runs (delta = 0.5117062, 0.5117103) as dispersed and
+  used them as the lower bracket edge, against the paper's rule that an error never moves the bracket.  All other searches
+  are clean.  From clean runs only: dispersed 0.5116938, BH 0.5117144, dc = 0.5117041 +- 0.0000103; odd rate 1.117, full
+  corner range [1.110, 1.125].  sqrt(5/4) window [1.108, 1.128]: survives.  Trend window [1.093, 1.113]: NOT killed
+  (overlaps); Test K as run is undecided between them.
+  Repair (a measurement repair, no new hypothesis): rerun r = 0.8 inside the clean bracket with trisect_clean.py, in which a
+  crash gets one retry at CFL 0.3 and otherwise never moves the bracket; tolerance 1e-6.  The windows of Test K stand unchanged.
+  AUDIT 1 RESULT: clean rerun of r = 0.8: bracket [0.51169535 dispersed, 0.51169611 BH], dc = 0.51169573 +- 0.00000038.
+  The two crashed runs of the first search (0.5117062, 0.5117103) lie ABOVE the threshold: they were collapsing.
+  One crash (0.51169459) gave 'dispersed' on the CFL 0.3 retry.  Odd rate at |x| = 0.112 with the r = 1.25 bracket as
+  searched: 1.1125, corner range [1.111, 1.114].  sqrt(5/4) window: inside, survives; but 1.118 lies OUTSIDE the corner
+  range.  Trend window [1.093, 1.113]: range overlaps its top, survives.  Neither reading is decided; the measured value
+  sits between them.  Next: tighten r = 1.25 to 1e-6 with the clean driver (no new hypothesis).
+  Tightened r = 1.25 (clean driver): bracket [0.50984047, 0.50984092], dc = 0.50984070 +- 0.00000023.
+  Test K, both points clean at 1e-6: odd rate 1.1128, corner range [1.1124, 1.1131]; even part -0.003.
+  sqrt(5/4) = 1.1180 lies outside the range (by bracket error alone); the trend value 1.103 lies outside it too.
+  Neither reading holds at the bracket precision; whether the other systematics widen the range is the open question.
