@@ -104,4 +104,15 @@ theorem testJ_straddles :
     rateAtMost 2 1 282 250 528320000 497730000 507962963 513666667 := by
   refine ⟨?_, ?_, ?_⟩ <;> decide +kernel
 
+/-! ### Test L, shear only, `r = 4`, scale `10¹⁰` -/
+
+/-- Shear-only split (`r = 4` bracket `[0.5052313700, 0.5052386800]`, `r = 1/4` bracket `[0.5170905300, 0.5170978500]`):
+the odd rate is at least `6/5`.  Every rule built from link-weight ratios predicted less than `0.1`. -/
+theorem testL_rate_ge_six_fifths :
+    rateAtLeast 4 1 6 5 5283200000 4977300000 5052386800 5170905300 := by decide +kernel
+
+/-- ... and at most `1.21`, inside the shear reading's window `[0.9, 1.25]`. -/
+theorem testL_rate_le :
+    rateAtMost 4 1 121 100 5283200000 4977300000 5052313700 5170978500 := by decide +kernel
+
 end Neutrinos.LinkVerdict

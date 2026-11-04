@@ -41,7 +41,7 @@
    "path": "Neutrinos/LinkVerdict.lean"
   }
  ],
- "expected_theorems": 98,
+ "expected_theorems": 100,
  "expected_false_controls": 12,
  "root_imports": [
   "Neutrinos.CrossLink",
