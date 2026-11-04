@@ -106,3 +106,9 @@ TEST K (written before the runs): the matched-link limit of the odd rate.  r = 1
   Trend reading (straight in |x| through 1.109 at 0.347 and 1.118 at 0.693): odd rate = 1.103.  Kill if outside [1.093, 1.113].
   sqrt(5/4) limit: 1.118.  Kill if outside [1.108, 1.128].   Plain peel law limit 1: kill if outside [0.99, 1.01].
   Rate error at this |x| is about +-0.004 (each G to +-0.0002).
+
+TEST K RESULT: r = 1.25: dc = 0.50984, G = 0.39592; r = 0.8: dc = 0.51171, G = 0.45709 (tolerance 1e-5).
+  Odd rate at |x| = 0.112: 1.1223 +- 0.004 (bracket error dominated by the small |x|).  Even part -0.004.
+  Trend reading 1.103: DIES (outside [1.093, 1.113]).  Plain peel law 1: DIES.  sqrt(5/4) = 1.118: SURVIVES (window [1.108, 1.128]).
+  The three inner odd rates, 1.122 (0.112), 1.109 (0.347), 1.118 (0.693), average 1.116 +- 0.004, against sqrt(5/4) = 1.1180.
+  Only the far point, 1.139 at |x| = 1.386, rises above it.

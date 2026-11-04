@@ -1,2 +1,13 @@
 K_r125 delta=0.50930: dispersed eps=6.17
 K_r125 delta=0.51030: BH eps=6.07
+K_r125 delta=0.50963: dispersed eps=6.53
+K_r125 delta=0.50997: BH eps=6.67
+K_r125 delta=0.50974: dispersed eps=6.77
+K_r125 delta=0.50986: BH eps=7.36
+K_r125 delta=0.50978: dispersed eps=6.91
+K_r125 delta=0.50982: dispersed eps=7.11
+K_r125 delta=0.50983: dispersed eps=7.22
+K_r125 delta=0.50984: BH eps=7.35
+K_r125 delta=0.50983: dispersed eps=7.27
+K_r125 delta=0.50984: dispersed eps=7.32
+RESULT K_r125: delta_c = 0.50984 +- 0.00000 (8.6 min)
