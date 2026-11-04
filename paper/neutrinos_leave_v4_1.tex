@@ -4,6 +4,7 @@
 \usepackage{graphicx}
 \usepackage{booktabs}
 \usepackage{multirow}
+\setlength{\emergencystretch}{3em}
 \usepackage{listings}
 \usepackage{xcolor}
 \usepackage[hidelinks]{hyperref}
@@ -203,7 +204,7 @@ bracket range & $[1.1124,1.1131]$ & $[1.1052,1.1134]$ & $[1.1092,1.1262]$ & $[1.
 even part & $-0.003$ & $+0.001$ & $+0.012$ & $+0.032$\\\bottomrule\end{tabular}\end{center}
 \grade{measured}. The rate is not one: a rule in which the offset of $G$ moves by exactly the link rapidity is excluded at every pair. Near the matched link it lies at $1.109$--$1.118$, and it rises to $1.138$ at the outermost pair, where a small even part appears.
 
-\paragraph{The error the brackets do not show.} The odd rate divides by $\ln r$, so at the innermost pair a shift of $10^{-4}$ in one threshold moves it by $0.06$. Three systematics are larger than the bracket there. The fluid reference carries $\pm7.8\times10^{-5}$ in McCormick's archive, which moves every rate by about $\pm0.004$ together. Angular and radial resolution have shifted thresholds by $0.8$--$1.8\times10^{-4}$ in this code; Test M below measures the angular part directly. And the scatter of the three inner rates exceeds their bracket ranges, which says the true error per point is near $\pm0.007$. Within that error the inner rates are one number, $1.113\pm0.007$. Many simple constants lie within it, among them $\sqrt{5/4}$, the ratio of the two link weights, $9/8$, $10/9$ and $2^{1/6}$, so no closed form is attached to it \grade{measured; H}.
+\paragraph{The error the brackets do not show.} The odd rate divides by $\ln r$, so at the innermost pair a shift of $10^{-4}$ in one threshold moves it by $0.06$. Three systematics are larger than the bracket there. The fluid reference carries $\pm7.8\times10^{-5}$ in McCormick's archive, which moves every rate by about $\pm0.004$ together. Angular and radial resolution have shifted thresholds by $0.8$--$1.8\times10^{-4}$ in this code; the angular part, measured below, is common to each pair and largely cancels. And the scatter of the three inner rates exceeds their bracket ranges, which says the true error per point is near $\pm0.007$. Within that error the inner rates are one number, $1.113\pm0.007$. Many simple constants lie within it, among them $\sqrt{5/4}$, the ratio of the two link weights, $9/8$, $10/9$ and $2^{1/6}$, so no closed form is attached to it \grade{measured; H}.
 
 \paragraph{Which moment carries it.} If the rate were a ratio of link weights, moving the jumps would change it predictably. Damp only the shear, $\ell=2$, at $\kappa_2$, and keep the flux and every $\ell\ge3$ at $\kappa_1$: the collision term becomes $\kappa_1(\varepsilon/4\pi-I)+(\kappa_1-\kappa_2)s_\mu$, with $s_\mu$ the $\ell=2$ projection on the same angle bins. Now two links jump, flux to shear by $+\tfrac12\ln r$ and shear to the next rung by $-\tfrac12\ln r$. Any rule built from link-weight ratios then nearly cancels, since $c_1$ and $c_2$ differ by $1.8\%$, and predicts $|\text{rate}|<0.1$. A threshold that reads the shear damping itself predicts a rate of $0.9$--$1.25$. This test was designed by an independent audit of the runs above, with both predictions and kill lines written before it ran (Appendix~B.15). At $r=1$ the changed code again reproduces the unchanged one. Measured, with no failed runs:
 \begin{center}\begin{tabular}{lccc}\toprule
@@ -212,7 +213,7 @@ $r=4$, shear only & $0.5052350\pm0.0000037$ & $0.245$ & \multirow{2}{*}{$1.204$,
 $r=1/4$, shear only & $0.5170942\pm0.0000037$ & $0.633$ & \\\bottomrule\end{tabular}\end{center}
 \grade{measured}. The link-weight readings fail by an order of magnitude; the shear reading holds. Damping the shear alone moves the threshold more than damping the shear and every higher moment together ($1.204$ against $1.118$ at the same $r$): the moments above the shear, relaxed with it, pull the other way by about $0.09$.
 
-\paragraph{Angular resolution.} \MRESULT
+\paragraph{Angular resolution.} Repeating the $r=4$ and $1/4$ pair with $48$ angle bins instead of $32$, set before the run to pass if the odd rate moved by less than $0.01$ and each threshold by less than $10^{-4}$, gives $\delta_c=0.5054959\pm0.0000082$ and $0.5165576\pm0.0000041$: both thresholds rise, by $5.3$ and $6.0\times10^{-5}$, and the odd rate moves from $1.1177$ to $1.1170$ (range $[1.1156,1.1184]$). The resolution shift is common to $r$ and $1/r$ and cancels from the odd rate to below $0.001$; it moves $G$ itself by about $0.002$ \grade{measured}.
 
 \paragraph{Two small factors, checked.} The reference point for $r=1$ is measured here with the changed code at tolerance $10^{-4}$: $G=0.4253\pm0.0006$, at the lower edge of McCormick's bracket $[0.4253,0.4367]$, whose midpoint $0.431$ would shift every prediction that uses it by about $0.006$. Only the $r>1$ runs shrink the stiff time step, by the factor $r$; rerunning $r=1/4$ with its step shrunk fourfold leaves $\delta_c$ unchanged to $3\times10^{-6}$, so the slight asymmetry between the two sides is not numerical \grade{measured}.
 
@@ -421,7 +422,8 @@ The crash-safe search driver, the shear-only solver and the audit runs (Tests K 
 \lstinputlisting{code/v4_runs/make_fig7_link_v41.py}
 \lstinputlisting{code/v4_runs/make_fig7_link_v41_out.txt}
 \section{Lean statements}
-The statements below are proved in Lean~4 with Mathlib (v4.34.1) in the repository \url{https://github.com/dicipler-pixel/neutrinos-leave-lean}. The build at commit \texttt{\LEANCOMMIT} (4 November 2026) compiles every module, replays every proof in an independent kernel checker, finds that all 100 theorems of the repository use only the standard axioms (\texttt{propext}, \texttt{Quot.sound}, \texttt{Classical.choice}), and confirms that all twelve false controls are rejected. Lean checks the finite moment model and the verdict arithmetic. It does not check McCormick's code, the collapse runs, the classification of runs near threshold, the bracket edges (inputs copied from the run logs) or the numerical witness.
+\sloppy
+The statements below are proved in Lean~4 with Mathlib (v4.34.1) in the repository \url{https://github.com/dicipler-pixel/neutrinos-leave-lean}. The build at commit \texttt{c372d3f} (4 November 2026) compiles every module, replays every proof in an independent kernel checker, finds that all 100 theorems of the repository use only the standard axioms (\texttt{propext}, \texttt{Quot.sound}, \texttt{Classical.choice}), and confirms that all twelve false controls are rejected. Lean checks the finite moment model and the verdict arithmetic. It does not check McCormick's code, the collapse runs, the classification of runs near threshold, the bracket edges (inputs copied from the run logs) or the numerical witness.
 \begin{enumerate}
 \item \texttt{crossLink}: $|2\,\mathrm{Re}(\bar a(-ih)b)|\le2|h||a||b|$; \texttt{crossLink\_sq}: with $A=|a|^2$, $|a|^2+|b|^2\le1$, the square is at most $4|h|^2A(1-A)$ (Appendix A.6).
 \item \texttt{twoMomentConnectionEnergy}: $\tfrac18\lVert[L,L^\ast]\rVert_F^2=\kappa^2k^2/3$ for the two-moment $L$.

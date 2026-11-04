@@ -158,3 +158,8 @@ TEST M (written before the runs): angular resolution, the largest unmeasured sys
   tolerance 2e-5.  At N_mu = 32: dc(4) = 0.5054424 +- 0.0000379, dc(1/4) = 0.5164975 +- 0.0000379, odd rate 1.118.
   Pass (resolution adequate for the reported rate): |odd rate(48) - odd rate(32)| < 0.01 and each dc shifts by < 1e-4.
   Fail: the rate moves by more than 0.01; then every reported rate carries that as a resolution error.
+
+TEST M RESULT: N_mu = 48.  r = 4: dc = 0.50549588 +- 0.00000823 (one run crashed twice and was skipped);
+  r = 1/4: dc = 0.51655761 +- 0.00000412.  Shifts from N_mu = 32: +5.3e-5 and +6.0e-5 (both < 1e-4).
+  Odd rate 1.1170, corner range [1.1156, 1.1184], against 1.1177 at N_mu = 32: change -0.0007 (< 0.01).  PASS.
+  The resolution shift is common to r and 1/r and cancels from the odd rate to below 0.001.

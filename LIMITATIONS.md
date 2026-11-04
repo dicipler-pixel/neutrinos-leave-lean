@@ -42,3 +42,8 @@ so that no denominator vanishes. `crossLink_sq` takes `A = ||a||^2`, `R = ||b||^
 for the complex resolvent entry as a function of `kappa2` (the real closed form is
 differentiated and shown equal to the complex entry for `kappa2 > -1`, which gives the same
 information); the integral propagator for time-dependent `sigma`.
+
+**Version 4.1, `LinkVerdict`.** The verdicts take the threshold bracket edges as inputs, copied to ten decimals from
+the run logs, and McCormick's reference thresholds as inputs. Lean does not check the collapse runs, the classification of
+a run as a black hole or as dispersing, or the exclusion of runs that stopped on a numerical error. The odd rate itself
+is defined through `ln Q / ln r`; Lean checks the equivalent whole-number comparisons `r^p ≤ Q^q`, not the logarithm.

@@ -2,7 +2,7 @@
 
 # When the Neutrinos Leave: Lean proofs
 
-**The exact finite-dimensional algebra behind *When the Neutrinos Leave: Decoupling History and the Threshold for Primordial Black Hole Formation* (version 3): a speed bound, two connection energies, a shear counterexample, a scalar-collision propagator and the arithmetic of the pre-registered verdicts, written for Lean.**
+**The exact finite-dimensional algebra behind *When the Neutrinos Leave: Decoupling History and the Threshold for Primordial Black Hole Formation* (version 4.1): a speed bound, two connection energies, a shear counterexample, a scalar-collision propagator, the flux–shear link coordinate, and the arithmetic of every pre-registered verdict, written for Lean.**
 
 ![Lean](https://img.shields.io/badge/Lean-v4.34.1-blue)
 ![sorry](https://img.shields.io/badge/sorry-0-2EA043)
@@ -25,8 +25,8 @@ decides whether each test result matches its prediction. If a number or an inequ
 parts were misstated, Lean would refuse to accept it.
 
 **Status.** Verified by the workflow in `.github/workflows/build.yml`: all modules build, every
-module is replayed in the independent kernel checker, 84 theorems use only the standard axioms
-(`propext`, `Quot.sound`, `Classical.choice`), and all 11 false controls are rejected. First green
+module is replayed in the independent kernel checker, 100 theorems use only the standard axioms
+(`propext`, `Quot.sound`, `Classical.choice`), and all 12 false controls are rejected. First green
 commit and run are recorded in [`PROVENANCE.md`](PROVENANCE.md).
 
 ## What is proved
@@ -42,7 +42,8 @@ commit and run are recorded in [`PROVENANCE.md`](PROVENANCE.md).
 | [`Neutrinos/Propagator.lean`](Neutrinos/Propagator.lean) | 6 | hidden propagator | `exp(t (X - σ 1)) = exp(-σ t) exp(t X)`; all `X - σ(t) 1` commute pairwise; the two-step product formula |
 | [`Neutrinos/KillLine.lean`](Neutrinos/KillLine.lean) | 6 | pre-registered verdicts | `G = (dc - 49773/100000)/(52832/100000 - 49773/100000)`; Test D `G = 472/3059`, Test C `G = 1983/3059`, Test B `G = 970/3059`, and each tolerance comparison with `0.08` |
 | [`Neutrinos/Memory.lean`](Neutrinos/Memory.lean) | 8 | *What the Present Must Keep* | the sign wall sits on the self-adjoint line (`y² = -y ↔ y = 0` for `\|y\| < 1/4`); a rank-one `r vᵀ` with `v·r = 0` squares to zero, so its trace form is null; the exact one-mode gap of the offset speed limit, `4(ċ² + \|ḃ\|²)c(1-c) - ċ² = 4(Im b̄ḃ)²`, and its sign; the one-mode speed limit `Ȧ² <= 4gA(1-A)`; the middle ladder rung `S₀² <= S₋₂ S₂`; the ledger's reading of a constant `log(λ+c) = log λ + log(1 + c/λ)` |
-| | **84** | | |
+| [`Neutrinos/LinkVerdict.lean`](Neutrinos/LinkVerdict.lean) | 16 | flux–shear link (v4.1, Sec. 7) | the link coordinate `(r-1)/(r+1)` is odd under `r ↦ 1/r`; the anchor cancels from the odd part; `c_ℓ² = (ℓ+1)²/((2ℓ+1)(2ℓ+3))` and the ratios `5/4`, `28/27`; the verdicts of Tests J, K and L as whole-number inequalities decided by the kernel over both extreme corners of each bracket pair, including the false kill a crashed run would have produced |
+| | **100** | | |
 
 The headline statements, exactly as written in Lean, are listed in
 [`docs/STATEMENTS.md`](docs/STATEMENTS.md).
