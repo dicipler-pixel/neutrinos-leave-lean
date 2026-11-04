@@ -68,31 +68,31 @@ abbrev rateAtMost (u v p q : ℕ) (I F Dr D1r : ℕ) : Prop :=
 theorem testK_first_sqrt_window :
     rateAtLeast 5 4 277 250 5283200000 4977300000 5098432099 5116938272 ∧
     rateAtMost 5 4 282 250 5283200000 4977300000 5098390947 5117144033 := by
-  constructor <;> decide
+  constructor <;> decide +kernel
 
 /-- First search, clean edges: the range reaches below `1.113`, the top of the trend window: not killed. -/
 theorem testK_first_trend_not_killed :
-    ¬ rateAtLeast 5 4 1113 1000 5283200000 4977300000 5098432099 5116938272 := by decide
+    ¬ rateAtLeast 5 4 1113 1000 5283200000 4977300000 5098432099 5116938272 := by decide +kernel
 
 /-- First search with the crashed run `0.5117102881` as the lower `r = 0.8` edge: the whole range sat above `1.113`.
 That was the false kill. -/
 theorem testK_crash_edge_false_kill :
-    rateAtLeast 5 4 1113 1000 5283200000 4977300000 5098432099 5117102881 := by decide
+    rateAtLeast 5 4 1113 1000 5283200000 4977300000 5098432099 5117102881 := by decide +kernel
 
 /-- Clean reruns at tolerance `10⁻⁶`: `r = 1.25` bracket `[0.5098404700, 0.5098409200]`, `r = 0.8` bracket
 `[0.5116953500, 0.5116961100]`.  The odd rate lies in `[1.112, 1.114]`. -/
 theorem testK_clean_range :
     rateAtLeast 5 4 1112 1000 5283200000 4977300000 5098409200 5116953500 ∧
     rateAtMost 5 4 1114 1000 5283200000 4977300000 5098404700 5116961100 := by
-  constructor <;> decide
+  constructor <;> decide +kernel
 
 /-- After the clean reruns, `√(5/4) = 1.1180…` lies above the measured range: the odd rate is below `1.117`. -/
 theorem testK_clean_below_sqrt :
-    rateAtMost 5 4 1117 1000 5283200000 4977300000 5098404700 5116961100 := by decide
+    rateAtMost 5 4 1117 1000 5283200000 4977300000 5098404700 5116961100 := by decide +kernel
 
 /-- After the clean reruns, the trend value `1.103` lies below the measured range: the odd rate is above `1.11`. -/
 theorem testK_clean_above_trend :
-    rateAtLeast 5 4 111 100 5283200000 4977300000 5098409200 5116953500 := by decide
+    rateAtLeast 5 4 111 100 5283200000 4977300000 5098409200 5116953500 := by decide +kernel
 
 /-! ### Test J, `r = 2`, scale `10⁹` -/
 
@@ -102,6 +102,6 @@ theorem testJ_straddles :
     ¬ rateAtLeast 2 1 277 250 528320000 497730000 507983539 513646090 ∧
     ¬ rateAtMost 2 1 277 250 528320000 497730000 507962963 513666667 ∧
     rateAtMost 2 1 282 250 528320000 497730000 507962963 513666667 := by
-  refine ⟨?_, ?_, ?_⟩ <;> decide
+  refine ⟨?_, ?_, ?_⟩ <;> decide +kernel
 
 end Neutrinos.LinkVerdict
