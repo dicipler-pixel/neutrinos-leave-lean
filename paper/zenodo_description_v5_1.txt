@@ -1,0 +1,21 @@
+When the Neutrinos Leave: Decoupling History and the Threshold for Primordial Black Hole Formation (version 5.1)
+
+Jeromie Beasley
+
+Neutrinos that stream freely out of a collapsing overdensity raise the threshold for primordial black hole formation (S. McCormick, 2026), and the effect fades when they decouple gradually. This paper asks what sets that fading, and answers with exact operator algebra and with new, pre-registered runs of McCormick's public code.
+
+What is in it:
+
+1. The collision operator as a cut. All of the non-normality of the relaxation-time collision term sits on the single density–flux link, (1/8)||[L,L*]||² = κ²k²/3; with separate flux and shear rates it is k²κ₁²/3 + (4k²/15)(κ₂ − κ₁)². The weight across the cut is the radiation sound speed, √E_B = k/√3.
+
+2. The clock is not the collapse time, and the history matters. A broad profile that collapses twice as late keeps the same share of the neutrino effect or less; a steeper decoupling history keeps less at the same nominal decoupling time. A kept-sector memory form, fitted once and frozen, predicted three unseen histories within its pre-registered kill line; a history-blind rule failed.
+
+3. The memory has a location. Two states with equal density, flux and stress, differing only in finer angular structure, give later density, flux and stress that differ by several per cent when the difference is set at or after decoupling; set earlier it is erased by exp[−ε_dec^n/(nτ_s^n)]. An exact block elimination puts the whole effect in one hidden-source term.
+
+4. The anisotropic stress sets the threshold. With the flux relaxing at κ₁ and the shear at κ₂ = rκ₁, eleven thresholds from r = 1/16 to 16 show that the surviving share follows the direction of the flux–shear mismatch, not its connection energy: its offset ln[(1−G)/G] moves close to a straight line in the link rapidity ½ ln r, at a rate of 1.11 ± 0.01 inside the window where the split operator is a Markov generator. Damping the shear alone gives 1.19–1.20, where every rule built from link-weight ratios predicts less than 0.1: the threshold reads the shear itself. The law lives in the collision operator's own link rapidity; the intrinsic displacement of the linear kept-sector state at readout does not carry it, so the difference between the two collision models is written in the nonlinear collapse. Halving the neutrino fraction leaves the share nearly unchanged (0.409 against 0.425).
+
+Every prediction and kill line was written before its run; the pre-registration files, run logs, the one-file changes to McCormick's code (MIT licence, included), the search drivers with their endpoint audit, and the intrinsic-ruler check are included. Algebraic identities, the shear counterexample and every verdict's arithmetic (as exact whole-number inequalities over both corners of each threshold bracket) are machine-checked in Lean 4 with Mathlib: 100 theorems on the standard axioms, twelve deliberately false statements rejected, at github.com/dicipler-pixel/neutrinos-leave-lean.
+
+Files: the paper (PDF, HTML), an interactive mixer (HTML; the dial is the shear-to-flux damping ratio), and a zip with all code, Lean proofs, run logs and README.
+
+AI-assisted: the ideas and research direction are the author's; AI tools (Claude, Anthropic) were used for literature search, computation, drafting, auditing and typesetting.
