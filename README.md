@@ -2,7 +2,7 @@
 
 # When the Neutrinos Leave: Lean proofs
 
-**The exact finite-dimensional algebra behind *When the Neutrinos Leave: Decoupling History and the Threshold for Primordial Black Hole Formation* (version 4.1): a speed bound, two connection energies, a shear counterexample, a scalar-collision propagator, the flux–shear link coordinate, and the arithmetic of every pre-registered verdict, written for Lean.**
+**The exact finite-dimensional algebra behind *When the Neutrinos Leave: Decoupling History and the Threshold for Primordial Black Hole Formation* (version 5): a speed bound, two connection energies, a shear counterexample, a scalar-collision propagator, the flux–shear link coordinate, and the arithmetic of every pre-registered verdict, written for Lean.**
 
 ![Lean](https://img.shields.io/badge/Lean-v4.34.1-blue)
 ![sorry](https://img.shields.io/badge/sorry-0-2EA043)

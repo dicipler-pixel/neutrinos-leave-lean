@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Shear Link Mixer</title>
+<style>
+:root{--bg:#0d1117;--panel:#151b23;--ink:#e6e1d3;--muted:#9aa7b4;--blue:#5aa9e6;--red:#e2614f;--gold:#e0a640;--grid:#2a333d}
+@media (prefers-color-scheme: light){:root:not([data-theme="dark"]){--bg:#f7f4ec;--panel:#ffffff;--ink:#1d232b;--muted:#5b6672;--blue:#1f5fa8;--red:#c0392b;--gold:#b8761a;--grid:#e2ddd0}}
+:root[data-theme="light"]{--bg:#f7f4ec;--panel:#ffffff;--ink:#1d232b;--muted:#5b6672;--blue:#1f5fa8;--red:#c0392b;--gold:#b8761a;--grid:#e2ddd0}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
+main{max-width:1100px;margin:0 auto;padding:20px 16px 40px}
+h1{font-size:22px;margin:0 0 4px;font-weight:650}p.sub{margin:0 0 18px;color:var(--muted)}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}@media(max-width:820px){.grid{grid-template-columns:1fr}}
+.card{background:var(--panel);border:1px solid var(--grid);border-radius:12px;padding:14px}
+.card h2{font-size:14px;margin:0 0 8px;color:var(--muted);font-weight:600;letter-spacing:.02em;text-transform:uppercase}
+svg{width:100%;height:auto;display:block}
+.ctrl{display:flex;gap:14px;align-items:center;flex-wrap:wrap;margin:6px 0 14px}
+input[type=range]{flex:1;min-width:220px;accent-color:var(--gold)}
+.mode button{background:transparent;border:1px solid var(--grid);color:var(--ink);padding:6px 10px;border-radius:8px;cursor:pointer}
+.mode button.on{border-color:var(--gold);color:var(--gold)}
+.eyes{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-top:14px}@media(max-width:820px){.eyes{grid-template-columns:repeat(2,1fr)}}
+.eye{background:var(--panel);border:1px solid var(--grid);border-radius:10px;padding:10px}
+.eye b{display:block;font-size:20px;font-variant-numeric:tabular-nums}.eye span{color:var(--muted);font-size:12px}
+.note{color:var(--muted);font-size:13px;margin-top:14px}
+</style></head><body><main>
+<h1>Shear Link Mixer</h1>
+<p class="sub">When the Neutrinos Leave, v5 — Jeromie Beasley. One dial: how fast the neutrino shear relaxes compared with the flux. Dots are thresholds measured on McCormick's code; the curve between them is an interpolation for exploring, not a prediction.</p>
+<div class="ctrl"><label for="r">r = κ₂/κ₁</label><input id="r" type="range" min="-2.77" max="2.77" step="0.01" value="0"><span id="rv" style="font-variant-numeric:tabular-nums;min-width:70px"></span>
+<span class="mode"><button id="mAll" class="on">shear and all higher moments at κ₂</button> <button id="mShear">shear (ℓ = 2) only</button></span></div>
+<div class="grid">
+<div class="card"><h2>The link on the Smith disk</h2><svg id="disk" viewBox="0 0 420 420"></svg></div>
+<div class="card"><h2>Offset of G against link rapidity</h2><svg id="line" viewBox="0 0 460 400"></svg></div>
+</div>
+<div class="eyes">
+<div class="eye"><span>link coordinate Γ₁₂</span><b id="eG">0</b></div>
+<div class="eye"><span>link rapidity ½ ln r</span><b id="eX">0</b></div>
+<div class="eye"><span>surviving share G</span><b id="eS">0</b></div>
+<div class="eye"><span>offset ln((1−G)/G)</span><b id="eT">0</b></div>
+<div class="eye"><span>secant rate from r = 1</span><b id="eR">—</b></div>
+</div>
+<p class="note">Measured (Gaussian, n = 3, ε_dec = 2, R_ν = 0.409): eleven thresholds, r = 1/16 … 16, with every ℓ ≥ 2 at κ₂, odd rate 1.11 ± 0.01 inside the admissible window ¾ ≤ r ≤ 3/2 and 1.138 at the outermost, formal pair; shear alone at r = 1.2, 1/1.2, 4 and 1/4, odd rate 1.19–1.20. The split operator is a Markov generator only inside that window; the extreme points are formal interventions, and the curve beyond the measured points is an interpolation. Every prediction and kill line was written before its run; the rate is measured, with no closed form attached.</p>
+</main>
+<script>
+const fl=0.49773, ins=0.52832;
+const ALL=[[1/16,0.52148457],[0.25,0.51649753],[0.5,0.51365638],[1/1.2,0.51151453],[0.8,0.51169573],[1,0.51074074],[1.2,0.51001486],[1.25,0.5098407],[2,0.50797325],[4,0.50544239],[16,0.50167346]];
+const SH=[[0.25,0.51709419],[1/1.2,0.51157480],[1,0.51074074],[1.2,0.50995416],[4,0.50523503]];
+const G=d=>(d-fl)/(ins-fl), tau=g=>Math.log((1-g)/g), t1=tau(G(0.51074074));
+const pts=a=>a.map(([r,d])=>({x:0.5*Math.log(r),g:G(d),t:tau(G(d))-t1}));
+let mode='all';
+const css=v=>getComputedStyle(document.documentElement).getPropertyValue(v).trim();
+function interp(P,x){P=[...P].sort((a,b)=>a.x-b.x);if(x<=P[0].x){const s=(P[1].t-P[0].t)/(P[1].x-P[0].x);return P[0].t+s*(x-P[0].x)}
+ for(let i=0;i<P.length-1;i++)if(x<=P[i+1].x){const u=(x-P[i].x)/(P[i+1].x-P[i].x);return P[i].t+u*(P[i+1].t-P[i].t)}
+ const n=P.length,s=(P[n-1].t-P[n-2].t)/(P[n-1].x-P[n-2].x);return P[n-1].t+s*(x-P[n-1].x)}
+function draw(){
+ const x=+document.getElementById('r').value/2, r=Math.exp(2*x), gam=(r-1)/(r+1);
+ const P=pts(mode==='all'?ALL:SH), t=interp(P,x), g0=G(0.51074074), g=1/(1+Math.exp(t+t1));
+ document.getElementById('rv').textContent=r<1?('1/'+(1/r).toFixed(2)):r.toFixed(2);
+ document.getElementById('eG').textContent=(gam>=0?'+':'')+gam.toFixed(3);
+ document.getElementById('eX').textContent=(x>=0?'+':'')+x.toFixed(3);
+ document.getElementById('eS').textContent=g.toFixed(3);
+ document.getElementById('eT').textContent=((t+t1)>=0?'+':'')+(t+t1).toFixed(3);
+ document.getElementById('eR').textContent=Math.abs(x)>0.02?(t/x).toFixed(3):'—';
+ const blue=css('--blue'),red=css('--red'),gold=css('--gold'),ink=css('--ink'),grid=css('--grid'),muted=css('--muted');
+ // disk
+ const R=170,cx=210,cy=210; let s=`<circle cx="${cx}" cy="${cy}" r="${R}" fill="none" stroke="${muted}" stroke-width="1.5"/>`;
+ for(const q of [0.5]) s+=`<circle cx="${cx}" cy="${cy}" r="${R*q}" fill="none" stroke="${grid}"/>`;
+ s+=`<line x1="${cx-R-10}" y1="${cy}" x2="${cx+R+10}" y2="${cy}" stroke="${grid}"/>`;
+ s+=`<text x="${cx}" y="${cy-R-8}" fill="${muted}" font-size="12" text-anchor="middle">matched link at the centre</text>`;
+ s+=`<circle cx="${cx+R*gam}" cy="${cy-40}" r="9" fill="${gold}"/><text x="${cx+R*gam}" y="${cy-56}" fill="${gold}" font-size="12" text-anchor="middle">link Γ₁₂</text>`;
+ const gG=1-2*g; s+=`<circle cx="${cx+R*gG}" cy="${cy+40}" r="9" fill="${mode==='all'?blue:red}"/><text x="${cx+R*gG}" y="${cy+66}" fill="${ink}" font-size="12" text-anchor="middle">share Γ_G = 1 − 2G</text>`;
+ s+=`<circle cx="${cx+R*(1-2*g0)}" cy="${cy+40}" r="4" fill="none" stroke="${muted}"/>`;
+ document.getElementById('disk').innerHTML=s;
+ // line
+ const W=460,H=400,L=50,B=40,X=v=>L+(v+1.5)/3*(W-L-14),Y=v=>H-B-(v+1.9)/3.8*(H-B-14);
+ let l='';for(let v=-1.5;v<=1.51;v+=0.5)l+=`<line x1="${X(v)}" y1="${Y(-1.9)}" x2="${X(v)}" y2="${Y(1.9)}" stroke="${grid}"/><text x="${X(v)}" y="${H-B+16}" fill="${muted}" font-size="11" text-anchor="middle">${v.toFixed(1)}</text>`;
+ for(let v=-1.5;v<=1.51;v+=0.5)l+=`<line x1="${X(-1.5)}" y1="${Y(v)}" x2="${X(1.5)}" y2="${Y(v)}" stroke="${grid}"/><text x="${L-6}" y="${Y(v)+4}" fill="${muted}" font-size="11" text-anchor="end">${v.toFixed(1)}</text>`;
+ l+=`<line x1="${X(-1.5)}" y1="${Y(-1.5)}" x2="${X(1.5)}" y2="${Y(1.5)}" stroke="${muted}" stroke-dasharray="5 4"/>`;
+ l+=`<text x="${X(1.45)}" y="${Y(1.2)}" fill="${muted}" font-size="11" text-anchor="end">rate 1</text>`;
+ for(const p of pts(ALL)) l+=`<circle cx="${X(p.x)}" cy="${Y(p.t)}" r="5" fill="${blue}" opacity="${mode==='all'?1:0.35}"/>`;
+ for(const p of pts(SH)) l+=`<rect x="${X(p.x)-5}" y="${Y(p.t)-5}" width="10" height="10" fill="${red}" opacity="${mode==='shear'?1:0.35}"/>`;
+ l+=`<circle cx="${X(x)}" cy="${Y(t)}" r="8" fill="none" stroke="${gold}" stroke-width="2.5"/>`;
+ l+=`<text x="${(W+L)/2}" y="${H-6}" fill="${muted}" font-size="12" text-anchor="middle">link rapidity ½ ln r</text>`;
+ document.getElementById('line').innerHTML=l;
+}
+document.getElementById('r').addEventListener('input',draw);
+for(const[id,m]of[['mAll','all'],['mShear','shear']])document.getElementById(id).addEventListener('click',()=>{mode=m;document.getElementById('mAll').classList.toggle('on',m==='all');document.getElementById('mShear').classList.toggle('on',m==='shear');draw()});
+matchMedia('(prefers-color-scheme: light)').addEventListener('change',draw);
+draw();
+</script></body></html>
