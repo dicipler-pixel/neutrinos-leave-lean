@@ -10,11 +10,12 @@ from matplotlib.colors import Normalize
 from matplotlib.lines import Line2D
 from matplotlib.patches import Patch
 
-BASE = '/tmp/claude-0/-home-claude/502f5ad8-acd9-59a2-b5cf-d48e7967cc3a/scratchpad'
-PAPER = BASE + '/paper'
-MEM = PAPER + '/code/main/memory_curve.json'
-WIT = BASE + '/next/witness/witness_prod.json'
-OUT = PAPER + '/figs/'
+import os
+HERE = os.path.dirname(os.path.abspath(__file__))          # paper/code/main
+PAPER = os.path.normpath(os.path.join(HERE, '..', '..'))      # paper/
+MEM = os.path.join(HERE, 'memory_curve.json')
+WIT = os.path.join(PAPER, 'code', 'witness', 'witness_prod.json')   # rebuilt from prod.log by code/witness/prod_log_to_json.py
+OUT = os.path.join(PAPER, 'figs') + os.sep
 PROTECTED = {'fig1_G.png', 'fig2_chain.png', 'fig3_clock.png'}
 
 plt.rcParams.update({

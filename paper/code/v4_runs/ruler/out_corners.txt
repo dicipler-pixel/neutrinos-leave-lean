@@ -1,0 +1,6 @@
+# every statistic over all 2^15 bracket corners (lo/hi of each of the 15 thresholds incl. the anchor)
+[CHART x=(1/2)ln r] RATIO shear/all ALL-CORNER range [1.0563, 1.0686]   odd-rate spread ALL-CORNER range [2.87%, 3.91%]  (corners: 32768)
+[RULER (e) theta at tau*=1.7] RATIO shear/all ALL-CORNER range [0.9410, 0.9521]   odd-rate spread ALL-CORNER range [35.21%, 36.55%]  (corners: 32768)
+   R1 kill line [0.97,1.03]: holds at every corner = True   R2 kill line spread>1.2%: holds at every corner = True
+[RULER (e) theta at tau*=4.0] RATIO shear/all ALL-CORNER range [1.6583, 1.6778]   odd-rate spread ALL-CORNER range [21.76%, 22.75%]  (corners: 32768)
+   R1 kill line [0.97,1.03]: holds at every corner = True   R2 kill line spread>1.2%: holds at every corner = True

@@ -110,3 +110,18 @@ CORRECTION (2026-11-05, after the verdict; numbers only, verdict unchanged).  Th
   (36 Gauss nodes, k^2 exp(-k^2/2)): k < 1.4 carries 0.362, k >= 1.4 carries 0.638.  The isolated-mode region is therefore
   about a third of the profile, not 15 %.  The instrument finding stands (no isolated kept eigenvalue on most of the profile,
   Petermann 374 at the transition) and the VERDICT rests on ruler (e), which is well-posed on the whole profile.
+
+CORRECTION 2 (2026-11-05, after an outside review of v5.1; the verdict is unchanged, two numbers and one control are).
+  (i) C4 was pre-registered as "every corner" and ruler_state.py sampled 2000 random interior points instead.  ruler_corners.py
+      now enumerates all 2^15 = 32768 corners (lo/hi of each of the 15 thresholds, anchor included); out_corners.txt.
+      Chart: ratio [1.0563, 1.0686], spread [2.87, 3.91] %.  Ruler (e) at tau* = 1.7: ratio [0.9410, 0.9521], spread [35.21, 36.55] %;
+      at tau* = 4.0: ratio [1.6583, 1.6778], spread [21.76, 22.75] %.  R1 and R2 die at every corner.  These are hard bounds.
+  (ii) The isolated-mode share.  The criterion is the paper's own A.3 pole condition s + kappa = k cot(k/kappa), which has a physical-
+      sheet pole only for k < pi kappa / 2 = 1.5046 at kappa = 0.9578.  With the memory-form weights, the 36-node quadrature puts 0.514
+      of the profile below that onset and 0.486 above (continuous integral: 0.478 / 0.522).  Both earlier figures (85 % and 64 % "in the
+      cut") came from cutting the diag_modes table at k < 1.4 instead of at the onset, which drops the k = 1.433 node (0.152 of the
+      weight) although its pole is still isolated (gap 0.060).  The 61-moment matrix has a discrete spectrum; its small gaps at high k
+      are the finite-chain trace of the continuum branch cut, not a cut.  The instrument finding is therefore: no isolated kept
+      eigenvalue on about half of the profile, which is still enough to void the projector as a ruler on the whole profile.
+  (iii) Reading of R3, narrowed.  R3 says the tested rulers do not carry the law.  It does not locate where the family difference is
+      written; "in the nonlinear collapse" is a hypothesis for a restart test, not a result of this check.
