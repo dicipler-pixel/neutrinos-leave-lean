@@ -1,0 +1,112 @@
+# SCRIPT: PREREGISTERED_RULER  (written 2026-11-05 before any number below was computed)
+The intrinsic-ruler check: are the measured threshold offsets a law in the kept sector's own geometry
+(IQGT, Paper I Sec. 4: "the parameter manifold does not generate the geometry") rather than in the parameter chart x = (1/2) ln r?
+
+DATA (fixed, no new collapse runs): the 15 thresholds of v4.1 + A1, read as tau_G = ln((1-G)/G), G = (dc - 0.49773)/(0.52832 - 0.49773),
+offsets taken relative to the measured anchor r = 1 (dc = 0.51074074).
+  all-higher family (every l >= 2 at kappa2 = r kappa1): r = 1/16, 1/4, 1/2, 1/1.2, 0.8, 1, 1.2, 1.25, 2, 4, 16  (clean K points).
+  shear-only family (l = 2 alone at kappa2):             r = 1/4, 1/1.2, 1.2, 4.
+Bracket corners carried through every statistic.
+
+THE OBJECT.  The moment chain of the kept sector, L(r) = -i k M - kappa D_r, M the Legendre streaming matrix
+(M[l,l-1] = l/sqrt(4l^2-1)), D_r = diag(0,1,r,r,...) (all-higher) or diag(0,1,r,1,1,...) (shear-only), LM+1 = 61 moments
+(the chain of memory_curve.py).  L is non-normal.  Projector: the Riesz projector Pi_r onto the least-damped eigenvalue
+(largest real part), the mode the density survives in; built from right/left eigenvectors, Pi = |R><L|/<L|R>, Pi^2 = Pi.
+Fork (both reported, decided now): rank-1 (least damped) is PRIMARY; rank-2 (two least damped) is the comparison.
+Scale: kappa/k at readout.  The memory form reads at eps* = 1.7 where kappa = eps_dec^3/tau^4 = 8/1.7^4 = 0.958 (n = 3,
+eps_dec = 2); k runs over the profile nodes with weights k^2 exp(-k^2/2) (memory_curve.py, 36 Gauss nodes on [0.25, 9]).
+PRIMARY: kappa = 0.958, profile-weighted.  Sensitivity (reported, not used for verdicts): kappa = 0.3, 3.0; single k = 2; LM = 20.
+
+THE RULER.  s(r) = signed intrinsic distance of Pi_r from Pi_1 along the family, three readings computed side by side:
+  (a) arc length of the Hermitian pullback metric, g_rr = (1/2)||d Pi/dr||_F^2, s = int sqrt(g) dr   [IQGT Sec. 4, Hermitian form]
+  (b) chord: d_HS(r) = ||Pi_r - Pi_1||_F / sqrt 2, signed by the side of r = 1                           [control on (a)]
+  (c) his biorthogonal trace form q(V) = (1/2) Re Tr V^2 with V = d Pi/dr                                [cone / B57: may be <= 0]
+  (d) principal angle theta(r) between the right eigenvectors R_r and R_1 (and the left pair)             [Gr(1,n) geodesic]
+Profile average: s is averaged over k with the same weights as the memory form (that is how the threshold saw the chain).
+Each reading is a separate ruler; the verdicts below are stated for (a) and repeated for (b),(d).  (c) is reported with
+its sign; if q < 0 anywhere on the family the Hermitian arc length is not a length there and that is stated.
+
+WHAT IS ALREADY KNOWN IN THE CHART (the thing to beat):
+  all-higher odd rates in x: 1.1128 (|x| = 0.112), 1.1006 (0.091, A1), 1.1093 (0.347), 1.1177 (0.693), 1.1384 (1.386):
+    spread 0.038 (3.4 % of the mean), a monotone rise beyond |x| = 0.35 ("the bend").
+  shear-only odd rate in x: 1.2038 (0.693), 1.1895 (0.091).  Family ratio shear/all-higher: 1.077 (0.693), 1.081 (0.091).
+  Linear fit of all 11 all-higher offsets against x: residual RMS to be computed and reported as the chart baseline.
+
+READINGS AND KILL LINES (fixed now):
+  R1 "the chart was the whole discrepancy": in ruler (a) the all-higher and shear-only families fall on ONE line.
+      Test: slope_shear / slope_all in s lies in [0.97, 1.03] (it is 1.08 in x).  Dies otherwise.
+  R2 "the chart explains the bend": in ruler (a) the all-higher odd rates (same pairs as above, now per unit of s)
+      have spread below 1.2 % of their mean (it is 3.4 % in x), i.e. less than 0.35 of the chart spread.  Dies otherwise.
+  R3 "the ruler is not it": R1 and R2 both die.  Then the discrepancy is not the chart (failed this way; other
+      projectors / scales remain open and are listed, not run).
+  Controls that must come out as stated or the check is void:
+  C1 positive control (the pipeline can see a chart effect): synthetic offsets tau_syn = 1.0 * s(r) (one law in s, both
+      families), read back in x, must show a family split and a bend of the measured kind (ratio != 1, spread > 1.2 %);
+      read back in s must give ratio 1 and spread 0 to machine precision.
+  C2 negative control (the pipeline can fail): the wrong ruler, s built from the OTHER family's projector
+      (shear-only data read on the all-higher projector and vice versa), must NOT pass R1 better than the right ruler.
+  C3 chart control: the ruler Gamma12 = (r-1)/(r+1) (also a function of parameters only) must not pass R1/R2 either;
+      if it does, the rulers are not discriminating and the verdict is "undecided".
+  C4 bracket corners: every statistic is recomputed at both corners of every bracket; a verdict counts only if it
+      holds at every corner.
+  C5 eigen-solve control: Pi^2 = Pi to 1e-10, Tr Pi = 1, left/right biorthonormality to 1e-10 at every r, k.
+Opposite built in: if the slope ratio in s moves AWAY from 1 (beyond 1.08) the chart was hiding a larger family split.
+Nothing above is edited after the run; results are appended below.
+
+AMENDMENT (before any run; a definition, not a data decision).  L = -ikM - kappa D has S L S = conj(L) with S = diag((-1)^l),
+so eigenvalues come in conjugate pairs with EQUAL real part whenever they are complex (the two-moment pair -kappa/2 +- sqrt(kappa^2/4 - k^2/3)
+is the model case).  "The least-damped eigenvalue" is therefore a conjugate PAIR wherever it is complex and rank-1 is not well
+defined there.  PRIMARY projector := the Riesz projector onto that pair (rank 2 when complex, rank 1 when real; it is real and
+tracks continuously).  The rank-1 projector onto the +Im member is the comparison.  Minimum gap (real part) to the next mode
+is logged at every r, k; a crossing voids the tracking at that k and is reported.
+
+RESULT 1 (primary run, kappa = 0.958, LM = 60, profile-weighted; out_primary.txt).
+  Chart baseline: all-higher slope 1.1328, rms 0.0142, odd-rate spread 3.39 % (corners 2.90-3.87); shear-only slope 1.2036; ratio 1.0624 (1.058-1.067).
+  C3 (Gamma12 chart): spread 53 %, ratio 0.877: not discriminating in favour of Gamma12; fine.
+  Rulers (a),(b),(d) on the least-damped Riesz projector: R1 DIES (ratios 1.27, 0.67, 0.73), R2 DIES (spreads 195 %, 255 %, 201 %).
+  C1 passes (the pipeline can see a chart effect), C2 passes (wrong ruler no better), eigen checks 1e-13.
+  INSTRUMENT FINDING (diag_modes.py), which voids this ruler rather than the reading: at kappa = 0.958 the least-damped
+  eigenvalue is isolated only for k < 1.4 (gap 0.9 -> 0.06); for k >= 1.4, which carries ~85 % of the profile weight, it is a
+  REAL eigenvalue at about -kappa with real-part gap 1e-4 or less, Petermann factor 374 at the transition, and 3 % weight on
+  l = 0.  That is the paper's own Sec. 2 statement (the hydrodynamic pole meets the branch cut at kappa ~ 0.646 k): there is NO
+  isolated kept eigenprojector at readout for most of the profile, so "the kept-sector Riesz projector" is not a well-posed
+  object there and its distance is not a ruler.  R3 is therefore NOT concluded from this run: the ruler was ill-posed
+  ("failed this way" at the instrument, not at the reading).  The biorthogonal form q was indefinite along the path
+  (-1e2 .. +4e3), as B57/the cone paper allow; the Hermitian arc length is not a length there, as stated above.
+
+RULER (e), written now, before running it.  The object that IS well-posed through decoupling is the state itself: the
+kept-sector trajectory v_r(tau) of memory_curve.py (61 moments, start in |0>, evolve under -(ikM + kappa(tau) D_r), the
+same history as the collapse runs: kappa = 8/tau^4, n = 3, eps_dec = 2, tau0 = 0.02).  Ruler (e): the principal angle
+theta_r = arccos |<v_1(tau*)|v_r(tau*)>| / (norms) between the state at ratio r and at r = 1, read at tau* = 1.7 (PRIMARY,
+the memory form's first-maximum readout) and tau* = 4.0 (sensitivity), profile-averaged with the memory-form weights,
+signed by the side of r = 1.  This is Paper I Sec. 10's own instrument (raw data -> intrinsic angles): gauge-free, scale-
+free, needs no isolated eigenvalue.  Control alongside: the memory form's own number A_r(tau*) = |v_0|^2 (the kept
+population), which is what the frozen memory form reads and which FAILED Test F (predicted +-0.004).
+Same readings R1, R2, R3 and controls C1-C4 as above, verbatim, applied to ruler (e).  Expected under his framework: R1
+and/or R2 survive.  Expected if the threshold reads something the single-mode state does not carry (nonlinear collapse
+response): both die and the reading is R3 for this ruler too.
+
+RESULT 2 (ruler (e), out_state.txt, ruler_state.json).
+  tau* = 1.7 (primary): all-higher slope 21.20 rad^-1, rms 0.130 (chart rms 0.014); odd rates 16.7 -> 23.4, spread 35.9 % (corners 35.3-36.4);
+    shear-only slope 20.07; RATIO 0.9465 (corners 0.942-0.950).  R1 DIES (outside [0.97, 1.03]); R2 DIES (36 % vs 3.4 % in the chart).
+  tau* = 4.0: ratio 1.668, spread 22 %: worse.  Memory-form A0 log-odds as ruler: ratio 0.885 / 1.84, spread 40 % / 97 %: worse.
+  C1 passes (theta read in x shows ratio 1.15, spread 28 %); C2: the swapped ruler is nearly as good (0.921) because the two
+    families' state angles are almost equal (theta_all(4) = 0.0475, theta_shear(4) = 0.0467: 2 % apart, while the measured
+    offsets are 8 % apart) -- the linear kept-sector state at readout barely distinguishes the two collision models.
+  Corner sampling (2000 draws over every bracket incl. the anchor): every verdict holds at every corner.
+VERDICT: R3 for both rulers tried -- the intrinsic distance of the kept sector, whether as the Riesz projector of the
+  least-damped mode (ill-posed at readout; kappa ~ k puts the pole in the branch cut) or as the trajectory's principal
+  angle (well-posed), does NOT explain the 1.06-1.08 family split or the 3.4 % bend.  The chart x = (1/2) ln r = (1/2) ln(kappa2/kappa1)
+  remains by far the most linear description of the data (rms 0.014 against 0.13).  Failed this way: other projectors
+  (the full angular moment set of the collapse run, the nonlinear state at the horizon) and other readout epochs remain open and are not run.
+  What this establishes, in the author's coordinate: the threshold's offset tracks the rapidity of the damping OPERATOR's
+  flux-shear link (B189: ln(kappa2/kappa1) is a property of D, not of a state), and the linear kept-sector state at readout
+  does not carry the difference between damping the shear alone and damping every l >= 2 (2 % in angle vs 8 % in threshold):
+  that difference is written after readout, in the nonlinear collapse, which agrees with the external review's "nonlinear in
+  the ledger" reading and with K5.  No rate constant is claimed.
+
+CORRECTION (2026-11-05, after the verdict; numbers only, verdict unchanged).  The share "~85 % of the profile weight" at
+  k >= 1.4 in RESULT 1 was misread from the diag_modes.py table.  Summing its weight column with the memory-form weights
+  (36 Gauss nodes, k^2 exp(-k^2/2)): k < 1.4 carries 0.362, k >= 1.4 carries 0.638.  The isolated-mode region is therefore
+  about a third of the profile, not 15 %.  The instrument finding stands (no isolated kept eigenvalue on most of the profile,
+  Petermann 374 at the transition) and the VERDICT rests on ruler (e), which is well-posed on the whole profile.

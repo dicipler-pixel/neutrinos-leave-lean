@@ -1,0 +1,7 @@
+edec None Delta shift 5.962  dpl shift 6.663  tmax 1.711 1.744  t=119
+edec 0.25 Delta shift 5.124  dpl shift 5.878  tmax 1.711 1.743  t=182
+edec 0.5 Delta shift 3.498  dpl shift 4.233  tmax 1.714 1.740  t=233
+edec 1 Delta shift 1.109  dpl shift 1.423  tmax 1.730 1.746  t=280
+edec 2 Delta shift -0.285  dpl shift -0.474  tmax 1.748 1.757  t=327
+edec 4 Delta shift -0.145  dpl shift -0.197  tmax 1.737 1.739  t=369
+edec 8 Delta shift -0.022  dpl shift -0.023  tmax 1.731 1.731  t=411

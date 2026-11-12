@@ -1,0 +1,30 @@
+E fnu=0.2        lower edge delta=0.50393333: dispersed    eps=6.84 minI=5.281e-09 max2M/R=8100.0000
+E fnu=0.2        upper edge delta=0.50399630: BH           eps=7.23 minI=3.051e-10 max2M/R=8100.0000
+F r=1/4          lower edge delta=0.51645967: dispersed    eps=7.06 minI=9.434e-09 max2M/R=8100.0000
+F r=1/4          upper edge delta=0.51653539: BH           eps=7.21 minI=1.827e-09 max2M/R=8100.0000
+F r=4            lower edge delta=0.50540453: dispersed    eps=6.88 minI=1.130e-08 max2M/R=8100.0000
+F r=4            upper edge delta=0.50548025: BH           eps=7.36 minI=5.897e-10 max2M/R=8100.0000
+F2 r=1/16        lower edge delta=0.52144691: dispersed    eps=7.07 minI=9.623e-09 max2M/R=8100.0000
+F2 r=1/16        upper edge delta=0.52152222: BH           eps=7.25 minI=1.633e-09 max2M/R=8100.0000
+F2 r=16          lower edge delta=0.50164815: dispersed    eps=7.09 minI=9.617e-09 max2M/R=8100.0000
+F2 r=16          upper edge delta=0.50169877: BH           eps=7.25 minI=-2.378e-10 max2M/R=8100.0000
+H1 r=1           lower edge delta=0.51072222: dispersed    eps=7.03 minI=9.787e-09 max2M/R=8100.0000
+H1 r=1           upper edge delta=0.51075926: BH           eps=7.36 minI=1.254e-09 max2M/R=8100.0000
+I r=1/4 dt/4     lower edge delta=0.51648148: dispersed    eps=7.22 minI=4.008e-09 max2M/R=8100.0000
+I r=1/4 dt/4     upper edge delta=0.51651852: BH           eps=7.40 minI=6.240e-10 max2M/R=8100.0000
+J r=2            lower edge delta=0.50796296: dispersed    eps=7.19 minI=4.276e-09 max2M/R=8100.0000
+J r=2            upper edge delta=0.50798354: BH           eps=7.36 minI=1.007e-09 max2M/R=8100.0000
+J r=1/2          lower edge delta=0.51364609: dispersed    eps=7.28 minI=2.467e-09 max2M/R=8100.0000
+J r=1/2          upper edge delta=0.51366667: BH           eps=7.38 minI=9.064e-10 max2M/R=8100.0000
+K r=1.25         lower edge delta=0.50984047: dispersed    eps=7.35 minI=1.323e-09 max2M/R=8100.0000
+K r=1.25         upper edge delta=0.50984092: BH           eps=7.35 minI=1.250e-09 max2M/R=8100.0000
+K r=0.8          lower edge delta=0.51169535: dispersed    eps=7.36 minI=9.809e-10 max2M/R=8100.0000
+K r=0.8          upper edge delta=0.51169611: BH           eps=7.36 minI=9.598e-10 max2M/R=8100.0000
+L r=4 shear      lower edge delta=0.50523137: dispersed    eps=7.28 minI=2.033e-09 max2M/R=8100.0000
+L r=4 shear      upper edge delta=0.50523868: BH           eps=7.34 minI=7.621e-10 max2M/R=8100.0000
+L r=1/4 shear    lower edge delta=0.51709053: dispersed    eps=7.31 minI=2.017e-09 max2M/R=8100.0000
+L r=1/4 shear    upper edge delta=0.51709785: BH           eps=7.39 minI=1.066e-09 max2M/R=8100.0000
+M r=4 K48        lower edge delta=0.50548765: dispersed    eps=7.32 minI=1.547e-09 max2M/R=8100.0000
+M r=4 K48        upper edge delta=0.50550412: BH           eps=7.36 minI=4.809e-10 max2M/R=8100.0000
+M r=1/4 K48      lower edge delta=0.51655350: dispersed    eps=7.28 minI=2.540e-09 max2M/R=8100.0000
+M r=1/4 K48      upper edge delta=0.51656173: BH           eps=7.39 minI=1.198e-09 max2M/R=8100.0000

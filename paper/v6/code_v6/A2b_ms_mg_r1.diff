@@ -1,0 +1,24 @@
+1c1
+< # SCRIPT: ORIG_MS_MG (unmodified copy of McCormick's file, eb7c4de; only this line added)
+---
+> # SCRIPT: MS_MG_R1 (copy of McCormick ms_mg.py, eb7c4de; adds nnmode = 2: nu-nu relaxes to plasma-frame isotropy, link ratio r = 1)
+28c28
+< def state(t, R, U, Gam, e, I, mue, le, lp, lg, lT, kbe, kbn, Tb, enub, pe, lchi, chib):
+---
+> def state(t, R, U, Gam, e, I, mue, le, lp, lg, lT, kbe, kbn, Tb, enub, pe, lchi, chib, nnmode):
+62a63,64
+>             if nnmode == 2:
+>                 kq[i] += kap_n[s, i]*q_s[s, i]          # r1 variant: nu-nu also hands its momentum to the plasma
+85c87
+<                                                               Tb, enub, pe, lchi, chib)
+---
+>                                                               Tb, enub, pe, lchi, chib, nnmode)
+172c174,179
+<                 tgt = eps_s[s, i]*gn[i, k] if nnmode == 1 else eps_s[s, i]/(4*PI) + cs*mu
+---
+>                 if nnmode == 1:
+>                     tgt = eps_s[s, i]*gn[i, k]
+>                 elif nnmode == 2:
+>                     tgt = eps_s[s, i]/(4*PI)                # r1 variant: isotropy in the plasma frame
+>                 else:
+>                     tgt = eps_s[s, i]/(4*PI) + cs*mu

@@ -1,0 +1,15 @@
+# SCRIPT: PREREGISTERED_NEXT  (written 2026-10-31T17:09:37Z, before any run below)
+Follow-up to "When the Neutrinos Leave" v2.  Frozen predictor: kept-sector memory model, two-epoch weight w=0.890 (fitted on n=3 only),
+values taken unchanged from paper/code/main/memory_curve.json (file written 2026-10-30 13:47 CDT, never refitted).
+
+TEST C (fresh history, out of sample): Gaussian profile (alpha=1), rate kappa/H=(eps_dec/eps)^6, eps_dec=1.
+  Memory model predicts G = 0.6625.  History-blind rule (Steve's n=3 measured G at the same eps_dec, Table II) = 0.683.
+  Kill: memory model dies if |G_measured - 0.6625| > 0.08.  History-blind dies if |G - 0.683| > 0.08.
+  (The two are only 0.02 apart here, so this test checks the model's survival, not discrimination.)
+TEST D (fresh history, discriminating): Gaussian, n=6, eps_dec=3.
+  Memory model predicts G = 0.1176.  History-blind (Steve n=3, eps_dec interpolated at 3: between 0.431 (2) and 0.190 (4)) ~ 0.30.
+  Kill: memory model dies if |G - 0.1176| > 0.08.  History-blind dies if |G - 0.30| > 0.08.
+
+CONTROLS on Test B (n=6, eps_dec=2, measured G=0.317+-0.004 at N=400, K=32, kapcap=5e5):
+  B-res: N=600, K=48.  B-cap: kapcap=5e6.  Pass if each shifts delta_c by less than 0.0005 (i.e. G by < 0.017).
+  If a control fails, Test B's G is reported as resolution/cap dependent and the 0.071 pass is suspended until resolved.
