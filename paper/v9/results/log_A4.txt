@@ -1,0 +1,8 @@
+A_q03_ed4 delta=0.46300: BH eps=4.70 (116s)
+A_q03_ed4 delta=0.45500: BH eps=6.24 (133s)
+A_q03_ed4 delta=0.45100: dispersed eps=7.01 (145s)
+A_q03_ed4 delta=0.45300: dispersed eps=7.97 (154s)
+A_q03_ed4 delta=0.45400: BH eps=6.89 (141s)
+A_q03_ed4 delta=0.45350: BH eps=7.63 (153s)
+A_q03_ed4 delta=0.45325: dispersed eps=9.51 (176s)
+RESULT A_q03_ed4: delta_c = 0.45337 +- 0.00013 (17.0 min)

@@ -1,0 +1,73 @@
+\subsection*{B.19 The stage-correct runner and the reconvergence of Section~\ref{sec:link}}
+\noindent\texttt{A1\_stage\_fix.diff}: the one change to the v5.1 runner.
+\lstinputlisting{code_v6/A1_stage_fix.diff}
+\noindent\texttt{A1\_PREREGISTERED.txt}: predictions, kill lines and appended results.
+\lstinputlisting{code_v6/A1_PREREGISTERED.txt}
+\noindent\texttt{A1\_search.py}: bisection driver.
+\lstinputlisting{code_v6/A1_search.py}
+\noindent\texttt{A1\_oddrate.py}: odd rates and four-corner ranges.
+\lstinputlisting{code_v6/A1_oddrate.py}
+\noindent\texttt{A1\_RUNLOG.txt}: every run.
+\lstinputlisting{code_v6/A1_RUNLOG.txt}
+\subsection*{B.20 Self-scattering as the flux--shear link: algebra and frozen prediction (Section~\ref{sec:mcc})}
+\noindent\texttt{A2\_PREREGISTERED.txt}: method, predictions and comparison.
+\lstinputlisting{code_v6/A2_PREREGISTERED.txt}
+\noindent\texttt{A2\_step2\_algebra.py}: the operator on the bins, from McCormick's compiled right-hand side.
+\lstinputlisting{code_v6/A2_step2_algebra.py}
+\noindent\texttt{A2\_step2\_out.txt}: output.
+\lstinputlisting{code_v6/A2_step2_out.txt}
+\noindent\texttt{A2\_step3\_predict.py}: link rapidity along his background and the frozen predictions.
+\lstinputlisting{code_v6/A2_step3_predict.py}
+\noindent\texttt{A2\_step4\_compare.py}: comparison.
+\lstinputlisting{code_v6/A2_step4_compare.py}
+\subsection*{B.21 The deciding run (Section~\ref{sec:mcc})}
+\noindent\texttt{A2b\_ms\_mg\_r1.diff}: the change to McCormick's solver.
+\lstinputlisting{code_v6/A2b_ms_mg_r1.diff}
+\noindent\texttt{A2b\_gate\_operator.py}: operator, energy and momentum gates.
+\lstinputlisting{code_v6/A2b_gate_operator.py}
+\noindent\texttt{A2b\_PREREGISTERED.txt}: kill lines and results.
+\lstinputlisting{code_v6/A2b_PREREGISTERED.txt}
+\noindent\texttt{A2b\_log\_bisect\_r1.txt}: bisection log, r = 1.
+\lstinputlisting{code_v6/A2b_log_bisect_r1.txt}
+\noindent\texttt{A2b\_log\_bisect\_fs.txt}: instantaneous free-streaming threshold at 1 MeV.
+\lstinputlisting{code_v6/A2b_log_bisect_fs.txt}
+\subsection*{B.22 The recorder in McCormick's multigroup solver (Section~\ref{sec:mcc})}
+\noindent\texttt{A3\_PREREGISTERED.txt}: definitions, readings and results.
+\lstinputlisting{code_v6/A3_PREREGISTERED.txt}
+\noindent\texttt{A3\_analyse.py}: separation epochs and link rapidity.
+\lstinputlisting{code_v6/A3_analyse.py}
+\subsection*{B.23 The restart test (Section~\ref{sec:door})}
+\noindent\texttt{A4\_PREREGISTERED.txt}: every prediction, kill line and result, in time order.
+\lstinputlisting{code_v6/A4_PREREGISTERED.txt}
+\noindent\texttt{A4\_restart.py}: driver: stage-time rate, exact landing on the restart surface, the hidden perturbation.
+\lstinputlisting{code_v6/A4_restart.py}
+\noindent\texttt{A4\_screen.py}: paired screening runs.
+\lstinputlisting{code_v6/A4_screen.py}
+\noindent\texttt{A4\_trisect.py}: threshold search.
+\lstinputlisting{code_v6/A4_trisect.py}
+\subsection*{B.24 The readout Gramian, the order swap and the closures (Section~\ref{sec:gramian})}
+\noindent\texttt{A5\_PREREGISTERED.txt}: predictions and results, kept as written; its line on the terminal Gramian ratio says $10^{1.1}$ where the ratio, $4.8\times10^{-17}$ against $e^{-42}$, is $10^{1.92}$ (Section~\ref{sec:gramian}).
+\lstinputlisting{code_v6/A5_PREREGISTERED.txt}
+\noindent\texttt{A5\_chain\_lib.py}: the chain.
+\lstinputlisting{code_v6/A5_chain_lib.py}
+\noindent\texttt{A5\_t1\_order.py}: order swap.
+\lstinputlisting{code_v6/A5_t1_order.py}
+\noindent\texttt{A5\_t2\_gramian.py}: Gramian.
+\lstinputlisting{code_v6/A5_t2_gramian.py}
+\noindent\texttt{A5\_t3\_closures.py}: closures.
+\lstinputlisting{code_v6/A5_t3_closures.py}
+\subsection*{B.25 Figures 8--10}
+\noindent\texttt{make\_figs\_v6.py}: every number copied from the outputs above.
+\lstinputlisting{code_v6/make_figs_v6.py}
+\subsection*{B.26 The onset of the kept-sector pole (Section~2)}
+The closed pole and non-orthogonality factor of Appendix~A.3a against the moment chain, and the truncation onset against $2/\pi$.
+\lstinputlisting{code/v7/onset_exact.py}
+\lstinputlisting{code/v7/onset_exact_out.txt}
+\lstinputlisting{code/v7/fig_onset.py}
+\subsection*{B.27 The third resolution level (Section~\ref{sec:link})}
+Predictions and kill line written before the runs, with the appended timing and the change of tolerance; the queue scripts; the run log; the $r=1.25$ result.
+\lstinputlisting{code/A6/PREREGISTERED.txt}
+\lstinputlisting{code/A6/queue.sh}
+\lstinputlisting{code/A6/queue2.sh}
+\lstinputlisting{code/A6/RUNLOG.txt}
+\lstinputlisting{code/A6/res_L3_r125.json}

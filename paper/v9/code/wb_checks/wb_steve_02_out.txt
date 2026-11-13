@@ -1,0 +1,17 @@
+=== V1a/b single mode, neutrinos free from the start (k tau0 = 1e-2, rtol 1e-11) ===
+R=0.409: first max at k tau = 4.752 (pf) 4.544 (fs); ratio of maxima 0.9111 ; implied threshold rise 9.76 % ; superhorizon Delta ratio at k tau=.05: 1.0464 (formula 1.0492)
+R=0.488: first max at k tau = 4.752 (pf) 4.507 (fs); ratio of maxima 0.8972 ; implied threshold rise 11.45 % ; superhorizon Delta ratio at k tau=.05: 1.0546 (formula 1.0576)
+
+=== V1c Gaussian-profile centre, tau0 = 0.02, free streaming from tau0 ===
+perfect-fluid centre done in 18s
+centre first max: perfect fluid eps=1.732, free-streaming eps=1.714; ratio 0.9411 (Steve 0.944), implied rise 6.25 % (Steve 6-7 %)
+lmax 48 vs 80 at k=3: max relative difference 4.1e-07
+
+=== D1 baseline: first maximum of the centre density contrast, gradual decoupling ===
+eps_dec 0.25 : first max at eps 1.713  ratio 0.9512  G_lin = 0.820   Steve G = 0.960   err -0.140
+eps_dec 0.50 : first max at eps 1.716  ratio 0.9662  G_lin = 0.560   Steve G = 0.868   err -0.308
+eps_dec 1.00 : first max at eps 1.732  ratio 0.9890  G_lin = 0.178   Steve G = 0.684   err -0.506
+eps_dec 2.00 : first max at eps 1.749  ratio 1.0029  G_lin = -0.045   Steve G = 0.431   err -0.476
+eps_dec 4.00 : first max at eps 1.739  ratio 1.0015  G_lin = -0.023   Steve G = 0.190   err -0.213
+eps_dec 8.00 : first max at eps 1.733  ratio 1.0002  G_lin = -0.003   Steve G = 0.063   err -0.066
+D1 max |error| = 0.506  -> DIES (>=0.10)
