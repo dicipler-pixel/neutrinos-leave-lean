@@ -1,0 +1,3 @@
+q = 1/sqrt3  best eps* = 1.170 with max err 0.0189 ; anchored (1.5..4.6)? NO
+q = 5/9      best eps* = 1.176 with max err 0.0127 ; anchored (1.5..4.6)? NO
+q = 1        best eps* = 1.166 with max err 0.1277 ; anchored (1.5..4.6)? NO

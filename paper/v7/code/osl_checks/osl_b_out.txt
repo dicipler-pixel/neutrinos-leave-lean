@@ -1,0 +1,23 @@
+2/sqrt3 = 1.154701
+N =   2 : least-damped eigenvalue becomes real (and stays real) for kappa >= 1.1552
+N =   3 : least-damped eigenvalue becomes real (and stays real) for kappa >= 0.0100
+N =   5 : least-damped eigenvalue becomes real (and stays real) for kappa >= 0.0100
+N =  10 : least-damped eigenvalue becomes real (and stays real) for kappa >= 0.7552
+N =  40 : least-damped eigenvalue becomes real (and stays real) for kappa >= 0.6719
+N = 200 : least-damped eigenvalue becomes real (and stays real) for kappa >= 0.6455
+KB1: |EP(N=2) - 2/sqrt3| = 5.06e-04
+KB2: EP(N=200)/(2/sqrt3) = 0.559
+kappa=0.5 N=  2 least-damped lambda = -0.2500 -0.5204i ; diffusion estimate -k^2/(3 kappa) = -0.6667
+kappa=0.5 N=200 least-damped lambda = -0.4947 -0.0078i ; diffusion estimate -k^2/(3 kappa) = -0.6667
+kappa=1.0 N=  2 least-damped lambda = -0.5000 +0.2887i ; diffusion estimate -k^2/(3 kappa) = -0.3333
+kappa=1.0 N=200 least-damped lambda = -0.3579 +0.0000i ; diffusion estimate -k^2/(3 kappa) = -0.3333
+kappa=1.5 N=  2 least-damped lambda = -0.2713 +0.0000i ; diffusion estimate -k^2/(3 kappa) = -0.2222
+kappa=1.5 N=200 least-damped lambda = -0.2291 +0.0000i ; diffusion estimate -k^2/(3 kappa) = -0.2222
+kappa=2.0 N=  2 least-damped lambda = -0.1835 +0.0000i ; diffusion estimate -k^2/(3 kappa) = -0.1667
+kappa=2.0 N=200 least-damped lambda = -0.1695 +0.0000i ; diffusion estimate -k^2/(3 kappa) = -0.1667
+kappa=3.0 N=  2 least-damped lambda = -0.1156 +0.0000i ; diffusion estimate -k^2/(3 kappa) = -0.1111
+kappa=3.0 N=200 least-damped lambda = -0.1119 -0.0000i ; diffusion estimate -k^2/(3 kappa) = -0.1111
+kappa=6.0 N=  2 least-damped lambda = -0.0561 +0.0000i ; diffusion estimate -k^2/(3 kappa) = -0.0556
+kappa=6.0 N=200 least-damped lambda = -0.0557 +0.0000i ; diffusion estimate -k^2/(3 kappa) = -0.0556
+
+[exited with code 0]

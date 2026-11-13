@@ -1,0 +1,15 @@
+TITLE
+What the Neutrino State Must Keep: Hidden Angular Structure, the Flux–Shear Link and the Threshold for Primordial Black Hole Formation (version 7 of "When the Neutrinos Leave")
+
+DESCRIPTION
+Neutrinos that stream out of a collapsing overdensity raise the threshold for primordial black hole formation, and the effect fades when they decouple gradually. This paper asks what sets that fading, and finds that it is not the density, flux and stress of the neutrinos alone, but the hidden angular structure the future reads and the order of the history that made it.
+
+The neutrino collision operator is read exactly as a cut between what is kept and what streams. All of its non-normality lies on one link, density to flux, with weight equal to the sound speed. Version 7 adds the exact wall of the full moment chain: the kept-sector mode s = k cot(k/κ) − κ exists only for κ > 2k/π, where its non-orthogonality 4φ²/sin²2φ, φ = k/κ, diverges. The value 0.646k found earlier with 200 moments is the truncated approach to this 2/π.
+
+S. McCormick's public general-relativistic code is run on cases outside his paper, with every prediction and kill line written before the runs. The decoupling history changes the threshold, not only its end point; hidden angular structure planted at decoupling, invisible to density, flux, stress and Einstein's equations, moves the black-hole threshold by up to 5.5×10⁻³; and with the shear relaxing at r times the flux rate, the offset of the surviving share moves close to a straight line in the link rapidity ½ ln r, at a rate of 1.11 ± 0.01. A third grid level is consistent with second-order convergence of the r = 1.25 threshold. McCormick's multigroup collision term is exactly the split link, so neutrino self-scattering is the flux–shear split.
+
+The algebraic identities, the counterexample and the verdict arithmetic are machine-checked in Lean 4 with Mathlib; the full build completes with no sorry and only the standard axioms.
+
+Files: the paper as PDF and HTML; the interactive mixer; a zip with all code, run logs, preregistrations, Lean sources and figure scripts.
+
+AI-assisted: the ideas and research direction are the author's; AI tools (Claude, Anthropic) were used for literature search, computation, drafting and typesetting.

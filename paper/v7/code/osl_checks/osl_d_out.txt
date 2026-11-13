@@ -1,0 +1,29 @@
+G (delta_c) = [0.959 0.867 0.683 0.431 0.19  0.063]  G (Cl,c) = [0.958 0.865 0.677 0.417 0.188 0.062]
+log-odds tau_G = 1.660 ln(eps_dec) -0.806 ; eps_half = exp(-a/s) = 1.625 ; max |G_fit-G| = 0.0163
+   residuals of tau_G: [-0.054  0.084  0.038 -0.067 -0.047  0.046]   slope per e-fold of kappa (kappa ~ eps_dec^3): 0.553
+   slope fixed to sqrt3 (1.732): intercept refit -0.830, max err 0.0224
+   slope fixed to 3/2   (1.500): intercept refit -0.750, max err 0.0221
+   slope fixed to 5/3   (1.667): intercept refit -0.808, max err 0.0169
+   slope fixed to 2     (2.000): intercept refit -0.923, max err 0.0543
+
+parameter-free candidates (k = 2/r_m, eps = tau_conformal/r_m, so kappa_conf/(2 sqrt E_B) = eps_dec^3 / (eps^4 * 2*2/sqrt3)):
+  eps*=1.70 M1 1/(1+rho)       G = [0.999 0.994 0.951 0.707 0.232 0.036]  max err 0.276  FAIL
+  eps*=1.70 M2 exp(-N)         G = [0.998 0.983 0.873 0.338 0.    0.   ]  max err 0.190  FAIL
+  eps*=1.70 M3 rho^(1/sqrt3)   G = [0.984 0.948 0.847 0.624 0.333 0.131]  max err 0.193  FAIL
+  eps*=4.00 M1 1/(1+rho)       G = [1.    1.    0.998 0.987 0.902 0.536]  max err 0.712  FAIL
+  eps*=4.00 M2 exp(-N)         G = [1.    0.999 0.99  0.92  0.513 0.005]  max err 0.489  FAIL
+  eps*=4.00 M3 rho^(1/sqrt3)   G = [0.998 0.992 0.976 0.923 0.783 0.521]  max err 0.593  FAIL
+  eps*=4.25 M1 1/(1+rho)       G = [1.    1.    0.999 0.989 0.922 0.595]  max err 0.731  FAIL
+  eps*=4.25 M2 exp(-N)         G = [1.    0.999 0.991 0.933 0.574 0.012]  max err 0.502  FAIL
+  eps*=4.25 M3 rho^(1/sqrt3)   G = [0.998 0.993 0.979 0.932 0.806 0.556]  max err 0.616  FAIL
+  eps*=4.50 M1 1/(1+rho)       G = [1.    1.    0.999 0.992 0.937 0.649]  max err 0.746  FAIL
+  eps*=4.50 M2 exp(-N)         G = [1.    0.999 0.993 0.943 0.626 0.024]  max err 0.512  FAIL
+  eps*=4.50 M3 rho^(1/sqrt3)   G = [0.998 0.994 0.981 0.94  0.826 0.588]  max err 0.635  FAIL
+best parameter-free candidate: max err 0.190 (M2 exp(-N), eps*=1.70)
+
+EP crossing epoch re-derived: kappa_conf = (1/(eps r_m)) (eps_dec/eps)^3 = 2k/sqrt3, k=2/r_m  ->  eps_EP = (eps_dec^3 / (4/sqrt3 * 1)... ) check:
+   eps_dec = 0.25 eps_EP = 0.287
+   eps_dec = 1    eps_EP = 0.811
+   eps_dec = 2    eps_EP = 1.364
+   eps_dec = 4    eps_EP = 2.294
+   eps_dec = 8    eps_EP = 3.859

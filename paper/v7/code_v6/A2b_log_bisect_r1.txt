@@ -1,0 +1,8 @@
+Wed Nov 11 14:50:50 UTC 2026
+   r1_6 T0=10.0 delta=0.52000: BH eps=6.10 (353s)
+   r1_6 T0=10.0 delta=0.51850: dispersed eps=5.53 (300s)
+   r1_6 T0=10.0 delta=0.51925: dispersed eps=5.85 (320s)
+   r1_6 T0=10.0 delta=0.51963: dispersed eps=6.23 (343s)
+   r1_6 T0=10.0 delta=0.51981: BH eps=7.20 (418s)
+RESULT r1_6 T0=10.0: TH=1.0029 delta_c=0.51972 +- 0.00009 (28.9 min)
+Wed Nov 11 15:19:45 UTC 2026

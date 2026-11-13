@@ -1,0 +1,11 @@
+H1 sigma=0.0: negative off-diagonals 39 of 78 nonzero; max|Re| 0.000, # eigenvalues with Re>-1e-9: 40, imag parts of those: [0.078 0.078 0.232 0.232 0.385 0.385]
+H1 sigma=1.0: negative off-diagonals 39 of 78 nonzero; max|Re| -0.949, # eigenvalues with Re>-1e-9: 0, imag parts of those: []
+H1 sigma=5.0: negative off-diagonals 39 of 78 nonzero; max|Re| -0.270, # eigenvalues with Re>-1e-9: 0, imag parts of those: []
+H2 sigma=  0.0: Metzler True | lead eig -2.5000+0.0e+00 i | one-signed True | 2nd real part -2.5000 (gap 0.0000) | diffusion-limit estimate nan
+H2 sigma=  0.5: Metzler True | lead eig -0.3035+0.0e+00 i | one-signed True | 2nd real part -0.5403 (gap 0.2368) | diffusion-limit estimate -0.2807
+H2 sigma=  2.0: Metzler True | lead eig -0.2319+0.0e+00 i | one-signed True | 2nd real part -0.9738 (gap 0.7419) | diffusion-limit estimate -0.2239
+H2 sigma= 10.0: Metzler True | lead eig -0.0830+0.0e+00 i | one-signed True | 2nd real part -0.3313 (gap 0.2483) | diffusion-limit estimate -0.0717
+H2 sigma= 40.0: Metzler True | lead eig -0.0338+0.0e+00 i | one-signed True | 2nd real part -0.1351 (gap 0.1013) | diffusion-limit estimate -0.0199
+OPP coupled sigma=0: leading eigenvalues [0.+1.659j 0.-1.659j 0.+1.536j 0.-1.536j]
+OPP coupled sigma=1: leading eigenvalues [-0.102+1.196j -0.102-1.196j -0.883-0.051j -0.883+0.051j]
+OPP coupled sigma=100: leading eigenvalues [-2.e-03+1.155j -2.e-03-1.155j -8.e-03+0.j    -1.e+02+1.99j ]
