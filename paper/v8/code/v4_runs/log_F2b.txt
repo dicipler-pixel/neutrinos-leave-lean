@@ -1,0 +1,11 @@
+F2_r16 delta=0.50180: BH eps=6.59
+F2_r16 delta=0.50590: BH eps=4.76
+F2_r16 delta=0.49907: dispersed eps=5.46
+F2_r16 delta=0.50043: dispersed eps=5.80
+F2_r16 delta=0.50089: dispersed eps=6.00
+F2_r16 delta=0.50134: dispersed eps=6.34
+F2_r16 delta=0.50150: dispersed eps=6.56
+F2_r16 delta=0.50165: dispersed eps=7.09
+F2_r16 delta=0.50170: BH eps=7.25
+F2_r16 delta=0.50175: BH eps=6.80
+RESULT F2_r16: delta_c = 0.50167 +- 0.00003 (14.1 min)

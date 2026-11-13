@@ -1,0 +1,4 @@
+Reproduction check, 2026-10-30 ~14:25 CT, printed by the session (not logged to file at the time):
+repro check n=3 eps_dec=2 at 0.5109 (Steve threshold 0.51092): BH 6.6146961105642985 90
+(status BH, apparent horizon at eps 6.61, 90 s run time)
+McCormick logG.txt bracket for the same case: 0.51109 BH, 0.51074 dispersed.
