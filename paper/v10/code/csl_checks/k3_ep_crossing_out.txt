@@ -1,0 +1,13 @@
+eps_EP numeric      : [0.2868 0.4823 0.8112 1.3643 2.2944 3.8587]
+0.811*edec^0.75    : [0.2868 0.4823 0.8112 1.3643 2.2944 3.8587]
+earlier note 0.658 edec^1.5: [ 0.0822  0.2326  0.658   1.8611  5.264  14.8888]
+fitted log-log slope of eps_EP vs edec: 0.7500
+KILL (i): did not fire
+published G                        [0.959 0.867 0.683 0.431 0.19  0.063]
+A  1-eEP/eAH (primary)             [0.928 0.879 0.797 0.659 0.426 0.035]  max|err| 0.236
+B  ln(eAH/eEP)/ln(eAH/0.1)         [0.714 0.573 0.433 0.292 0.151 0.01 ]  max|err| 0.294
+C  1-(eEP/eAH)^2                   [0.995 0.985 0.959 0.884 0.671 0.069]  max|err| 0.481
+opposite  eEP/eAH                  [0.072 0.121 0.203 0.341 0.574 0.965]  max|err| 0.902
+opposite  A with note eEP=.658e^1.5 [0.979 0.942 0.836 0.535 0.    0.   ]  max|err| 0.190
+G/(1-G) published: [23.39   6.519  2.155  0.757  0.235  0.067] ; successive ratios [3.59 3.03 2.84 3.23 3.49]
+log-log slope of G/(1-G) vs edec: -1.660

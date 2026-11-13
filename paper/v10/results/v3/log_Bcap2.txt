@@ -1,0 +1,4 @@
+Bcap2 delta=0.50729: D [dispersed] eps=6.54 eps_max=14.0 rawmax(kappa/H)=6.400e+07 cap=5.0e+06 capped_steps=4250337/5970579 cap_released_at_eps~0.153 (4206s)
+Bcap2 delta=0.50751: C [BH] eps=7.29 eps_max=14.0 rawmax(kappa/H)=6.400e+07 cap=5.0e+06 capped_steps=4250338/5977391 cap_released_at_eps~0.153 (4297s)
+Bcap2 bracket now [0.50729,0.50751]
+RESULT Bcap2: delta_c = 0.50740 +- 0.00011 bracket [0.50729,0.50751] (71.6 min) undecided_points=[]

@@ -1,0 +1,31 @@
+14:44:59 [start] level-3 queue launched (queue.sh)
+[L3_r125] 15:54:27 L3_r125 delta=0.50971687: dispersed eps=6.5193 minI=1.043e-08 steps=1153907 (4168s)
+15:54:34 [note] timing: first level-3 run (delta=0.50971687, r=1.25) took 4168 s = 69.5 min, 1153907 steps (level 2 lower end: 433 s, 251302 steps; ratio 9.6x time, 4.6x steps). Under the 3 h rule, so r=1.25 and r=0.8 run back to back. Estimated ~12 runs x ~75 min = ~15 h per threshold.
+[L3_r125] 17:02:20 L3_r125 delta=0.51011687: BH eps=6.4993 minI=1.052e-08 steps=1150339 (4072s)
+[L3_r125] 18:16:22 L3_r125 delta=0.50991687: dispersed eps=7.1891 minI=4.308e-09 steps=1275088 (4442s)
+[L3_r125] 19:27:29 L3_r125 delta=0.51001687: BH eps=6.8404 minI=7.754e-09 steps=1211984 (4267s)
+[L3_r125] 20:43:35 L3_r125 delta=0.50996687: BH eps=7.2466 minI=9.622e-10 steps=1285705 (4567s)
+21:42:28 [restart] container restarted; queue relaunched, search resumes from prog_L3_r125.json
+[L3_r125] 23:06:59 L3_r125 delta=0.50994187: dispersed eps=7.3545 minI=7.340e-10 steps=1327361 (5057s)
+02:53:09 [restart] 2h limit; queue relaunched
+[L3_r125] 04:00:04 L3_r125 delta=0.50995437: BH eps=7.3625 minI=4.353e-10 steps=1320474 (4000s)
+20:04:27 [restart] relaunched
+22:04:33 [restart] 2h limit; queue relaunched
+23:07:22 [restart] container restart; queue relaunched
+01:07:46 r125 closed at width 1.25e-5 (dc=0.50994812); r0.8 started with tol 1.25e-5 via queue2.sh
+[L3_r08] 02:20:25 L3_r08 delta=0.51155643: dispersed eps=6.5011 minI=9.923e-09 steps=1149928 (4357s)
+03:07:52 [restart] 2h limit; queue2 relaunched
+04:29:33 [restart] container restart; queue2 relaunched
+[L3_r08] 05:41:15 L3_r08 delta=0.51195643: BH eps=6.5472 minI=9.655e-09 steps=1158286 (4301s)
+06:29:38 [restart] 2h limit; queue2 relaunched
+[L3_r08] 07:48:48 L3_r08 delta=0.51175643: dispersed eps=7.0770 minI=7.344e-09 steps=1254035 (4749s)
+08:29:42 [restart] 2h limit; queue2 relaunched
+[L3_r08] 09:46:19 L3_r08 delta=0.51185643: BH eps=6.9369 minI=5.476e-09 steps=1228751 (4596s)
+10:29:51 [restart] 2h limit; queue2 relaunched
+[L3_r08] 11:50:54 L3_r08 delta=0.51180643: BH eps=7.3655 minI=5.405e-10 steps=1331310 (4862s)
+12:29:58 [restart] 2h limit; queue2 relaunched
+[L3_r08] 13:49:01 L3_r08 delta=0.51178143: dispersed eps=7.3016 minI=1.792e-09 steps=1294739 (4743s)
+14:30:07 [restart] 2h limit; queue2 relaunched (last run, lost 41 min in progress)
+[L3_r08] 15:49:39 L3_r08 delta=0.51179393: BH eps=7.3587 minI=8.593e-10 steps=1323093 (4772s)
+[L3_r08] 15:49:39 RESULT L3_r08: delta_c = 0.51178768 +- 0.00000625  bracket [0.51178143, 0.51179393]  (539.7 min of runs)
+15:49:39 QUEUE DONE

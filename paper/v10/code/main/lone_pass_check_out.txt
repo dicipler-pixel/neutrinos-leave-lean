@@ -1,0 +1,2 @@
+n=3 eps_dec=2  pred 0.508  measured 0.431  diff 0.077  survives
+n=6 eps_dec=2  pred 0.513  measured 0.317  diff 0.196  dies
