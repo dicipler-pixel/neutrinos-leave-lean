@@ -1,5 +1,5 @@
 # SCRIPT: NU-V9-ART-HTML  put the cover art and the VOTKP page design on the v9 HTML, changing no word of the paper
-# Usage: python3 build_art_html.py <v9.html> <art_clean.webp> <votkp.html (for the embedded Garamond fonts)> <out.html>
+# Usage: python3 build_art_html.py <v9.html> <art_clean.webp> <votkp.html (for the embedded Garamond fonts)> <out.html> [darkfigs]
 # The paper's text, maths, tables, listings and figures are taken byte for byte from the v9 HTML. What is added:
 # section wrappers, a contents list built from the paper's own headings, the hero, and the paper's own subtitle (from \title).
 import sys, re, base64, html
@@ -30,7 +30,9 @@ sections = ['<section class="level1">\n' + c.rstrip() + '\n</section>' for c in 
 
 # ---------- contents list from the paper's own headings ----------
 def heads(chunk):
-    return [(int(m.group(1)), m.group(2), m.group(3)) for m in re.finditer(r'<h([12])[^>]*?\bid="([^"]+)"[^>]*>(.*?)</h\1>', chunk, re.S)]
+    # a heading may hold a cross-reference link; a contents entry is itself a link, so the inner link's tags are dropped (its words stay)
+    unlink = lambda x: re.sub(r'</?a\b[^>]*>', '', x)
+    return [(int(m.group(1)), m.group(2), unlink(m.group(3))) for m in re.finditer(r'<h([12])[^>]*?\bid="([^"]+)"[^>]*>(.*?)</h\1>', chunk, re.S)]
 toc = ['<li><a href="#abstract">' + abstract_title + '</a></li>']
 for c in chunks:
     hs = heads(c); assert hs and hs[0][0] == 1, c[:80]
@@ -57,7 +59,7 @@ CSS = r'''
 *{box-sizing:border-box}
 html{background:var(--night);scroll-behavior:smooth;-webkit-print-color-adjust:exact;print-color-adjust:exact}
 body{position:relative;margin:0 auto;max-width:1580px;padding:24px 30px 80px;color:var(--ink);background:transparent;
-  font:19px/1.72 var(--serif);font-variant-numeric:oldstyle-nums proportional-nums;hyphens:auto;overflow-wrap:break-word;text-rendering:optimizeLegibility}
+  font:19px/1.72 var(--serif);font-variant-numeric:lining-nums proportional-nums;hyphens:auto;overflow-wrap:break-word;text-rendering:optimizeLegibility}
 body::before{content:"";position:absolute;top:0;bottom:0;left:12px;right:12px;z-index:-1;background:linear-gradient(180deg,rgba(3,5,12,0) 0,rgba(4,7,17,.62) 900px);border-radius:24px;pointer-events:none}
 
 /* the art, fixed behind the page, muted and faded */
@@ -178,6 +180,20 @@ hero = f'''<div id="bgart" aria-hidden="true"></div>
 {advisory}
 </div>'''
 abstract = f'<section class="level1" id="abstract">\n<h1>{abstract_title}</h1>{abstract_body.rstrip()}\n</section>'
+# ---------- figures on the dark ground: a reversible per-pixel lightness flip (darkfig.py), nothing redrawn ----------
+if len(sys.argv) > 5 and sys.argv[5] == 'darkfigs':
+    import io, numpy as np
+    from PIL import Image
+    import darkfig
+    def conv(m):
+        im = np.array(Image.open(io.BytesIO(base64.b64decode(m.group(1)))).convert('RGB'))
+        buf = io.BytesIO(); Image.fromarray(darkfig.dark(im)).save(buf, 'PNG', optimize=True)
+        return '<img src="data:image/png;base64,' + base64.b64encode(buf.getvalue()).decode() + '"'
+    sections = [re.sub(r'<img src="data:image/png;base64,([^"]+)"', conv, x) for x in sections]
+    head = head.replace('figure{margin:1.6em 0;padding:16px 18px 14px;background:rgba(3,5,13,.58);', 'figure{margin:1.6em 0;padding:16px 18px 14px;background:rgb(13,13,13);')
+    head = head.replace('margin:0 auto;background:#fff;border-radius:8px}', 'margin:0 auto;background:rgb(13,13,13);border-radius:8px}')
+    assert 'background:rgb(13,13,13);border-radius:8px}' in head and 'padding:16px 18px 14px;background:rgb(13,13,13);' in head
+
 out = head + '<body>\n' + hero + '\n' + nav + '\n' + abstract + '\n' + '\n'.join(sections) + '\n</body>\n</html>\n'
 open(OUT, 'w', encoding='utf-8').write(out)
 print('sections', len(sections), 'toc entries', out.count('<li><a href="#'), 'bytes', len(out))
