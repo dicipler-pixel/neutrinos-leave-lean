@@ -1,0 +1,23 @@
+$NU_WORK/a_wb/wb_steve_05_mixture.py:33: RuntimeWarning: invalid value encountered in divide
+  return {ed: (1-f(ed))/(1-Ai) for ed in eds}
+M1 fitted weight on the first-max epoch: w = 0.890 ; max error on the six Table II points = 0.021
+   eps_dec  Steve G   mixture   error
+    0.25    0.960     0.947    -0.013
+    0.50    0.868     0.875    +0.007
+    1.00    0.684     0.705    +0.021
+    2.00    0.431     0.411    -0.020
+    4.00    0.190     0.169    -0.021
+    8.00    0.063     0.059    -0.004
+M2 cross-weighting (k r_m = 2, same w): max error 0.115
+   out-of-sample predictions (profile-averaged, same w) for Steve to test:
+   eps_dec =  0.75 : G_pred = 0.792  (shift of delta_c would be 4.87 %, of C_l 7.64 % for Rnu=.409 Gaussian)
+   eps_dec =  1.50 : G_pred = 0.542  (shift of delta_c would be 3.33 %, of C_l 5.22 % for Rnu=.409 Gaussian)
+   eps_dec =  3.00 : G_pred = 0.249  (shift of delta_c would be 1.53 %, of C_l 2.40 % for Rnu=.409 Gaussian)
+   eps_dec =  6.00 : G_pred = 0.095  (shift of delta_c would be 0.58 %, of C_l 0.92 % for Rnu=.409 Gaussian)
+   eps_dec = 12.00 : G_pred = 0.024  (shift of delta_c would be 0.15 %, of C_l 0.24 % for Rnu=.409 Gaussian)
+   same w, k r_m=2 weighting (band): 0.75->0.889, 1.50->0.612, 3.00->0.279, 6.00->0.121, 12.00->0.032
+   monotone decreasing: True
+
+H1 half-point eps_dec(G=1/2) = 1.665 ; first-max epoch 1.714 ; relative difference -2.9 %
+H2 EP-crossing epoch at the measured half-point: 1.189 (first max 1.714). Decoupling time that would put the EP crossing at the first max: 2.711 vs measured 1.665 -> 63 % off
+(the earlier note eps_EP = 0.658 eps_dec^1.5 is not reproduced: kappa/k = eps_dec^3/(k r_m eps^4) gives exponent 0.75: eps_EP = 0.811 eps_dec^0.75)

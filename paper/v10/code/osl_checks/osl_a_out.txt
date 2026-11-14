@@ -1,0 +1,15 @@
+g = Var(H) = 0.333333333333346 ; k^2/3 = 0.333333333333333 ; sqrt(g) = 0.577350269190 ; k/sqrt3 = 0.577350269190
+C vs sinc^2 (kt): max err 1.66e-14
+KA1: max tau_dot^2/(4gS) = 0.999998333346
+   k t = 0.01  C = 0.99997  tau = -10.3104  ratio = 0.999993
+   k t = 0.10  C = 0.99668  tau = -5.7046  ratio = 0.999335
+   k t = 0.50  C = 0.91947  tau = -2.4352  ratio = 0.983271
+   k t = 1.00  C = 0.70807  tau = -0.8860  ratio = 0.932109
+   k t = 1.50  C = 0.44235  tau = +0.2316  ratio = 0.844220
+   k t = 2.00  C = 0.20670  tau = +1.3449  ratio = 0.716900
+   k t = 2.50  C = 0.05736  tau = +2.7994  ratio = 0.551383
+   k t = 3.00  C = 0.00221  tau = +6.1113  ratio = 0.359274
+KA2: ratio at kt=0.01: 0.999993 (|1-ratio| = 6.7e-06)
+KA4: min over t of (sqrt(g) t - arccos sqrt C) = 8.019e-10 (must be >= 0)
+time for l=0 occupation to fall to 1/2: exact k t = 1.3914 ; Mandelstam-Tamm minimum = arccos(1/sqrt2)/(1/sqrt3) = 1.3603 ; ratio exact/bound = 1.0228
+speeds: rms speed sqrt(<mu^2>) = 0.57735 (= plasma c_s = 1/sqrt3 = 0.57735) ; front speed max|mu| = 1

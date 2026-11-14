@@ -1,0 +1,15 @@
+1) exact pole from I4: s = k cot(k/kappa) - kappa, kappa_c = 2k/pi = 0.6366197723675814
+  kappa=1.00  s=-0.357907384066  1-kappa*g=0.00e+00
+  kappa=2.00  s=-0.169512278288  1-kappa*g=0.00e+00
+  kappa=0.80  s=-0.467726582745  1-kappa*g=0.00e+00
+2) chain eigenvalue vs exact pole and K vs 4phi^2/sin^2(2phi)
+  kappa=2.00  chain s=-0.1695122783+6.9e-17j  exact s=-0.1695122783  K chain=1.412283 exact=1.412283
+  kappa=1.00  chain s=-0.3579073841+1.1e-16j  exact s=-0.3579073841  K chain=4.837802 exact=4.837802
+  kappa=0.80  chain s=-0.4677265827+0.0e+00j  exact s=-0.4677265827  K chain=17.449868 exact=17.449868
+  kappa=0.70  chain s=-0.5568083072-4.4e-15j  exact s=-0.5568083072  K chain=103.656747 exact=103.656747
+3) truncation onset (least-damped mode real) vs N
+  N=  50  onset kappa/k = 0.66492   minus 2/pi = +0.02830
+  N= 100  onset kappa/k = 0.65199   minus 2/pi = +0.01537
+  N= 200  onset kappa/k = 0.64495   minus 2/pi = +0.00833
+  N= 400  onset kappa/k = 0.64112   minus 2/pi = +0.00450
+  N= 800  onset kappa/k = 0.63904   minus 2/pi = +0.00242

@@ -1,0 +1,15 @@
+r=0.0625 G=0.7765 offset shift=-1.5466
+r=0.25 G=0.6135 offset shift=-0.7631
+r=0.5 G=0.5206 offset shift=-0.3836
+r=0.8 G=0.4565 offset shift=-0.1267
+r=0.833333 G=0.4506 offset shift=-0.1028
+r=1 G=0.4253 offset shift=+0.0000
+r=1.2 G=0.4016 offset shift=+0.0979
+r=1.25 G=0.3959 offset shift=+0.1216
+r=2 G=0.3349 offset shift=+0.3854
+r=4 G=0.2521 offset shift=+0.7864
+r=16 G=0.1289 offset shift=+1.6097
+shear-only r=0.25 G=0.6330 offset shift=-0.8462
+shear-only r=0.833333 G=0.4526 offset shift=-0.1107
+shear-only r=1.2 G=0.3996 offset shift=+0.1061
+shear-only r=4 G=0.2453 offset shift=+0.8227

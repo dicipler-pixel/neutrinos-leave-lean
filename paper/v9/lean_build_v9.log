@@ -1,0 +1,14 @@
+date: 2026-11-13T13:47:49Z
+commit: 9292b2ceca5cf5884db64315d3a11a11eab1b174 (Lean sources unchanged since 9cd71fa; this commit adds SelfScatter to the audit config)
+toolchain: leanprover/lean4:v4.34.1
+Lean (version 4.34.1, x86_64-unknown-linux-gnu, commit 5045d0056413266e57c625dcd7c365b10e377c52, Release)
+Lake version 5.0.0-src+5045d00 (Lean version 4.34.1)
+mathlib: ['d13f23b723b8a846827a245b89c10fc7d3f11612']
+earlier build today at 9cd71fa (before the config fix): Build completed successfully (8934 jobs), EXIT 0 (see lean_build_v9_first_84.log)
+command: lake build
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+Build completed successfully (8934 jobs).
+EXIT lake build: 0
+command: python3 scripts/verify.py
+OK: 87 theorems, axioms used: ['Classical.choice', 'Quot.sound', 'propext'], 11 false controls rejected
+EXIT verify: 0

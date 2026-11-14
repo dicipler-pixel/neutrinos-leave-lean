@@ -1,0 +1,20 @@
+published    [0.959 0.867 0.683 0.431 0.19  0.063]
+V1 e*=3.5 c=1 [0.931 0.827 0.628 0.374 0.174 0.07 ] max|err| 0.057
+V1 e*=3.5 c=2 [0.95  0.871 0.705 0.458 0.23  0.096] max|err| 0.040
+V1 e*=3.5 c=6 [0.971 0.921 0.805 0.594 0.341 0.155] max|err| 0.163
+V1 e*=4.0 c=1 [0.943 0.854 0.674 0.422 0.205 0.084] max|err| 0.021
+V1 e*=4.0 c=2 [0.959 0.892 0.745 0.508 0.267 0.114] max|err| 0.077
+V1 e*=4.0 c=6 [0.976 0.935 0.835 0.641 0.387 0.183] max|err| 0.210
+V1 e*=4.5 c=1 [0.952 0.875 0.711 0.466 0.236 0.098] max|err| 0.046
+V1 e*=4.5 c=2 [0.965 0.908 0.777 0.552 0.303 0.133] max|err| 0.121
+V1 e*=4.5 c=6 [0.98  0.945 0.858 0.681 0.43  0.211] max|err| 0.250
+1-param (exponent 3/2, e*=4): A_fit=3.811  (c-equivalent 1.03)  max|err| 0.022
+1-param (c=1): e*_fit=4.043 max|err| 0.022
+free exponent fit: A=4.204+-0.151  n=1.610+-0.032  max|err| 0.010
+KILL (exponent): n=1.5 is 3.4 sd from fitted n
+OPP1 G=1-l_diff/l_ball clipped  [0.    0.    0.    0.27  0.742 0.909] max|err| 0.959
+OPP2 G=exp(-l_ball/l_diff)      [0.941 0.843 0.616 0.254 0.021 0.   ] max|err| 0.177
+OPP3 quadrature G=(1+15 x^3)^-1/2 [0.998 0.986 0.9   0.59  0.25  0.091] max|err| 0.217
+PREDICT Gaussian                                         {0.1: 0.985, 1: 0.674, 2: 0.422, 4: 0.205, 8: 0.084, 16: 0.031}
+PREDICT alpha=0.3 (decided at eps~7-9, Steve Sec.III B)  {0.1: 0.995, 1: 0.854, 2: 0.674, 4: 0.422, 8: 0.205, 16: 0.084}
+R_nu enters only through the overall (rate) scale -> G(e_dec) curve independent of R_nu (UNTESTED; Steve ran gradual decoupling only at R=0.409)

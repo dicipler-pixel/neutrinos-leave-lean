@@ -1,0 +1,25 @@
+# cut (watcher's number) <TAB> snippet that must appear in the changed sentence
+C1	version 10 of
+C2	at a rate of $1.10\pm0.01$ inside the window
+C3	shrinks the resolution shifts of the two thresholds
+C4	The values at the two finer levels
+C5	\text{odd rate}=1.10\pm0.01;
+C6	sit near its upper edge, the second $0.0002$ above it
+C6	led by the third-level brackets
+C7	It puts the thresholds at
+C8	The shifts shrank to
+C9	both outside the brackets
+C10	So the brackets exclude an error purely first order in the cell size, and at
+C11	The third-level rate is $1.1013$
+C11	The third-level brackets are
+C11	With the reference shift and the pair spread the budget is $0.0091$
+C12	the first-level inner-pair rate
+C13	at a rate of $1.10\pm0.01$ inside the admissible window
+C14	at the two finest of three grid levels
+C15	far outside the window where the rate was measured
+C16	the scripts that compute the rates and the extrapolation fixed before the runs
+C16	code/A6/res_L3_r08.json
+C16	code/A6/level3_rates.py
+C16	code/A6/level3_rates_out.txt
+C16	code/A6/richardson.py
+C16	code/A6/richardson_out.json

@@ -1,0 +1,13 @@
+D delta=0.50793: C [BH] eps=4.60 eps_max=14.0 rawmax(kappa/H)=7.290e+08 cap=5.0e+05 capped_steps=1215105/1415099 cap_released_at_eps~0.337 (1047s)
+D delta=0.51812: C [BH] eps=3.86 eps_max=14.0 rawmax(kappa/H)=7.290e+08 cap=5.0e+05 capped_steps=1215124/1408481 cap_released_at_eps~0.337 (1039s)
+D bracket now [0.49773,0.50793]
+D delta=0.50113: D [dispersed] eps=5.74 eps_max=14.0 rawmax(kappa/H)=7.290e+08 cap=5.0e+05 capped_steps=1215092/1425242 cap_released_at_eps~0.337 (1049s)
+D delta=0.50453: C [BH] eps=5.23 eps_max=14.0 rawmax(kappa/H)=7.290e+08 cap=5.0e+05 capped_steps=1215098/1420654 cap_released_at_eps~0.337 (1054s)
+D bracket now [0.50113,0.50453]
+D delta=0.50226: D [dispersed] eps=6.42 eps_max=14.0 rawmax(kappa/H)=7.290e+08 cap=5.0e+05 capped_steps=1215094/1431257 cap_released_at_eps~0.337 (1062s)
+D delta=0.50339: C [BH] eps=5.70 eps_max=14.0 rawmax(kappa/H)=7.290e+08 cap=5.0e+05 capped_steps=1215096/1424836 cap_released_at_eps~0.337 (1069s)
+D bracket now [0.50226,0.50339]
+D delta=0.50264: C [BH] eps=6.65 eps_max=14.0 rawmax(kappa/H)=7.290e+08 cap=5.0e+05 capped_steps=1215095/1433339 cap_released_at_eps~0.337 (1064s)
+D delta=0.50302: C [BH] eps=5.99 eps_max=14.0 rawmax(kappa/H)=7.290e+08 cap=5.0e+05 capped_steps=1215095/1427441 cap_released_at_eps~0.337 (1068s)
+D bracket now [0.50226,0.50264]
+RESULT D: delta_c = 0.50245 +- 0.00019 bracket [0.50226,0.50264] (70.6 min) undecided_points=[]

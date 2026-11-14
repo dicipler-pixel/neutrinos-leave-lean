@@ -1,0 +1,9 @@
+I_r025_dt4 delta=0.51600: dispersed eps=6.21
+I_r025_dt4 delta=0.51700: BH eps=6.05
+I_r025_dt4 delta=0.51633: dispersed eps=6.63
+I_r025_dt4 delta=0.51667: BH eps=6.56
+I_r025_dt4 delta=0.51644: dispersed eps=6.97
+I_r025_dt4 delta=0.51656: BH eps=7.02
+I_r025_dt4 delta=0.51648: dispersed eps=7.22
+I_r025_dt4 delta=0.51652: BH eps=7.40
+RESULT I_r025_dt4: delta_c = 0.51650 +- 0.00002 (6.5 min)

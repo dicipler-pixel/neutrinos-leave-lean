@@ -1,0 +1,5 @@
+K_r125_clean delta=0.50984047: dispersed eps=7.35
+K_r125_clean delta=0.50984184: BH eps=7.35
+K_r125_clean delta=0.50984092: BH eps=7.35
+K_r125_clean delta=0.50984138: BH eps=7.35
+RESULT K_r125_clean: delta_c = 0.50984070 +- 0.00000023  bracket [0.50984047, 0.50984092] (3.4 min)

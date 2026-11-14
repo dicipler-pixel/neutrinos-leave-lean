@@ -1,0 +1,1 @@
+REGRESSION shear-only rr=1 delta=0.5109: BH 6.61 90s (unmodified: BH 6.61)

@@ -1,0 +1,4 @@
+B_n6_ed2 delta=0.51350: BH eps=4.54 (1433s)
+B_n6_ed2 delta=0.50525: dispersed eps=5.51 (1441s)
+B_n6_ed2 delta=0.50938: BH eps=5.28 (1434s)
+B_n6_ed2 delta=0.50731: dispersed eps=6.58 (1464s)

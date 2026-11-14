@@ -1,0 +1,16 @@
+[CHART] all-higher slope 1.1328 rms 0.0142 odd 1.2:1.1006 1.25:1.1128 2:1.1093 4:1.1177 16:1.1384 spread 3.39% (2.90-3.87)
+[CHART] shear-only slope 1.2036 rms 0.0048 odd 1.2:1.1895 4:1.2038   RATIO 1.0624 (1.0580-1.0672)
+[RULER (e) theta at tau*=1.7] all-higher slope 21.2034 rms 0.1299 odd 1.2:16.7185 1.25:16.9164 2:17.1901 4:18.4351 16:23.3653 spread 35.88% (35.30-36.43)
+[RULER (e) theta at tau*=1.7] shear-only slope 20.0700 rms 0.0602 odd 1.2:18.5248 4:20.2932   RATIO 0.9465 (0.9424-0.9504)
+[   C2 swapped tau*=1.7] all-higher slope 21.3339 rms 0.1269 odd 1.2:17.1394 1.25:16.9164 2:17.1901 4:18.8417 16:23.3653 spread 34.50% (33.95-35.04)
+[   C2 swapped tau*=1.7] shear-only slope 19.6502 rms 0.0579 odd 1.2:18.0699 4:19.8552   RATIO 0.9211 (0.9173-0.9252)
+   C1 tau*=1.7: theta read in x -> family ratio 1.1455, odd spread 28.00%
+[   control: memory-form A0 log-odds as ruler, tau*=1.7] all-higher slope 50.8990 rms 0.0990 odd 1.2:38.3644 1.25:38.8248 2:39.6135 4:42.9600 16:55.6947 spread 40.22% (39.67-40.78)
+[   control: memory-form A0 log-odds as ruler, tau*=1.7] shear-only slope 45.0634 rms 0.0085 odd 1.2:40.6395 4:45.1552   RATIO 0.8853 (0.8812-0.8891)
+[RULER (e) theta at tau*=4.0] all-higher slope 3.0661 rms 0.3495 odd 1.2:4.7133 1.25:4.7598 2:4.6021 4:4.2381 16:3.7766 spread 22.26% (21.83-22.68)
+[RULER (e) theta at tau*=4.0] shear-only slope 5.1143 rms 0.1723 odd 1.2:6.0555 4:5.5612   RATIO 1.6680 (1.6599-1.6747)
+[   C2 swapped tau*=4.0] all-higher slope 3.0977 rms 0.3631 odd 1.2:5.6026 1.25:4.7598 2:4.6021 4:5.1635 16:3.7766 spread 38.20% (37.76-38.66)
+[   C2 swapped tau*=4.0] shear-only slope 4.1660 rms 0.1797 odd 1.2:5.0943 4:4.5646   RATIO 1.3449 (1.3390-1.3513)
+   C1 tau*=4.0: theta read in x -> family ratio 0.7429, odd spread 26.67%
+[   control: memory-form A0 log-odds as ruler, tau*=4.0] all-higher slope -3.2912 rms 0.5019 odd 1.2:-17.4233 1.25:-17.4823 2:-14.5603 4:-9.6170 16:-5.0894 spread 96.56% (96.26-96.91)
+[   control: memory-form A0 log-odds as ruler, tau*=4.0] shear-only slope -6.0464 rms 0.3134 odd 1.2:-13.7295 4:-8.2729   RATIO 1.8372 (1.8288-1.8456)

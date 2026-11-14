@@ -1,0 +1,6 @@
+DS          snapshot   best eps* = 1.90 max err 0.348 FAIL  G_pred=[0.912 0.521 0.458 0.779 0.128 0.002]
+DS          cumulative best eps* = 2.95 max err 0.310 FAIL  G_pred=[0.956 0.864 0.804 0.741 0.236 0.373]
+DSG         snapshot   best eps* = 1.90 max err 0.529 FAIL  G_pred=[1.01  1.004 0.96  0.96  0.542 0.109]
+DSG         cumulative best eps* = 2.71 max err 0.447 FAIL  G_pred=[0.995 0.962 0.854 0.76  0.637 0.503]
+SNAP_Delta  snapshot   best eps* = 1.69 max err 0.488 FAIL  G_pred=[ 0.864  0.596  0.195 -0.037 -0.026  0.469]
+SNAP_Delta  cumulative best eps* = 5.98 max err 0.753 FAIL  G_pred=[1.001 1.003 1.014 1.033 0.943 0.385]

@@ -1,0 +1,19 @@
+1c1
+< # SCRIPT: NU-V4-RUN-SPLIT-V2  run_nuc_n.py importing ms_nuc_split and passing rr; nothing else changed
+---
+> # SCRIPT: NU-V6-RUN-SPLIT-STAGE  run_split_v2.py with ONE change: kappa(t) is evaluated at each SSPRK3 stage time (t, t+dt, t+dt/2); the stiff dt cap still uses the stage-start kappa
+19a20,21
+>     def kapf(tt):                          # v6: the collision rate at any time tt (same formula as v5.1)
+>         return (1/(2*tt))*min((eps_dec/(2*np.sqrt(tt*t0)))**nexp, kapcap) if eps_dec is not None else kap
+23c25
+<             kap = (1/(2*t))*min((eps_dec/(2*np.sqrt(t*t0)))**nexp, kapcap)
+---
+>             kap = kapf(t)
+50c52
+<             rhs(t+dt, R1, U1, G1, e1, I1, mue, fnu, fnu/(1-fnu)*e1[-1]/(4*np.pi), kap, rr, dR, dU, dG, de, dI)
+---
+>             rhs(t+dt, R1, U1, G1, e1, I1, mue, fnu, fnu/(1-fnu)*e1[-1]/(4*np.pi), kapf(t+dt), rr, dR, dU, dG, de, dI)
+53c55
+<             rhs(t+0.5*dt, R2, U2, G2, e2, I2, mue, fnu, fnu/(1-fnu)*e2[-1]/(4*np.pi), kap, rr, dR, dU, dG, de, dI)
+---
+>             rhs(t+0.5*dt, R2, U2, G2, e2, I2, mue, fnu, fnu/(1-fnu)*e2[-1]/(4*np.pi), kapf(t+0.5*dt), rr, dR, dU, dG, de, dI)

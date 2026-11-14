@@ -1,0 +1,190 @@
+# SCRIPT: A4-PREREGISTERED (preregistration text, not code)
+Written: 2026-11-11T14:04Z (UTC). Before any threshold run and before the linear-level check.
+Only the restart-surface verification (check_restart_out.txt: moments, positivity) had been run.
+
+SETUP
+ Solver: copies of S. McCormick's ms_nuc.py / ms_fluid.py (commit eb7c4de; ms_nuc physics identical to the
+ 41a0f83 era used by v5.1), single-rate collision model (the r=1 case), driver restart.py = McCormick's run_nuc.py loop with
+ kappa(t) = (1/2t)(eps_dec/eps)^3 re-evaluated at each SSPRK3 stage time, Gaussian profile, R_nu = 0.409,
+ eps_dec = 2, n = 3, N = 400, Nmu = 32, eps0 = 0.1. The step that would cross t_s is shortened to land on t_s exactly.
+ Restart surface eps_s in {2.0, 0.5}. At eps_s, in every cell i:  I_ik -> I_ik + a (eps_i/4pi) p_l(mu_k),
+ p_l the discrete orthogonal polynomial on the 32 bin midpoints (weight dmu), scaled to the leading coefficient of P_l.
+ This is I(1 + a P_l) applied to the isotropic part of each cell; applying it to the full anisotropic I would move l=2
+ (coupling of l=1 with P_3), so the carrier is the isotropic part. It changes only the discrete l component.
+ Pair: a = +0.5 and a = -0.5, for l = 3 (main) and l = 4.
+ Positivity bounds (from check_restart_out.txt): isotropic 32-bin grid |a| < 1/max|p_3| = 1.21498 for l=3;
+ l=4: a < 2.35086, -a < 1.38855. On the actual delta=0.5109 states: eps_s=2: l=3 +0.8435/-0.8325, l=4 +2.026/-0.951;
+ eps_s=0.5: l=3 1.212/1.212, l=4 2.350/1.386. a = 0.5 is inside every bound.
+ Verified at the restart: discrete l=0,1,2 components, e_nu, q, P_r of the two members agree to <= 9e-16 relative per cell;
+ fluid and metric arrays bit-identical.
+
+THRESHOLD SEARCH
+ Trisection, one process, strict endpoint rule: only a detected apparent horizon ('BH': 2M/R >= 1 with U < 0) lowers hi,
+ only McCormick's dispersal rule ('dispersed') raises lo; 'BH_breakdown', 'crash', 'undecided' never move a bracket.
+ Endpoints verified by runs for each member. Start bracket [0.5095, 0.5125] (width 3e-3), five rounds -> full width
+ w = 3e-3/243 = 1.23e-5 (target <= 2e-5). eps_max = 15. Thresholds quoted as midpoint, full width w.
+
+PREDICTIONS (from Jeromie's matched-pair witness: survival exp[-(eps_dec/eps_s)^n / n]; v5.1 table at tau_s/eps_dec)
+ P1 eps_s = 2.0 (tau_s/eps_dec = 1, survival e^{-1/3} = 0.72; witness R_ret = 0.081 for l=3, 0.074 for l=4):
+    the hidden difference returns into density/flux/stress and MOVES the threshold:
+    |delta_c(+a) - delta_c(-a)| > 3 w  (with w = 1.23e-5: > 3.7e-5; if w reached is larger, 3 x that w).
+    Kill line P1: |difference| <= 3 w at eps_s = 2  -> prediction P1 killed for that l.
+ P2 eps_s = 0.5 (tau_s/eps_dec = 0.25, survival e^{-64/3} = 5e-10; witness R_ret = 6e-10 (l=3), 6e-11 (l=4)):
+    the difference is erased in the coupled era; |delta_c(+a) - delta_c(-a)| <= 2 w.
+    Kill line P2: |difference| > 2 w at eps_s = 0.5 -> prediction P2 killed.
+ Between 2w and 3w at eps_s = 2: inconclusive, reported as such (bracket tightened if time allows).
+ OPPOSITE READING (registered as the alternative): the nonlinear collapse washes out l >= 3 regardless of timing:
+    both pairs agree within 2 w. P1's kill line is this reading's success line.
+ SIGN: Jeromie's corpus does not give the sign of a threshold shift from hidden l=3 structure. The P3 slab result
+    (audit: d/dt (P_r+ - P_r-) = -(4/35) e a') gives, for a centre-peaked e and +a, an early rise of core radial pressure
+    in the + member; whether radial pressure here resists collapse (neutrino pressure gradient) or aids it (pressure
+    gravitates, -4 pi R P_r in dU/dt) is not settled by it. NO SIGN IS PREDICTED.
+ Magnitude (lean, not a kill line): Dc_3/c_0 = 0.14 at the restart, witness return ~8% of that, the full free-streaming
+    shift ~0.03 in delta -> |difference| of order 1e-4 at eps_s = 2.
+
+NUMERICAL GUARD
+ Both members use identical code, grid and step rule; the pair at a = 0 vs no restart is not used for the verdict.
+ Any member whose run logs min I < 0 is reported with that value; a crash/breakdown at a trial point is reported.
+
+=================== RESULTS (appended below; nothing above edited) ===================
+
+--- 2026-11-11T14:09Z  RESULT of the uniform-a linear check (linear_check.py, run after the text above, before any threshold run)
+ Uniform a = 0.5 in every cell, delta = 0.5109 (file linear_check_uniform_out.txt):
+  eps_s=2, l=3: dCmax(+ minus -) = -2.3e-4 (eps 2.5), -2.6e-3 (eps 3), -6.5e-2 (eps 4); centre nu density differs by 91% of base at eps 2.5.
+  eps_s=2, l=4: dCmax = +1.2e-4, +1.3e-3, +1.3e-2.
+  eps_s=0.5, l=3: dCmax = -4.2e-5, -7.3e-5, -2.5e-4;  l=4: -2.1e-5, -2.9e-5, -8.3e-5;  max_cell |dP_r|/e_nu ~ 2e-3.
+ The eps_s=0.5 entries are ~1e6 x above the survival law (5e-10). Diagnosis (computed, not a fit): a uniform a is irregular
+ at r=0 (a regular l-th angular moment vanishes like r^l), and at the centre cells (dR ~ 0.03 at eps 0.5, 1/kappa ~ 0.04)
+ streaming across one cell is as fast as collisions, so (k/sigma)^l ~ 1 at grid scale. The uniform-a pair therefore
+ measures a centre artefact, not the hidden-moment door. It is NOT used for any threshold verdict.
+
+--- 2026-11-11T14:09Z  DESIGN ADDITIONS (coordinator, adopted before any threshold run; none of the runs below had been made)
+ D1 Third restart epoch eps_s = 4.0 (tau_s/eps_dec = 2, survival e^{-1/24} = 0.96, witness R_ret 0.095 (l=3), 0.085 (l=4)).
+    Why 4: near-threshold runs form the horizon at eps ~ 6-7.4 and disperse later than that (v5.1 log H1); at eps = 4 the
+    compaction is still rising (Cmax 0.520 at delta 0.5109), so the outcome is not decided; 5 would leave < 1.5 in eps.
+    Prediction P3 (from the witness: planted after decoupling it returns): |delta_c(+)-delta_c(-)| > 3 w. Kill: <= 3 w.
+    Lean (not a kill line): smaller than at eps_s = 2, because less time remains for the return before collapse.
+ D2 Perturbation (replaces uniform a for every verdict):  dI_ik = f b(r_i) m_i (eps_i/4pi) p_l(mu_k),
+    b = exp(1 - 1/(1-x^2)), x = (r - 1.15)/0.85: C-infinity bump, 1 at r = 1.15 r_m, identically 0 for r <= 0.3 and r >= 2
+    (Lagrangian r, r_m = 1; regular at the origin, far from the outer edge r = 9);
+    m_i = the cell's positivity margin on the 32 bins, min over sign and bins of I_ik/(Ibar_i |p_l(mu_k)|);
+    f = +0.5 and -0.5 (exact mirrors; every bin keeps at least half its margin, so I > 0 at the restart by construction).
+ D3 At the restart, check +f vs -f: discrete l=0,1,2 components, e_nu, q, P_r, the Misner-Sharp mass M, the constraint
+    residual Gamma^2 - (1 + U^2 - 2M/R), the lapse A (cells and edges) and the fluid acceleration: identical to roundoff.
+ D4 SCREEN before trisection. Deltas 0.5100 and 0.5115 (v5.1 r=1 runs: 0.5105 dispersed, 0.5115 BH; checked with a=0).
+    For each (eps_s, l) the pair (+f, -f) plus f=0 is run to the decision, recording Cmax(eps), centre P_r/e_nu(eps) and outcome.
+    Noise floor at each delta: max over the common record of |Cmax(f=0 restart) - Cmax(continuous run, no restart)|
+    (the restart's shortened step is the smallest genuine numerical perturbation of the same solver), floored at 1e-12.
+    SELECTION RULE: trisect the pair iff at either screening delta (a) the two members' outcomes differ, or
+    (b) max over eps <= 6 of |Cmax(+f) - Cmax(-f)| > 10 x noise floor.
+    Not selected -> null result, reported with (i) the rigorous bound: if both members disperse at 0.5100 and both form a
+    horizon at 0.5115, |shift| < 1.5e-3; (ii) the linearised estimate |dCmax| / (dCmax/d delta) at eps = 5 from the two
+    screening deltas, labelled an estimate.
+    Order: (2, l3), (0.5, l3), (4, l3), then l = 4 at each epoch, as time allows.
+ D5 A threshold difference counts as REAL only if the two brackets, each widened on both sides by a refinement drift
+    allowance d_K = max over members |delta_c(Nmu=48) - delta_c(Nmu=32)| measured on ONE pair (the first selected pair,
+    both members rerun at Nmu=48), are disjoint. Verdicts: P1/P3 pass iff REAL and |diff| > 3 w; P2 passes iff
+    |diff| <= 2 w (or, if not selected, the linearised estimate <= 2 w). Opposite reading passes iff no pair is REAL.
+
+--- 2026-11-11T14:5xZ  ADDITION (coordinator, from A5 kinetic Gramian), written before any run of this direction
+ D6 Further pair at eps_s = 2: angular direction d = A5's L-infinity-optimal hidden direction (restart_direction_A5.json,
+    ed2_n3_s2_T4 / Linf_optimal; odd; l-weights 3:0.851 5:0.117 7:0.010; l<=2 components on my p_l: <= 5e-17; max|d| = 1;
+    orientation equal to +p_3: d(-0.969) = -1 like p_3). Applied exactly as D2 with p_l replaced by d (bump b, per-cell
+    positivity margin m_i of d, f = +/-0.5), code label l = -1. So the comparison with p_3 is at equal positivity margin.
+    Prediction P4: larger separation than p_3 at equal positivity margin: screen max|dCmax(+ - -)| (and, if both are
+    trisected, |delta_c(+)-delta_c(-)|) for d exceeds that for p_3 at eps_s = 2. A5's linear chain says 2.47x; kill
+    line: ratio d / p_3 <= 1. Lean (not a kill line): ratio between 1.5 and 3.
+    Its screen runs after the (2, l3) pair; it takes p_4's place if time is short. Same selection rule D4, same verdicts D5.
+ (timestamp of D6 above is 2026-11-11T14:38Z)
+
+--- 2026-11-11T15:30Z  RESULT screen (2.0, l=3), bump, f=+/-0.5 (screen_out.txt)
+ delta 0.5100: f=0 dispersed@6.03 (same as no-restart run); +f dispersed@5.47; -f BH@5.55. max|dCmax| 0.61, noise floor 3.1e-9.
+ delta 0.5115: f=0 BH@5.83; +f DISPERSED@5.87; -f BH@5.08. max|dCmax| 0.54, noise floor 2.2e-8.
+ dCmax(+ - -) at eps 2.5/3/4/5: -2.6e-4/-2.5e-3/-4.9e-2/-0.28 (0.5100). Outcomes flip at both deltas -> SELECTED (TRISECT).
+ Already rigorous from these four outcomes: delta_c(+) > 0.5115 and delta_c(-) < 0.5100, so delta_c(+) - delta_c(-) > 1.5e-3
+ (the -f member is more collapse-prone; +f, oriented like +p_3, raises the threshold). Linearised estimate +4.3e-3.
+
+--- 2026-11-11T15:35Z  RESULT screen (2.0, d = A5 L-inf direction), bump, f=+/-0.5
+ delta 0.5100: +f dispersed@5.32, -f BH@5.22; delta 0.5115: +f DISPERSED@5.59, -f BH@4.89 -> SELECTED. Same sign as p_3.
+ dCmax(+ - -) at eps 2.5/3/4: d: -4.43e-4/-3.84e-3/-8.19e-2 (0.5100), -4.87e-4/-3.97e-3/-9.16e-2 (0.5115)
+                              p_3: -2.64e-4/-2.54e-3/-4.91e-2 (0.5100), -2.91e-4/-2.62e-3/-5.50e-2 (0.5115)
+ Ratio d/p_3 at fixed eps: 1.68, 1.51, 1.67 (0.5100); 1.67, 1.51, 1.67 (0.5115).  P4 (ratio > 1): PASSES at the screen level.
+ Max over each record (windows end at different eps because outcomes differ, so these saturate): 0.693 vs 0.608, 0.568 vs 0.545.
+ Linearised threshold-shift estimates: d +6.6e-3, p_3 +4.3e-3 (ratio 1.54). A5's linear chain said 2.47x; measured ~1.5-1.7x.
+
+--- 2026-11-11T15:38Z  RESULT trisection (2.0, l3, +f): delta_c = 0.5125833, bracket [0.5125741, 0.5125926], w = 1.85e-5 (log_es2_l3_plus.txt)
+--- 2026-11-11T15:46Z  RESULT trisection (2.0, l3, -f): delta_c = 0.5088395, bracket [0.5088313, 0.5088477], w = 1.65e-5
+ Pair (2.0, l3): delta_c(+) - delta_c(-) = +3.744e-3 = 202 x the larger bracket width (1.85e-5). Brackets disjoint by 3.7e-3.
+ P1 (> 3 w) satisfied on the raw brackets; REAL/not-REAL call waits for the Nmu=48 drift allowance (D5).
+
+--- 2026-11-11T15:57Z  RESULT screens, remaining pairs (all bump, f=+/-0.5; dCmax = + minus -; estimate = linearised threshold shift)
+ (0.5, l3): no outcome flip; max|dCmax| 2.2e-3 / 1.3e-2 (0.5100/0.5115), noise 1.2e-8/1.1e-9; dCmax(eps 5) -8.5e-4/-1.4e-3; est +1.3e-5. SELECTED.
+ (4.0, l3): no flip; max|dCmax| 4.5e-2 / 1.5e-1; dCmax(eps 5) -4.3e-3/-6.5e-3; est +6.2e-5. SELECTED.
+ (2.0, l4): FLIP at both deltas, opposite sign to l3 (+f collapses more easily); est -2.2e-3. SELECTED.
+ (0.5, l4): no flip; max|dCmax| 8.2e-4 / 4.7e-3; dCmax(eps 5) -3.2e-4/-4.9e-4; est +4.7e-6. SELECTED.
+ (4.0, l4): no flip; max|dCmax| 2.1e-2 / 8.3e-2; dCmax(eps 5) +3.1e-4/+7.1e-4; est -5.9e-6. SELECTED.
+ Note: at eps_s = 0.5 the separation is ~1e5 x the noise floor, and the estimate (1.3e-5 for l3) is ~3e-3 of the eps_s = 2
+ shift, against the survival law's 5e-10. Whether this is a physical channel (e.g. the dipole's drag handing momentum to the
+ plasma during coupling, absent from the witness chain) or an angular-discretisation leak is untested at this point; an
+ Nmu = 48 rerun of the (0.5, l3) screen is added to separate them (added now, after this screen, before its trisection).
+
+--- 2026-11-11T16:31Z  RESULT drift pair (2.0, l3) at Nmu = 48 (same recipe; p_3 and margins recomputed on 48 bins)
+ +f: 0.5125134 [0.5125082, 0.5125185] (Nmu=32: 0.5125833) -> drift 7.0e-5
+ -f: 0.5090041 [0.5089959, 0.5090123] (Nmu=32: 0.5088395) -> drift 1.65e-4
+ d_K = 1.65e-4 (D5). Difference at Nmu=48: +3.509e-3 (Nmu=32: +3.744e-3; changes by 6%).
+ (2.0, l3) widened brackets: + [0.5124091, 0.5127576], - [0.5086663, 0.5090127]: DISJOINT (gap 3.40e-3) -> REAL.
+ P1 for l=3: |diff| = 3.744e-3 > 3 w = 5.6e-5 and REAL -> P1 PASSES (l=3). Sign: +f (like +p_3) raises the threshold.
+ Consequence of D5 for the small pairs: a difference can be REAL only if it exceeds about w + 2 d_K = 3.5e-4.
+
+--- 2026-11-11T16:46Z  RESULT trisections (2.0, d = A5 L-inf direction)
+ +f: 0.5134352 [0.5134259, 0.5134444] w 1.85e-5;  -f: 0.5079300 [0.5079259, 0.5079342] w 8.2e-6
+ Difference +5.505e-3 (297 w); widened by d_K = 1.65e-4: disjoint -> REAL.
+ Ratio to p_3 at equal positivity margin: 5.505e-3 / 3.744e-3 = 1.47. P4 PASSES (ratio > 1) at threshold level;
+ inside the lean 1.5-3 only at its edge (1.47 < 1.5); A5's linear chain gave 2.47.
+
+--- 2026-11-11T16:57Z  RESULT f = 0 (no perturbation, restart at eps_s = 2): delta_c = 0.5107500 [0.5107407, 0.5107593] w 1.85e-5
+ (v5.1 r=1 with once-per-step kappa: 0.51074 +- 0.00002: the stage-time kappa moves it by less than one bracket here.)
+ Shifts from f = 0: p_3 +f +1.833e-3, -f -1.911e-3 (nearly odd in f); d +f +2.685e-3, -f -3.820e-3 (less symmetric).
+
+--- 2026-11-11T17:12Z  RESULT trisections (0.5, l3)
+ +f: 0.5107685 [0.5107593, 0.5107778] w 1.85e-5;  -f: 0.5107510 [0.5107469, 0.5107551] w 8.2e-6
+ (-f search: two trial points ended 'crash' at eps 7.37-7.38 just before the horizon; by the strict rule they did not move the bracket.)
+ Difference +1.75e-5 = 0.95 w (w = 1.85e-5). P2 (|diff| <= 2 w = 3.7e-5): PASSES. Not REAL under D5 (widened brackets overlap).
+ Plainly: the raw brackets are disjoint by 4e-6, the sign matches eps_s = 2, and the screen estimate was +1.3e-5. A residual
+ of ~0.5% of the eps_s = 2 shift is consistent with every number here; the survival law alone predicts ~5e-10 of it.
+ At this bracket and drift resolution it cannot be told from zero.
+
+--- 2026-11-11T17:16Z  RESULT Nmu = 48 screen of (0.5, l3), delta 0.5100 (screen48_out.txt)
+ dCmax(+ - -) at eps 2.5/3/4/5/5.5: Nmu=32 -4.10e-5/-7.07e-5/-2.29e-4/-8.48e-4/-1.54e-3; Nmu=48 -3.60e-5/-6.26e-5/-2.03e-4/-7.48e-4/-1.32e-3.
+ Ratio 0.86-0.89: the coupled-era separation does not vanish with angular refinement (an O(dmu^2) leak would fall to ~0.44).
+ It is a channel of the GR solver, not an angular-grid artefact. Radial-resolution dependence untested. Candidate mechanism,
+ untested: the fluid-frame angular terms (shear S, acceleration a) couple l=3 to l=2 at a rate ~ S rather than k, and l=2
+ changes the energy through shear work, so the coupled-era suppression is ~ S/kappa per rung, not exp(-21) (the witness's
+ flat chain has no such term).
+
+--- 2026-11-11T17:28Z  RESULT trisections (4.0, l3)
+ +f: 0.5108796 [0.5108704, 0.5108889] w 1.85e-5;  -f: 0.5106358 [0.5106296, 0.5106420] w 1.23e-5 (one 'crash' trial, not counted)
+ Difference +2.438e-4 = 13 w, same sign as eps_s = 2 and 0.5, 6.5% of the eps_s = 2 shift (lean "smaller than at 2": holds).
+ D5: widened brackets [0.5107054, 0.5110539] and [0.5104646, 0.5108070] OVERLAP -> not REAL. P3 as preregistered
+ (REAL and > 3 w): NOT PASSED. It fails only on the drift allowance, which was measured on the (2, l3) pair where the
+ difference itself moved by 2.4e-4 between Nmu = 32 and 48; a drift measured on this pair is untested.
+
+--- 2026-11-11T17:44Z  RESULT trisections (2.0, l4)
+ +f: 0.5096749 [0.5096708, 0.5096790] w 8.2e-6;  -f: 0.5117726 [0.5117675, 0.5117778] w 1.03e-5
+ Difference (+ minus -) = -2.098e-3 = 204 w; widened by d_K: disjoint (gap 1.75e-3) -> REAL. P1 (l=4) PASSES.
+ Sign opposite to l=3: +p_4 lowers the threshold. |shift| ratio p_4/p_3 = 0.56 at equal positivity margin (A5 chain: 0.40).
+ Shifts from f = 0: +f -1.075e-3, -f +1.023e-3.
+
+--- 2026-11-11T18:12Z  RESULT trisections (0.5, l4) and (4.0, l4)
+ (0.5, l4): +f 0.5107685 [0.5107593, 0.5107778]; -f 0.5107500 [0.5107407, 0.5107593] (first -f search was stopped by the
+   2 h background limit mid-way, log kept as *_killed; rerun from scratch). Difference +1.85e-5 = 1.0 w -> P2 (l=4) PASSES; not REAL.
+ (4.0, l4): +f 0.5106759 [0.5106667, 0.5106852]; -f 0.5108241 [0.5108148, 0.5108333]. Difference -1.482e-4 = 8 w, same sign
+   as (2, l4). Widened brackets overlap -> not REAL. P3 (l=4): NOT PASSED (fails on the drift allowance only).
+
+SUMMARY OF VERDICTS
+ P1 eps_s=2 moves the threshold (> 3 w and REAL): l=3 PASS (+3.744e-3), l=4 PASS (-2.098e-3).
+ P2 eps_s=0.5 agrees within 2 w: l=3 PASS (+1.75e-5 = 0.95 w), l=4 PASS (+1.85e-5 = 1.0 w).
+ P3 eps_s=4 moves the threshold (> 3 w and REAL): l=3 NOT PASSED (+2.44e-4 = 13 w, not REAL), l=4 NOT PASSED (-1.48e-4 = 8 w, not REAL).
+ P4 d moves more than p_3 at equal margin: PASS (ratio 1.47 in threshold, 1.5-1.7 in the screen).
+ Opposite reading (collapse washes out l >= 3 regardless of timing): KILLED by the eps_s = 2 pairs.
+ Sign: none was predicted. Measured: odd directions oriented like +p_3 raise the threshold; +p_4 lowers it.

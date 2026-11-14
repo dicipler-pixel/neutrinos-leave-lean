@@ -1,0 +1,15 @@
+=== ladder slack on the multigroup rates (nu_mu,tau, e+- + nu-nu on the stress edge) ===
+nu_e e+- only            S0^2/(S-2 S2) = 0.2814 ; S-1^2/(S-2 S0) = 0.6693 ; rate spread max/min = 34.8
+nu_mu,tau e+- only       S0^2/(S-2 S2) = 0.2812 ; S-1^2/(S-2 S0) = 0.6692 ; rate spread max/min = 34.8
+nu_mu,tau e+- + nu-nu    S0^2/(S-2 S2) = 0.2807 ; S-1^2/(S-2 S0) = 0.6687 ; rate spread max/min = 34.9
+flavour-mixed e+- only: rates spread across the two flavours at the mean energy: 4.7
+
+=== opposite run for D1: windowed linear density contrast over [1.7, 4.0] ===
+window averages: perfect fluid 5.4411, instantaneous free streaming 5.8624; sign of central contrast over window: min pf 0.737
+eps_dec 0.25 : G_win = 1.096   Steve 0.960   err +0.136
+eps_dec 0.50 : G_win = 1.276   Steve 0.868   err +0.408
+eps_dec 1.00 : G_win = 1.633   Steve 0.684   err +0.949
+eps_dec 2.00 : G_win = 1.957   Steve 0.431   err +1.526
+eps_dec 4.00 : G_win = 1.440   Steve 0.190   err +1.250
+eps_dec 8.00 : G_win = 0.345   Steve 0.063   err +0.282
+max |err| = 1.526 -> DIES
