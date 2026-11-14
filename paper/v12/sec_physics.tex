@@ -1,0 +1,63 @@
+\section{The physics: what the neutrino record does to black holes}\label{sec:physics}
+
+\noindent\emph{This section states what the results of the later sections change in the universe. It adds no new collapse runs. Its estimates use the thresholds measured in Sections~\ref{sec:link}--\ref{sec:mcc} and one standard abundance formula, and each carries its grade.}
+
+\paragraph{The picture.} A neutrino gas carries two kinds of information. The \emph{visible} part is its density, flux and stress: the three numbers a fluid knows, and the only ones Einstein's equations see. The \emph{hidden} part is the finer angular structure, the moments $\ell\ge3$. While the neutrinos collide, the hidden part is wiped. Collisions keep only the isotropic part, and the door of Section~\ref{sec:witness} is shut. When the collision rate falls through the wall $\kappa=2k/\pi$ (Section~\ref{sec:cut}), the kept mode merges into the streaming continuum and the gas lets go. Light-speed streaming is the fastest channel. It leaves first and leaves the lightest trail. Everything slower then follows the trail it left: the hidden structure streams back into flux, stress and density, and the collapse reads it. The threshold for a black hole therefore depends on the angular record the neutrinos carried through decoupling, not only on how much neutrino there is \grade{reading, built on the measured door of Section~\ref{sec:door}}.
+
+\paragraph{Why the sign of the record matters.} Streaming climbs the moment chain one rung at a time (Section~\ref{sec:cut}). Odd hidden structure ($\ell=3$) returns to the visible sector first as \emph{flux}, two rungs down. Depending on its orientation, it returns as a net neutrino push out of the overdensity or into it. Outward flux carries energy away and makes collapse harder; inward flux makes it easier. Even hidden structure ($\ell=4$) returns first as \emph{stress}. Its orientation sets whether the radial pressure exceeds the tangential pressure or falls below it, which resists the infall or eases it. The measurements agree with this ordering:
+\begin{itemize}
+\item both responses are odd in the amplitude ($\ell=3$: $+1.83$ and $-1.91\times10^{-3}$; $\ell=4$: $-1.08$ and $+1.02\times10^{-3}$, from the unperturbed restart);
+\item the odd, flux-first structure moves the threshold more than the even, stress-first structure, by a factor of $1.8$;
+\item the Gramian's leading direction, mostly $\ell=3$, moves it most ($+2.69$ and $-2.82\times10^{-3}$).
+\end{itemize}
+\grade{measured shifts; mechanism a reading, not yet isolated by a run}.
+
+\paragraph{What it does to the number of black holes.} For Gaussian fluctuations the collapse fraction is $\beta=\mathrm{erfc}[\delta_c/(\sqrt2\,\sigma)]$. Tune $\sigma$ so the unperturbed $\delta_c=0.51075$ gives $\beta_0=10^{-6}$, $10^{-10}$ or $10^{-16}$, then insert the measured shifts:
+\begin{center}\small\begin{tabular}{lcccc}\toprule
+hidden record at decoupling & $\Delta\delta_c$ & $\beta/\beta_0$ ($10^{-6}$) & ($10^{-10}$) & ($10^{-16}$)\\\midrule
+$\ell=3$, one orientation & $+1.83\times10^{-3}$ & $0.92$ & $0.86$ & $0.78$\\
+$\ell=3$, the other & $-1.91\times10^{-3}$ & $1.10$ & $1.17$ & $1.30$\\
+$\ell=4$, one orientation & $-1.08\times10^{-3}$ & $1.05$ & $1.09$ & $1.16$\\
+$\ell=4$, the other & $+1.02\times10^{-3}$ & $0.95$ & $0.92$ & $0.87$\\
+Gramian direction & $+2.69\times10^{-3}$ & $0.88$ & $0.80$ & $0.69$\\
+Gramian direction, reversed & $-2.82\times10^{-3}$ & $1.15$ & $1.27$ & $1.47$\\
+random orientation, Gramian & --- & $1.012$ & $1.032$ & $1.081$\\\midrule
+for scale: flux--shear split in McCormick's model (Sec.~\ref{sec:mcc}) & $+3.1\times10^{-4}$ & $0.985$ & $0.974$ & $0.958$\\\bottomrule\end{tabular}\end{center}
+\grade{estimate: standard Gaussian abundance applied to the measured $\delta_c$ shifts; script \texttt{abundance.py}}.
+\begin{itemize}
+\item A hidden angular record that is invisible to every fluid and metric quantity at decoupling changes the number of black holes by 5--47\% at the planted amplitude, with a sign set by its orientation. That is about three to eleven times what the flux--shear split does in McCormick's physical model.
+\item Because $\beta$ is convex in $\delta_c$, a record of random orientation does not average away: it still \emph{raises} the abundance, by 0.3--1.4\% for $\ell=4$, 0.6--3.8\% for $\ell=3$ and 1.2--8.1\% along the Gramian's leading direction, rarer black holes gaining more.
+\end{itemize}
+Two cautions apply. McCormick sets abundance with the linear compaction $C_l$, not the compaction peak $\delta_c$ used here, so these are first estimates. And the amplitudes are the engineered half-margin amplitudes of Section~\ref{sec:door}; only that amplitude was run, so how the shift, and with it every number in the table, scales with the size of the record is untested.
+
+\paragraph{Where in mass.} With the horizon mass $M_H(T)\simeq1.5\times10^5\,M_\odot\,(T/\mathrm{MeV})^{-2}$ for $g_*=10.75$, and $\epsilon\propto a\propto1/T$ in radiation, a perturbation whose collisions switch off at $\epsilon_{\rm dec}$ has mass $M\simeq\epsilon_{\rm dec}^2M_H(T_{\rm dec})$. For $T_{\rm dec}\approx1$\,MeV the values $\epsilon_{\rm dec}=0.5$, $1$, $2$, $3$, $4$, $8$ correspond to about $4\times10^4$, $1.5\times10^5$, $6\times10^5$, $1.3\times10^6$, $2.4\times10^6$ and $10^7\,M_\odot$ \grade{estimate}. The door runs of Section~\ref{sec:door} ($\epsilon_{\rm dec}=2$) sit at about $6\times10^5\,M_\odot$, where McCormick's step in the mass function begins. Supermassive black-hole seeds sit in this range, so the effect lands where the observational question is live~\cite{Dave}.
+
+\paragraph{A universe without a first moment.} The standard reading starts the radiation era with the hidden moments empty. McCormick's runs and the memory curves of Section~\ref{sec:memory} begin that way. Then the door has nothing to carry, and the threshold is fixed by the history of the rate alone.
+
+The author's reading is different~\cite{Atlas}. The universe is a self-recurring transport system: closed but growing, relaxing toward full relaxation and then letting go again. Its beginning is ``not a Big Bang of energy, but a first spectral event that forces the atlas to remember''; its first and lightest carrier of the record is light. In that reading the neutrinos do not reach decoupling blank. Full relaxation wipes everything but the kept sector, and the kept sector is what carries the record across. When the gas lets go at the wall, the record is released into the streaming moments. The door of Section~\ref{sec:door} then writes it into the black-hole threshold.
+
+The two readings make different predictions. Both are stated so that observation can decide them:
+\begin{enumerate}
+\item \textbf{Blank start (standard):} no hidden record at decoupling. The black-hole mass function across $10^5$--$10^7\,M_\odot$ follows McCormick's step with no extra shift or spread.
+\item \textbf{Recurrent start (author):} a hidden record at decoupling. If it is coherent in orientation over the scales that form black holes, the abundance shifts by tens of per cent across the neutrino step, up or down according to its parity. If it is incoherent, the step is raised by a few per cent and its edge broadened.
+\end{enumerate}
+\grade{H: a hypothesis with a stated test}. Cyclic cosmologies exist in other forms. Penrose's conformal cyclic cosmology carries information across aeons through conformal geometry~\cite{CCC}, and Steinhardt and Turok's model through colliding branes~\cite{ST}. The reading here differs in its carrier: a kept transport sector and a hidden angular record, with a measured channel (the door) by which the record reaches matter.
+
+\paragraph{The neutrinos sit on the wall.} The same wall governs the neutrinos' masses. In the author's link coordinate $\Gamma=(z-1)/(z+1)$, two equal perpendicular steps turn parabolic at $\Gamma^2=\tfrac12$, i.e.\ $z=3+2\sqrt2=5.8284$~\cite{SMball}. The measured neutrino splittings (NuFIT~6.0) give, for normal ordering with $m_1=0$, $m_3/m_2=5.8165\pm0.079$, which is $-0.15\sigma$ from the wall, and $\Delta m^2_{31}/\Delta m^2_{21}=33.83$ against $(1+\sqrt2)^4=33.97$. With the first JUNO measurement $\Delta m^2_{21}=(7.50\pm0.12)\times10^{-5}\,$eV$^2$ and NuFIT~6.1's $\Delta m^2_{31}=(2.529\pm0.021)\times10^{-3}\,$eV$^2$, the inputs Alikhanov uses~\cite{Alik}, the ratio is $33.72$ and $m_3/m_2=5.807\pm0.052$, $-0.41\sigma$ from the wall. The relation itself was proposed by Alikhanov~\cite{Alik}, who states it for normal ordering with $m_1=0$. What is the author's is its reading as the wall $\Gamma^2=\tfrac12$. The charged fermions' generation steps all lie past the wall, and the neutrinos' heaviest step lies on it. The particles whose decoupling this paper studies are the particles at the wall.
+\begin{itemize}
+\item \textbf{Prediction:} normal ordering, and a lightest neutrino mass below about $1.5$\,meV, where the miss on the current data reaches $-2\sigma$ (about $2$\,meV on NuFIT~6.0 alone); inverted ordering misses by far.
+\item \textbf{Who can test it:} JUNO, the long-baseline experiments and cosmological mass bounds.
+\end{itemize}
+\grade{checked numbers; reading; prediction testable by others}.
+
+\paragraph{What the rest of the paper supplies.}
+\begin{itemize}
+\item Section~\ref{sec:cut}: the wall and the cut.
+\item Sections~\ref{sec:runs}--\ref{sec:memory}: that the history, not only its end point, sets the share of the neutrino effect.
+\item Section~\ref{sec:witness}: where the record lives.
+\item Section~\ref{sec:link}: that the threshold reads the direction of the flux--shear mismatch.
+\item Section~\ref{sec:gramian}: which hidden directions matter most.
+\item Section~\ref{sec:door}: the measured threshold shifts used above.
+\item Section~\ref{sec:mcc}: what McCormick's physical collision model does.
+\end{itemize}
+The abundance estimates above follow from those measurements in one line each.

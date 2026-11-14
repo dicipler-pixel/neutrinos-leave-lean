@@ -1,0 +1,33 @@
+beta0=1e-06 sigma=0.1044
+   l3 +f                    d=+0.00183  beta/beta0=0.915
+   l3 -f                    d=-0.00191  beta/beta0=1.097
+   l4 +f                    d=-0.00108  beta/beta0=1.054
+   l4 -f                    d=+0.00102  beta/beta0=0.951
+   Gram +f                  d=+0.00269  beta/beta0=0.877
+   Gram -f                  d=-0.00282  beta/beta0=1.147
+   split (McC r=1 vs his)   d=+0.00031  beta/beta0=0.985
+   l3 random sign (mean of +/-): 1.006
+   l4 random sign (mean of +/-): 1.003
+   Gram random sign (mean of +/-): 1.012
+beta0=1e-10 sigma=0.0790
+   l3 +f                    d=+0.00183  beta/beta0=0.857
+   l3 -f                    d=-0.00191  beta/beta0=1.173
+   l4 +f                    d=-0.00108  beta/beta0=1.094
+   l4 -f                    d=+0.00102  beta/beta0=0.918
+   Gram +f                  d=+0.00269  beta/beta0=0.798
+   Gram -f                  d=-0.00282  beta/beta0=1.266
+   split (McC r=1 vs his)   d=+0.00031  beta/beta0=0.974
+   l3 random sign (mean of +/-): 1.015
+   l4 random sign (mean of +/-): 1.006
+   Gram random sign (mean of +/-): 1.032
+beta0=1e-16 sigma=0.0615
+   l3 +f                    d=+0.00183  beta/beta0=0.778
+   l3 -f                    d=-0.00191  beta/beta0=1.298
+   l4 +f                    d=-0.00108  beta/beta0=1.158
+   l4 -f                    d=+0.00102  beta/beta0=0.869
+   Gram +f                  d=+0.00269  beta/beta0=0.692
+   Gram -f                  d=-0.00282  beta/beta0=1.470
+   split (McC r=1 vs his)   d=+0.00031  beta/beta0=0.958
+   l3 random sign (mean of +/-): 1.038
+   l4 random sign (mean of +/-): 1.014
+   Gram random sign (mean of +/-): 1.081
