@@ -1,0 +1,40 @@
+1. Commutator of two equal perpendicular boosts: tr = 2 - 4 sinh^4(r/2)
+   r=0.500000 tr=+1.983711613 formula=+1.983711613
+   r=1.000000 tr=+1.705063424 formula=+1.705063424
+   r=1.762747 tr=-2.000000000 formula=-2.000000000
+   r=2.500000 tr=-24.340395303 formula=-24.340395303
+   parabolic (tr=-2) at r=ln(3+2sqrt2)=1.762747174; Gamma=tanh(r/2)=0.707106781=1/sqrt2=0.707106781; z=e^r=5.828427125
+2. Neutrino masses on the wall (m1=0, normal ordering); NuFIT 6.0 central values
+   m2=8.654 meV m3=50.442 meV sum=59.10 meV; predicted d31/d21=33.9706 (measured 33.832); predicted d31=2.5444e-03
+   m_beta=8.85 meV; m_bb in [1.49,3.71] meV
+   m1=0 meV: m3/m2=5.8165 (wall 5.8284)
+   m1=1 meV: m3/m2=5.7792 (wall 5.8284)
+   m1=2 meV: m3/m2=5.6716 (wall 5.8284)
+   m1=5 meV: m3/m2=5.0612 (wall 5.8284)
+2b. Current inputs (first JUNO dm21, NuFIT 6.1 dm31, as used by Alikhanov 2026)
+   ratio d31/d21=33.720; m3/m2=5.8069 +/- 0.0523; pull from wall -0.41 sigma
+   m1 where the pull reaches -2 sigma: 1.50 meV
+9. Turn or run of the square of two equal steps (Two Trees Thm 5.3, 5.4; BallJoins J3)
+   nu, current: z=5.8069 g=0.99478 turn 23.44 deg, fixed point tanh(rho/2)=0.9501
+   nu, NuFIT 6.0: z=5.8165 g=0.99711 turn 17.43 deg, fixed point tanh(rho/2)=0.9626
+   wall: z=5.8284 g=1.00000 run length 0.0000
+   mu->tau: z=16.8170 g=3.71912 run length 7.9522
+3. Koide: Q and the 45-degree cone
+   Q=0.666660511; cos^2(angle to (1,1,1))=1/(3Q)=0.500004616
+   generation steps z and Gamma:  {'e->mu': (206.77, 0.99), 'mu->tau': (16.82, 0.888)}
+4. Kept-sector onset and non-orthogonality
+   phi=k/kappa=0.5: s+kappa=k cot(phi)/k=1.8305, K=4phi^2/sin^2(2phi)=1.4123
+   phi=k/kappa=1.0: s+kappa=k cot(phi)/k=0.6421, K=4phi^2/sin^2(2phi)=4.8378
+   phi=k/kappa=1.4: s+kappa=k cot(phi)/k=0.1725, K=4phi^2/sin^2(2phi)=69.8646
+   phi=k/kappa=1.55: s+kappa=k cot(phi)/k=0.0208, K=4phi^2/sin^2(2phi)=5558.2820
+5. Horizon mass and decoupling epoch (g*=10.75)
+   M_H(1 MeV)=1.5e+05 Msun; eps_dec 1,2,3,4 -> ['1.5e+05', '6e+05', '1.3e+06', '2.4e+06']
+6. Abundance from the measured door shifts (v10 Sec. 10)
+   beta0=1e-06: l3 a:0.91, l3 b:1.10, l4 a:1.05, l4 b:0.95, G a:0.88, G b:1.15, split:0.99, random G:1.012, random l4:1.003
+   beta0=1e-10: l3 a:0.86, l3 b:1.17, l4 a:1.09, l4 b:0.92, G a:0.80, G b:1.27, split:0.97, random G:1.032, random l4:1.006
+   beta0=1e-16: l3 a:0.78, l3 b:1.30, l4 a:1.16, l4 b:0.87, G a:0.69, G b:1.47, split:0.96, random G:1.081, random l4:1.014
+7. Fold of the radiation era: a(eta) ~ eta, t ~ eta^2/2 => a ~ sqrt(2t); da/dt ~ 1/sqrt(2t) diverges, a(eta) odd and analytic
+   eta=+0.10: a=+0.100, t=0.00500, da/dt=+10.0
+   eta=+0.01: a=+0.010, t=0.00005, da/dt=+100.0
+   eta=-0.01: a=-0.010, t=0.00005, da/dt=-100.0
+8. Fermion record: tau=hw/kT, Gamma=tanh(tau/2); at decoupling T=1 MeV, mean neutrino energy 3.15 T -> Gamma= 0.9178
