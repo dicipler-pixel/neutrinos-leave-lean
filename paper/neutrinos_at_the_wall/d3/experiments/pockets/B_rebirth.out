@@ -1,0 +1,15 @@
+ number/energy (e±, T_d≈1 MeV)                 T_max= 1.5 MeV: erasure exponent     0.79, survival 4.53e-01
+ number/energy (e±, T_d≈1 MeV)                 T_max= 2.0 MeV: erasure exponent     2.33, survival 9.70e-02
+ number/energy (e±, T_d≈1 MeV)                 T_max= 3.0 MeV: erasure exponent     8.67, survival 1.72e-04
+ number/energy (e±, T_d≈1 MeV)                 T_max= 5.0 MeV: erasure exponent    41.33, survival 1.12e-18
+ number/energy (e±, T_d≈1 MeV)                 T_max=10.0 MeV: erasure exponent   333.00, survival 2.40e-145
+ momentum drag only, hypothetical T_d≈2 MeV    T_max= 1.5 MeV: erasure exponent     0.00, survival 1.00e+00
+ momentum drag only, hypothetical T_d≈2 MeV    T_max= 2.0 MeV: erasure exponent     0.00, survival 1.00e+00
+ momentum drag only, hypothetical T_d≈2 MeV    T_max= 3.0 MeV: erasure exponent     0.79, survival 4.53e-01
+ momentum drag only, hypothetical T_d≈2 MeV    T_max= 5.0 MeV: erasure exponent     4.88, survival 7.64e-03
+ momentum drag only, hypothetical T_d≈2 MeV    T_max=10.0 MeV: erasure exponent    41.33, survival 1.12e-18
+Zeno-sealed pocket: if the pocket's leak is k²c²/kappa_n instead of kappa, the exponent becomes int (k²c²/kappa_n) dt, which FALLS as T rises:
+   T_max=    2 MeV: Zeno leak exponent 0.033, survival 0.967
+   T_max=    5 MeV: Zeno leak exponent 0.053, survival 0.948
+   T_max=   10 MeV: Zeno leak exponent 0.060, survival 0.942
+   T_max=  100 MeV: Zeno leak exponent 0.066, survival 0.936

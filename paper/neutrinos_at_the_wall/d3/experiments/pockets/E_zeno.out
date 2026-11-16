@@ -1,0 +1,8 @@
+pocket at l*=5, every other l>=1 damped at sigma (the 'normal layer'), density l=0 conserved
+ sigma=    1: pocket survival after t=10: 0.0000; slowest nonzero decay 0.47181; Zeno estimate k²(c²+c²)/σ = 0.50427
+ sigma=    3: pocket survival after t=10: 0.0353; slowest nonzero decay 0.17307; Zeno estimate k²(c²+c²)/σ = 0.16809
+ sigma=   10: pocket survival after t=10: 0.3675; slowest nonzero decay 0.05055; Zeno estimate k²(c²+c²)/σ = 0.05043
+ sigma=   30: pocket survival after t=10: 0.7152; slowest nonzero decay 0.01681; Zeno estimate k²(c²+c²)/σ = 0.01681
+ sigma=  100: pocket survival after t=10: 0.9042; slowest nonzero decay 0.00504; Zeno estimate k²(c²+c²)/σ = 0.00504
+ sigma=  300: pocket survival after t=10: 0.9670; slowest nonzero decay 0.00168; Zeno estimate k²(c²+c²)/σ = 0.00168
+Reading: leak rate falls like 1/sigma - the hotter the surrounding layer, the better the pocket is sealed.

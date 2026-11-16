@@ -1,0 +1,7 @@
+ self-scatter kappa_n=   0: two slowest (sound pair) Re = -0.01922, -0.01922; next -0.01923
+ self-scatter kappa_n=   1: two slowest (sound pair) Re = -0.11828, -0.11828; next -1.00928
+ self-scatter kappa_n=   3: two slowest (sound pair) Re = -0.05299, -0.05299; next -3.01564
+ self-scatter kappa_n=  10: two slowest (sound pair) Re = -0.02329, -0.02329; next -10.01866
+ self-scatter kappa_n=  30: two slowest (sound pair) Re = -0.01444, -0.01444; next -30.01955
+ self-scatter kappa_n= 100: two slowest (sound pair) Re = -0.01133, -0.01133; next -100.01987
+Reading: with strong self-scattering the density+flux pair (sound) decays at ~ kappa_e/2 + k²c1²/(2 kappa_n): the shear layer seals the flux.

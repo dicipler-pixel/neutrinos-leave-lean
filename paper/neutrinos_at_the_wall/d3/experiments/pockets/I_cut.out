@@ -1,0 +1,10 @@
+ N=6: a single cut created a NEW protected mode in 15.5% of 4000 random networks
+   example: cut link (0,5); bath on nodes [np.int64(4)]; protected mode lives on [np.int64(0), np.int64(1), np.int64(2), np.int64(5)] with weights [0.92 0.03 0.02 0.03]
+ N=8: a single cut created a NEW protected mode in 4.8% of 4000 random networks
+   example: cut link (1,7); bath on nodes [np.int64(2), np.int64(3), np.int64(4), np.int64(6)]; protected mode lives on [np.int64(7)] with weights [1.]
+ N=10: a single cut created a NEW protected mode in 1.4% of 4000 random networks
+   example: cut link (1,2); bath on nodes [np.int64(1), np.int64(4), np.int64(5), np.int64(6), np.int64(8), np.int64(9)]; protected mode lives on [np.int64(2)] with weights [1.]
+designed interference pocket: nodes a,b (undamped) both linked to damped node d, with links +g and -g
+   g=0.3: protected modes 1, living on a,b with weights [0.5 0.5]
+   g=1: protected modes 1, living on a,b with weights [0.5 0.5]
+   g=3: protected modes 1, living on a,b with weights [0.5 0.5]

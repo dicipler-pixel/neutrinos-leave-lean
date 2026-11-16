@@ -1,0 +1,71 @@
+1. Commutator of two equal perpendicular boosts: tr = 2 - 4 sinh^4(r/2)
+   r=0.500000 tr=+1.983711613 formula=+1.983711613
+   r=1.000000 tr=+1.705063424 formula=+1.705063424
+   r=1.762747 tr=-2.000000000 formula=-2.000000000
+   r=2.500000 tr=-24.340395303 formula=-24.340395303
+   parabolic (tr=-2) at r=ln(3+2sqrt2)=1.762747174; Gamma=tanh(r/2)=0.707106781=1/sqrt2=0.707106781; z=e^r=5.828427125
+2. Neutrino masses on the wall (m1=0, normal ordering); NuFIT 6.0 central values
+   m2=8.654 meV m3=50.442 meV sum=59.10 meV; predicted d31/d21=33.9706 (measured 33.832); predicted d31=2.5444e-03
+   m_beta=8.85 meV; m_bb in [1.49,3.71] meV
+   m1=0 meV: m3/m2=5.8165 (wall 5.8284)
+   m1=1 meV: m3/m2=5.7792 (wall 5.8284)
+   m1=2 meV: m3/m2=5.6716 (wall 5.8284)
+   m1=5 meV: m3/m2=5.0612 (wall 5.8284)
+2b. Current inputs (first JUNO dm21, NuFIT 6.1 dm31, as used by Alikhanov 2026)
+   ratio d31/d21=33.720; m3/m2=5.8069 +/- 0.0523; pull from wall -0.41 sigma
+   m1 where the pull reaches -2 sigma: 1.50 meV
+9. Turn or run of the square of two equal steps (Two Trees Thm 5.3, 5.4; BallJoins J3)
+   nu, current: z=5.8069 g=0.99478 turn 23.44 deg, fixed point tanh(rho/2)=0.9501
+   nu, NuFIT 6.0: z=5.8165 g=0.99711 turn 17.43 deg, fixed point tanh(rho/2)=0.9626
+   wall: z=5.8284 g=1.00000 run length 0.0000
+   mu->tau: z=16.8177 g=3.71929 run length 7.9524
+3. Koide: Q and the 45-degree cone
+   Q=0.666664463; cos^2(angle to (1,1,1))=1/(3Q)=0.500001652
+   generation steps z and Gamma:  {'e->mu': (206.77, 0.99), 'mu->tau': (16.82, 0.888)}
+4. Kept-sector onset and non-orthogonality
+   phi=k/kappa=0.5: s+kappa=k cot(phi)/k=1.8305, K=4phi^2/sin^2(2phi)=1.4123
+   phi=k/kappa=1.0: s+kappa=k cot(phi)/k=0.6421, K=4phi^2/sin^2(2phi)=4.8378
+   phi=k/kappa=1.4: s+kappa=k cot(phi)/k=0.1725, K=4phi^2/sin^2(2phi)=69.8646
+   phi=k/kappa=1.55: s+kappa=k cot(phi)/k=0.0208, K=4phi^2/sin^2(2phi)=5558.2820
+5. Horizon mass and decoupling epoch (g*=10.75)
+   M_H(1 MeV)=1.5e+05 Msun; eps=1/(aH r_m) grows as 1/T, so a scale with eps_dec at T_dec crossed at T_dec*eps_dec: M=M_H(T_dec)/eps_dec^2; eps_dec 1,2,3,4 -> ['1.5e+05', '3.7e+04', '1.7e+04', '9.4e+03']
+6. Abundance from the measured door shifts (v10 Sec. 10)
+   beta0=1e-06: l3 a:0.91, l3 b:1.10, l4 a:1.05, l4 b:0.95, G a:0.88, G b:1.15, split:0.99, random G:1.012, random l4:1.003
+   beta0=1e-10: l3 a:0.86, l3 b:1.17, l4 a:1.09, l4 b:0.92, G a:0.80, G b:1.27, split:0.97, random G:1.032, random l4:1.006
+   beta0=1e-16: l3 a:0.78, l3 b:1.30, l4 a:1.16, l4 b:0.87, G a:0.69, G b:1.47, split:0.96, random G:1.081, random l4:1.014
+7. Fold of the radiation era: a(eta) ~ eta, t ~ eta^2/2 => a ~ sqrt(2t); da/dt ~ 1/sqrt(2t) diverges, a(eta) odd and analytic
+   eta=+0.10: a=+0.100, t=0.00500, da/dt=+10.0
+   eta=+0.01: a=+0.010, t=0.00005, da/dt=+100.0
+   eta=-0.01: a=-0.010, t=0.00005, da/dt=-100.0
+8. Fermion record: tau=hw/kT, Gamma=tanh(tau/2); at decoupling T=1 MeV, mean neutrino energy 3.15 T -> Gamma= 0.9178
+10. The wall seen from the rim (mixer Light at the Hypersurface v2, K9, K11, K12)
+   tanh(r_w)=0.942809041582  2sqrt2/3=0.942809041582
+   z=5: worst direction cos psi=-1/sqrt2 lands at cos psi'=0.621880 (cap edge 0.707107); face meets rim at psi0=48.190 deg
+   wall: worst direction cos psi=-1/sqrt2 lands at cos psi'=0.707107 (cap edge 0.707107); face meets rim at psi0=45.000 deg
+   z=7: worst direction cos psi=-1/sqrt2 lands at cos psi'=0.787394 (cap edge 0.707107); face meets rim at psi0=41.410 deg
+   Thomas turn of two equal steps, nu, current: 53.010 deg, cos=0.601676
+   Thomas turn of two equal steps, nu, NuFIT 6.0: 53.064 deg, cos=0.600927
+   Thomas turn of two equal steps, wall: 53.130 deg, cos=0.600000
+11. Hot rebirth: erasure exponent of a directly damped record, int kappa dt = [(Tmax/Td)^3-1]/3 (Td=1 MeV)
+   Tmax= 1.5 MeV: exponent    0.79, survival 4.53e-01
+   Tmax= 2.0 MeV: exponent    2.33, survival 9.70e-02
+   Tmax= 3.0 MeV: exponent    8.67, survival 1.72e-04
+   Tmax= 5.0 MeV: exponent   41.33, survival 1.12e-18
+   Tmax=10.0 MeV: exponent  333.00, survival 2.40e-145
+12. Allowing the lightest mass up to the current-data bound (normal ordering; NuFIT 6.0 angles)
+   NuFIT 6.0, m1=0.0 meV: sum=58.99 meV, m_beta=8.84 meV, m_bb in [1.49,3.70] meV, m3/m2=5.8165
+   NuFIT 6.0, m1=1.0 meV: sum=60.06 meV, m_beta=8.89 meV, m_bb in [0.83,4.40] meV, m3/m2=5.7792
+   NuFIT 6.0, m1=1.5 meV: sum=60.64 meV, m_beta=8.96 meV, m_bb in [0.52,4.76] meV, m3/m2=5.7336
+   current, m1=0.0 meV: sum=58.95 meV, m_beta=8.83 meV, m_bb in [1.50,3.70] meV, m3/m2=5.8069
+   current, m1=1.0 meV: sum=60.02 meV, m_beta=8.89 meV, m_bb in [0.84,4.40] meV, m3/m2=5.7697
+   current, m1=1.5 meV: sum=60.60 meV, m_beta=8.96 meV, m_bb in [0.52,4.76] meV, m3/m2=5.7242
+13. Turn or run at +-1 sigma of the current ratio
+   z=5.7546: g=0.98208 turn 43.45 deg
+   z=5.8069: g=0.99478 turn 23.44 deg
+   z=5.8592: g=1.00748 run length 0.4888
+   share of a Gaussian on z above the wall (run side): current 0.34; NuFIT 6.0 0.44
+2c. NuFIT 6.0 normal ordering, both tables (IC19 without SK-atm; IC24 with SK-atm); dm21=7.49+-0.19e-5
+   IC19 w/o SK-atm: m3/m2=5.8165 +/- 0.0787; pull -0.15 sigma; m1 at -2 sigma 2.00 meV
+   IC24 with SK-atm: m3/m2=5.7924 +/- 0.0770; pull -0.47 sigma; m1 at -2 sigma 1.80 meV
+14. Ball radius of a 0.05 eV neutrino at 1 MeV: gamma=2e7, rapidity ln(2 gamma) approx; radius tanh(rapidity/2)
+   rapidity=17.504, 1 - ball radius=5.00e-08, 1 - v=1.25e-15

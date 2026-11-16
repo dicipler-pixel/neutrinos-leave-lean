@@ -1,0 +1,9 @@
+single rate k=2: undamped moments (ker D) = [0]; slowest modes Re = [-0.1695 -1.9917 -1.9918 -1.9918]
+   streaming links from ker D to damped moments: [(0, 1)]
+split flux 0.5 / shear 5: undamped moments (ker D) = [0]; slowest modes Re = [-0.2792 -0.2792 -4.997  -4.997 ]
+   streaming links from ker D to damped moments: [(0, 1)]
+McCormick: plasma 0.05 on l>=1, self-scatter 3 on l>=2: undamped moments (ker D) = [0]; slowest modes Re = [-0.068  -0.068  -3.0456 -3.0456]
+   streaming links from ker D to damped moments: [(0, 1)]
+self-scatter only (plasma off): undamped moments (ker D) = [0, 1]; slowest modes Re = [-0.043  -0.043  -2.9956 -2.9956]
+   streaming links from ker D to damped moments: [(1, 2)]
+Census: at finite k every undamped moment is linked by streaming to a damped neighbour, so no EXACT pocket exists; only the conserved density (ell=0) plus slow near-pockets.

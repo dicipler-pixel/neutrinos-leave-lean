@@ -1,0 +1,16 @@
+flavour record surviving from T_max down to 0.5 MeV
+            heat on the cover h:   x0.1        x1         x10        x100
+ T_max=    3 MeV:              0.677   0.684   0.736   0.871
+ T_max=    5 MeV:              0.181   0.308   0.638   0.867
+ T_max=   10 MeV:              0.012   0.236   0.634   0.867
+ T_max=   30 MeV:              0.010   0.236   0.634   0.867
+ T_max=  100 MeV:              0.010   0.236   0.634   0.867
+where the leak happens (cover x1): rate per ln a at temperature T
+   T= 30.0 MeV: cover/oscillation V/Δ =  4.67e+04, fire Γ/Δ =  7.84e+02, leak per ln a = 5.416e-07
+   T= 10.0 MeV: cover/oscillation V/Δ =  6.40e+01, fire Γ/Δ =  1.08e+00, leak per ln a = 1.035e-02
+   T=  5.0 MeV: cover/oscillation V/Δ =  1.00e+00, fire Γ/Δ =  1.68e-02, leak per ln a = 1.396e+00
+   T=  3.0 MeV: cover/oscillation V/Δ =  4.67e-02, fire Γ/Δ =  7.84e-04, leak per ln a = 1.080e+00
+   T=  2.0 MeV: cover/oscillation V/Δ =  4.10e-03, fire Γ/Δ =  6.88e-05, leak per ln a = 3.466e-01
+   T=  1.0 MeV: cover/oscillation V/Δ =  6.40e-05, fire Γ/Δ =  1.08e-06, leak per ln a = 4.366e-02
+   T=  0.7 MeV: cover/oscillation V/Δ =  7.53e-06, fire Γ/Δ =  1.27e-07, leak per ln a = 1.498e-02
+heat the fire too (collisions x10) with cover x1: 0.000  vs fire x1: 0.236
