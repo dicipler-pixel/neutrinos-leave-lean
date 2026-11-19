@@ -1,0 +1,81 @@
+== G values ==
+ C: G=0.6483 +- 0.0062
+ B: G=0.3171 +- 0.0036
+ D: G=0.1543 +- 0.0062
+ H1: G=0.4253 +- 0.0007
+ S1: G=0.4266 +- 0.0000
+ Test A broad: 0.1808 0.0452 err 0.0044
+
+== link table (fixed-step), offsets from S1 ==
+ r= 0.0625 Gamma=-0.882 rap=-1.386 G=0.777 off=-1.542
+ r= 0.2500 Gamma=-0.600 rap=-0.693 G=0.614 off=-0.758
+ r= 0.5000 Gamma=-0.333 rap=-0.347 G=0.521 off=-0.378
+ r= 0.8333 Gamma=-0.091 rap=-0.091 G=0.451 off=-0.098
+ r= 0.8000 Gamma=-0.111 rap=-0.112 G=0.457 off=-0.122
+ r= 1.0000 Gamma=+0.000 rap=+0.000 G=0.425 off=+0.005
+ r= 1.2000 Gamma=+0.091 rap=+0.091 G=0.402 off=+0.103
+ r= 1.2500 Gamma=+0.111 rap=+0.112 G=0.396 off=+0.127
+ r= 2.0000 Gamma=+0.333 rap=+0.347 G=0.335 off=+0.390
+ r= 4.0000 Gamma=+0.600 rap=+0.693 G=0.252 off=+0.792
+ r=16.0000 Gamma=+0.882 rap=+1.386 G=0.129 off=+1.615
+ line fit slope=1.1329 icpt=+0.0122 rms=0.0142
+ through-origin slope=1.1329 rms=0.0187
+ shifts at r=1/4, 4 from S1: 0.187 -0.174
+
+== odd rates ==
+ r=1.2: odd=-1.1005  even part=+0.003
+ r=1.25: odd=-1.1127  even part=+0.003
+ r=2: odd=-1.1093  even part=+0.006
+ r=4: odd=-1.1178  even part=+0.017
+ r=16: odd=-1.1385  even part=+0.037
+ stage-correct r=1.2: -1.1066  r=1.25: -1.1102
+ level 1: odd=-1.1102
+ level 2: odd=-1.1020
+ level 3: odd=-1.1013
+ observed order p = ln((o1-o2)/(o2-o3))/ln(1.5) = 6.33
+ level3 with fluid ref shifted +7.8e-05: -1.1051
+ level3 with fluid ref shifted -7.8e-05: -1.0976
+ shear only r=1.2: -1.1928  r=4: -1.2038
+ budget quad/lin: 0.0091 0.0149
+
+== door ==
+ 0.5 l3: diff=+1.7500e-05  +f shift +1.850e-05  -f shift +1.000e-06
+ 0.5 l4: diff=+1.8500e-05  +f shift +1.850e-05  -f shift +0.000e+00
+ 2 l3: diff=+3.7438e-03  +f shift +1.833e-03  -f shift -1.911e-03
+ 2 l3 N48: diff=+3.5093e-03  +f shift +1.763e-03  -f shift -1.746e-03
+ 2 l4: diff=-2.0977e-03  +f shift -1.075e-03  -f shift +1.023e-03
+ 2 Gram: diff=+5.5052e-03  +f shift +2.685e-03  -f shift -2.820e-03
+ 4 l3: diff=+2.4380e-04  +f shift +1.296e-04  -f shift -1.142e-04
+ 4 l4: diff=-1.4820e-04  +f shift -7.410e-05  -f shift +7.410e-05
+ l4/l3 = 0.56  Gram/l3 = 1.47  l3 diff / whole shift = 0.122 0.115
+ f=0 restart minus H1 = +1.00e-05  minus S1 = -2.853e-05
+ spread of three baselines: 0.0057
+
+== connection energy, Eq (4) and six-group shares ==
+ rho=1.5: shear share = 0.6429
+ rho=7: shear share = 0.9751
+ ||[L,L*]||^2/8=10.4855363947  Eq4=10.4855363947
+ ||[L,L*]||^2/8=2.9595906493  Eq4=2.9595906493
+ ||[L,L*]||^2/8=3.7263228364  Eq4=3.7263228364
+
+== kept-sector onset, 200 moments; non-orthogonality K ==
+ least-damped mode turns complex at kappa/k = 0.6450  (2/pi = 0.6366)
+ kappa/k=1.0: chain pole -0.357907+1.1e-16i  closed form -0.357907  Petermann K=4.83780  4phi^2/sin^2(2phi)=4.83780
+ kappa/k=0.9: chain pole -0.404943+0.0e+00i  closed form -0.404943  Petermann K=7.80909  4phi^2/sin^2(2phi)=7.80909
+ kappa/k=0.8: chain pole -0.467727-1.6e-15i  closed form -0.467727  Petermann K=17.44987  4phi^2/sin^2(2phi)=17.44987
+ kappa/k=0.7: chain pole -0.556808-3.6e-15i  closed form -0.556808  Petermann K=103.65675  4phi^2/sin^2(2phi)=103.65675
+
+== horizon mass ==
+ M_H(1 MeV, g*=10.75) = 1.499e+05 Msun
+  eps_dec=0.5: 6.00e+05
+  eps_dec=1: 1.50e+05
+  eps_dec=2: 3.75e+04
+  eps_dec=3: 1.67e+04
+  eps_dec=4: 9.37e+03
+  eps_dec=8: 2.34e+03
+
+== small numbers ==
+ e^-42 = 5.75e-19  4.8e-17/e^-42 = 10^ 1.92
+ annihilation f = 1.138; 6.31% *f -> 7.18%  /f -> 5.54%  (+13.8%, -12.1%)
+ two-moment EP / onset ratio pi/sqrt3 = 1.814
+ 29% less at eps=8: 0.286
