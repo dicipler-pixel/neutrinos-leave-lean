@@ -1,0 +1,44 @@
+# PRE-REGISTRATION: does hidden structure carried over from a previous cycle move the threshold?
+# Written 19 Nov 2026, ~17:15 CT, before any run of this test. Self-dated only: not committed to git (no git use allowed in this task).
+# Status: POSED, NOT RUN (see RUNTIME ESTIMATE).
+
+QUESTION (Jeromie, 14 Nov 2026, verbatim): "not sure there is a first moment my point is i see a way beyond big bang."
+Frame (Jeromie, 14 Nov, verbatim): "a self recurring transport system, a closed but growing system that eventually grows
+to a full relaxation then starts again; light leaves the lightest trail, all else follows and carves."
+
+SETTING: McCormick's code as used for the door (sec_new_door; driver v10/code_v6/A4_restart.py, A4_trisect.py):
+Gaussian, R_nu=0.409, n=3, eps_dec=2, N=400, N_mu=32, stage-time collision rate; planted
+dI_ik = f b(r_i) m_i (eps_i/4pi) p_l(mu_k), the same bump b and margins m_i.
+
+WHAT A RELAXED PREVIOUS CYCLE WOULD LEAVE (the amplitudes, fixed now):
+ In the single-rate linear chain a hidden moment present at tau_s is erased by exp[-eps_dec^n/(n tau_s^n)]
+ (v12 Sec. witness). For n=3, eps_dec=2: tau_s=1 -> 0.069, 0.5 -> 5.4e-10, 0.25 -> 7.6e-75 (computed here).
+ A record from a previous cycle arrives through the whole coupled era, so in the linear chain its hidden amplitude at
+ decoupling is 0 to any precision. The only carrier left in the model is the non-linear GR channel that v12 measured
+ at eps_s=0.5 ("the coupled era is not perfectly shut", 0.3-0.5% of the decoupling effect in compaction).
+ Amplitudes: the largest allowed by positivity, f = +-1/2 (ceiling) and f = +-1/4, planted at the earliest restart
+ surfaces eps_s = 0.25 and 0.5 (deep in the coupled era, i.e. carried in, not planted at decoupling),
+ directions l=3 and the Gramian leading direction. (Any physical relaxed-cycle amplitude is at or below these.)
+
+PREDICTED SIGN: if any difference is resolved, the decoupling sign: +p3 and +Gramian raise delta_c.
+PREDICTION (single-rate erasure, P0): |delta_c(+f) - delta_c(-f)| within 2 bracket widths at every planted surface.
+AUTHOR'S READING (R1): a carried-over record reaches the threshold: a difference beyond 2 bracket widths with the
+decoupling sign at eps_s = 0.5 or 0.25.
+
+KILL LINES (fixed now):
+ K0: P0 dies if any pair at eps_s<=0.5 differs by more than 2 bracket widths AND survives the drift rule of v12
+     (brackets widened by 2 d_K, d_K=1.65e-4).
+ K1: R1 dies if every pair at eps_s<=0.5 is within 2 bracket widths at f=+-1/2.
+ Resolution note (computed here): the eps_s=2 l=3 response is 3.744e-3 per unit f, so at eps_s=2 a pair is resolved
+ above f = 4.9e-3 (2 widths of 1.85e-5) and above f = 0.091 under the drift rule. A carried record attenuated like the
+ linear chain is below both by many orders. Known already (v12): eps_s=0.5, f=+-1/2 gives +1.75e-5 and +1.85e-5,
+ within two widths; that pair is the existing evidence for P0 and is not re-counted.
+ Controls: f=0 restart at each new surface; Gramian -f member checked against its own thresholds (A4 typo rule).
+
+RUNTIME ESTIMATE (reason it was not run in this pass):
+ Per threshold: a trisection from a ~6e-3 bracket to 1e-5 needs ~6 rounds x 2 trials = ~12 trials. Box timing for
+ this driver: "a normal trial takes about 75 s" (wall_runs_d3/results_note_d3.md); the door's own cloud logs show
+ 8-11 min per threshold (A4_PREREGISTERED.txt result timestamps, e.g. 15:38Z and 15:46Z for the +f/-f pair).
+ Minimum new set: 2 surfaces x 2 directions x 2 signs = 8 thresholds + 2 f=0 restarts + 2 restart surfaces:
+ ~10 x 15 min = ~150 CPU-min (8 cores -> ~25-40 min wall if parallel, plus setup of the restart driver on this box).
+ Over the "well under an hour total" bar set for this pass, and the user's usage was at 91%. NOT RUN.

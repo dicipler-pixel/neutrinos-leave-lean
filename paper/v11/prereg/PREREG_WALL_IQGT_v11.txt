@@ -1,0 +1,33 @@
+# PRE-REGISTRATION: the wall test redone with the author's tools (IQGT)
+# Written 19 Nov 2026, ~17:15 CT, before any run. Self-dated only (no git).
+# Status: POSED, NOT RUN (see REASON).
+
+WHY: v10/v12's ruler verdict rests on ruler (e), a single-vector principal angle (code/v4_runs/ruler/ruler_state.py),
+ because the least-damped Riesz projector has no isolated eigenvalue past the onset kappa = 2k/pi for ~half the profile
+ (PREREGISTERED_RULER.txt, RESULT 1). The author's rule (IQGT 10.2): read through the projector of a cluster held by a
+ gap (the tail), never through a single eigenvector (the tip).
+
+OBJECT: L(r) = -ikM - kappa D_r, 61 moments, kappa = 0.958 (readout eps*=1.7), profile nodes as memory_curve.py;
+ families: all-higher and shear-only; the 15 v4.1+A1 thresholds (unchanged data).
+TOOLS (all four required):
+ T1 trace form q(V) = (1/2) Re Tr V^2, V = dPi/dr, sign recorded at every (k, r).
+ T2 tail projector: for each k, the smallest cluster of least-damped eigenvalues (sizes 1..6, ordered by real part)
+    whose real-part gap to the rest is >= g* = 0.05 (and >= 10x its internal spread); rank-2 is the default where the
+    least-damped pair is complex. Riesz projector by contour (resolvent integral), not by eigenvectors.
+ T3 tip/tail split: log the tip gap (nearest-neighbour distance inside the cluster) and the tail gap at every (k, r);
+    the ruler uses only the tail.
+ T4 fold/polar strata (IQGT Prop. 8.6): classify each (k, r) segment as polar (projector stops rotating, distance 0 at
+    every order) or fold (silent at first order, moves at second); readings at fold points reported separately.
+RULERS: arc length s(r) of g_rr = (1/2)||dPi_tail/dr||^2 where q>0; where q<=0 report "not a length".
+KILL LINES: as PREREGISTERED_RULER.txt R1/R2: R1 dies unless slope_shear/slope_all in s lies in [0.97,1.03];
+ R2 dies unless odd-rate spread in s < 1.2% of its mean; controls C1-C5 as there, plus C6: at least 90% of the profile
+ weight must have a gap-held cluster, else "instrument void" again.
+
+REASON NOT RUN: compute is cheap (the existing ruler_check.py took 421 s (about 7 min) on this box; timed in
+ /workspace/ink/D17/v11/ruler_timing.txt). The cost is building it: T2 (contour Riesz projector of a gap-held cluster)
+ and T4 (fold/polar classification, IQGT v7.2 Prop. 8.6; PDF on this box at
+ /workspace/jb/iqgt-grassmannian-lean/paper/iqgt_grassmannian_v7_2.pdf, the plain-text copy in /workspace/dl/current/raw
+ drops the formulas) are new code that has to be pinned to his definitions and checked before a verdict means anything.
+ Estimate: 1-2 hours of building and checking, not compute. That is over the "well under an hour total" bar for this
+ pass, with the user's usage at 91%. Implementing T4 from a guess would test my reading of his tool, not his tool.
+ Next step: pin Prop. 8.6 here from the PDF, then build and run (seconds to minutes of compute).

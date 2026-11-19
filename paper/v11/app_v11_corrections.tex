@@ -1,0 +1,18 @@
+\section{Corrections to version 12}\label{app:corrv11}
+
+This version keeps every section, figure, table, proof and listing of version~12 and corrects it in place. The corrections, with the evidence for each, are listed in the file \texttt{changes\_v12\_to\_v11.md} that ships with this version. In short:
+\begin{enumerate}
+\item \textbf{Mass scaling} (Appendix~\ref{app:massv11}): $M\simeq M_H(T_{\rm dec})/\epsilon_{\rm dec}^2$, not $\epsilon_{\rm dec}^2M_H$. The door runs ($\epsilon_{\rm dec}=2$) sit at a horizon mass of about $3.7\times10^4\,M_\odot$, not $6\times10^5$.
+\item \textbf{Recorder prediction (i) killed} (Section~\ref{sec:mcc}); version~12 reported the recorder as ``the kept share leads'' without saying so.
+\item \textbf{One baseline for $G(1)$}: S1, $0.4266$ (Section~\ref{sec:link}), with the shifts it causes.
+\item \textbf{Lean}: the ``87 theorems at commit 9cd71fa'' build claim is withdrawn (Appendix~C).
+\item \textbf{References}: McCormick's preprints and code given their correct records; Escriv\`a given its title; Ma and Bertschinger cited; \emph{Beyond the Event Horizon} cited with its record; the previously uncited \emph{Colour Selects the Leader} now cited where its folder of checks is used (Appendix~B.12).
+\item \textbf{The door}: its per-run logs are missing; it is one engineered amplitude; one cell is linear in the amplitude; its size depends on the collision model by $37\%$ (Section~\ref{sec:door}).
+\item \textbf{The link rate} $1.10\pm0.01$ is labelled not converged wherever it appears.
+\item \textbf{Every failed prediction} is listed in Section~\ref{sec:failed}.
+\item \textbf{Smaller numbers}: Test~A's predicted range, the Test~E error, the Gramian order count, the closure and elimination accuracies, and the annihilation-control maximum.
+\end{enumerate}
+Added: the author's question and frame (Section~\ref{sec:frame}), two posed tests (Section~\ref{sec:posed}), readings from \emph{Beyond the Event Horizon} (Section~\ref{sec:bhreadings}) and Limitations (Section~\ref{sec:limits}).
+
+\subsection*{D.1 Mass at horizon entry}\label{app:massv11}
+In radiation domination $a\propto1/T$ and $H\propto T^2$, so $aH\propto T$ and $\epsilon=1/(aHr_m)\propto1/T$ at fixed comoving $r_m$. If $\epsilon=\epsilon_{\rm dec}$ at $T_{\rm dec}$, then $\epsilon=1$ at $T_{\rm entry}=\epsilon_{\rm dec}T_{\rm dec}$. The horizon mass $M_H=\tfrac{4\pi}{3}\rho H^{-3}c^3\propto T^{-2}$, so $M_H(T_{\rm entry})=M_H(T_{\rm dec})/\epsilon_{\rm dec}^2$. With $\rho=(\pi^2/30)g_*T^4$ and $g_*=10.75$, $M_H(1\,{\rm MeV})=1.50\times10^5\,M_\odot$. For $\epsilon_{\rm dec}=0.5,1,2,3,4,8$ this gives $6.0\times10^5$, $1.5\times10^5$, $3.7\times10^4$, $1.7\times10^4$, $9.4\times10^3$ and $2.3\times10^3\,M_\odot$. A larger $\epsilon_{\rm dec}$ means the scale entered earlier, so it is lighter. The black-hole mass is a fraction of the horizon mass that is not computed here.
