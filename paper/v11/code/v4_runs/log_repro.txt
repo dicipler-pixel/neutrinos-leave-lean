@@ -1,0 +1,1 @@
+REPRO delta=0.5109 n=3 ed=2: BH 6.61 75s  (paper: BH, inside 0.51074-0.51109)

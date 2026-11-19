@@ -1,0 +1,4 @@
+Bres2 delta=0.50734: D [dispersed] eps=6.53 eps_max=14.0 rawmax(kappa/H)=6.400e+07 cap=5.0e+05 capped_steps=809052/1095261 cap_released_at_eps~0.224 (1711s)
+Bres2 delta=0.50746: D [dispersed] eps=6.81 eps_max=14.0 rawmax(kappa/H)=6.400e+07 cap=5.0e+05 capped_steps=809053/1100808 cap_released_at_eps~0.224 (1712s)
+Bres2 bracket now [0.50746,0.50757]
+RESULT Bres2: delta_c = 0.50751 +- 0.00006 bracket [0.50746,0.50757] (28.5 min) undecided_points=[]

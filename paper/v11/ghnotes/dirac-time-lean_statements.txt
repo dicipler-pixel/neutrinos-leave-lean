@@ -1,0 +1,406 @@
+DiracTime/CommonClock.lean-21-
+DiracTime/CommonClock.lean-22-/-- An eigenvector of `H₀` is an eigenvector of the frame generator `τ̇ H₀ + a I`. -/
+DiracTime/CommonClock.lean:23:theorem generator_eigen (G H₀ : Matrix n n ℂ) (τdot a E : ℂ) (v : n → ℂ)
+--
+DiracTime/CommonClock.lean-27-
+DiracTime/CommonClock.lean-28-/-- **Corollary P4.1.** All gaps of the frame generator share the one scale factor `τ̇`. -/
+DiracTime/CommonClock.lean:29:theorem common_gap_scaling (G H₀ : Matrix n n ℂ) (τdot a Ej Ek : ℂ) (v w : n → ℂ)
+--
+DiracTime/CommonClock.lean-35-
+DiracTime/CommonClock.lean-36-/-- **Corollary P4.2.** For a non-scalar `H₀`, the rate and the scalar shift are unique. -/
+DiracTime/CommonClock.lean:37:theorem rate_shift_unique (H₀ : Matrix n n ℂ) (hns : ∀ c : ℂ, H₀ ≠ c • (1 : Matrix n n ℂ))
+--
+DiracTime/CommonClock.lean-58-
+DiracTime/CommonClock.lean-59-/-- **Corollary P4.3.** Rescaling `H ↦ s H` (`s ≠ 0`) keeps every eigenvector. -/
+DiracTime/CommonClock.lean:60:theorem rescale_same_eigenvectors (H : Matrix n n ℂ) (s E : ℂ) (hs : s ≠ 0) (v : n → ℂ) :
+--
+DiracTime/CommonClock.lean-64-
+DiracTime/CommonClock.lean-65-/-- **Corollary P4.3.** … while every gap is multiplied by `s`. -/
+DiracTime/CommonClock.lean:66:theorem rescale_scales_gaps (s Ej Ek : ℂ) : s * Ej - s * Ek = s * (Ej - Ek) := by ring
+--
+DiracTime/ContinuousReturn.lean-27-  R.comp (ContinuousLinearMap.apply ℝ V Δ)
+DiracTime/ContinuousReturn.lean-28-
+DiracTime/ContinuousReturn.lean:29:theorem reading_apply (R : V →L[ℝ] W) (Δ : V) (M : V →L[ℝ] V) :
+--
+DiracTime/ContinuousReturn.lean-34-  reading R Δ (L ^ k * exp (t • L))
+DiracTime/ContinuousReturn.lean-35-
+DiracTime/ContinuousReturn.lean:36:theorem profile_hasDerivAt (R : V →L[ℝ] W) (L : V →L[ℝ] V) (Δ : V) (k : ℕ) (t : ℝ) :
+--
+DiracTime/ContinuousReturn.lean-43-/-- **Continuous-time return criterion.** The reading of `e^{tL} Δ` vanishes at every time
+DiracTime/ContinuousReturn.lean-44-exactly when every discrete step `R Lᵏ Δ` vanishes. -/
+DiracTime/ContinuousReturn.lean:45:theorem hidden_forever_iff (R : V →L[ℝ] W) (L : V →L[ℝ] V) (Δ : V) :
+--
+DiracTime/EntropyLedger.lean-27-/-- With a Gibbs reference, the change of relative entropy is `ΔD = β ΔE − ΔS`: the
+DiracTime/EntropyLedger.lean-28-normalization `log Z` drops out of the difference. -/
+DiracTime/EntropyLedger.lean:29:theorem delta_relative_entropy (β logZ S₀ S₁ E₀ E₁ D₀ D₁ : ℝ)
+--
+DiracTime/EntropyLedger.lean-34-
+DiracTime/EntropyLedger.lean-35-/-- **Theorem P6.** The exact finite entropy/correlation identity. -/
+DiracTime/EntropyLedger.lean:36:theorem entropy_correlation_identity (β logZ : ι → ℝ)
+--
+DiracTime/EntropyLedger.lean-54-multi-information and relative entropy are nonnegative, the integrated entropy production is
+DiracTime/EntropyLedger.lean-55-nonnegative. -/
+DiracTime/EntropyLedger.lean:56:theorem integrated_second_law (β : ι → ℝ) (dSS I₁ : ℝ) (Q D₁ : ι → ℝ)
+--
+DiracTime/EqualEndpointWitness.lean-24-
+DiracTime/EqualEndpointWitness.lean-25-/-- The key identity: `|a − i b e^{iΦ}|² = a² + b² + 2 a b sin Φ`. -/
+DiracTime/EqualEndpointWitness.lean:26:theorem normSq_sub_I_mul_exp (a b Φ : ℝ) :
+--
+DiracTime/EqualEndpointWitness.lean-36-noncomputable def w₁ (θ Φ : ℝ) : ℂ := exp (Φ * I) * (Real.cos θ : ℂ) - I * (Real.sin θ : ℂ)
+DiracTime/EqualEndpointWitness.lean-37-
+DiracTime/EqualEndpointWitness.lean:38:theorem normSq_w₀ (θ Φ : ℝ) : normSq (w₀ θ Φ) = 1 + Real.sin (2 * θ) * Real.sin Φ := by
+--
+DiracTime/EqualEndpointWitness.lean-41-  linear_combination Real.sin_sq_add_cos_sq θ + Real.sin θ ^ 2 * Real.sin_sq_add_cos_sq Φ
+DiracTime/EqualEndpointWitness.lean-42-
+DiracTime/EqualEndpointWitness.lean:43:theorem normSq_w₁ (θ Φ : ℝ) : normSq (w₁ θ Φ) = 1 - Real.sin (2 * θ) * Real.sin Φ := by
+--
+DiracTime/EqualEndpointWitness.lean-47-
+DiracTime/EqualEndpointWitness.lean-48-/-- The later readout: `⟨Z_P⟩(θ) = (|w₀|² − |w₁|²) / 2 = sin 2θ sin Φ`. -/
+DiracTime/EqualEndpointWitness.lean:49:theorem expectation_Z (θ Φ : ℝ) :
+--
+DiracTime/EqualEndpointWitness.lean-54-/-- Before the exchange (`θ = 0`) both populations are equal whatever the Wilson phase:
+DiracTime/EqualEndpointWitness.lean-55-no present record distinguishes the histories. -/
+DiracTime/EqualEndpointWitness.lean:56:theorem present_populations_equal (Φ₁ Φ₂ : ℝ) :
+--
+DiracTime/EqualEndpointWitness.lean-59-
+DiracTime/EqualEndpointWitness.lean-60-/-- A nonzero Wilson phase is read later: at `θ = π/4`, `⟨Z_P⟩ = sin Φ`. -/
+DiracTime/EqualEndpointWitness.lean:61:theorem later_readout (Φ : ℝ) :
+--
+DiracTime/EqualEndpointWitness.lean-64-
+DiracTime/EqualEndpointWitness.lean-65-/-- The history quotient depends on the probe: this probe cannot separate `Φ` from `π − Φ`. -/
+DiracTime/EqualEndpointWitness.lean:66:theorem probe_blind_to_supplement (θ Φ : ℝ) :
+--
+DiracTime/FiniteReturn.lean-22-
+DiracTime/FiniteReturn.lean-23-/-- A difference that is silent for the first `dim V` steps is silent forever. -/
+DiracTime/FiniteReturn.lean:24:theorem silent_forever_iff [FiniteDimensional K V] (L : V →ₗ[K] V) (R : V →ₗ[K] W)
+--
+DiracTime/FiniteReturn.lean-38-/-- **Finite return criterion.** A difference returns to the observed sector at some step
+DiracTime/FiniteReturn.lean-39-exactly when it returns within the first `dim V` steps. -/
+DiracTime/FiniteReturn.lean:40:theorem finite_return_iff [FiniteDimensional K V] (L : V →ₗ[K] V) (R : V →ₗ[K] W)
+--
+DiracTime/FrictionMetric.lean-25-pair reweighted by twice the population difference times the gap times the relaxation
+DiracTime/FrictionMetric.lean-26-factor. -/
+DiracTime/FrictionMetric.lean:27:theorem pair_friction_eq_weighted_metric (c h2 pm pn Em En : ℝ) (hE : En ≠ Em) :
+--
+DiracTime/FrictionMetric.lean-32-
+DiracTime/FrictionMetric.lean-33-/-- Gibbs weights decrease with energy, so every pair weight is nonnegative. -/
+DiracTime/FrictionMetric.lean:34:theorem gibbs_pair_weight_nonneg (β Em En : ℝ) (hβ : 0 ≤ β) :
+--
+DiracTime/FrictionMetric.lean-45-
+DiracTime/FrictionMetric.lean-46-/-- Two levels: the Gibbs population gap is `tanh(β∆/2)` (here `x = β∆/2`). -/
+DiracTime/FrictionMetric.lean:47:theorem two_level_population_gap (x : ℝ) :
+--
+DiracTime/FrictionMetric.lean-53-
+DiracTime/FrictionMetric.lean-54-/-- Zero temperature: a band, not a proportionality. -/
+DiracTime/FrictionMetric.lean:55:theorem weighted_sum_band {ι : Type*} (s : Finset ι) (w g : ι → ℝ) (lo hi : ℝ)
+--
+DiracTime/Headline.lean-15-/-- **Finite closure (§2.3).** Two states give the same observations forever exactly when
+DiracTime/Headline.lean-16-they give the same observations for the first `dim V` steps. -/
+DiracTime/Headline.lean:17:theorem future_decided_by_first_dim_steps [FiniteDimensional K V]
+--
+DiracTime/Headline.lean-33-every future observation has rank at least `dim (V ⧸ N∞)`, where `N∞` is the set of states
+DiracTime/Headline.lean-34-no future observation can see. -/
+DiracTime/Headline.lean:35:theorem minimal_predictor_dimension [FiniteDimensional K V] {S : Type*} [AddCommGroup S]
+--
+DiracTime/Headline.lean-41-/-- **Closure of the present observation (§2.4).** The present reading needs no memory
+DiracTime/Headline.lean-42-exactly when the dynamics can be read off it: `R L = A R` for some linear `A`. -/
+DiracTime/Headline.lean:43:theorem present_observation_closes_iff (L : V →ₗ[K] V) (R : V →ₗ[K] W) :
+--
+DiracTime/MemoryFiltration.lean-12-
+DiracTime/MemoryFiltration.lean-13-/-- A coarser description cannot separate what the finer one identifies. -/
+DiracTime/MemoryFiltration.lean:14:theorem coarser_cannot_separate {X Y Z : Type*} (R : X → Y) (g : Y → Z) {x y : X}
+--
+DiracTime/MemoryFiltration.lean-17-
+DiracTime/MemoryFiltration.lean-18-/-- In linear form the kernels are nested: `ker R ≤ ker (g ∘ R)`. -/
+DiracTime/MemoryFiltration.lean:19:theorem ker_le_ker_comp {K V W U : Type*} [Field K] [AddCommGroup V] [Module K V]
+--
+DiracTime/MovingFrame.lean-26-
+DiracTime/MovingFrame.lean-27-/-- **Moving-frame identity.** -/
+DiracTime/MovingFrame.lean:28:theorem moving_frame_identity (ħ : ℝ) (R R' H : Matrix n n ℂ) (χ χ' ψ' : n → ℂ)
+--
+DiracTime/MovingFrame.lean-39-/-- **Common-clock form.** If the frame generator is `τ̇ H₀ + a I`, the frame state is
+DiracTime/MovingFrame.lean-40-driven by the fixed generator `H₀` at rate `τ̇`, plus a scalar phase. -/
+DiracTime/MovingFrame.lean:41:theorem common_clock (ħ τdot a : ℝ) (R R' H H₀ : Matrix n n ℂ) (χ χ' ψ' : n → ℂ)
+--
+DiracTime/PathLedger.lean-19-/-- **Theorem P3.** A path ledger is an endpoint potential exactly when every loop is
+DiracTime/PathLedger.lean-20-silent. -/
+DiracTime/PathLedger.lean:21:theorem descent_iff (comp : ∀ {x y z : X}, P x y → P y z → P x z)
+--
+DiracTime/PathLedger.lean-43-/-- Positive-ledger reachability runs both ways: a path `x → y` of ledger `r` and a loop at
+DiracTime/PathLedger.lean-44-`y` of ledger `N` give a path `y → x` of ledger `N - r`, which is positive once `N > r`. -/
+DiracTime/PathLedger.lean:45:theorem reverse_path_ledger (comp : ∀ {x y z : X}, P x y → P y z → P x z)
+--
+DiracTime/PathLedger.lean-53-/-- With integer ledgers: if `ℓ(γ) = r > 0` and a loop at the endpoint has `N > r`, the
+DiracTime/PathLedger.lean-54-reverse path also has positive ledger, so positive reachability is not antisymmetric. -/
+DiracTime/PathLedger.lean:55:theorem positive_both_ways {P : X → X → Type*} (comp : ∀ {x y z : X}, P x y → P y z → P x z)
+--
+DiracTime/PhaseSilence.lean-20-
+DiracTime/PhaseSilence.lean-21-/-- §9.2: the angular numerator of an affine readout is constant. -/
+DiracTime/PhaseSilence.lean:22:theorem affine_numerator (A B C D s : ℝ) :
+--
+DiracTime/PhaseSilence.lean-25-
+DiracTime/PhaseSilence.lean-26-/-- Theorem 13.1(4): the phase numerator of the boundary sector `(m, n)`. -/
+DiracTime/PhaseSilence.lean:27:theorem sector_numerator (p q a m n : ℤ) (εm εl : ℝ) :
+--
+DiracTime/PhaseSilence.lean-32-/-- **Theorem 13.1(4), silence criterion.** Some boundary sector is silent exactly when
+DiracTime/PhaseSilence.lean-33-`pq ε_m + ε_l + a/2` is an integer. -/
+DiracTime/PhaseSilence.lean:34:theorem silent_sector_iff (p q a : ℤ) (εm εl : ℝ) :
+--
+DiracTime/PhaseSilence.lean-46-
+DiracTime/PhaseSilence.lean-47-/-- Theorem 13.1(3): the end index is `a` modulo `p`. -/
+DiracTime/PhaseSilence.lean:48:theorem end_index_mod_p (p q u v a b : ℤ) (hu : u * q ≡ 1 [ZMOD p]) :
+--
+DiracTime/PhaseSilence.lean-55-
+DiracTime/PhaseSilence.lean-56-/-- Theorem 13.1(3): the end index is `±b` modulo `q`. -/
+DiracTime/PhaseSilence.lean:57:theorem end_index_mod_q (p q u v a b : ℤ) (hv : v * p ≡ 1 [ZMOD q]) :
+--
+DiracTime/PredictiveQuotient.lean-32-  ⨅ n : ℕ, LinearMap.ker (R ∘ₗ L ^ n)
+DiracTime/PredictiveQuotient.lean-33-
+DiracTime/PredictiveQuotient.lean:34:theorem mem_unobservable {v : V} :
+--
+DiracTime/PredictiveQuotient.lean-40-/-- Two present states differ by an unobservable vector exactly when every future
+DiracTime/PredictiveQuotient.lean-41-observation agrees on them. -/
+DiracTime/PredictiveQuotient.lean:42:theorem sub_mem_unobservable_iff (v w : V) :
+--
+DiracTime/PredictiveQuotient.lean-49-
+DiracTime/PredictiveQuotient.lean-50-/-- The unobservable subspace is invariant under the continuation map. -/
+DiracTime/PredictiveQuotient.lean:51:theorem map_mem_unobservable {v : V} (hv : v ∈ unobservable L R) :
+--
+DiracTime/PredictiveQuotient.lean-56-  rwa [pow_succ, Module.End.mul_apply] at h
+DiracTime/PredictiveQuotient.lean-57-
+DiracTime/PredictiveQuotient.lean:58:theorem unobservable_le_comap : unobservable L R ≤ (unobservable L R).comap L :=
+--
+DiracTime/PredictiveQuotient.lean-60-
+DiracTime/PredictiveQuotient.lean-61-/-- Every unobservable vector is invisible to the present observation. -/
+DiracTime/PredictiveQuotient.lean:62:theorem unobservable_le_ker : unobservable L R ≤ LinearMap.ker R := fun v hv => by
+--
+DiracTime/PredictiveQuotient.lean-72-  (unobservable L R).liftQ R (unobservable_le_ker L R)
+DiracTime/PredictiveQuotient.lean-73-
+DiracTime/PredictiveQuotient.lean:74:theorem predictiveDynamics_mk (v : V) :
+--
+DiracTime/PredictiveQuotient.lean-76-  rfl
+DiracTime/PredictiveQuotient.lean-77-
+DiracTime/PredictiveQuotient.lean:78:theorem predictiveDynamics_pow_mk (n : ℕ) (v : V) :
+--
+DiracTime/PredictiveQuotient.lean-86-
+DiracTime/PredictiveQuotient.lean-87-/-- The quotient model reproduces every future observation of the full state. -/
+DiracTime/PredictiveQuotient.lean:88:theorem readout_predictiveDynamics_pow (n : ℕ) (v : V) :
+--
+DiracTime/PredictiveQuotient.lean-94-/-- Two full states have the same predictive state exactly when every future observation
+DiracTime/PredictiveQuotient.lean-95-agrees on them: the quotient forgets nothing the future can see and keeps nothing it cannot. -/
+DiracTime/PredictiveQuotient.lean:96:theorem mk_eq_mk_iff (v w : V) :
+--
+DiracTime/PredictiveQuotient.lean-102-
+DiracTime/PredictiveQuotient.lean-103-/-- Cayley–Hamilton: every power of `L` is a combination of `L⁰, …, L^(d-1)`, `d = dim V`. -/
+DiracTime/PredictiveQuotient.lean:104:theorem pow_eq_sum_lower [FiniteDimensional K V] (m : ℕ) :
+--
+DiracTime/PredictiveQuotient.lean-126-  LinearMap.pi fun i : Fin d => R ∘ₗ L ^ (i : ℕ)
+DiracTime/PredictiveQuotient.lean-127-
+DiracTime/PredictiveQuotient.lean:128:theorem observability_apply (d : ℕ) (v : V) (i : Fin d) :
+--
+DiracTime/PredictiveQuotient.lean-132-/-- Finite closure: the first `d = dim V` observations already decide predictive
+DiracTime/PredictiveQuotient.lean-133-equivalence. -/
+DiracTime/PredictiveQuotient.lean:134:theorem ker_observability [FiniteDimensional K V] :
+--
+DiracTime/PredictiveQuotient.lean-153-/-- The predictive state space has exactly the dimension of the rank of the finite
+DiracTime/PredictiveQuotient.lean-154-observability map. -/
+DiracTime/PredictiveQuotient.lean:155:theorem finrank_quotient_unobservable [FiniteDimensional K V] :
+--
+DiracTime/PredictiveQuotient.lean-161-/-- Any linear summary that determines all future observations forgets no more than
+DiracTime/PredictiveQuotient.lean-162-`N∞`. -/
+DiracTime/PredictiveQuotient.lean:163:theorem ker_le_unobservable_of_sufficient {S : Type*} [AddCommGroup S] [Module K S]
+--
+DiracTime/PredictiveQuotient.lean-171-
+DiracTime/PredictiveQuotient.lean-172-/-- Minimality: the predictive quotient is the smallest linear autonomous predictor. -/
+DiracTime/PredictiveQuotient.lean:173:theorem finrank_quotient_le_of_sufficient [FiniteDimensional K V] {S : Type*}
+--
+DiracTime/PredictiveQuotient.lean-184-/-- The present observation is already an autonomous state exactly when `L` keeps
+DiracTime/PredictiveQuotient.lean-185-`ker R` inside `ker R`, equivalently when `R L = A R` for a linear map `A`. -/
+DiracTime/PredictiveQuotient.lean:186:theorem closes_iff :
+--
+DiracTime/PredictiveQuotient.lean-210-
+DiracTime/PredictiveQuotient.lean-211-/-- When the present observation closes, it is the whole predictive state: `N∞ = ker R`. -/
+DiracTime/PredictiveQuotient.lean:212:theorem unobservable_eq_ker_of_closes (h : LinearMap.ker R ≤ (LinearMap.ker R).comap L) :
+--
+DiracTime/ProjectorBlocks.lean-29-def vac : Matrix (m ⊕ p) (m ⊕ p) ℂ := fromBlocks 0 0 0 1
+DiracTime/ProjectorBlocks.lean-30-
+DiracTime/ProjectorBlocks.lean:31:theorem occ_add_comp : (occ : Matrix (m ⊕ p) (m ⊕ p) ℂ) + vac = 1 := by
+--
+DiracTime/ProjectorBlocks.lean-33-  simp [occ, vac, fromBlocks_add]
+DiracTime/ProjectorBlocks.lean-34-
+DiracTime/ProjectorBlocks.lean:35:theorem occ_idem : (occ : Matrix (m ⊕ p) (m ⊕ p) ℂ) * occ = occ := by
+DiracTime/ProjectorBlocks.lean-36-  simp [occ, fromBlocks_multiply]
+DiracTime/ProjectorBlocks.lean-37-
+DiracTime/ProjectorBlocks.lean:38:theorem tangentBlock_conjTranspose (X : Matrix m p ℂ) : (tangentBlock X)ᴴ = tangentBlock X := by
+--
+DiracTime/ProjectorBlocks.lean-40-
+DiracTime/ProjectorBlocks.lean-41-/-- Both diagonal blocks of a block tangent vanish. -/
+DiracTime/ProjectorBlocks.lean:42:theorem tangentBlock_is_tangent (X : Matrix m p ℂ) :
+--
+DiracTime/ProjectorBlocks.lean-44-  constructor <;> simp [occ, vac, tangentBlock, fromBlocks_multiply]
+DiracTime/ProjectorBlocks.lean-45-
+DiracTime/ProjectorBlocks.lean:46:theorem trace_twoBlocks (A : Matrix m m ℂ) (B : Matrix m p ℂ) (C : Matrix p m ℂ)
+--
+DiracTime/ProjectorBlocks.lean-48-  simp [Matrix.trace, Fintype.sum_sum_type]
+DiracTime/ProjectorBlocks.lean-49-
+DiracTime/ProjectorBlocks.lean:50:theorem tangentBlock_mul (X Y : Matrix m p ℂ) :
+--
+DiracTime/ProjectorBlocks.lean-52-  simp [tangentBlock, fromBlocks_multiply]
+DiracTime/ProjectorBlocks.lean-53-
+DiracTime/ProjectorBlocks.lean:54:theorem tangentBlock_commutator (X Y : Matrix m p ℂ) :
+--
+DiracTime/ProjectorBlocks.lean-58-  ext (i | i) (j | j) <;> simp
+DiracTime/ProjectorBlocks.lean-59-
+DiracTime/ProjectorBlocks.lean:60:theorem trace_adjoint_left (X Y : Matrix m p ℂ) :
+--
+DiracTime/ProjectorBlocks.lean-62-  rw [← trace_conjTranspose, conjTranspose_mul, conjTranspose_conjTranspose, trace_mul_comm]
+DiracTime/ProjectorBlocks.lean-63-
+DiracTime/ProjectorBlocks.lean:64:theorem trace_adjoint_right (X Y : Matrix m p ℂ) :
+--
+DiracTime/ProjectorBlocks.lean-67-
+DiracTime/ProjectorBlocks.lean-68-/-- **Metric in block form**: `g(V, W) = ½ Tr(V W) = Re Tr(X Y†)`. -/
+DiracTime/ProjectorBlocks.lean:69:theorem metric_block (X Y : Matrix m p ℂ) :
+--
+DiracTime/ProjectorBlocks.lean-74-
+DiracTime/ProjectorBlocks.lean-75-/-- **Curvature in block form**: `Ω(V, W) = i Tr(P [V, W]) = −2 Im Tr(X Y†)`. -/
+DiracTime/ProjectorBlocks.lean:76:theorem curvature_block (X Y : Matrix m p ℂ) :
+--
+DiracTime/ProjectorBlocks.lean-84-
+DiracTime/ProjectorBlocks.lean-85-/-- The Hermitian form reads the upper block: `Q(V, W) = Tr(P V† W) = Tr(X Y†)`. -/
+DiracTime/ProjectorBlocks.lean:86:theorem hermitian_form_block (X Y : Matrix m p ℂ) :
+--
+DiracTime/ProjectorBlocks.lean-91-
+DiracTime/ProjectorBlocks.lean-92-/-- **Theorem P1, item 2**: `Q(V, W) = g(V, W) − (i/2) Ω(V, W)`. -/
+DiracTime/ProjectorBlocks.lean:93:theorem hermitian_form_split (X Y : Matrix m p ℂ) :
+--
+DiracTime/ProjectorTangent.lean-30-/-- Differentiating `P(t)² = P(t)` gives `P V + V P = V`; that forces the occupied
+DiracTime/ProjectorTangent.lean-31-diagonal block to vanish. -/
+DiracTime/ProjectorTangent.lean:32:theorem occupied_block_zero {P V : R} (hP : P * P = P) (hV : P * V + V * P = V) :
+--
+DiracTime/ProjectorTangent.lean-37-
+DiracTime/ProjectorTangent.lean-38-/-- The complementary diagonal block vanishes too. -/
+DiracTime/ProjectorTangent.lean:39:theorem complement_block_zero {P V : R} (hP : P * P = P) (hV : P * V + V * P = V) :
+--
+DiracTime/ProjectorTangent.lean-43-
+DiracTime/ProjectorTangent.lean-44-/-- Conversely, vanishing of both diagonal blocks gives the tangent equation. -/
+DiracTime/ProjectorTangent.lean:45:theorem tangent_of_blocks_zero {P V : R} (h1 : P * V * P = 0)
+--
+DiracTime/ProjectorTangent.lean-50-/-- Tangent characterization: the tangent equation holds exactly when both diagonal
+DiracTime/ProjectorTangent.lean-51-blocks vanish. -/
+DiracTime/ProjectorTangent.lean:52:theorem tangent_iff_blocks_zero {P V : R} (hP : P * P = P) :
+--
+DiracTime/ProjectorTangent.lean-56-
+DiracTime/ProjectorTangent.lean-57-/-- Every tangent is purely off-diagonal: `V = P V Q + Q V P`. -/
+DiracTime/ProjectorTangent.lean:58:theorem tangent_eq_offdiag {P V : R} (hP : P * P = P) (hV : P * V + V * P = V) :
+--
+DiracTime/ProjectorTangent.lean-75-
+DiracTime/ProjectorTangent.lean-76-/-- The trace form `Tr(V† V)` is strictly positive on every nonzero matrix. -/
+DiracTime/ProjectorTangent.lean:77:theorem trace_conjTranspose_mul_self_re_pos {V : Matrix n n ℂ} (hV : V ≠ 0) :
+--
+DiracTime/ProjectorTangent.lean-87-/-- Metric positivity: `g(V, V) = ½ Tr(V V)` is strictly positive on every nonzero
+DiracTime/ProjectorTangent.lean-88-self-adjoint tangent. -/
+DiracTime/ProjectorTangent.lean:89:theorem metric_pos {V : Matrix n n ℂ} (hH : Vᴴ = V) (hV : V ≠ 0) :
+--
+DiracTime/ProjectorTangent.lean-96-
+DiracTime/ProjectorTangent.lean-97-/-- Conjugation by a unitary preserves products. -/
+DiracTime/ProjectorTangent.lean:98:theorem conj_mul {U : Matrix n n ℂ} (hU : star U * U = 1) (A B : Matrix n n ℂ) :
+--
+DiracTime/ProjectorTangent.lean-103-
+DiracTime/ProjectorTangent.lean-104-/-- Conjugation by a unitary preserves the trace. -/
+DiracTime/ProjectorTangent.lean:105:theorem trace_conj {U : Matrix n n ℂ} (hU : star U * U = 1) (X : Matrix n n ℂ) :
+--
+DiracTime/ProjectorTangent.lean-109-/-- Unitary covariance of the metric: `Tr(V' W') = Tr(V W)` for `V' = U V U†`,
+DiracTime/ProjectorTangent.lean-110-`W' = U W U†`. -/
+DiracTime/ProjectorTangent.lean:111:theorem metric_unitary_invariant {U : Matrix n n ℂ} (hU : star U * U = 1)
+--
+DiracTime/ProjectorTangent.lean-115-
+DiracTime/ProjectorTangent.lean-116-/-- Unitary covariance of the curvature form: `Tr(P' [V', W']) = Tr(P [V, W])`. -/
+DiracTime/ProjectorTangent.lean:117:theorem curvature_unitary_invariant {U : Matrix n n ℂ} (hU : star U * U = 1)
+--
+DiracTime/ProjectorTangent.lean-141-
+DiracTime/ProjectorTangent.lean-142-/-- Cauchy–Schwarz split into real and imaginary parts. -/
+DiracTime/ProjectorTangent.lean:143:theorem re_sq_add_im_sq_le (x y : E) :
+--
+DiracTime/ProjectorTangent.lean-150-/-- **Metric–curvature inequality** (Theorem P1, item 3):
+DiracTime/ProjectorTangent.lean-151-`|Ω| ≤ 2 √(g(V,V) g(W,W) − g(V,W)²)` in block variables. -/
+DiracTime/ProjectorTangent.lean:152:theorem metric_curvature_inequality (x y : E) :
+--
+DiracTime/SectorReduction.lean-15-
+DiracTime/SectorReduction.lean-16-/-- The retained sector is invariant exactly when `(1 − P) H P = 0`, i.e. `H P = P H P`. -/
+DiracTime/SectorReduction.lean:17:theorem leak_zero_iff (P H : R) : (1 - P) * H * P = 0 ↔ H * P = P * H * P := by
+--
+DiracTime/SectorReduction.lean-25-
+DiracTime/SectorReduction.lean-26-/-- **Redistribution vanishes exactly on commuting generators.** -/
+DiracTime/SectorReduction.lean:27:theorem redistribution_zero_iff_commute {P H : R} (hP : P * P = P) :
+--
+DiracTime/UnitaryEntropy.lean-26-
+DiracTime/UnitaryEntropy.lean-27-/-- **Unitary invariance of von Neumann entropy**: `S(U ρ U†) = S(ρ)`. -/
+DiracTime/UnitaryEntropy.lean:28:theorem Sᵥₙ_unitaryConj (ρ : MState d) (U : Matrix.unitaryGroup d ℂ) :
+--
+DiracTime/UnitaryEntropy.lean-34-/-- **Total entropy is conserved under a unitary step**: `S(U ρ U†) − S(ρ) = 0`. This is the
+DiracTime/UnitaryEntropy.lean-35-unitarity hypothesis of `EntropyLedger`, discharged in the next theorem. -/
+DiracTime/UnitaryEntropy.lean:36:theorem total_entropy_conserved (ρ : MState d) (U : Matrix.unitaryGroup d ℂ) :
+--
+DiracTime/UnitaryEntropy.lean-42-form of the relative entropies. The system and reservoir entropies, energies and relative
+DiracTime/UnitaryEntropy.lean-43-entropies remain real parameters. -/
+DiracTime/UnitaryEntropy.lean:44:theorem entropy_correlation_identity_unitary {ι : Type*} (s : Finset ι) (β logZ : ι → ℝ)
+--
+DiracTime/WeakValue.lean-21-
+DiracTime/WeakValue.lean-22-/-- `p₀ |A_w|² = |⟨f|A|i⟩|²` whenever `⟨f|i⟩ ≠ 0`. -/
+DiracTime/WeakValue.lean:23:theorem postselected_weak_value_sq (f i : E) (A : E →ₗ[ℂ] E) (h : ⟪f, i⟫_ℂ ≠ 0) :
+--
+DiracTime/WeakValue.lean-28-
+DiracTime/WeakValue.lean-29-/-- **Theorem P2.** The weak-value success-probability bound. -/
+DiracTime/WeakValue.lean:30:theorem weak_value_bound (f i : E) (A : E →ₗ[ℂ] E) (hA : A.IsSymmetric)
+--
+FalseControls/ClosureTooShort.lean-7-def shift3 (v : Fin 3 → ℚ) : Fin 3 → ℚ := ![0, v 0, v 1]
+FalseControls/ClosureTooShort.lean-8-
+FalseControls/ClosureTooShort.lean:9:theorem two_steps_suffice :
+--
+FalseControls/CurvatureSignFlipped.lean-4-import Mathlib
+FalseControls/CurvatureSignFlipped.lean-5-
+FalseControls/CurvatureSignFlipped.lean:6:theorem curvature_sign_flipped :
+--
+FalseControls/DroppedFrameConnection.lean-5-import Mathlib
+FalseControls/DroppedFrameConnection.lean-6-
+FalseControls/DroppedFrameConnection.lean:7:theorem spectrum_only_generator : Complex.I * (-Complex.I) = (0 : ℂ) * 1 := by
+--
+FalseControls/EntropyWithoutUnitarity.lean-4-import Mathlib
+FalseControls/EntropyWithoutUnitarity.lean-5-
+FalseControls/EntropyWithoutUnitarity.lean:6:theorem identity_without_unitarity : (1 : ℝ) - 0 = ((0 + 1) - (0 + 0)) - (1 - 0) := by
+--
+FalseControls/LeakySector.lean-3-import Mathlib
+FalseControls/LeakySector.lean-4-
+FalseControls/LeakySector.lean:5:theorem coupled_sector_autonomous :
+--
+FalseControls/LoopWithoutSilence.lean-4-import Mathlib
+FalseControls/LoopWithoutSilence.lean-5-
+FalseControls/LoopWithoutSilence.lean:6:theorem loop_has_potential : ∃ n : Unit → ℤ, (1 : ℤ) = n () - n () :=
+--
+FalseControls/NegativeTemperatureSign.lean-3-import Mathlib
+FalseControls/NegativeTemperatureSign.lean-4-
+FalseControls/NegativeTemperatureSign.lean:5:theorem negative_beta_weight_nonneg : 0 ≤ (Real.exp 0 - Real.exp 1) * 1 := by
+--
+FalseControls/NotATangent.lean-4-import Mathlib
+FalseControls/NotATangent.lean-5-
+FalseControls/NotATangent.lean:6:theorem identity_is_tangent :
+--
+FalseControls/OneStepSuffices.lean-6-def shift (v : Fin 2 → ℚ) : Fin 2 → ℚ := ![0, v 0]
+FalseControls/OneStepSuffices.lean-7-
+FalseControls/OneStepSuffices.lean:8:theorem present_reading_closes :
+--
+FalseControls/ProbeSeparatesSupplement.lean-3-import Mathlib
+FalseControls/ProbeSeparatesSupplement.lean-4-
+FalseControls/ProbeSeparatesSupplement.lean:5:theorem probe_separates : Real.sin (Real.pi - 1) ≠ Real.sin 1 := by
+--
+FalseControls/ReadoutForgets.lean-4-import Mathlib
+FalseControls/ReadoutForgets.lean-5-
+FalseControls/ReadoutForgets.lean:6:theorem first_coordinate_suffices :
+--
+FalseControls/ScalarGeneratorFixesRate.lean-5-import Mathlib
+FalseControls/ScalarGeneratorFixesRate.lean-6-
+FalseControls/ScalarGeneratorFixesRate.lean:7:theorem scalar_generator_fixes_rate :
+--
+FalseControls/UnnormalizedWeakValue.lean-4-import Mathlib
+FalseControls/UnnormalizedWeakValue.lean-5-
+FalseControls/UnnormalizedWeakValue.lean:6:theorem unnormalized_bound : ‖(2 : ℂ) * 1‖ ^ 2 ≤ ‖(1 : ℂ)‖ ^ 2 := by

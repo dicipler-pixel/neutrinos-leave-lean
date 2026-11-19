@@ -1,0 +1,5 @@
+B_n6_ed2_fin delta=0.50800: BH eps=5.99
+B_n6_ed2_fin delta=0.50869: BH eps=5.54
+B_n6_ed2_fin delta=0.50754: BH eps=6.96
+B_n6_ed2_fin delta=0.50777: BH eps=6.27
+RESULT B_n6_ed2_fin: delta_c = 0.50743 +- 0.00011 (48.5 min)

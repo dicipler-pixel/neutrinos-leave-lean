@@ -1,0 +1,19 @@
+alpha [0.3, 0.5, 1, 2, 4]
+C_l,c (pf) [0.5698 0.6034 0.6621 0.7357 0.8209]
+recomputed C_l shift % [ 9.34  9.43  9.64  9.91 10.05]
+Steve quoted            [ 9.3  9.4  9.6  9.9 10. ]
+max |diff| = 0.05 pp  -> KILL (bookkeeping) FIRED = it IS bookkeeping
+OPPOSITE: if delta_c shift were 6.15% for every alpha, C_l shifts would be [ 8.73  9.03  9.64 10.63 12.28] (spread 3.56 pp vs Steve 0.70 pp)
+PF det y0y2-y1^2 on (1e-1,1e-2,1e-3): -0.0061  | second difference of ln M: -0.0410 | on (3e-2,3e-3,3e-4): -0.1001
+FS det y0y2-y1^2 on (1e-1,1e-2,1e-3): -0.0172  | second difference of ln M: -0.0808 | on (3e-2,3e-3,3e-4): -0.1136
+local log-slopes PF [0.259 0.221 0.252 0.266 0.293 0.331]
+local log-slopes FS [0.252 0.207 0.262 0.27  0.299 0.336]
+ratio FS/PF [1.177 1.187 1.205 1.191 1.186 1.179 1.171]
+FS-minus-PF second difference -0.0398 ; rounding-only spread (1 sd) 0.0027
+threshold-uncertainty scale: 3e-5/1e-3=3% in x at the 1e-3 point -> dlnM ~ 0.27*0.03 = 0.0081 per curve
+G three-sample dets (e_dec triples): [np.float64(-0.0967), np.float64(-0.0928), np.float64(-0.056), np.float64(-0.0089)]
+logistic-in-log (balance map): 1/(1+(e/ec)^n)    params [1.639 1.61 ]  max|err| 0.010
+stretched exp: exp(-(e/e0)^m)                    params [2.475 1.118]  max|err| 0.039
+power-damped: (1+e/e0)^-m                        params [2696.226 1053.602]  max|err| 0.052
+gaussian-in-log: exp(-(ln e/s)^2/2) one-sided    params [0.586 0.   ]  max|err| 0.317
+logistic predictions (UNTESTED, proposed): G(0.1)=0.989 G(16)=0.0249 G(32)=0.0083

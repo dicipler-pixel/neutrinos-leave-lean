@@ -1,0 +1,29 @@
+=== C1 non-normality channels ===
+relaxation time (all l>=1 equal) kappa_e=1                     S_2 = 1.126667 (commutator form 1.126667, edge sum 1.126667)
+    edge energies 0-1, 1-2, 2-3, 3-4: [1.1267 0.     0.     0.    ] ; share on edge 1-2: 0.0 %
+nu_e: flux damped by e+- (1), stress by e+- + nu-nu (1+1.5)    S_2 = 3.154667 (commutator form 3.154667, edge sum 3.154667)
+    edge energies 0-1, 1-2, 2-3, 3-4: [1.1267 2.028  0.     0.    ] ; share on edge 1-2: 64.3 %
+nu_mu,tau: flux (1), stress (1+7)                              S_2 = 45.292000 (commutator form 45.292000, edge sum 45.292000)
+    edge energies 0-1, 1-2, 2-3, 3-4: [ 1.1267 44.1653  0.      0.    ] ; share on edge 1-2: 97.5 %
+flavour-weighted ratio (stress edge)/(flux edge) in units of kappa_e^2 k^2 : 26.73
+E_B for the cut P0 (plasma-coupled monopole): k^2/3 ; for the cut P01 (flux kept, i.e. nu as own fluid): 4 k^2/15 ; ratio 0.8000
+numerical E_B(P01) = 0.4506666667 ; 4k^2/15 = 0.4506666667
+
+=== E1 self-interacting neutrinos with no momentum exchange, pure radiation (first-max shift of Delta) ===
+self-interaction only (no momentum exchange with plasma)
+   K0 =     3 : first-max ratio 0.96022 ; implied threshold rise 4.1424 % ; rise*K0 = 12.427
+   K0 =    10 : first-max ratio 0.98310 ; implied threshold rise 1.7192 % ; rise*K0 = 17.192
+   K0 =    30 : first-max ratio 0.99370 ; implied threshold rise 0.6345 % ; rise*K0 = 19.035
+   K0 =   100 : first-max ratio 0.99804 ; implied threshold rise 0.1969 % ; rise*K0 = 19.688
+   K0 =   300 : first-max ratio 0.99934 ; implied threshold rise 0.0662 % ; rise*K0 = 19.849
+   K0 =  1000 : first-max ratio 0.99980 ; implied threshold rise 0.0199 % ; rise*K0 = 19.918
+   K0 =  3000 : first-max ratio 0.99993 ; implied threshold rise 0.0067 % ; rise*K0 = 20.088
+   E1 (a) monotone decrease: True ; (b) rise*K0 changes by 1.2 % between K0=100 and 1000 -> PASS
+drag on the plasma included (Steve relaxation model)
+   K0 =     3 : first-max ratio 0.95931 ; implied threshold rise 4.2421 % ; rise*K0 = 12.726
+   K0 =    10 : first-max ratio 0.98281 ; implied threshold rise 1.7488 % ; rise*K0 = 17.488
+   K0 =    30 : first-max ratio 0.99364 ; implied threshold rise 0.6396 % ; rise*K0 = 19.187
+   K0 =   100 : first-max ratio 0.99803 ; implied threshold rise 0.1974 % ; rise*K0 = 19.743
+   K0 =   300 : first-max ratio 0.99934 ; implied threshold rise 0.0664 % ; rise*K0 = 19.910
+   K0 =  1000 : first-max ratio 0.99980 ; implied threshold rise 0.0200 % ; rise*K0 = 20.042
+   K0 =  3000 : first-max ratio 0.99993 ; implied threshold rise 0.0067 % ; rise*K0 = 20.210

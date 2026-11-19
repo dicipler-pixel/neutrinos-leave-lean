@@ -1,0 +1,7 @@
+n = 2, eps_dec = 1 : G_pred(two-epoch, w = 0.89) = 0.730  (n=3 Table II value 0.684)
+n = 2, eps_dec = 2 : G_pred(two-epoch, w = 0.89) = 0.511  (n=3 Table II value 0.431)
+n = 3, eps_dec = 1 : G_pred(two-epoch, w = 0.89) = 0.705  (n=3 Table II value 0.684)
+n = 3, eps_dec = 2 : G_pred(two-epoch, w = 0.89) = 0.411  (n=3 Table II value 0.431)
+n = 6, eps_dec = 1 : G_pred(two-epoch, w = 0.89) = 0.662  (n=3 Table II value 0.684)
+n = 6, eps_dec = 2 : G_pred(two-epoch, w = 0.89) = 0.246  (n=3 Table II value 0.431)
+largest change from n=3: 0.165 -> discriminating

@@ -1,0 +1,4 @@
+Bres delta=0.50723: D [dispersed] eps=6.37 eps_max=14.0 rawmax(kappa/H)=6.400e+07 cap=5.0e+05 capped_steps=809052/1092016 cap_released_at_eps~0.224 (1680s)
+Bres delta=0.50757: C [BH] eps=7.32 eps_max=14.0 rawmax(kappa/H)=6.400e+07 cap=5.0e+05 capped_steps=809053/1111131 cap_released_at_eps~0.224 (1708s)
+Bres bracket now [0.50723,0.50757]
+RESULT Bres: delta_c = 0.50740 +- 0.00017 bracket [0.50723,0.50757] (28.5 min) undecided_points=[]

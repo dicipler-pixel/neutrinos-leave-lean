@@ -1,0 +1,17 @@
+A1_shear_r083 delta=0.51183333: BH eps=6.35 minI=1.407e-08 max2M/R=8100.0000
+A1_shear_r083 delta=0.51266667: BH eps=5.62 minI=2.173e-08 max2M/R=8100.0000
+A1_shear_r083 delta=0.51127778: dispersed eps=6.40 minI=1.369e-08 max2M/R=8100.0000
+A1_shear_r083 delta=0.51155556: dispersed eps=7.15 minI=5.669e-09 max2M/R=8100.0000
+A1_shear_r083 delta=0.51164815: BH eps=6.91 minI=7.048e-09 max2M/R=8100.0000
+A1_shear_r083 delta=0.51174074: BH eps=6.55 minI=1.258e-08 max2M/R=8100.0000
+A1_shear_r083 delta=0.51158642: BH eps=7.37 minI=9.559e-10 max2M/R=8100.0000
+A1_shear_r083 delta=0.51161728: BH eps=7.16 minI=2.294e-09 max2M/R=8100.0000
+A1_shear_r083 delta=0.51156584: dispersed eps=7.24 minI=3.090e-09 max2M/R=8100.0000
+A1_shear_r083 delta=0.51157613: BH eps=7.36 minI=1.237e-09 max2M/R=8100.0000
+A1_shear_r083 delta=0.51156927: dispersed eps=7.28 minI=2.168e-09 max2M/R=8100.0000
+A1_shear_r083 delta=0.51157270: dispersed eps=7.33 minI=1.575e-09 max2M/R=8100.0000
+A1_shear_r083 delta=0.51157385: dispersed eps=7.34 minI=1.389e-09 max2M/R=8100.0000
+A1_shear_r083 delta=0.51157499: BH eps=7.36 minI=1.219e-09 max2M/R=8100.0000
+A1_shear_r083 delta=0.51157423: dispersed eps=7.35 minI=1.383e-09 max2M/R=8100.0000
+A1_shear_r083 delta=0.51157461: dispersed eps=7.36 minI=1.225e-09 max2M/R=8100.0000
+RESULT A1_shear_r083: delta_c = 0.51157480 +- 0.00000019  bracket [0.51157461, 0.51157499] (7.4 min)

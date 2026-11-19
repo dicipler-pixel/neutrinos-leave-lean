@@ -1,0 +1,7 @@
+C1 X1 chain, worst relative difference over 300 cases: 4.0e-15
+C2 ||[P,[P,F]]||^2 = 2S, worst relative error over 500 cases: 2.0e-13
+C3 largest tau_dot^2/(4gS) over 500 random driven cases: 0.9109
+C4 equality generator H = i lambda [T,P]: worst |ratio - 1| over 50 cases: 3.1e-06
+C5 scalar exact gap (12), worst error / max(1,4gS) over 2000 paths: 9.4e-09
+C6 ladder inequalities violated in 0 of 4000 tests
+C7 connection energy identity: relative error 3.9e-16; control with one non-unitary block: 4.87e-02

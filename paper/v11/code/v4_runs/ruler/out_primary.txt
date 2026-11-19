@@ -1,0 +1,39 @@
+kappa 0.958 LM 60 profile 36 k nodes
+[CHART x=1/2 ln r] all-higher: slope 1.1328 rms 0.0142  odd rates r=1.2:1.1006 r=1.25:1.1128 r=2:1.1093 r=4:1.1177 r=16:1.1384  spread 3.39% (corners 2.90-3.87%)
+[CHART x=1/2 ln r] shear-only: slope 1.2036 rms 0.0048  odd rates r=1.2:1.1895 r=4:1.2038
+[CHART x=1/2 ln r] slope ratio shear/all = 1.0624  (corners 1.0580-1.0672)
+[C3 chart control Gamma12] all-higher: slope 1.5811 rms 0.1276  odd rates r=1.2:1.1036 r=1.25:1.1174 r=2:1.1534 r=4:1.2912 r=16:1.7885  spread 53.06% (corners 52.44-53.64%)
+[C3 chart control Gamma12] shear-only: slope 1.3862 rms 0.0134  odd rates r=1.2:1.1928 r=4:1.3907
+[C3 chart control Gamma12] slope ratio shear/all = 0.8768  (corners 0.8729-0.8804)
+eigen controls: worst |P^2-P|,trace dev 3.70e-13/1.44e-13; min real-part gap to next mode -14.8397/-0.9337
+biorthogonal form q along the path (profile avg): all-higher min -9.987e+01 max 4.411e+03; shear-only min -4.734e+01 max 4.249e+03
+--- ruler (a) arc length   s(r) all-higher: 0.0625:-4.7260 0.25:-4.1996 0.5:-3.0202 0.833333:-1.1646 0.8:-1.4144 1.2:+19.8937 1.25:+30.4935 2:+60.6939 4:+63.5089 16:+63.7907  shear-only: 0.25:-10.9348 0.833333:-3.3901 1.2:+20.1275 4:+39.0179
+[RULER (a) arc length] all-higher: slope 0.0223 rms 0.4518  odd rates r=1.2:0.0095 r=1.25:0.0078 r=2:0.0121 r=4:0.0229 r=16:0.0461  spread 194.67% (corners 193.82-195.55%)
+[RULER (a) arc length] shear-only: slope 0.0284 rms 0.2013  odd rates r=1.2:0.0092 r=4:0.0334
+[RULER (a) arc length] slope ratio shear/all = 1.2724  (corners 1.2671-1.2781)
+   C2 wrong ruler:
+[   swapped] all-higher: slope 0.0321 rms 0.4204  odd rates r=1.2:0.0085 r=1.25:0.0090 r=2:0.0168 r=4:0.0310 r=16:0.0619  spread 209.63% (corners 208.77-210.57%)
+[   swapped] shear-only: slope 0.0200 rms 0.2464  odd rates r=1.2:0.0103 r=4:0.0246
+[   swapped] slope ratio shear/all = 0.6240  (corners 0.6210-0.6263)
+   C1 positive control (tau = s read in x): family ratio 1.1288, odd-rate spread 139.49%  -> must differ from 1 and exceed 1.2%
+--- ruler (b) chord   s(r) all-higher: 0.0625:-3.1616 0.25:-3.0428 0.5:-2.7614 0.833333:-1.0866 0.8:-1.3369 1.2:+5.7936 1.25:+7.2869 2:+4.5465 4:+3.5633 16:+3.4941  shear-only: 0.25:-3.5671 0.833333:-3.1345 1.2:+6.6091 4:+3.6447
+[RULER (b) chord] all-higher: slope 0.1376 rms 0.5851  odd rates r=1.2:0.0292 r=1.25:0.0288 r=2:0.1052 r=4:0.2345 r=16:0.4742  spread 255.42% (corners 254.42-256.45%)
+[RULER (b) chord] shear-only: slope 0.0929 rms 0.4352  odd rates r=1.2:0.0223 r=4:0.2314
+[RULER (b) chord] slope ratio shear/all = 0.6749  (corners 0.6722-0.6771)
+   C2 wrong ruler:
+[   swapped] all-higher: slope 0.1250 rms 0.5890  odd rates r=1.2:0.0206 r=1.25:0.0290 r=2:0.0929 r=4:0.2149 r=16:0.4545  spread 267.25% (corners 266.35-268.23%)
+[   swapped] shear-only: slope 0.1259 rms 0.3955  odd rates r=1.2:0.0315 r=4:0.2526
+[   swapped] slope ratio shear/all = 1.0074  (corners 1.0037-1.0113)
+   C1 positive control (tau = s read in x): family ratio 1.7086, odd-rate spread 192.61%  -> must differ from 1 and exceed 1.2%
+--- ruler (d) principal angle   s(r) all-higher: 0.0625:-0.8349 0.25:-0.6282 0.5:-0.3531 0.833333:-0.0734 0.8:-0.0965 1.2:+0.8820 1.25:+0.8669 2:+0.8445 4:+0.8959 16:+0.9338  shear-only: 0.25:-0.7461 0.833333:-0.1975 1.2:+0.9048 4:+0.9049
+[RULER (d) principal angle] all-higher: slope 1.0054 rms 0.4125  odd rates r=1.2:0.2100 r=1.25:0.2578 r=2:0.6420 r=4:1.0167 r=16:1.7845  spread 201.29% (corners 200.46-202.19%)
+[RULER (d) principal angle] shear-only: slope 0.7331 rms 0.2813  odd rates r=1.2:0.1968 r=4:1.0108
+[RULER (d) principal angle] slope ratio shear/all = 0.7292  (corners 0.7261-0.7324)
+   C2 wrong ruler:
+[   swapped] all-higher: slope 0.8842 rms 0.4477  odd rates r=1.2:0.1820 r=1.25:0.2196 r=2:0.5031 r=4:0.9385 r=16:1.7884  spread 221.16% (corners 220.29-222.14%)
+[   swapped] shear-only: slope 0.8149 rms 0.2708  odd rates r=1.2:0.2270 r=4:1.0950
+[   swapped] slope ratio shear/all = 0.9216  (corners 0.9178-0.9255)
+   C1 positive control (tau = s read in x): family ratio 1.5729, odd-rate spread 176.70%  -> must differ from 1 and exceed 1.2%
+[RULER (a) rank-1 comparison] all-higher: slope 0.0246 rms 0.4412  odd rates r=1.2:0.0121 r=1.25:0.0102 r=2:0.0137 r=4:0.0243 r=16:0.0489  spread 177.23% (corners 176.42-178.07%)
+[RULER (a) rank-1 comparison] shear-only: slope 0.0314 rms 0.1984  odd rates r=1.2:0.0105 r=4:0.0367
+[RULER (a) rank-1 comparison] slope ratio shear/all = 1.2759  (corners 1.2703-1.2814)

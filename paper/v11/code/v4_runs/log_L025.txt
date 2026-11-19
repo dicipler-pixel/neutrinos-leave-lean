@@ -1,0 +1,15 @@
+L_r025 delta=0.50833333: dispersed eps=4.83
+L_r025 delta=0.51366667: dispersed eps=5.31
+L_r025 delta=0.51544444: dispersed eps=5.67
+L_r025 delta=0.51722222: BH eps=6.71
+L_r025 delta=0.51603704: dispersed eps=5.88
+L_r025 delta=0.51662963: dispersed eps=6.24
+L_r025 delta=0.51682716: dispersed eps=6.46
+L_r025 delta=0.51702469: dispersed eps=6.89
+L_r025 delta=0.51709053: dispersed eps=7.31
+L_r025 delta=0.51715638: BH eps=7.03
+L_r025 delta=0.51711248: BH eps=7.40
+L_r025 delta=0.51713443: BH eps=7.24
+L_r025 delta=0.51709785: BH eps=7.39
+L_r025 delta=0.51710517: BH eps=7.40
+RESULT L_r025: delta_c = 0.51709419 +- 0.00000366  bracket [0.51709053, 0.51709785] (9.8 min)

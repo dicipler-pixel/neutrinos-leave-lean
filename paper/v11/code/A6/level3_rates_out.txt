@@ -1,0 +1,16 @@
+level 3 thresholds: r=1.25 0.50994812 +- 0.00000625 [0.50994187, 0.50995437];  r=0.8 0.51178768 +- 0.00000625 [0.51178143, 0.51179393]
+odd rate: R1 = 1.11021, R2 = 1.10198, R3 = 1.10132, four-corner range of R3 [1.09382, 1.10883]
+s12 = -0.00823, s23 = -0.00066 (four-corner range -0.00816 .. +0.00685)
+KILL LINE (b): |R3 - R2| = 0.00066 against |R2 - R1| = 0.00823: passes (the shift shrinks); at the four corners |R3 - R2| <= 0.00816; sign of s23 same as s12
+r=1.25: shift L1->L2 +7.529e-05, L2->L3 +3.125e-05 (range +2.500e-05 .. +3.750e-05); factor 0.415 (range 0.332 .. 0.498)
+    predicted by first order in the cell size (2/3): 0.50996706  outside the bracket
+    predicted by second order in the cell size (4/9): 0.50995033  inside the bracket
+    predicted by first order in the time step (1/3): 0.50994197  inside the bracket
+r=0.8: shift L1->L2 +6.410e-05, L2->L3 +3.125e-05 (range +2.500e-05 .. +3.750e-05); factor 0.488 (range 0.390 .. 0.585)
+    predicted by first order in the cell size (2/3): 0.51179916  outside the bracket
+    predicted by second order in the cell size (4/9): 0.51178492  inside the bracket
+    predicted by first order in the time step (1/3): 0.51177780  outside the bracket
+RICHARDSON as fixed before the runs: p_obs = 6.24, R_inf = 1.10126  -- p_obs outside [0.5, 4]: reported, marked untrustworthy
+    over the four corners of the level-3 range: R_inf = [1.10142, None, 0.17361, 1.10111] (None: the shift does not shrink at that corner, no extrapolation)
+two-level extrapolations from L2, L3: p = 1: 1.10001; p = 2: 1.10080
+budget at level 3: bracket half-range 0.0075, fluid reference 0.0038, pair spread 0.0036: quadrature 0.0091, linear 0.0149

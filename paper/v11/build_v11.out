@@ -1,0 +1,34 @@
+note: "version 2" Tectonic command-line interface activated
+note: Running TeX ...
+warning: sec_v11_frame:6: Underfull \hbox (badness 4168) in paragraph at lines 5--6
+warning: sec_physics_v11:25: Overfull \hbox (20.86621pt too wide) in paragraph at lines 16--25
+warning: neutrinos_v11.tex:255: Overfull \hbox (2.90561pt too wide) in paragraph at lines 250--255
+warning: sec_v11_added:48: Overfull \hbox (65.80576pt too wide) in paragraph at lines 47--48
+warning: neutrinos_v11.tex:309: Underfull \hbox (badness 10000) in paragraph at lines 308--309
+warning: neutrinos_v11.tex:309: Underfull \hbox (badness 10000) in paragraph at lines 308--309
+warning: neutrinos_v11.tex:309: Underfull \hbox (badness 10000) in paragraph at lines 308--309
+warning: neutrinos_v11.tex:315: Underfull \hbox (badness 10000) in paragraph at lines 314--315
+warning: code_v6/A2_PREREGISTERED.txt:67: Overfull \hbox (14.5171pt too wide) in paragraph at lines 65--67
+warning: code_v6/A2b_PREREGISTERED.txt:37: Overfull \hbox (14.5171pt too wide) in paragraph at lines 35--37
+warning: neutrinos_v11.tex:541: Underfull \hbox (badness 10000) in paragraph at lines 540--541
+warning: neutrinos_v11.tex:541: Underfull \hbox (badness 10000) in paragraph at lines 540--541
+warning: neutrinos_v11.tex:541: Underfull \hbox (badness 10000) in paragraph at lines 540--541
+note: Rerunning TeX because "neutrinos_v11.aux" changed ...
+warning: sec_v11_frame:6: Underfull \hbox (badness 4168) in paragraph at lines 5--6
+warning: sec_physics_v11:25: Overfull \hbox (20.00621pt too wide) in paragraph at lines 16--25
+warning: neutrinos_v11.tex:255: Overfull \hbox (2.90561pt too wide) in paragraph at lines 250--255
+warning: sec_v11_added:48: Overfull \hbox (65.80576pt too wide) in paragraph at lines 47--48
+warning: neutrinos_v11.tex:309: Underfull \hbox (badness 10000) in paragraph at lines 308--309
+warning: neutrinos_v11.tex:309: Underfull \hbox (badness 10000) in paragraph at lines 308--309
+warning: neutrinos_v11.tex:309: Underfull \hbox (badness 10000) in paragraph at lines 308--309
+warning: neutrinos_v11.tex:315: Underfull \hbox (badness 10000) in paragraph at lines 314--315
+warning: code_v6/A2_PREREGISTERED.txt:67: Overfull \hbox (14.5171pt too wide) in paragraph at lines 65--67
+warning: code_v6/A2b_PREREGISTERED.txt:37: Overfull \hbox (14.5171pt too wide) in paragraph at lines 35--37
+warning: neutrinos_v11.tex:541: Underfull \hbox (badness 10000) in paragraph at lines 540--541
+warning: neutrinos_v11.tex:541: Underfull \hbox (badness 10000) in paragraph at lines 540--541
+warning: neutrinos_v11.tex:541: Underfull \hbox (badness 10000) in paragraph at lines 540--541
+warning: warnings were issued by the TeX engine; use --print and/or --keep-logs for details.
+note: Running xdvipdfmx ...
+note: Writing `neutrinos_v11.log` (21.11 KiB)
+note: Writing `neutrinos_v11.pdf` (2.76 MiB)
+note: Skipped writing 2 intermediate files (use --keep-intermediates to keep them)

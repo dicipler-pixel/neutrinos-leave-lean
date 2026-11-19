@@ -1,0 +1,5 @@
+worst relative error of closed form over 200 cases: 7.5e-16  -> KILL did not fire
+k2/k1=1.0: share of non-normality in the 0-1 (flux) link 1.000, in the 1-2 (shear) link 0.000
+k2/k1=0.5: share of non-normality in the 0-1 (flux) link 0.833, in the 1-2 (shear) link 0.167
+k2/k1=2.0: share of non-normality in the 0-1 (flux) link 0.556, in the 1-2 (shear) link 0.444
+k2/k1=1.5: share of non-normality in the 0-1 (flux) link 0.833, in the 1-2 (shear) link 0.167

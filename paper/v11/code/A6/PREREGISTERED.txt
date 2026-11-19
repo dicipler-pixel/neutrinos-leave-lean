@@ -1,0 +1,81 @@
+PREREGISTERED.txt -- v6 task A6: a third resolution level for the r = 1.25 / 0.8 odd rate
+Written 2026-11-11T20:44Z, before any run in this folder.
+Results are appended below after the runs; nothing above an appended result is edited.
+
+CODE (byte copies of A1's files, nu6/A1_stage/, nothing changed): run_split_stage.py (stage-correct kappa), ms_nuc_split.py,
+  ms_fluid.py, search.py (sequential bisection, A1's endpoint rule), oddrate.py (four-corner rates), run_point.py (A1's
+  single-point helper; its hard-coded N=600 grid is NOT used here -- a level-3 copy is written only if a single point is needed).
+  Only parameters change, passed on the command line.
+
+LEVELS (read from A1's res_*.json kw and RUNLOG; physics fixed: fnu 0.409, eps0 0.1, eps_dec 2, n 3, eps_max 15, Gaussian q 1)
+  level 1 (A1 S1): N = 400, Nmu = 32, Courant 0.4/0.4, cH = 0.005,  retry Courant 0.3
+  level 2 (A1 S3): N = 600, Nmu = 48, Courant 0.2/0.2, cH = 0.0025, retry Courant 0.15
+  level 3 (here) : N = 900, Nmu = 72, Courant 0.1/0.1, cH = 0.00125, retry Courant 0.075
+  Stiff collision cap 0.5/(kappa max(1,r) max A) left as it is (as A1). Grid ratio per level q = 1.5 in r and mu; the
+  CFL-limited dt shrinks by 1/3 per level (dx x 2/3, Courant x 1/2), the H-limited dt by 1/2.
+
+LEVEL 1 AND 2 VALUES (recomputed here with oddrate.py from A1's stored brackets, v5.1 references df 0.49773, di 0.52832)
+  L1: dc(1.25) = 0.50984158, dc(0.8) = 0.51169233, odd rate R1 = 1.11021 [1.10983, 1.11060]
+  L2: dc(1.25) = 0.50991687, dc(0.8) = 0.51175643, odd rate R2 = 1.10198 [1.10159, 1.10237]
+  s12 = R2 - R1 = -0.00823.  Threshold shifts L1->L2: +7.53e-5 (r = 1.25), +6.41e-5 (r = 0.8).
+
+PREDICTIONS (a): if the scheme converges at order p in the grid spacing (ratio q = 1.5), s23 = s12 (2/3)^p:
+  p = 1: s23 = -0.00549, R3 = 1.0965;  thresholds +5.02e-5 -> 0.50996706 (1.25), +4.27e-5 -> 0.51179917 (0.8)
+  p = 2: s23 = -0.00366, R3 = 1.0983;  thresholds +3.35e-5 -> 0.50995033 (1.25), +2.85e-5 -> 0.51178492 (0.8)
+  (p = 3 for comparison: s23 = -0.00244, R3 = 1.0995.)  Limits implied: p = 1 -> R_inf = 1.0855, p = 2 -> R_inf = 1.0954.
+  If the time-step error dominated instead (dt ratio 1/3 per level), s23 would be s12 (1/3)^p_t: -0.0027 (p_t = 1).
+
+KILL LINE (b): if |R3 - 1.10198| > |R2 - R1| = 0.00823 (the shift does not shrink), the odd rate is NOT converging at these
+  resolutions and the paper must say so. Also flagged (not a kill): a sign change of s23 relative to s12 (oscillatory, then
+  Richardson is not applied in the monotone form).
+
+RICHARDSON (fixed before the runs): with three levels at constant ratio q = 1.5,
+  p_obs = ln(s12/s23)/ln q  (only if s12/s23 > 1),  R_inf = R3 + s23/(q^p_obs - 1).
+  Error on R_inf, reported as separate parts:
+   (i) bracket part: R_inf recomputed over the four-corner extremes of each level's rate range (all 8 combinations of
+       range ends), the half-spread of the resulting R_inf values;
+   (ii) order part: the spread between R_inf(p_obs) and the two-level extrapolations from L2, L3 with p = 1 and p = 2;
+   the quoted error is (i) + (ii) linear.  The fluid-reference shift +-7.8e-5 is common to every level and quoted separately.
+  If p_obs falls outside [0.5, 4] the Richardson value is reported but marked untrustworthy.
+
+SEARCH: search.py as A1 (both ends first; an end with the wrong outcome extends that side by 2 x half = 4e-4; bisection to
+  width <= 1e-6; undecided midpoint -> points at 0.4 then 0.6; crash/BH_breakdown retried once at Courant 0.075, then
+  reported, never moves a bracket).  Starting brackets: L2 values +- 2e-4: 0.50991687 +- 2e-4 (r = 1.25), 0.51175643 +- 2e-4
+  (r = 0.8).  One simulation process at a time, OMP/NUMBA threads 1.  A run that runs far past the typical level-3 time
+  without ending is handled as A1 handled its stalled point: stopped by hand, reported undecided, the 0.4 (then 0.6) point used.
+TIMING RULE: the first run is timed; if one run takes > 3 h, r = 1.25 is run alone first and reported, then r = 0.8.
+
+TIMING (appended 2026-11-11T21:54Z): first level-3 run 4168 s (69.5 min), 1153907 steps; < 3 h, so both thresholds queued back to back.
+
+DEVIATION (appended 2026-11-13T07:07Z): r = 1.25 bisection stopped at width 1.25e-5 instead of 1e-6, because runs this close
+to threshold no longer finish inside one 2 h compute window. Level-3 bracket [0.50994187, 0.50995437], midpoint 0.50994812.
+Shift L2->L3 = +3.125e-5 (range +2.50e-5 .. +3.75e-5); against L1->L2 +7.53e-5 this gives a per-threshold observed order
+p = 2.17 (range 1.72 .. 2.72). p = 2 prediction 0.50995033 inside the bracket; p = 1 prediction 0.50996706 outside.
+r = 0.8 run with tolerance 1.25e-5 (queue2.sh).
+
+RESULT (appended 2026-11-13T22:01Z, after the last run; numbers from level3_rates.py, output in level3_rates_out.txt)
+r = 0.8 level-3 bracket [0.51178143, 0.51179393], midpoint 0.51178768 (width 1.25e-5, as the deviation above; 539.7 min of runs).
+Shift L2->L3 = +3.125e-5 (range +2.50e-5 .. +3.75e-5) against L1->L2 +6.41e-5: factor 0.488 (range 0.390 .. 0.585).
+p = 2 prediction 0.51178492 inside the bracket; p = 1 prediction 0.51179917 outside; first order in the time step
+(0.51175643 + 6.41e-5/3 = 0.51177780) outside.
+Odd rate: R3 = 1.10132, four-corner range [1.09382, 1.10883].  s23 = R3 - R2 = -0.00066 (four-corner range -0.00816 .. +0.00685).
+PREDICTIONS (a): R3 predicted 1.0965 (p = 1), 1.0983 (p = 2), about 1.0992 (time step, p_t = 1); all three lie inside the
+  four-corner range of R3, so the rate does not tell them apart. The thresholds do: see the lines above and the deviation.
+KILL LINE (b): |R3 - 1.10198| = 0.00066 < 0.00823: PASSES at the midpoints, and at every corner (largest 0.00816). The sign of
+  s23 is that of s12 at the midpoints; over the corners s23 takes both signs, so its sign is not resolved.
+RICHARDSON: p_obs = ln(s12/s23)/ln q = 6.24, outside [0.5, 4]: R_inf = 1.10126 is reported and marked untrustworthy, as fixed
+  above. s23 is smaller than the bracket range of R3, so no order is fitted to the rate. Two-level extrapolations from L2, L3:
+  1.10001 (p = 1), 1.10080 (p = 2).
+
+NOTE (appended 2026-11-13T22:07Z): the RESULT block above was first written at 21:56Z with a stamp nine minutes ahead (22:05Z) and
+"about 1.0993" for the time-step prediction; it was rewritten in place at 22:01Z with the stamp and that figure (1.0992)
+corrected. Nothing else in it changed, and nothing above it was touched.
+Error parts of R_inf as fixed above, from richardson.py (written 2026-11-11, before the runs; output in richardson_out.json):
+(i) bracket part 0.041, (ii) order part 0.001, quoted error 0.043. The bracket part is this large because at one corner of
+the level-3 range the shift does not shrink (no extrapolation there) and at another the fitted order is far outside
+[0.5, 4]; with p_obs untrustworthy the paper quotes no extrapolated value.
+
+NOTE (appended 2026-11-13T22:11Z): the explanation in the note above describes the four corners of level3_rates.py. richardson.py takes the
+eight combinations of the three levels' range ends: six give no extrapolation (the shift does not shrink) and two give
+orders 0.14 and 0.36; that is why its bracket part is large. richardson.py was saved at 2026-11-11T20:45Z, 18 seconds after
+the queue was launched and 69 minutes before the first run ended.

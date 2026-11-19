@@ -1,0 +1,60 @@
+=== T0 Steve-internal consistency ===
+inst eps0=0.1 Rnu=.409   Delta C_l,c =  9.64 %  printed   9.6  diff +0.04 
+dec 0.25                 Delta C_l,c =  9.23 %  printed   9.2  diff +0.03 
+dec 0.5                  Delta C_l,c =  8.31 %  printed   8.3  diff +0.01 
+dec 1                    Delta C_l,c =  6.48 %  printed   6.5  diff -0.02 
+dec 2                    Delta C_l,c =  4.04 %  printed   4.0  diff +0.04 
+dec 4                    Delta C_l,c =  1.76 %  printed   1.8  diff -0.04 
+dec 8                    Delta C_l,c =  0.58 %  printed   0.6  diff -0.02 
+Rnu=.10                  Delta C_l,c =  2.35 %  printed   2.3  diff +0.05 
+Rnu=.20                  Delta C_l,c =  4.68 %  printed   4.7  diff -0.02 
+Rnu=.30                  Delta C_l,c =  7.00 %  printed   7.0  diff +0.00 
+Rnu=.488                 Delta C_l,c = 11.47 %  printed  11.5  diff -0.03 
+alpha .3                 Delta C_l,c =  9.34 %  printed   9.3  diff +0.04 
+alpha .5                 Delta C_l,c =  9.43 %  printed   9.4  diff +0.03 
+alpha 2                  Delta C_l,c =  9.91 %  printed   9.9  diff +0.01 
+alpha 4                  Delta C_l,c = 10.05 %  printed  10.0  diff +0.05 
+eps_dec  0.25  G(from delta_c) = 0.960   brief 0.959   diff +0.001 
+eps_dec  0.50  G(from delta_c) = 0.868   brief 0.867   diff +0.001 
+eps_dec  1.00  G(from delta_c) = 0.684   brief 0.683   diff +0.001 
+eps_dec  2.00  G(from delta_c) = 0.431   brief 0.431   diff +0.000 
+eps_dec  4.00  G(from delta_c) = 0.190   brief 0.190   diff -0.000 
+eps_dec  8.00  G(from delta_c) = 0.063   brief 0.063   diff +0.000 
+shift/R_nu  C_l:  [23.   23.5  23.33 23.47 23.57]  spread 0.9 %
+shift/R_nu  delta_c:  [15.6  15.3  15.1  15.04 14.84]  spread 1.7 %
+Table III ratios [1.177 1.187 1.205 1.191 1.186 1.179 1.171]  slopes 0.266 0.267
+beta_pf 1e-09 -> beta_nu/beta_pf = 0.0208 (Steve: 0.021/0.0052/0.0013), exponent 1.187
+beta_pf 1e-12 -> beta_nu/beta_pf = 0.0053 (Steve: 0.021/0.0052/0.0013), exponent 1.190
+beta_pf 1e-15 -> beta_nu/beta_pf = 0.0013 (Steve: 0.021/0.0052/0.0013), exponent 1.192
+coincidence list for the 1.19 mass ratio: (1-Rnu)^(-1/3) = 1.1916 ; (delta_c ratio)^3 = 1.1959 ; (C_l ratio)^2 = 1.2020 ; Table III 1.17-1.20
+Rnu-dependence of a power law (1-Rnu)^-x needed for the C_l shift: x = 0.175 at .409, 0.162 at .488, 0.220 at .1 (not constant -> rejected)
+
+=== T1 Prop 5 / connection energy on Steve operator ===
+E_B = 0.963333333333333  k^2/3 = 0.963333333333333  (1/2)||[H,P]||^2 = 0.963333333333333  Var_0(H) = 0.963333333333333
+(1/4)||[H,H^dag]||^2 = 1.560600000000   ||[D,K]||^2 = 1.560600000000   kappa^2 k^2 * 2/3 = 1.560600000000
+T1 PASS: sqrt(E_B)/k = 0.577350 = c_s = 1/sqrt3 (= <mu^2>^(1/2), the radiation sound speed)
+
+=== T2 hidden-walk (Schur) formula vs arctan closed form ===
+worst relative difference (Schur vs closed form vs full inverse): 5.29e-16
+  kappa = 0.5000  two-level eigenvalue separation 1.90e+00
+  kappa = 1.9620  two-level eigenvalue separation 6.26e-02
+  kappa = 1.9630  two-level eigenvalue separation 4.18e-08
+  kappa = 1.9640  two-level eigenvalue separation 6.27e-02
+  kappa = 3.0000  two-level eigenvalue separation 2.27e+00
+T2 PASS. EP at kappa = 2 sqrt(E_B) = 1.9630
+
+=== T3 ladder on the single-rate model ===
+S_k: {-2: 2.378601, -1: 2.140741, 0: 1.926667, 1: 1.734, 2: 1.5606}
+equality checks: S0^2/(S-2 S2) = 1.000000000000 ; S-1^2/(S-2 S0) = 1.000000000000
+rung +1 for this model: S_1 = E_B*2*kappa (counting both orderings) = 1.734000
+
+=== T4 which rung is the effective rate? (Steve Appendix C numbers only) ===
+sanity: C=0.108 -> 3.18 MeV (Steve 3.1)
+group energy weights [0.004 0.038 0.229 0.528 0.199 0.003]
+model check: single-group at x=3.15 (e+- only) T_dec: nu_e 1.40 MeV (Steve 1.3), nu_mutau 2.33 MeV (Steve 2.3)
+rung p=-2 : T_dec(e+- only) = 2.35 MeV (target 1.6)   T_dec(with nu-nu) = 1.22 MeV (target 0.93-1.0)   both within 15%: False
+rung p=-1 : T_dec(e+- only) = 2.12 MeV (target 1.6)   T_dec(with nu-nu) = 1.14 MeV (target 0.93-1.0)   both within 15%: False
+rung p=+0 : T_dec(e+- only) = 1.86 MeV (target 1.6)   T_dec(with nu-nu) = 1.07 MeV (target 0.93-1.0)   both within 15%: False
+rung p=+1 : T_dec(e+- only) = 1.62 MeV (target 1.6)   T_dec(with nu-nu) = 1.02 MeV (target 0.93-1.0)   both within 15%: True
+rung p=+2 : T_dec(e+- only) = 1.44 MeV (target 1.6)   T_dec(with nu-nu) = 0.97 MeV (target 0.93-1.0)   both within 15%: True
+ratio of masses (T^-2) e+- only -> with nu-nu, rung +1: 2.53, rung -1: 3.44 (Steve: 2.5-3)

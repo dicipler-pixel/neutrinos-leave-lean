@@ -1,0 +1,89 @@
+PREREGISTERED — Task A2 (self-scattering and the flux-shear link law)
+Written 2026-11-11T14:04Z, before the script that computes r_s(t) along McCormick's background was written or run.
+
+DISCLOSURE (what was already seen when this was written)
+- The two thresholds to be predicted are in the task text and in McCormick's App. C(d): with nu-nu 0.51941 +- 0.00016
+  (res_mg_phys6_10.0.json), without 0.52639 +- 0.00011 (res_mg_nonunu6_10.0.json), fluid 0.49742 (res_eos_pf_10.0.json).
+- The paper quotes nu-nu faster than nu-e+- by 1.5 (nu_e) and 7 (nu_mu,tau). While reading, a rough mental estimate with
+  those two quoted ratios and flavour weights 1/3, 2/3 was made. It is NOT the prediction below; the prediction uses the
+  rates exactly as run_mg.py evaluates them along the background, with the weighting fixed here and not changed afterwards.
+- McCormick's single-rate thresholds at T_H = 1 MeV (res_eosc_<Tdec>_10.0.json) were listed: Tdec 0.75: 0.51586,
+  1.0: 0.52076, 1.5: 0.52583, 2.0: 0.52837, 3.0: 0.53065. These are used by the opposite (timing) reading below.
+
+REFERENCES FOR G AT T_H = 1 MeV
+- delta_fluid = 0.49742 (Table VII; res_eos_pf_10.0.json, full EOS).
+- delta_inst: McCormick's archive has NO instantaneous free-streaming threshold at T_H = 1 MeV with the full EOS
+  (res_eos_fs_*.json exist only for T0 <= 5 MeV, T_H <= 0.506 MeV; earlier_start/ has T_H = 0.06, 0.12 only).
+  The nearest instantaneous references are pure radiation, eps0 = 0.1 (his Table II):
+  R_nu = 0.409 -> 0.52832, R_nu = 0.488 -> 0.53379.  0.52832 is ruled out as a reference at this mass because his own
+  single-rate run with Tdec = 3 MeV at T_H = 1 MeV already sits higher (0.53065), which would put G > 1.
+  PRIMARY: delta_inst = 0.53379 (R_nu = 0.488, the neutrino fraction while e+- are relativistic, which is the epoch
+  T >~ 1 MeV in which these neutrinos decouple). SENSITIVITY: delta_inst interpolated linearly in R_nu (his Eq. 18
+  says the shift is linear in R_nu) at the background R_nu at the e+- flux-link last-scattering epoch, computed by the
+  script from his thermo table.
+- G = (delta_c - delta_fluid)/(delta_inst - delta_fluid), tau_G = ln[(1-G)/G].
+
+READING 1 (the frozen link law, primary)
+McCormick's C3 with the first-order target is the v5.1 all-l>=2 family exactly: flux at k1 = k_e,s, every l>=2 at
+k2 = k_e,s + k_n,s, so r_s = (k_e,s + k_n,s)/k_e,s >= 1, with k_e,s IDENTICAL in his two runs (nunu only zeroes k_n).
+That is the v5.1 intervention (flux rate held, shear+higher rate changed), with r now depending on group, flavour and time.
+- r_s(t): from run_mg.rates(Tb) exactly as the code evaluates it on the background (FD rates, chi_e at the background
+  temperature, both rates capped at 100 H, 6 groups 0.4..20, two flavours), in the transport phase (after the switch
+  from the perfect fluid at total nu_mu,tau rate at x=1 = 100 H).
+- Weighting (fixed now): the link rapidity u_s(t) = (1/2) ln r_s(t) is averaged
+  (a) over time with the VISIBILITY of the flux link of that group, g_s = (k_e,s/H) exp(-tau_e,s) per d ln a,
+      tau_e,s = integral of k_e,s dt to the future. Why: in v5.1 the law was measured with the flux rate's decoupling
+      history held fixed and r constant; the flux link is what lets the neutrinos go, so the rapidity it reads is the
+      one in force while the flux link releases — the last-scattering density of that link.
+  (b) over groups and flavours with the background energy weights (flavour 1/3, 2/3 times the Fermi-Dirac energy
+      fraction of each group on the 0.4..20 grid, as run_mg.spectral_weights at tau = 1). Why: the threshold reads the
+      neutrino anisotropic stress, which is energy-weighted.
+  The rapidity is averaged (not r), because the v5.1 law is linear in the rapidity.
+- Prediction: tau_G(with) = tau_G(without) + rate * u_eff, rate = 1.11 (all-l>=2 family; primary) and 1.19-1.20
+  (shear-only bracket), with tau_G(without) from McCormick's measured 0.52639 and the references above. Converted back
+  to delta_c(with) and to a predicted shift in G.
+- Sensitivity weightings, reported but NOT deciding: visibility of the total rate k_e+k_n; uniform in ln a while
+  0.1 < k_e,s/H < 10; v5.1's memory-form readout epochs eps* = 1.7 and 4.0 mixed 0.89/0.11.
+
+KILL LINE (Reading 1, primary weighting, primary reference, rate 1.11):
+  KILLED if the predicted shift in G has the wrong sign relative to the measured shift, or if
+  |predicted shift in G - measured shift in G| > 0.5 * |measured shift in G|.
+  Measured shift in G = G(0.51941) - G(0.52639) with the same references.
+
+READING 2 (the opposite: timing, not link rapidity)
+Self-scattering keeps the neutrinos isotropic longer: it delays decoupling, as if it were part of the flux rate.
+Then the threshold follows a single-rate decoupling temperature set by the TOTAL rate, and the link rapidity plays no role.
+- Tdec_eff is where the energy-weighted mean rate over groups and flavours (same weights as above) equals H on the
+  background, computed from the same rate functions: from k_e alone (no nu-nu) and from k_e + k_n (with nu-nu).
+- Each Tdec_eff is mapped to a threshold by McCormick's single-rate family at T_H = 1 MeV (listed above), linear in
+  ln Tdec. Predicts delta_c(with), delta_c(without) and their shift in G.
+- Same kill line applied to Reading 2's predicted shift in G (and its two absolute thresholds reported).
+Both readings predict the same direction (nu-nu lowers delta_c); the size separates them, and if both pass, the
+numbers do not separate them and the decisive simulation is stated instead.
+
+Results are appended below this line; nothing above is edited afterwards.
+------------------------------------------------------------------------------------------------------------------
+
+[2026-11-11T14:06Z] PREDICTIONS (step3_predict.py, step3_out.txt; the with-nu-nu threshold is not used by it)
+Setup notes found while computing: on McCormick's background r_s is almost constant in time and energy
+(nu_e 2.43-2.45, nu_mu,tau 7.69-7.77 for 0.3 < T_b < 5 MeV; caps make r = 2 only for the highest groups above ~5 MeV,
+where they carry no visibility weight). So every weighting gives the same rapidity to 0.2%.
+READING 1, primary (visibility of k_e, energy-weighted, d_inst = 0.53379):
+  u_eff = 0.8313 (r_eff = 5.27); flavour means u = 0.4468 (nu_e), 1.0235 (nu_mu,tau).
+  G(without) = 0.7965 (from 0.52639).
+  rate 1.11:      G(with) = 0.6087, predicted shift in G = -0.1878, predicted delta_c(with) = 0.51956
+  rate 1.19-1.20: G(with) = 0.5928-0.5908, shift -0.2037 to -0.2057, delta_c(with) = 0.51898-0.51891
+  Sensitivity weightings and the R_nu-interpolated d_inst (0.53377) move delta_c(with) by <= 0.00002.
+READING 2 (timing): Tdec_eff = 1.552 MeV without nu-nu, 0.979 MeV with.
+  Single-rate family at T_H = 1 MeV: delta_c(without) = 0.52613, delta_c(with) = 0.52040; shift -0.00573;
+  shift in G = -0.1576 (d_inst 0.53379). Anchored on the measured 0.52639: delta_c(with) = 0.52066.
+
+[2026-11-11T14:06Z] COMPARISON (step4_compare.py, step4_out.txt)
+Measured (d_inst 0.53379): G(without) = 0.7966, G(with) = 0.6045, shift in G = -0.1920 +- 0.0052; kill tolerance 0.0960.
+READING 1, rate 1.11 (deciding): predicted shift -0.1878, miss +0.0043 (2.2% of the shift); delta_c(with) 0.51956 vs
+  0.51941 +- 0.00016 (miss +0.00015). SURVIVES. Rate 1.19 / 1.20: misses 6.1% / 7.1%, delta_c 0.51898 / 0.51891. SURVIVE.
+READING 2 (timing): predicted shift -0.1576, miss +0.0344 (17.9%). SURVIVES. Absolute: without 0.52613 (miss -0.00026),
+  with 0.52040 (miss +0.00099); anchored 0.52066 (miss +0.00125).
+Not pre-registered, reported as sensitivity: Reading 1's absolute prediction moves with the d_inst proxy
+  (0.5315 -> miss +0.00162; 0.5370 -> miss -0.00139); the kill line holds over that whole scan. Using v5.1's eleven
+  measured offsets directly instead of the linear law: delta_c(with) = 0.51930 (miss -0.00011).

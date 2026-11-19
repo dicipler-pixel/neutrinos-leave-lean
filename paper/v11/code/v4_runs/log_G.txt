@@ -1,0 +1,5 @@
+step eps_b=1 delta=0.5132: dispersed eps=6.37
+step eps_b=1 delta=0.5138: BH eps=6.30
+K5 n=3 eps_dec=1.20 delta=0.5165: dispersed eps=6.42
+K5 n=3 eps_dec=1.20 delta=0.5171: BH eps=6.29
+review: step eps_b=1 delta_c=0.513512 (expect 0.5132 dispersed, 0.5138 BH); K5 n=3 eps_dec=1.20 delta_c=0.516797 (expect 0.5165 dispersed, 0.5171 BH)

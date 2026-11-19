@@ -1,0 +1,56 @@
+# SCRIPT: PREREGISTERED_WITNESS (preregistration text, not code)
+Written: 2026-10-31T17:12:31Z  (UTC, before any production run; no witness numbers computed yet)
+
+MODEL (identical to paper/code/main/memory_curve.py)
+ dv/dtau = -(i k M + sigma(tau)(I-P0)) v, orthonormal Legendre moments v_l, l=0..LM,
+ M_{l,l-1}=M_{l-1,l}=l/sqrt(4l^2-1), sigma = eps^n / tau^(n+1), n in {3,6}.
+ k-weights: 36-node Gauss-Legendre on [0.25,9], weight k^2 exp(-k^2/2), normalised.
+ eps_dec fixed at 0.5 (inside the paper's scanned range) so all plants sit before tau=1.7.
+
+PAIR
+ base b at tau_s: v0=1, v1=0.2, v2=0.1, rest 0. Pair: b +/- delta e_L, delta=0.05,
+ hidden plant L=3 (main) and L=4; opposite check L=1, L=2 (retained plant, hidden matched).
+ Both members scaled by the SAME constant to unit norm (keeps the match; needed for the bound).
+ Positivity: f(mu)=sum v_l sqrt((2l+1)/2) P_l(mu) >= 0 on a 2001-point mu grid, both members.
+ tau_s / eps in {0.1, 0.25, 0.5, 1, 2}  ->  tau_s in {0.05, 0.125, 0.25, 0.5, 1.0}.
+ Readout epochs tau = 1.7, 4.0, late 6.0.
+
+READOUTS (difference = member+ minus member-, exact by linearity = 2 delta U(t,s) e_L)
+ R_ret  = sqrt(sum_k w ||Dv_{0,1,2}||^2) / sqrt(sum_k w ||b_{0,1,2}||^2)   (PRIMARY)
+ R_A    = |A_w+ - A_w-| / mean(A_w+,A_w-),  A_w = sum_k w |v0|^2       (k-weighted monopole)
+ R_F    = same with |v1|^2                                             (k-weighted flux)
+ WITNESS ON at an epoch  <=>  R_ret > 1e-3 at that epoch.
+
+DERIVED BEFORE RUNNING (block elimination, a=v0, h=(v1,...)):
+ In the hidden block the collision term is sigma*I (scalar), so EXACTLY
+   U_Q(t,r) = exp(-(Sig(t)-Sig(r))) exp(-i k (t-r) M_QQ),  Sig(t) = -eps^n/(n t^n).
+ a' = S(t) - k^2 int_s^t K(t,r) a(r) dr,  K = M01^2 [U_Q(t,r)]_{11},
+ S(t) = -i k M01 [U_Q(t,s) h0]_1.  The pair has Da(s)=0, Dh0 = 2 delta e_L, so the
+ difference obeys the same Volterra equation driven ONLY by S[Dh0]: no source, no witness.
+
+PREDICTION (stated before running)
+ Two channels carry a hidden difference into the retained moments:
+  (i) remnant: the hidden plant survives decoupling with factor exp(-(eps/tau_s)^n / n)
+      (int_s^inf sigma converges because collisions die off) and then free-streams: O(delta*remnant);
+  (ii) leakage during coupling through L damped rungs: ~ delta*(k/sigma(tau_s))^L.
+ Expected witness strength ~ delta*max(remnant, leakage), so with delta=0.05:
+   tau_s/eps=0.1 : OFF for n=3 and n=6 (remnant e^-333 / e^-1e6, leakage <1e-11)
+   tau_s/eps=0.25: OFF both (n=3 remnant 7e-10, leakage ~2e-7)
+   tau_s/eps=0.5 : n=3 ON (remnant e^-2.67=0.07), n=6 OFF or marginal (remnant 2e-5)
+   tau_s/eps=1,2 : ON both, O(delta)
+  n=6 suppresses more than n=3 at the same tau_s/eps for tau_s<eps, less (closer to 1) for tau_s>=eps.
+  Opposite check: deep in coupling L=1 > L=2 > L=3 > L=4 (one factor k/sigma per rung);
+  after decoupling all four O(delta) and comparable.
+
+KILL / SUCCESS CONDITIONS
+ K1 (witness dead): R_ret <= 1e-3 at both tau=1.7 and 4.0 for every plant with tau_s >= eps
+     -> the retained (density/flux/stress) closure suffices; witness killed in this model.
+ K2 (not converged): for any ON case, LM 60->120 or rtol 1e-9->1e-11 (atol 1e-12->1e-14)
+     changes R_ret, R_A or R_F by >= 1% -> that entry is not reported as a pass.
+ K3 (invalid pair): positivity fails for either member -> pair discarded.
+ K4 (prediction killed): any tau_s/eps<=0.25 entry ON, or any tau_s/eps>=1 entry OFF.
+ K5 (elimination claim killed): Da computed from the Volterra equation driven by the
+     independently computed source S (closed-form U_Q, no full-system solve) differs from the
+     full-system Da by > 1% of max|Da|, or fails to converge with grid refinement.
+ K6 (speed bound violated): max over all trajectories/times of (A')^2/(4 (k^2/3) A(1-A)) > 1+1e-6.
+ SUCCESS: K1-K6 all not triggered.

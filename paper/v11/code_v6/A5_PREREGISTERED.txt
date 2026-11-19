@@ -1,0 +1,112 @@
+# SCRIPT: A5-PREREGISTERED (preregistration text, not code)
+Written: 2026-11-11T14:10Z (UTC). Before any computation in this folder. Only reading done so far
+(v5.1 Secs 2, 5, 6, App. A.5; witness_run.py, witness_kernel.py, memory_curve.py; A4's restart.py grid).
+Prior-art fetch: 4 web requests spent (2 curl downloads refused by proxy 403, 1 WebFetch refused as not on
+allowlist, 1 WebSearch returned titles only). The two papers were NOT read this session.
+
+COMMON OBJECT (same as v5.1 memory_curve.py / witness_run.py)
+ dv/dtau = -(i k M + D(tau)) v,  M the normalized-Legendre Jacobi matrix (c_l=(l+1)/sqrt((2l+1)(2l+3))),
+ D = sigma(tau) diag(0,1,1,1,...) (single rate) or sigma(tau) diag(0,1,r,r,...) (split).
+ sigma(tau) = ed^n / tau^(n+1). Start v = |0> at tau0 = 0.02. LM = 60. Profile weights w_k ~ k^2 exp(-k^2/2)
+ on 36 Gauss-Legendre k in [0.25, 9]. A(tau) = sum_k w_k |v_0|^2.  A_inst = same with sigma = 0.
+ Memory form g(e*) = (1-A(e*))/(1-A_inst(e*)), g2 = 0.89 g(1.7) + 0.11 g(4.0) (w frozen at v5.1's 0.890).
+ Real basis used for computation: w_l = i^l v_l, generator k K - D with K real antisymmetric.
+
+=== TEST 1: RATE-ORDER SWAP ===
+Family R (time reversal inside a window W=[ta,tb]; sigma unchanged outside W; reversed sigma_R(t)=sigma(ta+tb-t) on W):
+ R1: n=3, ed=1, W=[0.5,1.5]     R2: n=3, ed=1, W=[0.25,1.5]    R3: n=6, ed=1, W=[0.5,1.5]
+ R4: n=3, ed=2, W=[1.0,3.5] (readout 1.7 lies INSIDE W; only e*=4 is after W)
+ R5/R6: split versions of R1 with r = 4 and r = 1/4 (sigma1=sigma, sigma2=r sigma, both reversed together).
+Family S (n=6 v5.1 histories ed6 in {1,2,3} against an n=3 history whose ed3 is rescaled so that the optical depth
+ int_W sigma dtau is equal):  windows W in {[0.02,4] (whole run), [0.5,4], [1.0,4]}.
+Readouts at e* = 1.7 and 4.0: A, the profile-weighted l<=2 moment powers |v_l|^2 (l=0,1,2), the relative
+ difference of the complex l<=2 vectors R_diff = sqrt(sum_k w|dv_{0..2}|^2 / sum_k w|v_{0..2}|^2), g(1.7), g(4), g2.
+PREDICTIONS (scalar summaries):
+ P1a Optical depth int_W sigma: identical within each pair, by construction -> BLIND to order (both families).
+ P1b Time-integrated connection energy int_W (1/8)||[L,L*]||^2 dtau = (k^2/3) int sigma^2 (split: k^2[s1^2/3+4(s2-s1)^2/15]):
+     identical under time reversal (any int f(sigma) is) -> BLIND in family R. NOT equal in family S (n=6 vs n=3 put
+     different sigma^2 mass on W): it is not order-blind there, it is simply a different number; values reported.
+ P1c Instantaneous operator at readout (sigma(e*), connection energy at e*, E_B=k^2/3): identical in family R whenever
+     W closes before e* -> BLIND (R1,R2,R3,R5,R6 at both e*; R4 at e*=4). Not equal in family S.
+ P1d The exact propagated readout is NOT blind: for every pair, the l<=2 readout differs.
+ KILL for P1d (per pair): R_diff < 1e-3 AND |dg(e*)| < 1e-3 at both readout epochs -> order is invisible to the linear
+     readout for that pair; P1d killed for that pair.
+ Lean only (no kill): in family R the reversed (rising-rate) member has lost more kept population by e* (g larger),
+     because it streams early in W and the late recoupling destroys flux that would otherwise partly return.
+ Lean only: in family S, at equal optical depth on W the n=6 member keeps more (g smaller) when W starts late.
+
+=== TEST 2: READOUT GRAMIAN OF THE HIDDEN SECTOR ===
+ G(s,T) = int_s^T Q^T Phi(t,s)^T R^T R Phi(t,s) Q dt, R = rows l=0,1,2, Q = embedding of l>=3, T = 4.
+ Plant epochs: ed=0.5 (witness history): s = 0.125, 0.5, 1.0 (coupled / transition / free, tau_s/ed = 0.25, 1, 2);
+ also ed=2, n=3 (v5.1 reference): s = 0.5, 2.0, 3.0. n=3 main; n=6 at ed=0.5 as a second history.
+ G is computed per k, parity-symmetrized over k and -k (G(-k) = P G(k) P, P = diag((-1)^l)), and profile-summed.
+ Also the terminal (snapshot) Gramian Phi(T,s)^T R^T R Phi(T,s) restricted to Q (the witness's R_ret object).
+ P2a (algebraic): for k != 0 and every c_l != 0 the truncated chain is observable from l<=2: N_inf = {0} and G is
+     positive definite. There is no exact predictive quotient smaller than the full hidden space; the quotient that
+     matters is numerical (eigenvalues of G above a tolerance). Checked by rank of the Kalman matrix [R; RB; RB^2..]
+     in exact-size floating point for the time-frozen generator (reported with its singular values).
+ P2b Coupled planting suppresses the whole spectrum of G relative to the transition planting by roughly the square
+     of the hidden survival factor, exp[-2(ed^n/n)(1/s_c^n - 1/s_t^n)] (n=3, ed=0.5: s=0.125 vs 0.5 -> ~ e^{-42.5}).
+     Kill: ratio of top eigenvalues off from that factor by more than 10^{+-3}.
+ P2c The top eigenvector at the transition and free epochs lies in the odd-parity sector and has l=3 weight > 0.5.
+     Kill: top eigenvector even, or l=3 weight <= 0.5.
+ P2d Effective rank (eigenvalues > 1e-3 of the top) at the free epoch is larger than at the transition epoch.
+     Lean, kill if smaller.
+ Output for the restart agent: the direction d(mu) on McCormick's 32 bin midpoints, built from discrete orthogonal
+     polynomials p_l (A4's construction, extended in l), with discrete l<=2 components exactly zero, the
+     positivity bound |a| <= 1/max_k|d_k|, and the readout per unit admissible amplitude compared with pure p_3, p_4.
+     The JSON states plainly that the mapping chain -> radially uniform angular perturbation is not exact.
+
+=== TEST 3: CLOSURE COMPARISON (linear level) ===
+ Histories: n=3 ed in {0.25,0.5,1,2,4,8}; n=6 ed in {1,2,3}; start |0> at tau0=0.02; horizon tau in [tau0,4].
+ Comparators (fixed now):
+  EX   exact chain, LM=60 (reference).
+  P1   truncation at l=1 (v_2 := 0).  This is ALSO the linearized M1 closure: Levermore / Minerbo / maximum-entropy
+       Eddington factors are chi(f)=1/3+O(f^2), so about isotropy the closed l=2 moment vanishes at linear order.
+  M2   maximum-entropy (Levermore-style) closure for the l=3 moment with l<=2 evolved: f=exp(a0+a1 mu+a2 P2) linearized
+       about isotropy has no l=3 part, so linearized M2 == P2. Stated as algebra; compared numerically as a check.
+  P2, P3, P5   truncations at l=2, 3, 5.
+  CE2  P1 plus the quasi-static (Chapman-Enskog / viscous) l=2: v_2 = -i k c_1 v_1 / sigma (sigma>0), the
+       linear shear-viscosity closure.
+  OP2  P2 plus a short-memory (Markovian) approximation of the exact elimination kernel of the hidden block l>=3:
+       d v_2/dt += -k^2 c_2^2 theta(t) v_2, theta(t)=int_tau0^t exp(-int_r^t sigma) dr  (streaming inside the hidden
+       block neglected; the "crescendo" form I recall from optimal-prediction closures -- recalled, not read).
+  MFe  his memory form as an exact block elimination: l<=2 kept, hidden block l>=3 eliminated with its closed-form
+       propagator exp(-[Sigma(t)-Sigma(r)]) exp(-ik(t-r)M_QQ) (A.5 with the cut moved from l=0|1 to l=2|3).
+       Hidden moments start empty, so the source is zero. Predicted error: numerical only (< 1e-5 relative).
+  MFf  "frozen" memory form: the same kernel with Sigma frozen to the reference history (n=3, ed=2) for every history,
+       while l<=2 use the actual sigma. Defined here as the analogue of fitting once and freezing.
+ Error metrics (fixed now): E_traj = sqrt( sum_k w int_tau0^4 |v^c_{0..2}-v^ex_{0..2}|^2 / sum_k w int |v^ex_{0..2}|^2 );
+  E_A(e*) = |A^c-A^ex| at e*=1.7, 4; E_g = |g^c - g^ex| at 1.7, 4 and for g2.
+ PREDICTIONS:
+  P3a P1 vs M1-linearized identical and P2 vs M2-linearized identical (algebra; numerical difference < 1e-10).
+  P3b Truncations converge: E_traj(P5) < E_traj(P3) < E_traj(P2) < E_traj(P1) for every history.
+      Kill (per history): any inversion.
+  P3c Worst case for every truncation is the earliest decoupling, n=3 ed=0.25 (longest free streaming).
+      Kill: worst case elsewhere.
+  P3d MFe error < 1e-5 everywhere (it is exact in the linear model). Kill: > 1e-4 (would be a setup error).
+  P3e No instantaneous closure on l<=2 (P1/M1, P2/M2, CE2) gets E_traj < 0.05 for the early histories (n=3 ed<=0.5).
+      Kill: any of them below 0.05 there.
+  Lean only: OP2 beats P2 for late decoupling (ed>=2) and loses for ed<=0.5 (theta grows without bound when free).
+</content>
+</invoke>
+
+=================== RESULTS (appended 2026-11-11, after the runs; nothing above edited) ===================
+Setup check (t0_reproduce): real-basis chain gives g(1.7)=0.3432, g2=0.4110 (n=3 ed=2) vs v5.1 0.344/0.411; n=3 ed=0.25 0.9404/0.9467 vs
+ 0.941/0.947; n=6 ed=3 0.0256/0.1175 vs 0.026/0.118. (v5.1's 1.7 index is the first grid point >= 1.7, hence the 0.001.)
+TEST 1  P1a, P1b, P1c: confirmed (optical depths equal to all digits printed; int sigma^2 equal under reversal; sigma(e*) equal
+ wherever W closes before e*). Family S: int sigma^2 of the n=6 member is 2.09-2.15x the n=3 member's at equal optical depth.
+ P1d: HOLDS for every pair. R_diff 0.33-0.72; |dg| 0.009-0.184; dg2 R1 -0.064, R2 -0.107, R3 -0.118, R4 +0.161, R5 -0.063, R6 -0.067.
+ Lean (reversed member loses more): FAILED - the reversed member keeps MORE (g smaller) in R1,R2,R3,R5,R6 at both epochs and R4 at e*=4.
+ Lean (family S, n=6 keeps more when W starts late): FAILED in 5 of 6 late-window cases (holds only W=[1,4], ed6=1).
+TEST 2  P2a: confirmed. (R B^j)_{2,2+j} = k^j c_2...c_{j+1} != 0 for all j: Kalman matrix full rank, N_inf={0}, G positive definite.
+  Floating-point: smallest singular values 1e-29..1e-11; G eigenvalues below ~1e-19 are round-off.
+ P2b: KILLED for the integral Gramian (coupled/transition top ratio 2.5e-9 for n=3 ed=0.5 vs predicted ~e^{-42}=6e-19; n=6: 5e-27 vs
+  e^{-1365}). Cause: the prediction left out the leakage (k/sigma)^l through damped rungs into the conserved l=0 (v5.1's witness
+  predictions had it). Terminal Gramian ratio 4.8e-17 (n=3) is within 10^1.1 of the survival factor.
+ P2c: HOLDS (top eigenvector odd, l=3 weight 0.919, 0.923, 0.918, 0.922, 0.953, 0.990).
+ P2d: KILLED (effective rank free < transition: 8 vs 9 at ed=0.5, 3 vs 5 at ed=2; confounded with the shorter remaining horizon).
+TEST 3  P3a: HOLDS (entropy closures: closed moment = 0.3333 eps^2 (M1) and 0.300 eps^2 (M2) as eps->0; linearized M1==P1, M2==P2).
+ P3b: HOLDS in all 9 histories.  P3c: HOLDS (worst for P1,P2,P3,P5 is n=3 ed=0.25).  P3d: HOLDS (MFe max E_traj 4.6e-6).
+ P3e: HOLDS (smallest instantaneous-closure E_traj at ed<=0.5 is P2 0.433).
+ Lean (OP2 loses for early decoupling): FAILED - OP2 beats P2 in all 9 histories (ed=0.25: 0.247 vs 0.496).

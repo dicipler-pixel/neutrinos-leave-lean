@@ -1,0 +1,64 @@
+A3 -- two-cut quantities read out of McCormick's multigroup model (nnmode=1). Written 2026-11-11T14:06:02Z, before any of the four runs.
+(Only the eps=0.6 bit-for-bit regression has been run so far: identical I and e, 3342 steps; log_regress.txt.)
+
+RUNS. nnmode=1, mode=phys, G=6, x 0.4-20, N=300, K=32, all other options at McCormick's defaults; recorder every 20 steps.
+  T_H=1 MeV  (T0=10): archived bisection edges in res_mg_phys6_10.0.json: 0.51925 dispersed, 0.5195625 BH (nnmode=0).
+  T_H=0.51 MeV (T0=5): archived edges in res_mg_phys6_5.0.json: 0.52475 dispersed, 0.525125 BH (nnmode=0).
+  These edges were bisected with nnmode=0. Whether they still split under nnmode=1 is untested; Table VIII only shows
+  the +-0.001 pair kept. Rule set now: if an edge pair does not split, that is reported as a setup result, and the pair is
+  replaced by the archived nnmode=1 pair of Table VIII (validation/res_test_boosted_*: 0.518406/0.520406 at T0=10,
+  0.523938/0.525938 at T0=5), which is known to split.
+
+DEFINITIONS (recorder; cells: centre cell i=0, and the cell whose Lagrangian centre is nearest r=r_m=1, i=95).
+  Discrete Legendre moments: p_l, l=0..4, Gram-Schmidt of 1,mu,..,mu^4 on McCormick's 32 midpoint bins with
+    <f,g> = (1/2) sum_k f_k g_k dmu (so p_0=1 and I_0 = eps_s/4pi exactly); I_l = <p_l, I>.
+  Kept share (v5.1 Sec. 6, A=|v_0|^2 with ||v||=1, read on the local angular chain instead of a Fourier mode):
+    A = I_0^2 / ||I||^2, ||I||^2 = <I,I> over all 32 bins (all discrete moments). Also A_4 = I_0^2/sum_{l<=4} I_l^2.
+    Computed per (flavour, group), per flavour (summed intensity), and for the whole gas (sum of all 12 intensities).
+  Link rapidity per group (v5.1 Sec. 7; brief item 2: k1=k_e, k2=k_e+k_n): rho_s = (1/2) ln[(k_e,s+k_n,s)/k_e,s],
+    r_s = 1 + k_n,s/k_e,s, with the LOCAL rates kap_e, kap_n returned by McCormick's state().
+    Caveat fixed now: with nnmode=1 the nu-nu target is a common boosted frame, so k_n leaves only the total momentum
+    alone, not each group's dipole; D=diag(0,k_e,k_e+k_n,...) is exact for nnmode=0 and for the gas as a whole.
+  Energy-frame velocity of the whole neutrino gas: v_L = 2q/[e+P_r+sqrt((e+P_r)^2-4q^2)] from the summed e, q, P_r.
+  Speed-limit ratio: R_SL = (dA/dtau)^2 / (4 E_B A(1-A)) for the whole-gas kept share, tau = proper time of the cell
+    (dtau = lapse*dt, finite difference between records), E_B = k^2/3 with k = sqrt(3)/R(r_m) (the rms k of v5.1's
+    profile weight k^2 e^{-k^2/2} is sqrt(3)/r_m), so E_B = 1/R(r_m)^2. The bound's hypotheses (one Fourier mode,
+    flat space, ||v|| non-increasing) do not hold in the GR model, so R_SL > 1 would not be a violation; it is a reading.
+
+PREDICTION (i) -- where the collapsing and dispersing runs first separate (same T_H, values compared at equal eps by
+  interpolating the BH run onto the dispersing run's eps records, at the r_m cell):
+  separation of a quantity X at eps = first record where |X_BH - X_disp| > 0.01 * max_{eps'<=eps} |X_disp|.
+  Predicted: for X = v_L and X = 1-A (whole gas) the first 1% separation lies in 3.0 <= eps <= 5.5 at both T_H, and the
+  two quantities separate within 0.5 of each other in eps. Kept share A itself (not 1-A) differs by more than 1%
+  only after eps=4, if at all, before the earlier run stops.
+  Why: the edges differ by 6e-4 relative in amplitude; before the critical phase every field differs at that level;
+  a factor ~16 of growth is needed, which only the near-critical phase after the first compaction maximum (eps~1.7)
+  supplies; the archived edge runs stop at eps 6.17/6.35 (T0=10) and 6.03/6.46 (T0=5).
+  KILL: first 1% separation of v_L or of 1-A before eps=3.0 or after 5.5 (or never before the earlier stop) at either
+  T_H; or v_L and 1-A separating more than 0.5 apart in eps.
+
+PREDICTION (ii) -- link rapidity of the dominant energy group (largest eps_s among the 12 slots at the r_m cell) over
+  the readout epoch 1.7 <= eps <= 4.
+  Predicted: the dominant group is a nu_mu,tau group; its r = 1+k_n/k_e is about 6-9 (rapidity 0.9-1.1),
+  OUTSIDE v5.1's admissible window 3/4 <= r <= 3/2 (rapidity -0.144..+0.203), on the high side, at both T_H and in all
+  four runs. The nu_e groups sit at r about 2.2-2.8, also outside.
+  Why: McCormick App. C: nu-nu faster than nu-e+- by 1.5 (nu_e) and 7 (nu_mu,tau) at E~T; the local factor
+  (T_nu/T)^4/chi_e grows as e+- annihilate below ~0.5 MeV, which pushes r up, not down.
+  KILL: the dominant group's r inside [0.75, 1.5] at any record in 1.7<=eps<=4, in any run.
+
+======================================================================
+RESULTS (appended 2026-11-11T14:50:53Z; nothing above edited)
+Runs (log_runs.txt): T10_lo 0.51925 dispersed eps 6.295; T10_hi 0.5195625 BH eps 6.139; T5_lo 0.52475 dispersed eps 6.052;
+  T5_hi 0.525125 BH eps 6.339. Both archived nnmode=0 edge pairs still split under nnmode=1; fallback pair not needed.
+(i) first >1% separation at r_m (log_analyse.txt):
+  T_H=1:    v_L 4.228; 1-A 2.907; A itself 4.488; (peak compaction Cmax 3.777)
+  T_H=0.51: as written, v_L and 1-A trip at the FIRST record, eps=0.100, where both runs have X = 0 to roundoff (1e-19,
+            1e-16) and the running-max scale is zero: a definition failure of my metric, reported as such. With that one
+            record excluded: v_L 4.095; 1-A 2.926; A itself 4.157; (Cmax 3.645).
+  VERDICT: KILLED. 1-A separates before eps=3.0 at both T_H (2.907, 2.926), and v_L and 1-A separate 1.32 and 1.17 apart
+  in eps (> 0.5). v_L itself is inside the predicted window at both; A itself separates after eps=4 as predicted.
+(ii) dominant group at r_m over 1.7<=eps<=4: slots 9-10 (nu_mu,tau, groups 3-4) in all four runs.
+  r_dom: T_H=1 [7.881, 8.575] (rapidity 1.032-1.074); T_H=0.51 [8.243, 12.144] (rapidity 1.055-1.248).
+  nu_e groups: T_H=1 [2.466, 2.625]; T_H=0.51 [2.543, 3.390].
+  VERDICT: SURVIVES (never inside [0.75,1.5]; outside on the high side in all four runs). The numerical ranges written
+  (6-9 and 2.2-2.8) were too narrow at T_H=0.51 (up to 12.1 and 3.39): a miss of the range, not of the kill line.

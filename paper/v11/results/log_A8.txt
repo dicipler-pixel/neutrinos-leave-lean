@@ -1,0 +1,2 @@
+A_q03_ed8 delta=0.46300: BH eps=4.41 (539s)
+A_q03_ed8 delta=0.45500: BH eps=5.30 (545s)

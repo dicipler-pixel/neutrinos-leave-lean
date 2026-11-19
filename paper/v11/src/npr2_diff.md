@@ -1,0 +1,96 @@
+# npr2.zip vs /workspace/npr/x3/neutrino-pocket-record
+
+npr2 files 174, box files 190; same 127
+
+## Only in npr2 (24)
+- .git/objects/00/79c91a12fa127572fff67fa1d2b9d9aa8b2210
+- .git/objects/1e/9460dfffab9d197f46cc020e49ae7412b7e943
+- .git/objects/2e/a684a87f49d8a7f9b389f4a741eed8bf83fff0
+- .git/objects/38/30a7a6074d180429dee19ee66af4762bc7ae0d
+- .git/objects/55/bf6f11f575bd61c029f03d5e4e614ed5d87b47
+- .git/objects/59/e34a4ed772f4def36203dea8e8e443c1554966
+- .git/objects/5b/976ca901cb5a47131d9dd3ef6313d6e0ed10d9
+- .git/objects/67/b24d9f111ad3aed0da64dae806af0e77f8d479
+- .git/objects/6a/147f4f305add55fc4d19d93a1de2c4fc9d99df
+- .git/objects/6c/a4167d0f38c616e6a9afff54fbfe6496087f07
+- .git/objects/70/7e0d0264380bfe22f5463b56608ce5a6bf1c2d
+- .git/objects/78/73bcc69826be10e67704d68beb38f21acc5b4d
+- .git/objects/8b/bb2497d1d0dc045ecd8ec3c67fcaecda1e25d3
+- .git/objects/96/8db860ea0c9a1be4b6cfba4199927e84df7414
+- .git/objects/9c/f68d8e2ea050ff79102835dfb838ef05adcd80
+- .git/objects/a9/e593f4666006d68ca6caad400ee63cd4a20804
+- .git/objects/ab/59530d7053ce1ede5fe91aed567a93d88f3adc
+- .git/objects/ac/281794810d4c9a57e6d7a7f635bee29e062fd8
+- .git/objects/c3/1cca081f12d004ff58406faebac0843f78cc78
+- .git/objects/c4/6167d35f92292c0d8179d7d45c8fd28daed152
+- .git/objects/c9/9671ddfb951ae3b399e5a7c65320b78ee63e8b
+- .git/objects/ee/26ece8506f2438629d25ef3957c3fc554baac0
+- .git/objects/f6/553c3777e9dbd25ea47c0a52065be1e1f7aec2
+- .git/objects/f7/a6b7008b1c536f5f3053891e03b75cfc731740
+
+## Only on box (40)
+- .git/objects/0a/ffd831e458456df2b4f203240e4594d91f7dd0
+- .git/objects/0e/4c0a4264ce48c120867a2826ef3c0f4bdd5693
+- .git/objects/10/bbee69698de16b2f5b8dd3b4c7af12992f5938
+- .git/objects/12/45c25061d12d41ede0ad1c3738d0f055b98a48
+- .git/objects/19/685290b8b273ae7f4bdc7ca52b08f6ff302649
+- .git/objects/19/88c7544b489c4d740f313b7e3b2be6cc1c9c72
+- .git/objects/1d/99af1b4bfb38f25e2a7de4bab3f4a4fdf51b72
+- .git/objects/22/73e0fcaaf30f9fa91faa709d5c86579f6b4e11
+- .git/objects/22/7e5b86438a10f1f222f5157caf8dd156905a37
+- .git/objects/2a/58695555279b869859e0339151c8ec5361014f
+- .git/objects/31/464b3cfbc7983cac8b36604be404fd0a9f4703
+- .git/objects/36/8d9ad0bdf9490f59fa27c5fbc6c6b47ac6ae0b
+- .git/objects/37/8598c1ff10681afab554d19e621946a61f63bc
+- .git/objects/45/b16dc8d933e3780de2f449b3ad1decc69863e2
+- .git/objects/5b/d206964a468dacfa5d0a5f28d9fe92e1fc4059
+- .git/objects/60/4eff4c8d386ffa5ffc5316c8f12c7087dfe3b2
+- .git/objects/61/d307be79dfd790ffc478f504e5e6dbce18e6c1
+- .git/objects/66/74f05fa6d50b3a1ee30682d842ac1d82e41f41
+- .git/objects/6b/2ad9736e506d9c4f94f94575e65bd6d1be59d6
+- .git/objects/7e/64f0f21c2da5bab940909a996803e3b476e136
+- .git/objects/8a/a3dae2a17e572e89565f2b6a02310846ca3c87
+- .git/objects/91/0fc2df9f21022837d8e54f71b44ef8b5a0a3fe
+- .git/objects/9a/f4d96b598f4a4b4ccc09756bb74692b52bd318
+- .git/objects/a7/8ba8b2dde876e4e1487bac7e75d10511784af1
+- .git/objects/a8/88886dded3ab89364d872e16d59b80be57f821
+- .git/objects/ac/f5d044c221e2bea697ee7bdea74bc6bf7c0dbb
+- .git/objects/b7/1321a84c14b5ced0667b08b209b73d21d0ab47
+- .git/objects/bd/aec89e950c13952cecf2ad1aca1f5a5b84295c
+- .git/objects/c3/e473cb0a9b3b3dd4ce41e16570f7b6c5e13814
+- .git/objects/c4/20f9b4a444b0a65a41ffc0547c1ab59b7da953
+- .git/objects/c7/dbfdd5815d7886631a6425e7aa0de6f1c0a182
+- .git/objects/cb/b0630bc7bebdf1dba07da0670071dad114137f
+- .git/objects/cd/522f93dd3dd8b15040ce84b2971edc3acdc52f
+- .git/objects/e3/9dd1dcb61e2811ff1a77fda99dcdf5aee7bf44
+- .git/objects/e4/4e5cb6f1e96b3376b6d1e63565c95e209c4b22
+- .git/objects/e9/3c35ca9a22c3b6302d14acae572b5a2b20ca95
+- .git/objects/e9/3d71ecc57ce9d373d5cccfcf7156fb59824d72
+- .git/objects/ee/ec83a2efeedad745a85dec9766907986ab0a31
+- .git/objects/f1/fb25443a0ecd81bb6ec804479c44e28b49958b
+- .git/objects/f8/3595b18d52df17f15128eee5dedf412144c0f3
+
+## Different content (23)
+- .git/COMMIT_EDITMSG
+- .git/config
+- .git/index
+- .git/logs/HEAD
+- .git/logs/refs/heads/main
+- .git/refs/heads/main
+- LOG.md
+- README.md
+- acc_side/beam.py
+- acc_side/bidi.py
+- acc_side/chum.py
+- acc_side/commbeam.py
+- acc_side/common.py
+- acc_side/hatch.py
+- acc_side/lib.py
+- acc_side/libsearch.py
+- acc_side/replay_record.py
+- acc_side/shorten.py
+- acc_side/sonar.py
+- acc_side/treebeam.py
+- acc_side/window.py
+- cards/source/cap.js
+- experiments/pockets/B_rebirth.out

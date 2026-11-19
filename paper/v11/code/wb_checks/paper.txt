@@ -1,0 +1,570 @@
+The Weight Between
+
+The Weight Between
+What the present must keep, and what it costs to move it
+Jeromie Beasley
+Version 1.1 · 26 October 2026
+
+Prepared with AI assistance (Claude, Anthropic): the ideas and direction are the author's; the computation, drafting and checking were done with AI tools.
+
+Abstract
+Two questions are asked of a reduced description. What must the present keep to predict every admitted future reading? The predictive quotient answers it exactly in finite dimensions: the first \(\dim V\) readings decide, and the present closes only when its kernel is invariant. What does it cost to move what is kept? Every motion of a kept sector is a crossing of the cut, and one quantity, the coupling energy \(E_B=\lVert PH(1-P)\rVert_F^2\), is at once the speed of the kept sector, the variance of its energy and the zero-lag memory of what it drops. Read at different powers of the gap it is memory geometry, light’s static response, and the connection energy of a non-normal operator, and these rungs obey a log-convex ladder. Light reads the weight at gap power \(-1\), writes a record in phase that the present populations cannot see, and keeps two books that sum to one. Ordered walks through a hidden interior reach the boundary as a response that a single return cannot read. Every claim is graded and the readings are marked as readings.
+
+Memory: what the present must keep
+
+The predictive quotient is the organising object of the author’s Dirac Time of the Gigantefermion , §§2–5; the coupling-block equivalences are from Universal Projector Geometry ; the connection-energy identity is the subject of Non-Normality Is Connection Energy ; the overlap identity is Theorem 8 of The Ledger Outlives the Metric .
+
+Let \(V\) be a finite-dimensional vector space over a field \(K\), let \(L:V\to V\) be the evolution and \(R:V\to W\) the present reading. A difference \(\delta\in V\) is invisible now when \(R\delta=0\), and invisible forever when \(RL^n\delta=0\) for every \(n\ge0\). Write \[N_\infty=\bigcap_{n\ge0}\ker RL^n ,\qquad V_{\mathrm{pred}}=V/N_\infty .\]
+
+Theorem 1. 
+ For all \(v,w\in V\): \(RL^nv=RL^nw\) for every \(n\in\mathbb N\) if and only if it holds for every \(n<\dim V\). The never-observable subspace equals \(\bigcap_{k<\dim V}\ker RL^k\), it is \(L\)-invariant, and it lies in \(\ker R\). [Lean: dirac-time-lean, Headline.lean future_decided_by_first_dim_steps; FiniteReturn.lean silent_forever_iff; PredictiveQuotient.lean ker_observability, unobservable_le_comap, unobservable_le_ker]
+
+Proof. 
+Proof. Let \(p\) be the minimal polynomial of \(L\), of degree \(d\le\dim V\). Every \(L^n\) with \(n\ge d\) is a linear combination of \(I,L,\dots,L^{d-1}\) (divide \(x^n\) by \(p\)). So if \(RL^k\delta=0\) for \(k<d\), then \(RL^n\delta=0\) for all \(n\). If \(\delta\in N_\infty\) then \(RL^n(L\delta)=RL^{n+1}\delta=0\), so \(L\delta\in N_\infty\); and \(n=0\) gives \(N_\infty\subseteq\ker R\). ◻
+
+In continuous time the same holds: \(Re^{Lt}\delta=0\) for all \(t\) if and only if \(RL^k\delta=0\) for all \(k\).[Lean: dirac-time-lean, ContinuousReturn.lean hidden_forever_iff]
+
+Theorem 2. 
+ If a linear map \(F:V\to S\) determines every future reading (\(Fv=Fw\Rightarrow RL^nv=RL^nw\) for all \(n\)), then \(\ker F\subseteq N_\infty\) and \(\operatorname{rank}F\ge\dim V_{\mathrm{pred}}\). The quotient \(V_{\mathrm{pred}}\) carries the induced dynamics and readout, so it is itself a predictor of least dimension. [Lean: dirac-time-lean, PredictiveQuotient.lean ker_le_unobservable_of_sufficient, finrank_quotient_le_of_sufficient; Headline.lean minimal_predictor_dimension]
+
+Proof. 
+Proof. If \(F\delta=0\) then \(F(v+\delta)=Fv\), so \(RL^n\delta=0\) for every \(n\), i.e. \(\delta\in N_\infty\). Then \(F\) factors through \(V/\ker F\twoheadrightarrow V/N_\infty\), so \(\operatorname{rank}F=\dim V/\ker F\ge\dim V/N_\infty\). ◻
+
+Theorem 3. 
+ The present reading needs no memory (\(Rv=0\Rightarrow RLv=0\)) if and only if \(RL=AR\) for some linear \(A\); then \(N_\infty=\ker R\). [Lean: dirac-time-lean, PredictiveQuotient.lean closes_iff, unobservable_eq_ker_of_closes]
+
+So memory is exactly the difference between what is read now and what the future still needs. When the present closes there is nothing to remember; when it does not, the present must carry \(\dim V_{\mathrm{pred}}-\operatorname{rank}R\) further numbers.
+
+Memory appears under reduction.
+
+Split the state into kept and hidden parts, \(\dot x=Ax+By\), \(\dot y=Cx+Dy\). Solving the second equation and substituting gives \[\label{eq:kernel}
+\dot x(t)=Ax(t)+Be^{Dt}y(0)+\int_0^t Be^{D(t-s)}C\,x(s)\,ds .\] The convolution is the memory, with kernel \(K(\tau)=Be^{D\tau}C\); the middle term is the hidden preparation.[Derived] The memory vanishes at every lag exactly when the coupling vanishes. For a Hermitian generator split by a projector \(\Pi\) with coupling block \(B\), \[=0\iff B=0\iff BB^\dagger=0,\] and the trace of the zero-lag kernel, \(\operatorname{Tr}BB^\dagger=\sum_{ij}|B_{ij}|^2\), is the coupling energy of Section 2.[Lean: upg-lean, UPGAlgebra.lean feedbackC_equivalences; UPGProjectorMetric.lean trace_memoryAtZero_eq_couplingEnergy] The frequency-domain form, a hidden layer turning into a self-energy, is the Schur complement.[Lean: votkp-lean, Peel.lean schur_memory; light-ledger-lean, Boundary.lean schur_interior_residual]
+
+Same present, different future.
+
+The abstract statement has concrete machine-checked witnesses, one for each subject of this paper:
+
+Colour: two surfaces of equal colour now give different colours after the next passive filter, and no colour-only rule predicts the next colour.[Lean: elemental-peeling-lean, PauliMemory.lean equal_initial_color, next_surface_color_differs, no_color_only_next_filter_predictor]
+
+Light: equal present populations, and a phase that a later read turns into a signal (Section 3).[Lean: dirac-time-lean, EqualEndpointWitness.lean]
+
+Transport: the same records, a different later transmission.[Lean: votkp-lean, Peel.lean shared_records, later_outcomes]
+
+Order: a clean ladder and one with a transposition both have zero permutation entropy, so a summary misses order (the companion paper The Comma is a Holonomy).[Lean: votkp-lean, Ordinal.lean zero_entropy_not_identifying]
+
+The weight between
+
+Every motion of what is kept is a crossing
+
+If \(P^2=P\) and \(V=PV+VP\) (a tangent to the set of projectors), multiply on both sides by \(P\): \(PVP=2PVP\), so \(PVP=0\); similarly \((1-P)V(1-P)=0\). Hence \[V=PV(1-P)+(1-P)VP .\] A kept sector cannot deform inside itself. Every motion of what is kept is a transfer across the cut, and that is why one quantity can weigh every crossing.[Lean: dirac-time-lean, ProjectorTangent.lean tangent_eq_offdiag; also iqgt-grassmannian-lean, gravity-ledger-lean, relational-atlas-lean]
+
+Definition 4. 
+For a Hermitian \(H\) and an orthogonal projector \(P\), the weight between \(P\) and \(1-P\) is the coupling energy \[E_B=\lVert PH(1-P)\rVert_F^2 .\]
+
+Proposition 5. 
+ With \(\hbar=1\) and \(\dot P=-i[H,P]\), \[\label{eq:x1}
+g:=\tfrac12\lVert \dot P\rVert_F^2=\tfrac12\lVert [H,P]\rVert_F^2=E_B ,\] and for rank-one \(P=|\psi\rangle\langle\psi|\) this also equals \(\operatorname{Var}_\psi H\).
+
+Proof. 
+Proof. Write \(B=PH(1-P)\). Since \(P^2=P\), \([H,P]=(1-P)HP-PH(1-P)=B^\dagger-B\), and \(B\) and \(B^\dagger\) live in opposite off-diagonal blocks, so \(\lVert [H,P]\rVert_F^2=\lVert B\rVert_F^2+\lVert B^\dagger\rVert_F^2=2\lVert B\rVert_F^2\). For \(P=|\psi\rangle\langle\psi|\), \(\lVert B\rVert_F^2=\langle\psi|H(1-P)H|\psi\rangle=\langle H^2\rangle-\langle H\rangle^2\). ◻
+
+[Derived; Lean: upg-lean, UPGProjectorMetric.lean] [Computed: weight_between_core_checks.py, C1, worst relative difference \(4\times10^-15\) over 300 cases]
+
+Changing the diagonal blocks at fixed coupling leaves \(E_B\) unchanged, and the zero-lag memory of [eq:kernel] equals half the projector cross energy.[Lean: upg-lean, UPGInterfacePersistence.lean] So the same number is three things at once: how fast the kept sector turns, how much energy is uncertain, and how much the present remembers at zero lag.
+
+Metric and curvature from one Hermitian form
+
+On tangents at \(P\), \(Q_P(V,W)=\operatorname{Tr}(PVW)\) is a positive semidefinite Hermitian form. Its real part is the metric \(g\); its imaginary part gives the Berry curvature \(\Omega=2\operatorname{Im}Q\). Cauchy–Schwarz for \(Q\) reads \(|Q(V,W)|^2\le Q(V,V)Q(W,W)\), and expanding \(|Q|^2=(\operatorname{Re}Q)^2+(\operatorname{Im}Q)^2\) gives \[\label{eq:curv}
+(\operatorname{Im}Q(V,W))^2\le g(V,V)\,g(W,W)-g(V,W)^2,\qquad\text{i.e.}\quad 4\det g\ge\Omega^2 .\] Zero metric forces zero curvature.[Derived; Lean: iqgt-grassmannian-lean, Basic.lean metric_control, rigidity_kills_curvature] The bound is known (IQGT v7.2, Thm. 6.1, after Mera–Ozawa ).
+
+The tips swing, the tail holds.
+
+When a level inside a kept cluster is nearly tied with its neighbour, the single eigenvector can swing while the cluster’s subspace moves only by the perturbation over the gap to the rest of the spectrum (Davis–Kahan ). The author’s IQGT states and tests this as a law of what can be looked at: on a seven-level operator with a three-level cluster, outer gap \(3\) and a perturbation of fixed norm, the median turn of one vector inside the cluster rose from about \(1^\circ\) toward \(90^\circ\) as the inner gap fell from \(1\) to \(0.01\), while the cluster subspace stayed below its bound in every one of 900 trials; at an exact tie the tip is free, since any combination of tied eigenvectors is again an eigenvector . This is the precise form of the phrase the tips swing, the tail holds, and it returns in colour (Colour Picks Its Leader) as the leader that is decided by a gap.
+
+Non-normality is connection energy
+
+On a finite simple graph with Hermitian vertex blocks \(D_i\) and a unitary connection \(A\) (\(A^\dagger=-A\), supported on edges, \(A_{ij}\) unitary on each edge), the operator \(H=\operatorname{diag}D+A\) satisfies \[\label{eq:connection}
+\tfrac18\lVert [H,H^\dagger]\rVert_F^2=\sum_{\{i,j\}\in E}\lVert D_i-A_{ij}D_jA_{ij}^\dagger\rVert_F^2,\qquad H\text{ normal}\iff D_i=A_{ij}D_jA_{ij}^\dagger\text{ on every edge}.\] [Lean: nonnormality-connection-energy-lean, SelfCommutator.lean norm_sq_selfCommutator_div_eight, isStarNormal_iff_isParallel] [Computed: C7, relative error \(4\times10^-16\); with one edge block made non-unitary the identity fails by a relative \(5\times10^-2\), as it must]
+
+In the scalar setting, a Hermitian coupling \(K\) between levels \(D=\operatorname{diag}(d)\) with \(H=D+iK\), the same quantity is \(\lVert [H,H^\dagger]\rVert_F^2=4\lVert [D,K]\rVert_F^2=4\sum_{ij}|K_{ij}|^2(d_i-d_j)^2\).[Derived] The non-normality of sectors plus a connection is the squared rate at which the coupling would change the sector energies: it vanishes exactly when the coupling carries each sector’s content onto its neighbour’s unchanged.
+
+Two books, and the Born improbability.
+
+Beside the connection book \(E_-=\tfrac18\lVert [H,H^\dagger]\rVert_F^2\) sits an opposite book \(E_+=\tfrac18\lVert H^2-H^{\dagger 2}\rVert_F^2\). On a single edge that carries two \(k\)-dimensional planes, \(D_1=P\) and \(D_2=R\) with \(U=I\), \[\label{eq:books}
+E_-=\lVert P-R\rVert_F^2=2k(1-p),\qquad E_+=\lVert P+R\rVert_F^2=2k(1+p),\qquad p=\tfrac1k\operatorname{Tr}(PR),\] since \(\lVert P\mp R\rVert_F^2=2k\mp2\operatorname{Tr}PR\). The connection book is the improbability of passing from one plane to the other; the two books share the fixed budget \(E_-+E_+=4k\).[Derived; Computed: bridge_checks.py B4, error \(7\times10^-15\)] For three or more outcomes, consistency forces \(p=\operatorname{Tr}(PR)/k\) as the transition probability between planes; with two outcomes it is not forced.[Cited: Born note v4, after Hossenfelder  and Wright–Weigert 
+
+The gap-power ladder
+
+Fix couplings \(K_{ij}\) (\(i\neq j\)) between levels \(d_i\), with gaps \(\Delta_{ij}=d_i-d_j\) nonzero wherever \(K_{ij}\neq0\), and set \[S_k=\sum_{i\neq j}|K_{ij}|^2|\Delta_{ij}|^k\qquad(k\in\mathbb R).\]
+
+Proposition 6. 
+ \(k\mapsto\log S_k\) is convex, so \(S_k^2\le S_{k-j}S_{k+j}\); in particular \[\label{eq:ladder}
+S_0^2\le S_{-2}S_2,\qquad S_{-1}^2\le S_{-2}S_0 .\]
+
+Proof. 
+Proof. Cauchy–Schwarz on \(\sum\big(|K||\Delta|^{(k-j)/2}\big)\big(|K||\Delta|^{(k+j)/2}\big)\). This is the classical log-convexity of moments (Lyapunov, Hölder ); only the reading of the rungs is new. ◻
+
+[Derived; Computed: C6, no violation in 4000 tests]
+
+Read in first-order perturbation theory of \(D+\epsilon K\), the rungs are
+
+\(k\)
+reading
+subject
+
+\(-2\)
+\(S_{-2}=\sum_i\tfrac12\lVert \dot P_i\rVert_F^2\), total eigenprojector metric
+memory geometry
+
+\(-1\)
+static response, \(\alpha_0=2\sum_n|K_{n0}|^2/\Delta_n\) for the ground level
+light (Section 3)
+
+\(-1\)
+zero-temperature friction weight on a driven pair
+friction (Offset Speed Limit)
+
+\(0\)
+\(S_0=\lVert K_{\mathrm{off}}\rVert_F^2\), total coupling energy; per level, energy variance
+time (Offset Speed Limit)
+
+\(+1\)
+not yet identified
+open
+
+\(+2\)
+\(S_2=\lVert [D,K]\rVert_F^2=\tfrac14\lVert [H,H^\dagger]\rVert_F^2\), connection energy
+non-normality
+
+The first inequality of [eq:ladder] says: the weight between, squared, never exceeds the geometry it produces times the non-normality it would cost. That the rungs are one weight seen at different powers of the gap is an organising reading;[Open] the inequalities are not.
+
+The ladder computed on a random seven-level coupling. Each filled point is a rung with a reading; the open point, \(k=+1\), has none yet. The curve is convex, which is Proposition [prop:ladder].
+
+Light: the weight read at gap power \(-1\)
+
+The optical results of this section are developed at length in the author’s Light Keeps the Ledger ; the census identity \(C-C^2=P_{12}P_{12}^\dagger\) is its Theorem 5.1 and the response ladder its §4.8.
+
+Response is a reweighted metric.
+
+For a two-level transition with amplitude \(\mu\) and gap \(\Delta\), the polarisability at photon energy \(x\) is the transition metric \(\mu^2/\Delta^2\) times the weight \(2\Delta^3/(\Delta^2-x^2)\), positive below the gap; statically \(\alpha_0=2\Delta g\).[Lean: light-ledger-lean, OpticalMetric.lean response_is_weighted_metric, static_response] A positive reweighting can neither hide nor create a null direction,[Lean: OpticalMetric.lean positive_reweighting_null_equivalence] so light sees exactly the directions the geometry has. For transitions of weight \(w_i\ge0\) at gaps \(t_i\ge a>0\), with \(g=\sum_iw_i/t_i^2\) and \(\alpha_0=\sum_i2w_i/t_i\), one has \(2ag\le\alpha_0\), and below the gap (\(0\le y=x^2<a^2\)) the response \(R(y)=\sum_i2t_iw_i/(t_i^2-y)\) is bracketed by \(\alpha_0\le R(y)\le\alpha_0/(1-y/a^2)\).[Lean: light-ledger-lean, LightSpectral.lean static_lower, response_bracket]
+
+In the ladder’s own variables (a perturbation \(K\) of the ground level, gaps \(\Delta_n=d_n-d_0\), fidelity metric \(g_{KK}=\sum_{n\neq0}|K_{n0}|^2/\Delta_n^2\), variance \(\operatorname{Var}_0K=\sum_{n\neq0}|K_{n0}|^2\)), Cauchy–Schwarz on \(\sum_n|K_{n0}|^2/\Delta_n=\sum_n(|K_{n0}|/\Delta_n)\cdot|K_{n0}|\) gives \[\label{eq:alpha}
+\alpha(0)^2\le4\,g_{KK}\operatorname{Var}_0K .\] This is rung \(-1\) of the ladder: light’s static response is bounded by the memory geometry times the weight.[Derived]
+
+Light writes a record.
+
+Two optical modes coupled to two memory modes by \(H_w=\kappa\sum_j(c_j^\dagger m_j+m_j^\dagger c_j)\) transfer \((|a\rangle+e^{i\phi}|b\rangle)/\sqrt2\) into memory at \(T_w=\pi/(2\kappa)\). The populations are \(\tfrac12\) for every \(\phi\): the present cannot see the phase. A later exchange can. In the machine-checked form, \(\langle Z_P\rangle(\theta)=\sin2\theta\,\sin\Phi\): at \(\theta=0\) the populations are equal for every phase \(\Phi\), at \(\theta=\pi/4\) the readout is \(\sin\Phi\), and no probe of this kind separates \(\Phi\) from \(\pi-\Phi\).[Lean: dirac-time-lean, EqualEndpointWitness.lean expectation_Z, present_populations_equal, later_readout, probe_blind_to_supplement] This is Theorem [thm:minpred] made of light: the present reading is not a sufficient state.
+
+The two books.
+
+A pure two-path record keeps two books: what the paths reveal (predictability \(\mathcal P\) or which-way distinguishability \(\mathcal D\)) and what the interference shows (visibility \(\mathcal V\)). For pure markers \(\mathcal V^2+\mathcal D^2=1\) (Englert ), and with the lost share \(\mathcal L\) written in, \(\mathcal P^2+\mathcal V^2+\mathcal L^2=1\) per edge.[Lean: nonnormality-connection-energy-lean, TwoBooks.lean duality_sum_sq] The same two books appear between crossed and parallel polarizers with a crystal between them: per wavelength, with \(z=e^{i\delta}\), the crossed port carries \(E_-=\tfrac14|1-z|^2=\sin^2(\delta/2)\) and the parallel port \(E_+=\tfrac14|1+z|^2=\cos^2(\delta/2)\). They are exact complements and add back to white.[Derived]
+
+Films and the \(\oplus\) law.
+
+Reflection from thin films composes by \[\label{eq:oplus}
+u\oplus v=\frac{u+v}{1+uv},\qquad \tanh a\oplus\tanh b=\tanh(a+b),\] and stacks telescope.[Lean: votkp-lean, Film.lean film_is_oplus, stack_telescopes; Smith.lean smith_identity] So a reflection adds like a rapidity: the hyperbolic angle is the additive quantity, the reflection coefficient is its \(\tanh\).
+
+The survival of what is kept.
+
+For orthogonal projectors of equal rank \(k\), \(\operatorname{Tr}PQ=k-\tfrac12\operatorname{Tr}(Q-P)^2\), so along a differentiable path the overlap with the start is \(k-gt^2+o(t^2)\) with \(g=\tfrac12\operatorname{Tr}\dot P(0)^2\).[Lean: gravity-ledger-lean, GravityOverlap.lean overlap_exact, overlap_quadratic_limit] With Proposition [prop:x1], a Hamiltonian-driven kept sector keeps overlap \(k-E_Bt^2+o(t^2)\): the weight between sets the short-time loss of what is kept.[Derived]
+
+Knots and loops: order a count forgets
+
+A count misses order.
+
+The trefoil group \(\langle x,y\mid x^2=y^3\rangle\) has the representation \(X=i\sigma_x\), \(Y=\cos\frac\pi3\,I+i\sin\frac\pi3\,\sigma_z\): \(X^2=Y^3=-I\), but the commutator \(XYX^{-1}Y^{-1}\) has trace \(-1\), while abelianising sends it to the identity, trace \(2\).[Computed: B6] The ordered representation keeps what a winding count loses. For the torus knot \(T(3,4)\), two branches share meridian eigenvalues \(\pm i\) and longitude \(-I\) while an interior trace is \(+\sqrt2\) on one and \(-\sqrt2\) on the other: the boundary summary does not determine the interior.[Cited: Dirac Time , torus-knot section; the two-branch sign was re-derived in the 22 Oct full read] And every SU(2) loop trace is \(2\cos\alpha=\operatorname{Tr}U^{-1}\): a scalar trace loses orientation.
+
+Hidden walks reach the boundary.
+
+For a boundary/interior generator \(\begin{pmatrix}E&W\\W^\dagger&F\end{pmatrix}\), \[G_B(z)=\big[zI-E-W(zI-F)^{-1}W^\dagger\big]^{-1},\qquad W(zI-F)^{-1}W^\dagger=\sum_{n\ge0}\frac{WF^nW^\dagger}{z^{n+1}}\quad(|z|>\lVert F\rVert),\] so the boundary response sums ordered walks through the interior, the frequency-domain form of the memory kernel [eq:kernel]. In a three-port ring with couplings \(a,b,c\) and flux \(\phi\) on one link, \(p(z)=z^3-z(a^2+b^2+c^2)-2abc\cos\phi\), and the two ordered transfers differ by \[G_{12}-G_{21}=\frac{-2i\,bc\sin\phi}{p(z)},\] while the single return \(G_{11}=(z^2-b^2)/p\) is blind to the sign of \(\phi\).[Derived; Computed: B5, relative error \(2\times10^-15\)] A phase-referenced ordered measurement reads what a single return misses: two ports recover an orientation one port cannot.
+
+A fold is not an exceptional point.
+
+On the figure-eight knot’s nonabelian character curve, \(\cosh v=\cosh4u-\cosh2u-1\), the positive-real slice begins at \(u^*=\log\frac{1+\sqrt5}2\), where \(v(u)\) has a square-root fold. The component itself is smooth there; a spectral exceptional point needs an operator family with coalescing eigenvectors, which the passive Jordan chain supplies and the knot curve alone does not.[Cited: earlier working note of 24 Oct 2026, not re-run here]
+
+Where this meets colour, sound, music and time
+
+The sphere on which a colour or a timbre is a direction, and the leader it settles on, are the subjects of Colour Picks Its Leader and Timbre is Colour; the offset of a cut, its clock face and its speed limit are the subject of The Offset Speed Limit; a melodic context as a hidden sector is a reading in The Comma is a Holonomy. These are readings that join papers, not results of this one.
+
+99 C. Davis and W. M. Kahan, The rotation of eigenvectors by a perturbation III, SIAM J. Numer. Anal. 7 (1970) 1–46. B.-G. Englert, Fringe visibility and which-way information: an inequality, Phys. Rev. Lett. 77 (1996) 2154. G. H. Hardy, J. E. Littlewood and G. Pólya, Inequalities, Cambridge University Press (1952). S. Hossenfelder, Born’s rule from almost nothing, arXiv:2006.14175 (2020). B. Mera and T. Ozawa, Kähler geometry and Chern insulators, Phys. Rev. B 104 (2021) 045104. doi:10.1103/PhysRevB.104.045104 J. Beasley, Light Keeps the Ledger: Matter, Direction, and the Wall Between Them, Research Edition 7.2, Zenodo record 23043570 (2026). doi:10.5281/zenodo.23043570 J. Beasley, Intrinsic Quantum Geometric Tensor on the Grassmannian and Spectral Lower Bounds on Dissipation, v7.2, Zenodo record 23351266 (2026). doi:10.5281/zenodo.23351266 J. Beasley, The Dirac Time of the Gigantefermion, v3.0.1, Zenodo record 22979186 (2026). doi:10.5281/zenodo.22979186 J. Beasley, Non-Normality Is Connection Energy, Zenodo record 22804072 (2026). doi:10.5281/zenodo.22804072 J. Beasley, Universal Projector Geometry from Electrical Measurements, Zenodo record 23002919 (2026). doi:10.5281/zenodo.23002919 J. Beasley, The Ledger Outlives the Metric, Zenodo record 22959910 (2026). doi:10.5281/zenodo.22959910 V. J. Wright and S. Weigert, A Gleason-type theorem for qubits based on mixtures of projective measurements, arXiv:1808.08091 (2018).
+
+Earlier working notes by the author drawn on and marked as such in the text: What is the weight, Two kinds of clock together, Does colour select the leader eigenvector, Fall Colour Clock, The logic behind the music (22–24 Oct 2026), and the 24 Oct synthesis notes; none is a published source and each claim taken from them is graded as cited, not re-run.
+
+Scripts and outputs
+Every script in full, exactly as run, with its printed output. Each states its kill conditions before any code.
+bridge_checks.pyCode
+# SCRIPT: BRIDGE-CHECKS-01
+# Checks, run before writing, of every result taken into v1 from "What the Present Keeps" and the Spine.
+# KILL CONDITIONS (written before the run):
+#  B1 loudness bend = timbre speed: for I(t) = sum_k x_k e^{-r_k t} (r_k = 2 gamma_k), d^2/dt^2 log I = Var_p(r) and
+#     the Fisher speed of the shape sum pdot^2/p equals the same variance. Dies if either differs by > 1e-8 relative.
+#  B2 passive Jordan chain: I = e^{-g t}(A + b t) has (log I)'' = -(b/(A+bt))^2 < 0, and the three-sample determinant
+#     y0 y2 - y1^2 is >= 0 for every positive mixture and equals -e^{-2g(t+h)} b^2 h^2 for the chain. Dies on any
+#     mixture with a negative determinant or a chain value off by > 1e-12 relative.
+#  B3 equal gray now, different later: (0.9, 0.1) and (0.1, 0.9) at rates (1, 0.1) have equal I(0) = 1 and initial
+#     slopes -0.91 and -0.19. Dies otherwise.
+#  B4 two books on k-planes: for orthogonal projectors P, R of rank k in C^n with H = P + i R? -- use the stated form:
+#     E_minus = 2k(1 - p), E_plus = 2k(1 + p), p = Tr(PR)/k, with E_minus = (1/8)||[H,H^dag]||^2, E_plus =
+#     (1/8)||H^2 - H^dag^2||^2 for H = P + iR. Dies if off by > 1e-10.
+#  B5 three-port flux: F_phi as printed; G12 - G21 = -2 i a b c sin(phi) / p(z) at random complex z. Dies > 1e-10.
+#  B6 trefoil: X = i sigma_x, Y = cos(pi/3) I + i sin(pi/3) sigma_z satisfy X^2 = Y^3 = -I; Tr(X Y X^-1 Y^-1) = -1.
+#  B7 two-path record: for w = 1/2 and mu = cos(theta): V = cos(theta), D = sin(theta), V^2 + D^2 = 1.
+#  B8 Born improbability is a connection book: control -- with p computed independently by Tr(PR)/k.
+import numpy as np
+rng = np.random.default_rng(1024)
+fro2 = lambda X: float(np.real(np.vdot(X, X)))
+
+# B1
+worst = 0.0
+for _ in range(500):
+    n = rng.integers(2, 7); x = rng.uniform(0.1, 2, n); r = rng.uniform(0.05, 4, n); t = rng.uniform(0, 3)
+    # first run used a finite-difference second derivative (step 1e-4); its rounding noise (~1e-3 relative on small
+    # variances) fired the kill. The exact derivative is used now: (log I)'' = I''/I - (I'/I)^2.
+    I0 = np.sum(x * np.exp(-r * t)); I1 = -np.sum(r * x * np.exp(-r * t)); I2 = np.sum(r**2 * x * np.exp(-r * t))
+    d2 = I2 / I0 - (I1 / I0)**2
+    I = lambda s: np.sum(x * np.exp(-r * s))
+    p = x * np.exp(-r * t) / I(t); var = np.sum(p * r**2) - np.sum(p * r)**2
+    pdot = -(r - np.sum(p * r)) * p; fisher = np.sum(pdot**2 / p)
+    worst = max(worst, abs(d2 - var) / var, abs(fisher - var) / var)
+print('B1 (log I)\'\' = Var_p(r) = Fisher speed of the shape: worst relative difference %.1e' % worst)
+
+# B2
+neg = 0
+for _ in range(2000):
+    n = rng.integers(2, 6); A = rng.uniform(0.01, 2, n); rr = rng.uniform(0.05, 0.99, n)
+    y = [np.sum(A * rr**k) for k in range(3)]; neg += (y[0] * y[2] - y[1]**2) < -1e-15
+g, kap, x1, x2, t, h = 1.2, 0.7, 0.3, 0.8, 0.4, 0.3
+Ich = lambda s: np.exp(-g * s) * (x1 + x2 + kap * x2 * s)
+y0, y1, y2 = Ich(t), Ich(t + h), Ich(t + 2 * h); b = kap * x2
+print('B2 mixtures with negative determinant: %d of 2000; chain determinant %.12e vs predicted %.12e' %
+      (neg, y0 * y2 - y1**2, -np.exp(-2 * g * (t + h)) * b**2 * h**2))
+
+# B3
+for xf, xs in [(0.9, 0.1), (0.1, 0.9)]:
+    print('B3 preparation (%.1f, %.1f): I(0) = %.2f, initial slope %.2f' % (xf, xs, xf + xs, -(1.0 * xf + 0.1 * xs)))
+
+# B4 / B8
+def rproj(n, k):
+    Q, _ = np.linalg.qr(rng.normal(size=(n, n)) + 1j * rng.normal(size=(n, n))); V = Q[:, :k]; return V @ V.conj().T
+w4 = 0.0
+for _ in range(300):
+    # first run guessed H = P + iR, which is not the Spine's construction and fired. The Spine's books sit on a graph
+    # edge: vertex blocks D_1 = P, D_2 = R, unitary edge block U, H = diag(D) + A with A anti-Hermitian.
+    n = rng.integers(3, 8); k = rng.integers(1, n); P, R = rproj(n, k), rproj(n, k); U = np.eye(n)
+    Z = np.zeros((n, n)); H = np.block([[P, U], [-U.conj().T, R]])
+    Em = fro2(H @ H.conj().T - H.conj().T @ H) / 8; Ep = fro2(H @ H - H.conj().T @ H.conj().T) / 8
+    p = np.real(np.trace(P @ R)) / k
+    w4 = max(w4, abs(Em - 2 * k * (1 - p)), abs(Ep - 2 * k * (1 + p)))
+print('B4 E_minus = 2k(1-p), E_plus = 2k(1+p) on an edge carrying P and R: worst absolute error %.1e over 300 pairs' % w4)
+
+# B5
+w5 = 0.0
+for _ in range(200):
+    a, b_, c, phi = rng.uniform(0.2, 2, 4); z = complex(rng.normal(), rng.normal())
+    F = np.array([[0, a, c * np.exp(-1j * phi)], [a, 0, b_], [c * np.exp(1j * phi), b_, 0]])
+    G = np.linalg.inv(z * np.eye(3) - F)
+    pz = z**3 - z * (a * a + b_ * b_ + c * c) - 2 * a * b_ * c * np.cos(phi)
+    w5 = max(w5, abs((G[0, 1] - G[1, 0]) - (-2j * b_ * c * np.sin(phi) / pz)) / abs(G[0, 1]))
+print('B5 three-port: G12 - G21 = -2i bc sin(phi)/p(z) (derived; the extracted text read abc), worst relative error %.1e' % w5)
+
+# B6
+sx = np.array([[0, 1], [1, 0]]); sz = np.diag([1, -1]); X = 1j * sx; Y = np.cos(np.pi / 3) * np.eye(2) + 1j * np.sin(np.pi / 3) * sz
+print('B6 trefoil: |X^2 + I| = %.1e, |Y^3 + I| = %.1e, Tr(commutator) = %.6f (abelian count gives 2)' %
+      (abs(X @ X + np.eye(2)).max(), abs(np.linalg.matrix_power(Y, 3) + np.eye(2)).max(), np.real(np.trace(X @ Y @ np.linalg.inv(X) @ np.linalg.inv(Y)))))
+
+# B7
+for th in [0.3, 0.9, 1.4]:
+    mu = np.cos(th); V = 2 * np.sqrt(0.25) * abs(mu); D = np.sqrt(1 - 4 * 0.25 * mu**2)
+    print('B7 theta = %.1f: V = %.6f (cos %.6f), D = %.6f (sin %.6f), V^2 + D^2 = %.12f' % (th, V, np.cos(th), D, np.sin(th), V**2 + D**2))
+Output
+B1 (log I)'' = Var_p(r) = Fisher speed of the shape: worst relative difference 2.9e-11
+B2 mixtures with negative determinant: 0 of 2000; chain determinant -5.260219099736e-03 vs predicted -5.260219099736e-03
+B3 preparation (0.9, 0.1): I(0) = 1.00, initial slope -0.91
+B3 preparation (0.1, 0.9): I(0) = 1.00, initial slope -0.19
+B4 E_minus = 2k(1-p), E_plus = 2k(1+p) on an edge carrying P and R: worst absolute error 7.1e-15 over 300 pairs
+B5 three-port: G12 - G21 = -2i bc sin(phi)/p(z) (derived; the extracted text read abc), worst relative error 1.8e-15
+B6 trefoil: |X^2 + I| = 0.0e+00, |Y^3 + I| = 4.1e-16, Tr(commutator) = -1.000000 (abelian count gives 2)
+B7 theta = 0.3: V = 0.955336 (cos 0.955336), D = 0.295520 (sin 0.295520), V^2 + D^2 = 1.000000000000
+B7 theta = 0.9: V = 0.621610 (cos 0.621610), D = 0.783327 (sin 0.783327), V^2 + D^2 = 1.000000000000
+B7 theta = 1.4: V = 0.169967 (cos 0.169967), D = 0.985450 (sin 0.985450), V^2 + D^2 = 1.000000000000
+make_figures.pyCode
+# SCRIPT: WEIGHT-BETWEEN-FIGURES-01
+# Builds every figure of "The Weight Between" (v1 of the one paper) from computed data. Each figure carries an argument;
+# none is a text box. Output: PNG at 300 dpi in ../figs (raster, so the PDF carries no figure fonts).
+import numpy as np, matplotlib
+matplotlib.use('Agg')
+import matplotlib.pyplot as plt
+from matplotlib.patches import FancyArrowPatch, Circle, Wedge
+from scipy.signal import hilbert
+import os
+OUT = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'figs')
+INK, INK2, MUTED, GRID = '#0b0b0b', '#52514e', '#8a8984', '#e4e3df'
+BLUE, ORANGE, AQUA, VIOLET = '#2a78d6', '#eb6834', '#1baf7a', '#6250d6'
+plt.rcParams.update({'font.family': 'DejaVu Serif', 'font.size': 10, 'axes.edgecolor': MUTED, 'axes.labelcolor': INK2,
+                     'xtick.color': INK2, 'ytick.color': INK2, 'axes.spines.top': False, 'axes.spines.right': False,
+                     'axes.grid': True, 'grid.color': GRID, 'grid.linewidth': 0.6, 'lines.linewidth': 2,
+                     'savefig.dpi': 300, 'savefig.bbox': 'tight', 'mathtext.fontset': 'dejavuserif'})
+def save(fig, name): fig.savefig(os.path.join(OUT, name)); plt.close(fig); print('wrote', name)
+
+# ---------------- Figure 1: the one split (hero) ----------------
+fig, ax = plt.subplots(figsize=(7.6, 3.8)); ax.set_axis_off(); ax.set_xlim(-0.2, 10.4); ax.set_ylim(-0.7, 5); ax.set_aspect('equal')
+# left: a reading as rate x direction
+ax.add_patch(Circle((2.2, 2.5), 1.6, fill=False, ec=MUTED, lw=1.2, ls=(0, (3, 3))))
+th = np.radians(38)
+ax.add_patch(FancyArrowPatch((2.2, 2.5), (2.2 + 1.6 * np.cos(th), 2.5 + 1.6 * np.sin(th)), arrowstyle='-|>', mutation_scale=16, color=BLUE, lw=2.2))
+off = 0.22 * np.array([-np.sin(th), np.cos(th)])
+ax.add_patch(FancyArrowPatch((2.2 + off[0], 2.5 + off[1]), (2.2 + 2.4 * np.cos(th) + off[0], 2.5 + 2.4 * np.sin(th) + off[1]), arrowstyle='-|>', mutation_scale=16, color=ORANGE, lw=1.6))
+ax.text(2.2, -0.45, 'every reading = rate × direction', ha='center', color=INK, fontsize=10.5)
+ax.text(0.15, 4.95, 'rate (how much, how fast): the length.\nBrightness, loudness, energy,\na clock\'s ticking', color=ORANGE, fontsize=8.4, va='top')
+ax.text(2.2, 0.72, 'direction (which way): the point on the sphere.\nColour, timbre, the kept sector', color=BLUE, fontsize=8.4, va='top', ha='center')
+# right: kept sector and the weight between
+
+ax.add_patch(Circle((7.25, 2.5), 0.85, fc='#dbe8f8', ec=BLUE, lw=1.6)); ax.text(7.25, 2.5, 'kept\n$P$', ha='center', va='center', color=INK, fontsize=10)
+ax.add_patch(Circle((8.85, 2.5), 0.62, fc='#fbe2d8', ec=ORANGE, lw=1.6)); ax.text(8.85, 2.5, 'hidden\n$1-P$', ha='center', va='center', color=INK, fontsize=8.6)
+ax.add_patch(FancyArrowPatch((8.08, 2.78), (8.25, 2.78), arrowstyle='<|-|>', mutation_scale=10, color=INK, lw=1.4))
+ax.text(8.0, 4.55, r'the weight between:  $E_B=\Vert PH(1-P)\Vert_F^2$', ha='center', color=INK, fontsize=10)
+ax.text(7.9, -0.3, 'every motion of what is kept\nis a crossing, and is priced by $E_B$', ha='center', color=INK2, fontsize=8.8)
+save(fig, 'fig1_split.png')
+
+# ---------------- Figure 2: the gap-power ladder, computed ----------------
+rng = np.random.default_rng(6)
+n = 7; d = np.sort(rng.uniform(0, 6, n)); K = rng.normal(size=(n, n)) + 1j * rng.normal(size=(n, n)); K = (K + K.conj().T) / 2
+np.fill_diagonal(K, 0); Dg = d[:, None] - d[None, :]; mask = ~np.eye(n, dtype=bool)
+S = lambda k: float(np.sum(np.abs(K[mask])**2 * np.abs(Dg[mask])**k))
+ks = np.linspace(-2.5, 2.5, 201); logS = [np.log(S(k)) for k in ks]
+fig, ax = plt.subplots(figsize=(6.4, 3.4))
+ax.plot(ks, logS, color=BLUE)
+for k, lab in [(-2, 'memory geometry\n(projector metric)'), (-1, 'light\n(static response)'), (0, 'time\n(energy variance)'), (2, 'connection\n(non-normality)')]:
+    ax.plot([k], [np.log(S(k))], 'o', ms=8, color=ORANGE, mec='white', mew=1.5, zorder=3)
+    ax.annotate(lab, (k, np.log(S(k))), xytext=(0, 14) if k != 0 else (0, 16), textcoords='offset points', ha='center', fontsize=8.3, color=INK)
+ax.plot([1], [np.log(S(1))], 'o', ms=8, mfc='white', mec=MUTED, mew=1.5, zorder=3)
+ax.annotate('rung +1\nopen', (1, np.log(S(1))), xytext=(0, 14), textcoords='offset points', ha='center', fontsize=8.3, color=MUTED)
+ax.set_xlabel('gap power $k$'); ax.set_ylabel(r'$\log S_k,\ \ S_k=\sum |K_{ij}|^2|\Delta_{ij}|^k$')
+ax.set_title('One weight, read at different powers of the gap (log-convex: $S_0^2\\leq S_{-2}S_2$)', fontsize=9.5, color=INK)
+save(fig, 'fig2_ladder.png')
+
+# ---------------- Figure 3: colour picks its leader; the tie ----------------
+a = np.array([43.33, 32.76, 1.0])
+def chroma(x): p = a * x; return p / p.sum()
+def dist(x, y): return 4 * np.arcsin(np.linalg.norm(np.sqrt(chroma(x)) - np.sqrt(chroma(y))) / 2)
+fig, axs = plt.subplots(1, 2, figsize=(7.2, 3.1))
+for gap, col in [(0.5, BLUE), (0.1, ORANGE), (0.01, AQUA)]:
+    M = np.diag([0.9, 0.9 * (1 - gap), 0.5]); x = np.array([0.3, 1.0, 1.0]); ds = []
+    for nn in range(400): x = M @ x; x /= x.sum(); ds.append(dist(x, np.array([1.0, 1e-300, 1e-300])))
+    axs[0].semilogy(np.arange(1, 401), ds, color=col, label='gap %.2f' % gap)
+axs[0].set_xlabel('passes (bounces, layers)'); axs[0].set_ylabel('distance to the leader colour'); axs[0].legend(frameon=False, fontsize=8)
+axs[0].set_title('Colour settles on the leader at the gap', fontsize=9.5, color=INK)
+M = np.diag([0.9, 0.9, 0.5])
+for start, col in [((1, 0.2, 1.0), BLUE), ((0.2, 1, 1.0), ORANGE), ((1, 1, 1.0), AQUA)]:
+    x = np.array(start, float); P = []
+    for nn in range(60): x = M @ x; x /= x.sum(); P.append(chroma(x))
+    P = np.array(P); axs[1].plot(np.arange(1, 61), P[:, 0], color=col)
+axs[1].set_ylim(0, 1); axs[1].set_xlabel('passes'); axs[1].set_ylabel('share of channel 1')
+axs[1].set_title('At a tie the start decides', fontsize=9.5, color=INK)
+fig.tight_layout(); save(fig, 'fig3_leader.png')
+
+# ---------------- Figure 4: the sound that survives ----------------
+A = np.array([1.0, 0.6, 0.35, 0.2]); g = np.array([3.0, 1.2, 0.8, 0.5]); t = np.linspace(0, 8, 400)
+X = (A**2)[None, :] * np.exp(-2 * np.outer(t, g)); P = X / X.sum(1, keepdims=True)
+fig, axs = plt.subplots(1, 2, figsize=(7.2, 3.1))
+cols = [VIOLET, ORANGE, AQUA, BLUE]
+axs[0].stackplot(t, P.T, colors=cols, edgecolor='white', linewidth=0.6)
+for k, (yy, lab) in enumerate([(0.08, 'partial 1'), (0.3, 'partial 2'), (0.52, 'partial 3'), (0.86, 'partial 4 (slowest)')]):
+    axs[0].text(7.9 if k == 3 else [0.25, 0.9, 1.9][k], yy if k == 3 else [0.25, 0.55, 0.78][k], lab, fontsize=7.8, color='white', ha='right' if k == 3 else 'left')
+axs[0].set_xlim(0, 8); axs[0].set_ylim(0, 1); axs[0].set_xlabel('time (s)'); axs[0].set_ylabel('share of the sound (timbre)'); axs[0].grid(False)
+axs[0].set_title('Timbre is direction: it settles on the slowest partial', fontsize=9, color=INK)
+axs[1].semilogy(t, X.sum(1) / X.sum(1)[0], color=ORANGE, label='loudness (rate)')
+axs[1].semilogy(t, np.exp(-2 * g.min() * t), color=MUTED, lw=1.2, ls='--', label='slowest partial alone')
+axs[1].set_xlabel('time (s)'); axs[1].set_ylabel('loudness (relative)'); axs[1].legend(frameon=False, fontsize=8)
+axs[1].set_title('Loudness is rate: it keeps falling', fontsize=9, color=INK)
+fig.tight_layout(); save(fig, 'fig4_sound.png')
+
+# ---------------- Figure 5: two tones are two clocks ----------------
+fs = 8000; tt = np.arange(0, 2.0, 1 / fs)
+fig, axs = plt.subplots(2, 1, figsize=(7.2, 3.6), sharex=True)
+for ax, c, lab in [(axs[0], 0.0, '220 Hz + 221.5 Hz'), (axs[1], 60.0, 'both raised by 60 Hz: 280 Hz + 281.5 Hz')]:
+    s = np.cos(2 * np.pi * (220 + c) * tt) + np.cos(2 * np.pi * (221.5 + c) * tt + 0.7)
+    ax.plot(tt, s, color='#b9c9e3', lw=0.4); ax.plot(tt, np.abs(hilbert(s)), color=BLUE, lw=1.8)
+    ax.set_ylabel('signal'); ax.text(0.01, 1.02, lab, transform=ax.transAxes, fontsize=8.6, color=INK, va='bottom')
+axs[1].set_xlabel('time (s)')
+fig.suptitle('The beat reads only the difference of rates: 1.5 beats per second in both', fontsize=9.5, color=INK, y=1.02)
+fig.tight_layout(); save(fig, 'fig5_beats.png')
+
+# ---------------- Figure 6: the comma is a holonomy ----------------
+pure = 1200 * np.log2(1.5)
+fig = plt.figure(figsize=(7.2, 3.4)); ax = fig.add_subplot(1, 2, 1, projection='polar'); ax2 = fig.add_subplot(1, 2, 2)
+cents = np.cumsum([0] + [pure] * 12); ang = 2 * np.pi * (cents % 1200) / 1200; rad = 1 + cents / 8400 * 0.9
+ax.plot(ang, rad, color=BLUE, lw=1.4, marker='o', ms=4)
+names = ['C', 'G', 'D', 'A', 'E', 'B', 'F#', 'C#', 'G#', 'D#', 'A#', 'E#', "B#"]
+for k in [0, 12]: ax.annotate(names[k], (ang[k], rad[k]), xytext=(6, 4), textcoords='offset points', fontsize=8.5, color=INK)
+ax.set_yticklabels([]); ax.set_xticklabels([]); ax.grid(color=GRID)
+ax.set_title('Twelve pure fifths go round the circle\nand miss the start by 23.46 cents', fontsize=9, color=INK)
+temps = {'equal': [700.0] * 12, 'Pythagorean': [pure] * 11 + [7 * 1200 - 11 * pure],
+         'meantone': [1200 * np.log2(5 ** 0.25)] * 11 + [7 * 1200 - 11 * 1200 * np.log2(5 ** 0.25)]}
+for i, (nm, f) in enumerate(temps.items()):
+    dev = np.array(f) - pure; ax2.bar(np.arange(12) + (i - 1) * 0.27, dev, width=0.25, color=[BLUE, ORANGE, AQUA][i], label='%s (sum %.2f)' % (nm, dev.sum()))
+ax2.axhline(0, color=MUTED, lw=0.8); ax2.set_xlabel('fifth around the circle'); ax2.set_ylabel('deviation from pure (cents)')
+ax2.legend(frameon=False, fontsize=7.6, loc='lower left'); ax2.set_title('Moved, never removed: every sum is -23.46', fontsize=9, color=INK)
+fig.tight_layout(); save(fig, 'fig6_comma.png')
+
+# ---------------- Figure 7: the offset speed limit on its saturating trajectory ----------------
+def traj(m, sigma, Om, tgrid):
+    I = np.eye(m); Z = np.zeros((m, m))
+    P0 = 0.5 * np.block([[I, sigma * 1j * I], [-sigma * 1j * I, I]]); H = Om * np.block([[Z, I], [I, Z]])
+    w, V = np.linalg.eigh(H); out = []
+    for t in tgrid:
+        U = V @ np.diag(np.exp(-1j * w * t)) @ V.conj().T; P = U @ P0 @ U.conj().T; C = P[:m, :m]
+        nu = np.linalg.eigvalsh(C); out.append(np.sum(np.log((1 - nu) / nu)))
+    return np.array(out)
+Om = 1.0; tg = np.linspace(0.02, 0.70, 2000)
+fig, axs = plt.subplots(1, 2, figsize=(7.2, 3.0))
+for m, col in [(1, BLUE), (2, ORANGE), (3, AQUA)]:
+    tau = traj(m, 1, Om, tg); axs[0].plot(tg, tau, color=col, label='m = %d' % m)
+    dt = tg[1] - tg[0]; taud = np.gradient(tau, dt); gS = 4 * (m * Om**2) * (4 * m / np.cos(2 * Om * tg)**2)
+    axs[1].plot(tg[2:-2], (taud**2 / gS)[2:-2], color=col, label='m = %d' % m, lw=[3.4, 2.2, 1.0][m - 1])
+    print('fig7 m=%d: max |ratio - 1| = %.1e' % (m, np.abs((taud**2 / gS)[2:-2] - 1).max()))
+axs[0].set_xlabel(r'$\Omega t$'); axs[0].set_ylabel(r'offset $\tau(t)$'); axs[0].legend(frameon=False, fontsize=8)
+axs[0].set_title(r'$\tau=2m\,\mathrm{artanh}(\sin 2\Omega t)$', fontsize=9.5, color=INK)
+axs[1].set_ylim(0.98, 1.02); axs[1].set_xlabel(r'$\Omega t$'); axs[1].set_ylabel(r'$\dot\tau^2/(4gS)$')
+axs[1].set_title('The speed limit is met (all three lie on 1)', fontsize=9.5, color=INK); axs[1].legend(frameon=False, fontsize=8)
+fig.tight_layout(); save(fig, 'fig7_offset.png')
+
+# ---------------- Figure 8: the fall leaf, a colour clock ----------------
+eps = np.array([[0.9, 0.15, 1.0], [0.0, 0.45, 3.2], [0.1, 1.8, 0.6], [0.5, 0.8, 1.2]]); Aabs = 2.5
+def leaf(days, k1=0.108, k2=0.0063, red=False, s3=0.04, death=30.0, br=0.04, dt=0.01):
+    c = np.array([1.0, 0.15, 0.0, 0.0]); out = []; tt_ = 0.0
+    while tt_ <= days + 1e-9:
+        out.append((tt_, c.copy())); light = 1.0 if (tt_ % 1.0) < 0.5 else 0.0
+        m3 = s3 * light if (red and c[0] < 20 / 29 and tt_ < death) else 0.0; m4 = br if tt_ >= death else 0.0
+        dc = np.array([-k1 * c[0], -k2 * c[1], m3 - 0.03 * c[2], m4])
+        if tt_ >= death: dc[:3] -= 0.08 * c[:3]
+        c = c + dt * dc; tt_ += dt
+    return out
+def rgb(c):
+    x = np.exp(-Aabs * c @ eps); return np.clip(x, 0, 1)   # transmitted light per channel, darkening kept
+fig, axs = plt.subplots(2, 1, figsize=(7.2, 3.3), gridspec_kw={'height_ratios': [1, 2]})
+days_show = [0, 7, 14, 21, 28, 35, 45, 60, 80, 120]
+for j, red in enumerate([False, True]):
+    run = leaf(120, red=red); lookup = {round(r[0], 2): r[1] for r in run}
+    for i, d_ in enumerate(days_show):
+        axs[0].add_patch(plt.Rectangle((i, 1 - j), 0.92, 0.85, color=rgb(lookup[round(d_, 2)])))
+axs[0].set_xlim(0, 10); axs[0].set_ylim(0, 2); axs[0].set_axis_off()
+for i, d_ in enumerate(days_show): axs[0].text(i + 0.46, -0.25, 'day %d' % d_, ha='center', fontsize=7, color=INK2)
+axs[0].text(-0.1, 1.42, 'yellow', ha='right', fontsize=7.5, color=INK2); axs[0].text(-0.1, 0.42, 'red', ha='right', fontsize=7.5, color=INK2)
+run = leaf(120); T_ = np.array([r[0] for r in run]); C_ = np.array([r[1] for r in run])
+for k, (lab, col) in enumerate([('chlorophyll', AQUA), ('carotenoid', ORANGE), ('brown', INK2)]):
+    idx = [0, 1, 3][k]; axs[1].semilogy(T_, np.maximum(C_[:, idx], 1e-4), color=col, label=lab)
+axs[1].set_ylim(1e-3, 3); axs[1].set_xlabel('days from onset'); axs[1].set_ylabel('pigment (relative)')
+axs[1].legend(frameon=False, fontsize=7.8, ncol=3, loc='lower right')
+axs[1].text(2, 1.4e-3, r'colour clock rate $=k_1-k_2$ (the gap)', fontsize=8, color=INK)
+fig.tight_layout(); save(fig, 'fig8_leaf.png')
+Output
+(writes the figures)weight_between_core_checks.pyCode
+# SCRIPT: WEIGHT-BETWEEN-CORE-01
+# Fresh re-runs of the core identities of "The Weight Between" for v1 of the one paper (not carried from earlier runs).
+# Why each check proves its claim: each is the claimed equality or inequality evaluated on random instances; an
+# identity that holds to rounding on random inputs and fails under a deliberate perturbation (the controls) cannot be
+# a coincidence of special cases.
+# KILL CONDITIONS (written before the run):
+#  C1 X1 chain: (1/2)||[H,P]||^2 = ||PH(1-P)||^2 = Var_psi(H) (rank one) to 1e-10 relative, else dies.
+#  C2 Theorem 7 identity ||[P,[P,F]]||^2 = 2 Tr[(C(I-C))^{-1}] with F = E W E^dag, W = -(C(I-C))^{-1}: 1e-9 relative.
+#  C3 Theorem 7 bound: tau_dot^2 <= 4 g S on 500 random Hamiltonian-driven cases; any ratio > 1 + 1e-9 kills it.
+#     tau_dot measured by central finite difference of the actual offset, not by the formula.
+#  C4 equality: P_dot = lambda T (H = i lambda [T,P]) gives ratio 1 to 1e-6, else dies.
+#  C5 scalar exact gap (12): 4gS - tau_dot^2 = 4 (Im conj(b) b_dot)^2 / (c(1-c))^2 to 1e-7 on random 2x2 paths.
+#  C6 ladder: S_0^2 <= S_{-2} S_2 and S_{-1}^2 <= S_{-2} S_0 on 2000 random weighted graphs; any violation kills it.
+#  C7 connection energy: (1/8)||[H,H^dag]||^2 = sum_edges ||D_i - A_ij D_j A_ij^dag||^2 for H = diag D + A,
+#     A anti-Hermitian with unitary edge blocks: 1e-10 relative. Control: break unitarity of one block, must fail.
+import numpy as np
+from scipy.linalg import expm, logm
+rng = np.random.default_rng(2610)
+fro2 = lambda X: float(np.real(np.vdot(X, X)))
+def herm(n): X = rng.normal(size=(n, n)) + 1j * rng.normal(size=(n, n)); return (X + X.conj().T) / 2
+def rand_proj(n, k):
+    Q, _ = np.linalg.qr(rng.normal(size=(n, n)) + 1j * rng.normal(size=(n, n))); V = Q[:, :k]; return V @ V.conj().T
+def offset(C): nu = np.linalg.eigvalsh(C); return float(np.sum(np.log((1 - nu) / nu)))
+
+# C1
+w = 0.0
+for _ in range(300):
+    n = rng.integers(3, 8); H = herm(n); P = rand_proj(n, 1); psi = np.linalg.eigh(P)[1][:, -1]
+    a = 0.5 * fro2(H @ P - P @ H); b = fro2(P @ H @ (np.eye(n) - P))
+    var = np.real(np.vdot(psi, H @ H @ psi) - np.vdot(psi, H @ psi)**2)
+    w = max(w, abs(a - b) / b, abs(b - var) / b)
+print('C1 X1 chain, worst relative difference over 300 cases: %.1e' % w)
+
+# C2, C3, C4
+def setup(n, m, k):
+    while True:
+        P = rand_proj(n, k); E = np.eye(n)[:, :m]; C = E.T @ P @ E; nu = np.linalg.eigvalsh(C)
+        if nu.min() > 1e-3 and nu.max() < 1 - 1e-3: return P, E, C
+w2 = 0.0; worst = 0.0; eqdev = 0.0
+for trial in range(500):
+    # 0 < C < I needs m <= k <= n - m (otherwise C has an eigenvalue 0 or 1); the first draft drew any m, k and could
+    # wait forever on an impossible cut
+    n = rng.integers(4, 9); m = rng.integers(1, n // 2 + 1); k = rng.integers(m, n - m + 1)
+    P, E, C = setup(n, m, k)
+    W = -np.linalg.inv(C @ (np.eye(m) - C)); F = E @ W @ E.T; T = P @ (P @ F - F @ P) - (P @ F - F @ P) @ P
+    S = float(np.real(np.trace(-W)))
+    w2 = max(w2, abs(fro2(T) - 2 * S) / (2 * S))
+    H = herm(n); h = 1e-5
+    def tau_at(t):
+        U = expm(-1j * H * t); Pt = U @ P @ U.conj().T; return offset(E.T @ Pt @ E)
+    taud = (tau_at(h) - tau_at(-h)) / (2 * h); g = 0.5 * fro2(-1j * (H @ P - P @ H))
+    worst = max(worst, taud**2 / (4 * g * S))
+    if trial < 50:
+        lam = 0.37; Heq = 1j * lam * (T @ P - P @ T)
+        def tau_eq(t):
+            U = expm(-1j * Heq * t); Pt = U @ P @ U.conj().T; return offset(E.T @ Pt @ E)
+        td = (tau_eq(h) - tau_eq(-h)) / (2 * h); ge = 0.5 * fro2(-1j * (Heq @ P - P @ Heq))
+        eqdev = max(eqdev, abs(td**2 / (4 * ge * S) - 1))
+print('C2 ||[P,[P,F]]||^2 = 2S, worst relative error over 500 cases: %.1e' % w2)
+print('C3 largest tau_dot^2/(4gS) over 500 random driven cases: %.4f' % worst)
+print('C4 equality generator H = i lambda [T,P]: worst |ratio - 1| over 50 cases: %.1e' % eqdev)
+
+# C5 scalar cut with exact gap
+w5 = 0.0
+for _ in range(2000):
+    # a random rank-one projector path |psi(s)><psi(s)| in C^2; P = [[c, b],[conj b, 1-c]]
+    th0, ph0, dth, dph = rng.uniform(0.2, 1.3), rng.uniform(0, 6.28), rng.normal(), rng.normal()
+    def Pof(s):
+        th, ph = th0 + dth * s, ph0 + dph * s; v = np.array([np.cos(th / 2), np.exp(1j * ph) * np.sin(th / 2)]); return np.outer(v, v.conj())
+    hh = 1e-6; P0 = Pof(0); Pd = (Pof(hh) - Pof(-hh)) / (2 * hh)
+    c, b = P0[0, 0].real, P0[0, 1]; cd, bd = Pd[0, 0].real, Pd[0, 1]
+    g = 0.5 * fro2(Pd); S = 1 / (c * (1 - c)); taud = -cd / (c * (1 - c))
+    lhs = 4 * g * S - taud**2; rhs = 4 * (np.imag(np.conj(b) * bd))**2 / (c * (1 - c))**2
+    w5 = max(w5, abs(lhs - rhs) / max(1, 4 * g * S))
+print('C5 scalar exact gap (12), worst error / max(1,4gS) over 2000 paths: %.1e' % w5)
+
+# C6
+viol = 0
+for _ in range(2000):
+    n = rng.integers(3, 8); d = rng.uniform(-3, 3, n); K = rng.normal(size=(n, n)) + 1j * rng.normal(size=(n, n)); K = (K + K.conj().T) / 2
+    msk = ~np.eye(n, dtype=bool); D = np.abs(d[:, None] - d[None, :])[msk]; k2 = np.abs(K[msk])**2
+    Sk = lambda k: np.sum(k2 * D**k)
+    viol += (Sk(0)**2 > Sk(-2) * Sk(2) * (1 + 1e-12)) + (Sk(-1)**2 > Sk(-2) * Sk(0) * (1 + 1e-12))
+print('C6 ladder inequalities violated in %d of 4000 tests' % viol)
+
+# C7
+def unitary(r):
+    Q, R = np.linalg.qr(rng.normal(size=(r, r)) + 1j * rng.normal(size=(r, r))); return Q * (np.diag(R) / abs(np.diag(R)))
+nv, r = 5, 2; edges = [(0, 1), (1, 2), (2, 3), (3, 4), (4, 0), (0, 2)]
+def check(break_one):
+    Ds = [herm(r) for _ in range(nv)]; U = {e: unitary(r) for e in edges}
+    if break_one: U[edges[0]] = U[edges[0]] * 1.3
+    Hm = np.zeros((nv * r, nv * r), complex)
+    for i in range(nv): Hm[i*r:(i+1)*r, i*r:(i+1)*r] = Ds[i]
+    for (i, j) in edges: Hm[i*r:(i+1)*r, j*r:(j+1)*r] = U[(i, j)]; Hm[j*r:(j+1)*r, i*r:(i+1)*r] = -U[(i, j)].conj().T
+    lhs = fro2(Hm @ Hm.conj().T - Hm.conj().T @ Hm) / 8
+    rhs = sum(fro2(Ds[i] - U[(i, j)] @ Ds[j] @ U[(i, j)].conj().T) for (i, j) in edges)
+    return abs(lhs - rhs) / rhs
+print('C7 connection energy identity: relative error %.1e; control with one non-unitary block: %.2e' % (max(check(False) for _ in range(50)), check(True)))
+Output
+C1 X1 chain, worst relative difference over 300 cases: 4.0e-15
+C2 ||[P,[P,F]]||^2 = 2S, worst relative error over 500 cases: 2.0e-13
+C3 largest tau_dot^2/(4gS) over 500 random driven cases: 0.9109
+C4 equality generator H = i lambda [T,P]: worst |ratio - 1| over 50 cases: 3.1e-06
+C5 scalar exact gap (12), worst error / max(1,4gS) over 2000 paths: 9.4e-09
+C6 ladder inequalities violated in 0 of 4000 tests
+C7 connection energy identity: relative error 3.9e-16; control with one non-unitary block: 4.87e-02
+

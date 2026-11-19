@@ -1,0 +1,11 @@
+F_r4 delta=0.50843: BH eps=5.01
+F_r4 delta=0.51457: BH eps=4.26
+F_r4 delta=0.50434: dispersed eps=5.85
+F_r4 delta=0.50639: BH eps=5.69
+F_r4 delta=0.50503: dispersed eps=6.24
+F_r4 delta=0.50571: BH eps=6.35
+F_r4 delta=0.50525: dispersed eps=6.51
+F_r4 delta=0.50548: BH eps=7.36
+F_r4 delta=0.50533: dispersed eps=6.65
+F_r4 delta=0.50540: dispersed eps=6.88
+RESULT F_r4: delta_c = 0.50544 +- 0.00004 (7.4 min)

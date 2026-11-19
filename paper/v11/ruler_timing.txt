@@ -1,0 +1,1 @@
+ruler_check.py (copy at code/v4_runs/ruler, unchanged) wall time 420.6 s on this box, 19 Nov 2026 ~16:57-17:04 CT; output ruler_timing_out.txt

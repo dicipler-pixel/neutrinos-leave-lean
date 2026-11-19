@@ -1,0 +1,16 @@
+BEYOND-STEVE pre-registration, written 2026-10-30 before any of these runs.
+G = (delta_c - delta_c_fluid) / (delta_c_instant - delta_c_fluid), same profile.
+Gaussian (alpha=1): fluid 0.49773, instant 0.52832 (Steve Table II).
+alpha=0.3: fluid 0.44805, instant 0.47747 (Steve res_fl_q03 / res_nu409_q03).
+
+TEST A  broad profile alpha=0.3, rate kappa=H(eps_dec/eps)^3, eps_dec = 4 and 8.
+  Diffusive-escape law G=1/(1+sqrt15 (eps_dec/eps*)^1.5), eps* = 7-9 (alpha=0.3 decided late):
+     G(4) = 0.38-0.46 ; G(8) = 0.17-0.24
+  Null (curve does not move with eps*): G(4)=0.19, G(8)=0.063
+  Kill: the law dies if G(4) < 0.30 or G(8) < 0.13.  Null dies if G(4) > 0.28.
+
+TEST B  Gaussian, steeper rate kappa=H(eps_dec/eps)^6, eps_dec = 2.
+  Diffusive-escape law with n=6: G = 1/(1+sqrt24 (eps_dec/eps*)^3), eps*=4  ->  G = 0.62
+  Memory model (Weight Between agent): G = 0.25
+  History-blind model: G = 0.43
+  Kill: each model dies if measured G is more than 0.08 from its number.

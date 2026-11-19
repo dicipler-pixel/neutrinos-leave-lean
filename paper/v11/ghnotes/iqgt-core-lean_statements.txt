@@ -1,0 +1,544 @@
+IQGTCore/Blocks.lean-31-omit [DecidableEq k] [DecidableEq m] in
+IQGTCore/Blocks.lean-32-/-- Trace of a block matrix: `Tr [[A,B],[C,D]] = Tr A + Tr D`. -/
+IQGTCore/Blocks.lean:33:theorem trace_fromBlocks' (A : Matrix k k ℂ) (B : Matrix k m ℂ) (C : Matrix m k ℂ)
+--
+IQGTCore/Blocks.lean-41-def offDiag (X : Matrix k m ℂ) : Matrix (k ⊕ m) (k ⊕ m) ℂ := fromBlocks 0 X Xᴴ 0
+IQGTCore/Blocks.lean-42-
+IQGTCore/Blocks.lean:43:theorem isStarProjection_P0 : IsStarProjection (P0 : Matrix (k ⊕ m) (k ⊕ m) ℂ) where
+--
+IQGTCore/Blocks.lean-48-
+IQGTCore/Blocks.lean-49-omit [Fintype k] [Fintype m] [DecidableEq k] [DecidableEq m] in
+IQGTCore/Blocks.lean:50:theorem offDiag_conjTranspose (X : Matrix k m ℂ) : (offDiag X)ᴴ = offDiag X := by
+IQGTCore/Blocks.lean-51-  unfold offDiag; rw [fromBlocks_conjTranspose]; simp
+IQGTCore/Blocks.lean-52-
+IQGTCore/Blocks.lean:53:theorem offDiag_isTangent (X : Matrix k m ℂ) : IsTangent P0 (offDiag X) := by
+--
+IQGTCore/Blocks.lean-57-/-- **Tangent space = cross-gap blocks.** A Hermitian `V` is tangent at `P₀` iff it is
+IQGTCore/Blocks.lean-58-`offDiag X` for some `X`. -/
+IQGTCore/Blocks.lean:59:theorem isTangent_iff_eq_offDiag {V : Matrix (k ⊕ m) (k ⊕ m) ℂ} (hV : Vᴴ = V) :
+--
+IQGTCore/Blocks.lean-80-omit [DecidableEq k] [DecidableEq m] in
+IQGTCore/Blocks.lean-81-/-- `Tr V² = 2 Tr(XXᴴ)` for `V = offDiag X`. -/
+IQGTCore/Blocks.lean:82:theorem trace_offDiag_sq (X : Matrix k m ℂ) :
+--
+IQGTCore/Blocks.lean-89-omit [DecidableEq m] in
+IQGTCore/Blocks.lean-90-/-- **Cross-gap formula.** `Q_{P₀}(V_X, V_Y) = Tr(X Yᴴ)`. -/
+IQGTCore/Blocks.lean:91:theorem Q_offDiag (X Y : Matrix k m ℂ) : Q P0 (offDiag X) (offDiag Y) = trace (X * Yᴴ) := by
+--
+IQGTCore/Blocks.lean-96-omit [DecidableEq m] in
+IQGTCore/Blocks.lean-97-/-- The cross-gap formula as an explicit sum over (occupied, empty) pairs. -/
+IQGTCore/Blocks.lean:98:theorem Q_offDiag_eq_sum (X Y : Matrix k m ℂ) :
+--
+IQGTCore/Blocks.lean-103-/-- **Two-level saturation.** With one occupied and one empty level, the Gram inequality
+IQGTCore/Blocks.lean-104-`(Im Q)² ≤ g_VV g_WW − g_VW²` holds with equality (so `Ω² = 4 det g`). -/
+IQGTCore/Blocks.lean:105:theorem two_level_saturation (X Y : Matrix Unit Unit ℂ) :
+--
+IQGTCore/Blocks.lean-114-/-- Lagrange's identity in `ℝ³` (`|A|²|B|² − (A·B)² = |A×B|²`): the real-coordinate form of
+IQGTCore/Blocks.lean-115-two-level saturation used in the paper (Bloch-sphere picture). -/
+IQGTCore/Blocks.lean:116:theorem lagrange_identity (a1 a2 a3 b1 b2 b3 : ℝ) :
+--
+IQGTCore/Blocks.lean-121-/-- **Sharpness of the constant 4.** For `X = 1`, `Y = i` (one occupied, one empty level),
+IQGTCore/Blocks.lean-122-`Ω² = 4` while `g_VV g_WW − g_VW² = 1`; so `Ω² ≤ 4 det g` cannot be improved to `Ω² ≤ det g`. -/
+IQGTCore/Blocks.lean:123:theorem curvature_factor_four_sharp :
+--
+IQGTCore/Bounds.lean-37-
+IQGTCore/Bounds.lean-38-/-- Theorem 5.3(ii), the zero-temperature band: a reweighting of the metric by weights in `[lo, hi]`. -/
+IQGTCore/Bounds.lean:39:theorem friction_band (s : Finset ι) (w g : ι → ℝ) (hg : ∀ i ∈ s, 0 ≤ g i)
+--
+IQGTCore/Bounds.lean-47-
+IQGTCore/Bounds.lean-48-/-- Theorem 5.3, length form (discretised): `(Σ √gᵢ)² ≤ N · Σ gᵢ`, the step `ℒ² ≤ T ∫ g`. -/
+IQGTCore/Bounds.lean:49:theorem length_sq_le (s : Finset ι) (g : ι → ℝ) (hg : ∀ i ∈ s, 0 ≤ g i) :
+--
+IQGTCore/Bounds.lean-60-/-- §7.2: friction read from the response function, one pair at a time:
+IQGTCore/Bounds.lean-61-`2Δg·τ/(1+τ²Δ²) = τ·[2Δg − 2Δ³g/(Δ² + 1/τ²)]`, i.e. `ζ_rot = τ[α(0) − α(i/τ)]`. -/
+IQGTCore/Bounds.lean:62:theorem friction_response_pair (Δ g τ : ℝ) (hτ : 0 < τ) :
+--
+IQGTCore/Bounds.lean-68-
+IQGTCore/Bounds.lean-69-/-- §7.5: the regularised pair metric is bounded at a closed gap: `a/(Δ² + η²) ≤ a/η²` for `a ≥ 0`. -/
+IQGTCore/Bounds.lean:70:theorem eta_regularised_bound (a Δ η : ℝ) (ha : 0 ≤ a) (hη : 0 < η) :
+--
+IQGTCore/Bounds.lean-75-/-- §8.3, total internal reflection: if `C = g∥ sin²θ` with `sin²θ ≤ 1` and `g∥ ≥ 0`, then the
+IQGTCore/Bounds.lean-76-trajectory only visits `g∥ ≥ C`; at a stratum `g∥ = 0` it would need `C = 0`. -/
+IQGTCore/Bounds.lean:77:theorem reflection_bound (gpar s2 : ℝ) (hg : 0 ≤ gpar) (hs1 : s2 ≤ 1) :
+--
+IQGTCore/Bounds.lean-88-This is the step that bounds the Hilbert–Schmidt norm (dividing entries does not, in general,
+IQGTCore/Bounds.lean-89-bound the operator norm). -/
+IQGTCore/Bounds.lean:90:theorem gap_bound_hs_step (s : Finset ι) (a d : ι → ℝ) (Δ : ℝ) (hΔ : 0 < Δ)
+--
+IQGTCore/Bounds.lean-101-
+IQGTCore/Bounds.lean-102-/-- §12.4, lower half of the sandwich, one principal angle: `sin² θ ≤ θ²` on `[0, π/2]`. -/
+IQGTCore/Bounds.lean:103:theorem sin_sq_le_angle_sq (x : ℝ) (h0 : 0 ≤ x) (h1 : x ≤ Real.pi / 2) :
+--
+IQGTCore/Bounds.lean-110-/-- §12.4, upper half of the sandwich, one principal angle (Jordan's inequality):
+IQGTCore/Bounds.lean-111-`θ² ≤ (π/2)² sin² θ` on `[0, π/2]`. -/
+IQGTCore/Bounds.lean:112:theorem angle_sq_le_jordan (x : ℝ) (h0 : 0 ≤ x) (h1 : x ≤ Real.pi / 2) :
+--
+IQGTCore/Bounds.lean-129-angles in `[0, π/2]`, `Σ sin² θ ≤ Σ θ² ≤ (π/2)² Σ sin² θ`. With `d_H = (2/n) Σ sin² θ` this is
+IQGTCore/Bounds.lean-130-`d_H / 2 ≤ (1/n) Σ θ² ≤ (π²/8) d_H`. -/
+IQGTCore/Bounds.lean:131:theorem sofic_sandwich (s : Finset ι) (θ : ι → ℝ) (h0 : ∀ i ∈ s, 0 ≤ θ i)
+--
+IQGTCore/Bounds.lean-139-/-- §12.4, the displacement Gram eigenvalues of an `ℓ`-cycle come in pairs:
+IQGTCore/Bounds.lean-140-`2 sin²(π(ℓ-j)/ℓ) = 2 sin²(πj/ℓ)`, the sine and cosine of one cyclic motion. -/
+IQGTCore/Bounds.lean:141:theorem cycle_gram_pair (l j : ℝ) (hl : l ≠ 0) :
+--
+IQGTCore/Bounds.lean-153-`Q(V,W) = ⟪y, x⟫`, `g_VV = ‖x‖²`, `g_WW = ‖y‖²`, `g_VW = Re Q` and `Ω = −2 Im Q`. Then
+IQGTCore/Bounds.lean-154-`Ω² ≤ 4 (g_VV g_WW − g_VW²)`, which is Cauchy–Schwarz for the blocks. -/
+IQGTCore/Bounds.lean:155:theorem curvature_bound (x y : EuclideanSpace ℂ ι) :
+--
+IQGTCore/Bounds.lean-169-/-- §6.3 (i), one term of the gap bound: dividing by a gap at least `Δ` loses nothing exactly when
+IQGTCore/Bounds.lean-170-the entry vanishes or its gap is exactly `Δ`. -/
+IQGTCore/Bounds.lean:171:theorem gap_term_eq_iff (a d Δ : ℝ) (hΔ : 0 < Δ) (hd : Δ ≤ |d|) :
+--
+IQGTCore/Bounds.lean-195-/-- §6.3 (i): equality in the Hilbert–Schmidt step of the gap bound holds exactly when every
+IQGTCore/Bounds.lean-196-coupled pair sits at gap exactly `Δ`. -/
+IQGTCore/Bounds.lean:197:theorem gap_bound_hs_step_eq_iff (s : Finset ι) (a d : ι → ℝ) (Δ : ℝ) (hΔ : 0 < Δ)
+--
+IQGTCore/Bounds.lean-209-/-- §6.3 (iii) and (v), the two-number arithmetic–geometric mean step: `(a+b)² = 4ab` exactly
+IQGTCore/Bounds.lean-210-when `a = b` (the metric is conformal to the reference metric). -/
+IQGTCore/Bounds.lean:211:theorem am_gm_eq_iff (a b : ℝ) : (a + b) ^ 2 = 4 * a * b ↔ a = b := by
+--
+IQGTCore/Bounds.lean-220-/-- §6.3 (iii), constant speed: for the discrete length form `(Σ xᵢ)² ≤ N Σ xᵢ²`, the gap
+IQGTCore/Bounds.lean-221-`N Σ xᵢ² - (Σ xᵢ)²` is half the sum of all squared differences. -/
+IQGTCore/Bounds.lean:222:theorem length_gap_identity (s : Finset ι) (x : ι → ℝ) :
+--
+IQGTCore/Bounds.lean-230-/-- §6.3 (iii): the length form `(Σ xᵢ)² ≤ N Σ xᵢ²` is an equality exactly when the speed is
+IQGTCore/Bounds.lean-231-constant. -/
+IQGTCore/Bounds.lean:232:theorem constant_speed_iff (s : Finset ι) (x : ι → ℝ) :
+--
+IQGTCore/Bounds.lean-252-/-- §6.3 (iv), Corollary 6.2: the curvature bound is met exactly on the complex line of `V`.
+IQGTCore/Bounds.lean-253-This is equality in Cauchy–Schwarz over `ℂ` (Mathlib's `norm_inner_eq_norm_iff`), restated. -/
+IQGTCore/Bounds.lean:254:theorem saturation_iff_complex_line {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℂ E]
+--
+IQGTCore/Bounds.lean-259-/-- §8.5, Lemma 8.5: a curve of projectors whose derivative vanishes everywhere is constant
+IQGTCore/Bounds.lean-260-(on a connected parameter line the whole stratum is one projector). -/
+IQGTCore/Bounds.lean:261:theorem constant_of_silent {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E] {f : ℝ → E}
+--
+IQGTCore/Bounds.lean-264-
+IQGTCore/Bounds.lean-265-/-- §12.4, Proposition 12.3, one angle: `sin² θ = θ²` on `[0, π/2]` only at `θ = 0`. -/
+IQGTCore/Bounds.lean:266:theorem sin_sq_eq_angle_sq_iff (x : ℝ) (h0 : 0 ≤ x) (h1 : x ≤ Real.pi / 2) :
+--
+IQGTCore/Bounds.lean-278-/-- §12.4, Proposition 12.3, one angle: Jordan's inequality `θ² ≤ (π/2)² sin² θ` is an equality
+IQGTCore/Bounds.lean-279-on `[0, π/2]` only at the two ends. -/
+IQGTCore/Bounds.lean:280:theorem jordan_eq_iff (x : ℝ) (h0 : 0 ≤ x) (h1 : x ≤ Real.pi / 2) :
+--
+IQGTCore/Bounds.lean-305-/-- §12.4, Proposition 12.3: the upper half of the sandwich is an equality exactly when every
+IQGTCore/Bounds.lean-306-principal angle is `0` or `π/2`. -/
+IQGTCore/Bounds.lean:307:theorem sandwich_upper_eq_iff (s : Finset ι) (θ : ι → ℝ) (h0 : ∀ i ∈ s, 0 ≤ θ i)
+--
+IQGTCore/Bounds.lean-315-/-- §12.4, Proposition 12.3: a principal angle `|φ|/2` with `φ ∈ (-π, π]` is a right angle
+IQGTCore/Bounds.lean-316-exactly when the eigenphase is `π`. -/
+IQGTCore/Bounds.lean:317:theorem half_phase_right_iff (φ : ℝ) (h1 : -Real.pi < φ) (h2 : φ ≤ Real.pi) :
+--
+IQGTCore/Bridge/ConnectionEnergy.lean-37-
+IQGTCore/Bridge/ConnectionEnergy.lean-38-/-- Connection book (chordal distance): `Tr((P−R)²) = Tr P + Tr R − 2 Tr(PR)`. -/
+IQGTCore/Bridge/ConnectionEnergy.lean:39:theorem connection_book {P R : Matrix n n 𝕜} (hP : IsIdempotentElem P)
+--
+IQGTCore/Bridge/ConnectionEnergy.lean-44-
+IQGTCore/Bridge/ConnectionEnergy.lean-45-/-- Opposite book: `Tr((P+R)²) = Tr P + Tr R + 2 Tr(PR)`. -/
+IQGTCore/Bridge/ConnectionEnergy.lean:46:theorem opposite_book {P R : Matrix n n 𝕜} (hP : IsIdempotentElem P)
+--
+IQGTCore/Bridge/ConnectionEnergy.lean-51-
+IQGTCore/Bridge/ConnectionEnergy.lean-52-/-- **Budget.** The two books of one edge sum to `2(Tr P + Tr R)`. -/
+IQGTCore/Bridge/ConnectionEnergy.lean:53:theorem books_budget {P R : Matrix n n 𝕜} (hP : IsIdempotentElem P) (hR : IsIdempotentElem R) :
+--
+IQGTCore/Bridge/ConnectionEnergy.lean-56-
+IQGTCore/Bridge/ConnectionEnergy.lean-57-/-- The books differ by the indefinite form `4 Tr(PR)`. -/
+IQGTCore/Bridge/ConnectionEnergy.lean:58:theorem books_difference {P R : Matrix n n 𝕜} (hP : IsIdempotentElem P)
+--
+IQGTCore/Bridge/ConnectionEnergy.lean-69-/-- **Chordal distance = twice the cross-gap energy.** For orthogonal projectors of equal trace,
+IQGTCore/Bridge/ConnectionEnergy.lean-70-`Tr((P−R)²) = 2 Tr(((1−R)P)ᴴ((1−R)P))`. -/
+IQGTCore/Bridge/ConnectionEnergy.lean:71:theorem connection_book_eq_two_cross {P R : Matrix n n ℂ} (hP : IsStarProjection P)
+--
+IQGTCore/Bridge/ConnectionEnergy.lean-83-
+IQGTCore/Bridge/ConnectionEnergy.lean-84-/-- Conjugating a projector by a unitary gives a projector. -/
+IQGTCore/Bridge/ConnectionEnergy.lean:85:theorem isIdempotentElem_unitary_conj {U P : Matrix n n ℂ} (hU : star U * U = 1)
+--
+IQGTCore/Bridge/ConnectionEnergy.lean-90-  rw [e, hU, Matrix.mul_one, hP.eq]
+IQGTCore/Bridge/ConnectionEnergy.lean-91-
+IQGTCore/Bridge/ConnectionEnergy.lean:92:theorem trace_unitary_conj {U : Matrix n n ℂ} (hU : star U * U = 1) (X : Matrix n n ℂ) :
+--
+IQGTCore/Bridge/ConnectionEnergy.lean-96-/-- **Edge form.** With a unitary transport `U` on the edge `i — j`, the connection book of a
+IQGTCore/Bridge/ConnectionEnergy.lean-97-projector field is `Tr P_i + Tr P_j − 2 Tr(P_i U P_j Uᴴ)`. -/
+IQGTCore/Bridge/ConnectionEnergy.lean:98:theorem connection_book_edge {U Pi Pj : Matrix n n ℂ} (hU : star U * U = 1)
+--
+IQGTCore/Bridge/ConnectionEnergy.lean-103-
+IQGTCore/Bridge/ConnectionEnergy.lean-104-/-- Along a tangent direction the book of the displacement `tV` is `2 t² Q(V,V)`. -/
+IQGTCore/Bridge/ConnectionEnergy.lean:105:theorem connection_book_tangent {P V : Matrix n n ℂ} (hT : IsTangent P V) (t : ℂ) :
+--
+IQGTCore/Bridge/DiracTime.lean-32-
+IQGTCore/Bridge/DiracTime.lean-33-/-- Ported: pair friction (both orders) = intrinsic pair metric × spectral weight. -/
+IQGTCore/Bridge/DiracTime.lean:34:theorem pair_friction_eq_weighted_metric (c h2 pm pn Em En : ℝ) (hE : En ≠ Em) :
+--
+IQGTCore/Bridge/DiracTime.lean-39-
+IQGTCore/Bridge/DiracTime.lean-40-/-- Ported: Gibbs weights give nonnegative pair weights. -/
+IQGTCore/Bridge/DiracTime.lean:41:theorem gibbs_pair_weight_nonneg (β Em En : ℝ) (hβ : 0 ≤ β) :
+--
+IQGTCore/Bridge/DiracTime.lean-52-
+IQGTCore/Bridge/DiracTime.lean-53-/-- Ported: two-level Gibbs population gap is `tanh x` (`x = βΔ/2`). -/
+IQGTCore/Bridge/DiracTime.lean:54:theorem two_level_population_gap (x : ℝ) :
+--
+IQGTCore/Bridge/DiracTime.lean-65-
+IQGTCore/Bridge/DiracTime.lean-66-/-- **Friction band.** Weights in `[lo, hi]` put the friction between `lo · g` and `hi · g`. -/
+IQGTCore/Bridge/DiracTime.lean:67:theorem friction_band_pairSum (s : Finset ι) (w a Δ : ι → ℝ) (lo hi : ℝ)
+--
+IQGTCore/Bridge/DiracTime.lean-78-
+IQGTCore/Bridge/DiracTime.lean-79-/-- A constant weight gives exactly `c ·` the IQGT pair sum. -/
+IQGTCore/Bridge/DiracTime.lean:80:theorem friction_const_weight (s : Finset ι) (c : ℝ) (a Δ : ι → ℝ) :
+--
+IQGTCore/Bridge/DiracTime.lean-84-/-- **Same null directions.** With positive weights and nonzero gaps, friction vanishes iff
+IQGTCore/Bridge/DiracTime.lean-85-every amplitude vanishes. -/
+IQGTCore/Bridge/DiracTime.lean:86:theorem friction_eq_zero_iff (s : Finset ι) (w a Δ : ι → ℝ) (hw : ∀ i ∈ s, 0 < w i)
+--
+IQGTCore/Bridge/GravityLedger.lean-37-
+IQGTCore/Bridge/GravityLedger.lean-38-/-- On Hermitian tangents the IQGT Gram determinant is nonnegative. -/
+IQGTCore/Bridge/GravityLedger.lean:39:theorem iqgt_det_nonneg {n : Type*} [Fintype n] {P V W : Matrix n n ℂ}
+--
+IQGTCore/Bridge/GravityLedger.lean-43-
+IQGTCore/Bridge/GravityLedger.lean-44-/-- Ported: the reciprocal single-partner determinant is a negative square. -/
+IQGTCore/Bridge/GravityLedger.lean:45:theorem reciprocal_determinant (a b c d : ℝ) :
+IQGTCore/Bridge/GravityLedger.lean-46-    (a ^ 2 - b ^ 2) * (c ^ 2 - d ^ 2) - (a * c - b * d) ^ 2 = -(a * d - b * c) ^ 2 := by ring
+IQGTCore/Bridge/GravityLedger.lean-47-
+IQGTCore/Bridge/GravityLedger.lean:48:theorem reciprocal_not_definite (a b c d : ℝ) :
+--
+IQGTCore/Bridge/GravityLedger.lean-51-
+IQGTCore/Bridge/GravityLedger.lean-52-/-- Ported: with a positive first diagonal, the curvature-proxy bound forces `c ≥ 0`. -/
+IQGTCore/Bridge/GravityLedger.lean:53:theorem proxy_second_diagonal (a b c omega : ℝ) (ha : 0 < a) (h : omega ^ 2 ≤ 4 * (a * c - b ^ 2)) :
+--
+IQGTCore/Bridge/GravityLedger.lean-57-
+IQGTCore/Bridge/GravityLedger.lean-58-/-- Gravity-ledger's proxy hypothesis is satisfied by IQGT data. -/
+IQGTCore/Bridge/GravityLedger.lean:59:theorem proxy_holds_for_iqgt {n : Type*} [Fintype n] {P V W : Matrix n n ℂ}
+--
+IQGTCore/Bridge/GravityLedger.lean-66-def pointD : Matrix (Fin 2) (Fin 2) ℂ := !![0, 1; -1, 0]
+IQGTCore/Bridge/GravityLedger.lean-67-
+IQGTCore/Bridge/GravityLedger.lean:68:theorem pointP_isStarProjection : IsStarProjection pointP where
+--
+IQGTCore/Bridge/GravityLedger.lean-73-    rw [star_eq_conjTranspose]; ext i j; fin_cases i <;> fin_cases j <;> simp
+IQGTCore/Bridge/GravityLedger.lean-74-
+IQGTCore/Bridge/GravityLedger.lean:75:theorem pointD_isTangent : IsTangent pointP pointD := by
+IQGTCore/Bridge/GravityLedger.lean-76-  unfold IsTangent pointP pointD; ext i j; fin_cases i <;> fin_cases j <;> simp
+IQGTCore/Bridge/GravityLedger.lean-77-
+IQGTCore/Bridge/GravityLedger.lean:78:theorem pointD_not_hermitian : pointDᴴ ≠ pointD := by
+--
+IQGTCore/Bridge/GravityLedger.lean-84-/-- **False control.** A non-Hermitian tangent can have negative `Q(D,D)`; the Hermitian
+IQGTCore/Bridge/GravityLedger.lean-85-hypothesis of `metric_self_nonneg` is necessary. -/
+IQGTCore/Bridge/GravityLedger.lean:86:theorem Q_nonHermitian_negative : Q pointP pointD pointD = -1 := by
+--
+IQGTCore/Bridge/GravityLedger.lean-92-  !![1 / (1 + z * w), w / (1 + z * w); z / (1 + z * w), z * w / (1 + z * w)]
+IQGTCore/Bridge/GravityLedger.lean-93-
+IQGTCore/Bridge/GravityLedger.lean:94:theorem chartP_isIdempotentElem (z w : ℂ) (h : 1 + z * w ≠ 0) :
+--
+IQGTCore/Bridge/GravityLedger.lean-98-    simp [chartP, Matrix.mul_apply, Fin.sum_univ_two] <;> field_simp
+IQGTCore/Bridge/GravityLedger.lean-99-
+IQGTCore/Bridge/GravityLedger.lean:100:theorem chart_trace_one (z w : ℂ) (h : 1 + z * w ≠ 0) : (chartP z w).trace = 1 := by
+--
+IQGTCore/Bridge/LightLedger.lean-44-
+IQGTCore/Bridge/LightLedger.lean-45-/-- Ported: `polarisability = responseWeight × transitionMetric`. -/
+IQGTCore/Bridge/LightLedger.lean:46:theorem response_is_weighted_metric (a gap x : ℝ) (hg : gap ≠ 0) (hd : gap ^ 2 - x ^ 2 ≠ 0) :
+--
+IQGTCore/Bridge/LightLedger.lean-50-
+IQGTCore/Bridge/LightLedger.lean-51-/-- Ported: below resonance the response weight is positive. -/
+IQGTCore/Bridge/LightLedger.lean:52:theorem response_weight_positive (gap x : ℝ) (hg : 0 < gap) (hx : x ^ 2 < gap ^ 2) :
+--
+IQGTCore/Bridge/LightLedger.lean-55-  exact div_pos (mul_pos (by norm_num) (pow_pos hg 3)) (sub_pos.mpr hx)
+IQGTCore/Bridge/LightLedger.lean-56-
+IQGTCore/Bridge/LightLedger.lean:57:theorem transitionMetric_eq_zpow (a gap : ℝ) :
+--
+IQGTCore/Bridge/LightLedger.lean-63-
+IQGTCore/Bridge/LightLedger.lean-64-/-- `Σ a²/Δ² = pairSum (-2)` (the ω⁻² reading is the IQGT metric reading). -/
+IQGTCore/Bridge/LightLedger.lean:65:theorem sum_transitionMetric_eq_pairSum (s : Finset ι) (a Δ : ι → ℝ) :
+--
+IQGTCore/Bridge/LightLedger.lean-69-
+IQGTCore/Bridge/LightLedger.lean-70-/-- `Σ α_i(0) = 2 · pairSum (-1)` (the ω⁻¹ reading). -/
+IQGTCore/Bridge/LightLedger.lean:71:theorem sum_static_polarizability (s : Finset ι) (a Δ : ι → ℝ) (hΔ : ∀ i ∈ s, Δ i ≠ 0) :
+--
+IQGTCore/Bridge/LightLedger.lean-82-/-- **Polarisability is controlled by metric and spread**:
+IQGTCore/Bridge/LightLedger.lean-83-`(Σ α_i(0))² ≤ 4 (Σ a²/Δ²)(Σ a²)` for positive gaps. -/
+IQGTCore/Bridge/LightLedger.lean:84:theorem static_polarizability_sq_le (s : Finset ι) (a Δ : ι → ℝ) (hΔ : ∀ i ∈ s, 0 < Δ i) :
+--
+IQGTCore/Bridge/LightLedger.lean-96-(Sylvester hypothesis), the IQGT metric equals the summed light-ledger transition metric over
+IQGTCore/Bridge/LightLedger.lean-97-cross-gap pairs. -/
+IQGTCore/Bridge/LightLedger.lean:98:theorem metric_eq_sum_transitionMetric {k m : Type*} [Fintype k] [Fintype m] [DecidableEq k]
+--
+IQGTCore/Bridge/LightLedger.lean-108-/-- At a single gap `d`, the summed polarisability of the cross-gap pairs is
+IQGTCore/Bridge/LightLedger.lean-109-`responseWeight d ω` times the IQGT metric of the response tangent. -/
+IQGTCore/Bridge/LightLedger.lean:110:theorem polarizability_single_gap {k m : Type*} [Fintype k] [Fintype m] [DecidableEq k]
+--
+IQGTCore/Bridge/LightLedger.lean-129-
+IQGTCore/Bridge/LightLedger.lean-130-/-- Ported: a positive reweighting cannot create a null direction. -/
+IQGTCore/Bridge/LightLedger.lean:131:theorem weighted_zero_iff (w q : ι → ℝ) (hw : ∀ i, 0 < w i) :
+--
+IQGTCore/Bridge/LightLedger.lean-137-
+IQGTCore/Bridge/LightLedger.lean-138-/-- Peel: lowering nonnegative weights keeps a null direction null. -/
+IQGTCore/Bridge/LightLedger.lean:139:theorem peel_null_persists (after before q : ι → ℝ) (ha : ∀ i, 0 ≤ after i)
+--
+IQGTCore/Bridge/UPG.lean-35-variable {n : Type*} [Fintype n] [DecidableEq n]
+IQGTCore/Bridge/UPG.lean-36-
+IQGTCore/Bridge/UPG.lean:37:theorem redist_conjTranspose {H P : Matrix n n ℂ} (hH : Hᴴ = H) (hP : IsStarProjection P) :
+--
+IQGTCore/Bridge/UPG.lean-45-/-- **UPG ↦ IQGT.** The IQGT metric of the redistribution tangent is the squared cross-gap block
+IQGTCore/Bridge/UPG.lean-46-`(1-P)HP` of the Hamiltonian. -/
+IQGTCore/Bridge/UPG.lean:47:theorem metric_redist {H P : Matrix n n ℂ} (hH : Hᴴ = H) (hP : IsStarProjection P) :
+--
+IQGTCore/Bridge/UPG.lean-52-
+IQGTCore/Bridge/UPG.lean-53-/-- The redistribution speed vanishes exactly when the sector decouples, `HP = PH`. -/
+IQGTCore/Bridge/UPG.lean:54:theorem metric_redist_eq_zero_iff {H P : Matrix n n ℂ} (hH : Hᴴ = H) (hP : IsStarProjection P) :
+--
+IQGTCore/Bridge/UPG.lean-77-
+IQGTCore/Bridge/UPG.lean-78-omit [Fintype k] [Fintype m] in
+IQGTCore/Bridge/UPG.lean:79:lemma one_sub_P0 : (1 : Matrix (k ⊕ m) (k ⊕ m) ℂ) - P0 = fromBlocks 0 0 0 1 := by
+--
+IQGTCore/Bridge/UPG.lean-82-
+IQGTCore/Bridge/UPG.lean-83-/-- In adapted blocks the redistribution operator is the off-diagonal coupling: `F = offDiag B`. -/
+IQGTCore/Bridge/UPG.lean:84:theorem redist_blockHam (A : Matrix k k ℂ) (B : Matrix k m ℂ) (D : Matrix m m ℂ) :
+--
+IQGTCore/Bridge/UPG.lean-89-  simp [fromBlocks_multiply, fromBlocks_add]
+IQGTCore/Bridge/UPG.lean-90-
+IQGTCore/Bridge/UPG.lean:91:theorem metric_redist_blockHam (A : Matrix k k ℂ) (B : Matrix k m ℂ) (D : Matrix m m ℂ) :
+--
+IQGTCore/Bridge/UPG.lean-96-/-- **Interface persistence.** Changing the diagonal sectors at fixed coupling leaves the IQGT
+IQGTCore/Bridge/UPG.lean-97-speed of the redistribution unchanged. -/
+IQGTCore/Bridge/UPG.lean:98:theorem metric_redist_blockHam_indep (A A' : Matrix k k ℂ) (B : Matrix k m ℂ)
+--
+IQGTCore/Bridge/UPG.lean-104-/-- For a real coupling block the IQGT metric of the redistribution is UPG's coupling energy
+IQGTCore/Bridge/UPG.lean-105-`Σ B_ij²`. -/
+IQGTCore/Bridge/UPG.lean:106:theorem metric_redist_real (A : Matrix k k ℂ) (B : Matrix k m ℝ) (D : Matrix m m ℂ) :
+--
+IQGTCore/Bridge/UPG.lean-116-
+IQGTCore/Bridge/UPG.lean-117-/-- `[H,P₀] = [[0,-B],[Bᴴ,0]]`. -/
+IQGTCore/Bridge/UPG.lean:118:theorem commutator_blockHam (A : Matrix k k ℂ) (B : Matrix k m ℂ) (D : Matrix m m ℂ) :
+--
+IQGTCore/Bridge/UPG.lean-122-
+IQGTCore/Bridge/UPG.lean-123-/-- **Commutator energy is twice the IQGT metric:** `Tr([H,P₀]ᴴ[H,P₀]) = 2 Q(F,F)`. -/
+IQGTCore/Bridge/UPG.lean:124:theorem commutator_energy_eq_two_Q (A : Matrix k k ℂ) (B : Matrix k m ℂ) (D : Matrix m m ℂ) :
+--
+IQGTCore/Bridge/UPG.lean-134-/-- `B = 0` iff the coupling decouples: the UPG equivalence `[H,P₀] = 0 ↔ B = 0`, through the
+IQGTCore/Bridge/UPG.lean-135-IQGT metric. -/
+IQGTCore/Bridge/UPG.lean:136:theorem metric_redist_blockHam_eq_zero_iff (A : Matrix k k ℂ) (B : Matrix k m ℂ)
+--
+IQGTCore/Form.lean-57-noncomputable def curvature (P V W : Matrix n n ℂ) : ℝ := 2 * (Q P V W).im
+IQGTCore/Form.lean-58-
+IQGTCore/Form.lean:59:lemma conjTranspose_eq_of_isStarProjection {P : Matrix n n ℂ} (hP : IsStarProjection P) :
+--
+IQGTCore/Form.lean-63-
+IQGTCore/Form.lean-64-/-- `Q(V,W) = Tr((VP)ᴴ(WP))` for Hermitian `V` and an orthogonal projector `P`. -/
+IQGTCore/Form.lean:65:theorem Q_eq_frobenius {P V : Matrix n n ℂ} (hP : IsStarProjection P) (hV : Vᴴ = V)
+--
+IQGTCore/Form.lean-70-
+IQGTCore/Form.lean-71-/-- The Frobenius pairing is Hermitian: `Tr(Bᴴ A) = conj Tr(Aᴴ B)`. -/
+IQGTCore/Form.lean:72:theorem frob_herm (A B : Matrix n n ℂ) : trace (Bᴴ * A) = conj (trace (Aᴴ * B)) := by
+--
+IQGTCore/Form.lean-74-
+IQGTCore/Form.lean-75-/-- **Hermitian symmetry** `Q(W,V) = conj Q(V,W)`. -/
+IQGTCore/Form.lean:76:theorem Q_swap {P V W : Matrix n n ℂ} (hP : IsStarProjection P) (hV : Vᴴ = V) (hW : Wᴴ = W) :
+--
+IQGTCore/Form.lean-78-  rw [Q_eq_frobenius hP hW, Q_eq_frobenius hP hV, frob_herm]
+IQGTCore/Form.lean-79-
+IQGTCore/Form.lean:80:theorem metric_symm {P V W : Matrix n n ℂ} (hP : IsStarProjection P) (hV : Vᴴ = V)
+--
+IQGTCore/Form.lean-82-  unfold metric; rw [Q_swap hP hV hW, Complex.conj_re]
+IQGTCore/Form.lean-83-
+IQGTCore/Form.lean:84:theorem curvature_antisymm {P V W : Matrix n n ℂ} (hP : IsStarProjection P) (hV : Vᴴ = V)
+--
+IQGTCore/Form.lean-86-  unfold curvature; rw [Q_swap hP hV hW, Complex.conj_im]; ring
+IQGTCore/Form.lean-87-
+IQGTCore/Form.lean:88:theorem Q_self_im {P V : Matrix n n ℂ} (hP : IsStarProjection P) (hV : Vᴴ = V) :
+--
+IQGTCore/Form.lean-91-  exact Complex.conj_eq_iff_im.mp h.symm
+IQGTCore/Form.lean-92-
+IQGTCore/Form.lean:93:theorem curvature_self {P V : Matrix n n ℂ} (hP : IsStarProjection P) (hV : Vᴴ = V) :
+--
+IQGTCore/Form.lean-95-  unfold curvature; rw [Q_self_im hP hV, mul_zero]
+IQGTCore/Form.lean-96-
+IQGTCore/Form.lean:97:theorem Q_self_nonneg {P V : Matrix n n ℂ} (hP : IsStarProjection P) (hV : Vᴴ = V) :
+--
+IQGTCore/Form.lean-100-  exact (posSemidef_conjTranspose_mul_self (V * P)).trace_nonneg
+IQGTCore/Form.lean-101-
+IQGTCore/Form.lean:102:theorem metric_self_nonneg {P V : Matrix n n ℂ} (hP : IsStarProjection P) (hV : Vᴴ = V) :
+--
+IQGTCore/Form.lean-105-
+IQGTCore/Form.lean-106-/-- `g(V,V) = 0` iff the cross-gap block `VP` vanishes. -/
+IQGTCore/Form.lean:107:theorem metric_self_eq_zero_iff {P V : Matrix n n ℂ} (hP : IsStarProjection P) (hV : Vᴴ = V) :
+--
+IQGTCore/Form.lean-113-
+IQGTCore/Form.lean-114-/-- A Hermitian tangent with `VP = 0` is zero. -/
+IQGTCore/Form.lean:115:theorem eq_zero_of_mul_proj_eq_zero [DecidableEq n] {P V : Matrix n n ℂ} (hP : IsStarProjection P)
+--
+IQGTCore/Form.lean-125-
+IQGTCore/Form.lean-126-/-- **Positive definiteness**: `g(V,V) > 0` for every nonzero Hermitian tangent `V`. -/
+IQGTCore/Form.lean:127:theorem metric_pos [DecidableEq n] {P V : Matrix n n ℂ} (hP : IsStarProjection P) (hV : Vᴴ = V)
+--
+IQGTCore/Form.lean-133-
+IQGTCore/Form.lean-134-/-- Remark 2.3: `Q(V,W) + Q(W,V) = Tr(VW)` as soon as `V` is tangent (any `W`). -/
+IQGTCore/Form.lean:135:theorem Q_add_Q_swap [DecidableEq n] {P V : Matrix n n ℂ} (hT : IsTangent P V) (W : Matrix n n ℂ) :
+--
+IQGTCore/Form.lean-140-
+IQGTCore/Form.lean-141-/-- `Q(V,W) − Q(W,V) = Tr(P[V,W])`: the curvature is the trace of the projected commutator. -/
+IQGTCore/Form.lean:142:theorem Q_sub_Q_swap (P V W : Matrix n n ℂ) :
+--
+IQGTCore/Form.lean-145-
+IQGTCore/Form.lean-146-/-- **The metric is the Hilbert–Schmidt metric**: `g(V,W) = ½ Re Tr(VW)` on tangents. -/
+IQGTCore/Form.lean:147:theorem metric_eq_half_re_trace [DecidableEq n] {P V W : Matrix n n ℂ} (hP : IsStarProjection P) (hV : Vᴴ = V)
+--
+IQGTCore/Form.lean-153-
+IQGTCore/Form.lean-154-/-- Trace step of Lemma 5.1: `2 Q(V,V) = Tr(V²)` for tangent `V` (so `F_Q = 4 g / k`). -/
+IQGTCore/Form.lean:155:theorem two_Q_self [DecidableEq n] {P V : Matrix n n ℂ} (hT : IsTangent P V) :
+--
+IQGTCore/Form.lean-162-def cols (A B : Matrix n n ℂ) : Matrix (n × n) (Fin 2) ℂ := of fun p a => ![A, B] a p.1 p.2
+IQGTCore/Form.lean-163-
+IQGTCore/Form.lean:164:theorem frob_sum (A B : Matrix n n ℂ) :
+--
+IQGTCore/Form.lean-167-  exact Finset.sum_comm
+IQGTCore/Form.lean-168-
+IQGTCore/Form.lean:169:theorem gram_entries (A B : Matrix n n ℂ) :
+--
+IQGTCore/Form.lean-176-
+IQGTCore/Form.lean-177-/-- The Gram determinant of two Frobenius vectors is nonnegative. -/
+IQGTCore/Form.lean:178:theorem gram_det_nonneg (A B : Matrix n n ℂ) :
+--
+IQGTCore/Form.lean-185-/-- **Metric control of curvature (Gram inequality).**
+IQGTCore/Form.lean-186-`(Im Q(V,W))² ≤ g(V,V) g(W,W) − g(V,W)²`. -/
+IQGTCore/Form.lean:187:theorem metric_control {P V W : Matrix n n ℂ} (hP : IsStarProjection P) (hV : Vᴴ = V)
+--
+IQGTCore/Form.lean-206-
+IQGTCore/Form.lean-207-/-- **`4 det g ≥ Ω²`** in operator form: `Ω(V,W)² ≤ 4 (g_VV g_WW − g_VW²)`. -/
+IQGTCore/Form.lean:208:theorem curvature_sq_le {P V W : Matrix n n ℂ} (hP : IsStarProjection P) (hV : Vᴴ = V)
+--
+IQGTCore/Form.lean-213-
+IQGTCore/Form.lean-214-/-- **Rigidity**: `g(V,V) = 0` forces `Ω(V,W) = 0`. -/
+IQGTCore/Form.lean:215:theorem rigidity {P V W : Matrix n n ℂ} (hP : IsStarProjection P) (hV : Vᴴ = V) (hW : Wᴴ = W)
+--
+IQGTCore/Form.lean-223-
+IQGTCore/Form.lean-224-/-- Unitary frame changes leave `Q` invariant: `Q(UPU⁻¹, UVU⁻¹, UWU⁻¹) = Q(P,V,W)`. -/
+IQGTCore/Form.lean:225:theorem Q_unitary_conj [DecidableEq n] {U : Matrix n n ℂ} (hU : star U * U = 1) (P V W : Matrix n n ℂ) :
+--
+IQGTCore/Spectral.lean-38-omit [Fintype k] [Fintype m] [DecidableEq k] in
+IQGTCore/Spectral.lean-39-/-- Solving the Sylvester equation entrywise divides by the gap. -/
+IQGTCore/Spectral.lean:40:theorem sylvester_entry {x a : ℂ} {d : ℝ} (hd : d ≠ 0) (h : x * d = a) : x = a / d := by
+--
+IQGTCore/Spectral.lean-44-`Y_ij (e_i − f_j) = B_ij` with nonzero real gaps, then
+IQGTCore/Spectral.lean-45-`Q_{P₀}(V_X, V_Y) = Σ_ij A_ij conj(B_ij) / (e_i − f_j)²`. -/
+IQGTCore/Spectral.lean:46:theorem Q_sylvester (e : k → ℝ) (f : m → ℝ) (hgap : ∀ i j, e i - f j ≠ 0)
+--
+IQGTCore/Spectral.lean-58-
+IQGTCore/Spectral.lean-59-/-- **Metric as inverse-gap-squared pair sum**: `g(V_X,V_X) = Σ |A_ij|² / (e_i − f_j)²`. -/
+IQGTCore/Spectral.lean:60:theorem metric_sylvester (e : k → ℝ) (f : m → ℝ) (hgap : ∀ i j, e i - f j ≠ 0)
+--
+IQGTCore/Spectral.lean-73-/-- **Residue step.** `1/((z−a)(z−b)) = (1/(z−a) − 1/(z−b))/(a−b)`; the residue at `z = a`
+IQGTCore/Spectral.lean-74-is the inverse-gap weight `1/(a−b)`. -/
+IQGTCore/Spectral.lean:75:theorem partial_fraction (z a b : ℂ) (hza : z ≠ a) (hzb : z ≠ b) (hab : a ≠ b) :
+--
+IQGTCore/Spectral.lean-88-noncomputable def pairSum (s : Finset ι) (a Δ : ι → ℝ) (p : ℤ) : ℝ := ∑ i ∈ s, a i ^ 2 * Δ i ^ p
+IQGTCore/Spectral.lean-89-
+IQGTCore/Spectral.lean:90:theorem pairSum_nonneg (s : Finset ι) (a Δ : ι → ℝ) (p : ℤ) (hΔ : ∀ i ∈ s, 0 < Δ i) :
+--
+IQGTCore/Spectral.lean-94-/-- **Log-convexity in the gap power.** For positive gaps,
+IQGTCore/Spectral.lean-95-`(Σ aᵢ² Δᵢ^p)² ≤ (Σ aᵢ² Δᵢ^(p-1)) (Σ aᵢ² Δᵢ^(p+1))`. -/
+IQGTCore/Spectral.lean:96:theorem pairSum_sq_le (s : Finset ι) (a Δ : ι → ℝ) (p : ℤ) (hΔ : ∀ i ∈ s, 0 < Δ i) :
+--
+IQGTCore/Spectral.lean-107-
+IQGTCore/Spectral.lean-108-/-- Static polarisability (`p = -1`) is controlled by metric (`p = -2`) and spread (`p = 0`). -/
+IQGTCore/Spectral.lean:109:theorem polarisability_sq_le (s : Finset ι) (a Δ : ι → ℝ) (hΔ : ∀ i ∈ s, 0 < Δ i) :
+--
+IQGTCore/Spectral.lean-114-
+IQGTCore/Spectral.lean-115-/-- Spread (`p = 0`) is controlled by polarisability (`p = -1`) and the f-sum budget (`p = 1`). -/
+IQGTCore/Spectral.lean:116:theorem spread_sq_le (s : Finset ι) (a Δ : ι → ℝ) (hΔ : ∀ i ∈ s, 0 < Δ i) :
+--
+IQGTCore/Spectral.lean-121-
+IQGTCore/Spectral.lean-122-/-- **Gap ladder.** A gap floor `0 < Δ₀ ≤ Δᵢ` gives `Δ₀ · pairSum p ≤ pairSum (p+1)`. -/
+IQGTCore/Spectral.lean:123:theorem pairSum_ladder (s : Finset ι) (a Δ : ι → ℝ) (p : ℤ) (Δ₀ : ℝ) (h0 : 0 < Δ₀)
+--
+IQGTCore/Spectral.lean-132-
+IQGTCore/Spectral.lean-133-/-- At a single gap `d`, every reading is `d^p` times the spread. -/
+IQGTCore/Spectral.lean:134:theorem pairSum_single_gap (s : Finset ι) (a Δ : ι → ℝ) (p : ℤ) (d : ℝ)
+--
+IQGTCore/Spectral.lean-140-
+IQGTCore/Spectral.lean-141-/-- At a single gap the log-convexity bound is an equality. -/
+IQGTCore/Spectral.lean:142:theorem pairSum_sq_eq_of_single_gap (s : Finset ι) (a Δ : ι → ℝ) (p : ℤ) (d : ℝ) (hd : 0 < d)
+--
+IQGTCore/Spectral.lean-149-/-- **The IQGT metric of the response tangent is the gap-power `-2` pair sum** over
+IQGTCore/Spectral.lean-150-(occupied, empty) pairs, with amplitudes `‖A_ij‖` and gaps `|e_i − f_j|`. -/
+IQGTCore/Spectral.lean:151:theorem metric_sylvester_eq_pairSum {k m : Type*} [Fintype k] [Fintype m] [DecidableEq k]
+--
+IQGTCore/Tangent.lean-38-
+IQGTCore/Tangent.lean-39-/-- Expansion used repeatedly: `(1-P)X(1-P) = X - (PX + XP) + PXP`. -/
+IQGTCore/Tangent.lean:40:theorem compl_sandwich (P X : R) :
+--
+IQGTCore/Tangent.lean-43-
+IQGTCore/Tangent.lean-44-/-- A tangent vector has zero occupied–occupied block: `PVP = 0`. -/
+IQGTCore/Tangent.lean:45:theorem IsTangent.occupied_block {P V : R} (hP : IsIdempotentElem P) (hV : IsTangent P V) :
+--
+IQGTCore/Tangent.lean-52-
+IQGTCore/Tangent.lean-53-/-- A tangent vector has zero empty–empty block: `(1-P)V(1-P) = 0`. -/
+IQGTCore/Tangent.lean:54:theorem IsTangent.empty_block {P V : R} (hP : IsIdempotentElem P) (hV : IsTangent P V) :
+--
+IQGTCore/Tangent.lean-57-
+IQGTCore/Tangent.lean-58-/-- Converse: both diagonal blocks vanishing makes `V` tangent (no idempotence needed). -/
+IQGTCore/Tangent.lean:59:theorem isTangent_of_blocks {P V : R} (h1 : P * V * P = 0) (h2 : (1 - P) * V * (1 - P) = 0) :
+--
+IQGTCore/Tangent.lean-63-
+IQGTCore/Tangent.lean-64-/-- **Tangent law.** At an idempotent, `V` is tangent iff it is purely off-diagonal. -/
+IQGTCore/Tangent.lean:65:theorem tangent_iff_blocks {P V : R} (hP : IsIdempotentElem P) :
+--
+IQGTCore/Tangent.lean-68-
+IQGTCore/Tangent.lean-69-/-- A tangent is the sum of its two cross-gap blocks: `V = PV(1-P) + (1-P)VP`. -/
+IQGTCore/Tangent.lean:70:theorem IsTangent.eq_offdiag {P V : R} (hP : IsIdempotentElem P) (hV : IsTangent P V) :
+--
+IQGTCore/Tangent.lean-76-
+IQGTCore/Tangent.lean-77-/-- `-V` is tangent at the complementary projector `1 - P`. -/
+IQGTCore/Tangent.lean:78:theorem IsTangent.compl {P V : R} (hV : IsTangent P V) : IsTangent (1 - P) (-V) := by
+--
+IQGTCore/Tangent.lean-82-
+IQGTCore/Tangent.lean-83-/-- Tangent vectors at `P` form an additive subgroup (closed under `+`). -/
+IQGTCore/Tangent.lean:84:theorem IsTangent.add {P V W : R} (hV : IsTangent P V) (hW : IsTangent P W) :
+--
+IQGTCore/Tangent.lean-89-
+IQGTCore/Tangent.lean-90-/-- Tangent vectors at `P` are closed under negation. -/
+IQGTCore/Tangent.lean:91:theorem IsTangent.neg {P V : R} (hV : IsTangent P V) : IsTangent P (-V) := by
+--
+IQGTCore/Tangent.lean-97-def redist (Ω P : R) : R := (1 - P) * Ω * P + P * Ω * (1 - P)
+IQGTCore/Tangent.lean-98-
+IQGTCore/Tangent.lean:99:theorem redist_eq_sum_form (Ω P : R) : redist Ω P = Ω * P + P * Ω - 2 * (P * Ω * P) := by
+--
+IQGTCore/Tangent.lean-101-
+IQGTCore/Tangent.lean-102-/-- `F(Ω,P) = [[Ω,P],P]` for an idempotent `P`. -/
+IQGTCore/Tangent.lean:103:theorem redist_double_bracket (Ω P : R) (hP : IsIdempotentElem P) :
+--
+IQGTCore/Tangent.lean-107-    _ = (Ω * P - P * Ω) * P - P * (Ω * P - P * Ω) := by noncomm_ring
+IQGTCore/Tangent.lean-108-
+IQGTCore/Tangent.lean:109:theorem proj_mul_redist (Ω P : R) (hP : IsIdempotentElem P) :
+--
+IQGTCore/Tangent.lean-113-  rw [a, hP.mul_one_sub_self, hP.eq, zero_mul, zero_mul, zero_add]
+IQGTCore/Tangent.lean-114-
+IQGTCore/Tangent.lean:115:theorem redist_mul_proj (Ω P : R) (hP : IsIdempotentElem P) :
+--
+IQGTCore/Tangent.lean-120-
+IQGTCore/Tangent.lean-121-/-- The redistribution operator is a tangent vector at `P`. -/
+IQGTCore/Tangent.lean:122:theorem redist_isTangent (Ω P : R) (hP : IsIdempotentElem P) : IsTangent P (redist Ω P) := by
+--
+IQGTCore/Tangent.lean-126-
+IQGTCore/Tangent.lean-127-/-- `F(Ω,P) = 0` exactly when `Ω` commutes with `P`. -/
+IQGTCore/Tangent.lean:128:theorem redist_eq_zero_iff (Ω P : R) (hP : IsIdempotentElem P) :
+--
+IQGTCore/Tangent.lean-142-/-- An operator that commutes with `P` and is tangent at `P` is zero: commuting directions
+IQGTCore/Tangent.lean-143-do not move the subspace. -/
+IQGTCore/Tangent.lean:144:theorem IsTangent.eq_zero_of_commute {P V : R} (hP : IsIdempotentElem P) (hV : IsTangent P V)
+--
+IQGTCore/Tangent.lean-153-/-- Symmetric-logarithmic-derivative core: `L = 2V` solves `LP + PL = 2V` for a tangent `V`
+IQGTCore/Tangent.lean-154-(for `ρ = P/k` the factor `1/k` cancels on both sides). -/
+IQGTCore/Tangent.lean:155:theorem IsTangent.sld {P V : R} (hV : IsTangent P V) : (2 * V) * P + P * (2 * V) = 2 * V := by
+--
+IQGTCore/Tangent.lean-160-/-- Anything of the form `LP + PL` has no empty–empty block, so a variation with such a block
+IQGTCore/Tangent.lean-161-never solves the SLD equation. -/
+IQGTCore/Tangent.lean:162:theorem sld_empty_block {P L : R} (hP : IsIdempotentElem P) :
+--
+IQGTCore/Tangent.lean-168-/-- Along a silent direction (`P' = 0`) the second derivative is again off-diagonal.
+IQGTCore/Tangent.lean-169-`A = P''`, `B = P'`; `P'' = P''P + 2P'P' + PP''` is `P² = P` differentiated twice. -/
+IQGTCore/Tangent.lean:170:theorem silent_second_order {P A B : R} (hP : IsIdempotentElem P)
+--
+IQGTCore/Tangent.lean-181-complementary spectral projector of `A' = A + E`, the block `QP` measures how far the subspace
+IQGTCore/Tangent.lean-182-moved; this is the identity a gap turns into the finite Davis–Kahan bound. -/
+IQGTCore/Tangent.lean:183:theorem gap_identity {P Q A A' : R} (hP : IsIdempotentElem P) (hQ : IsIdempotentElem Q)
+--
+IQGTCore/Tangent.lean-197-
+IQGTCore/Tangent.lean-198-/-- The second resolvent identity: `a⁻¹ - b⁻¹ = a⁻¹ (b - a) b⁻¹` for units. -/
+IQGTCore/Tangent.lean:199:theorem second_resolvent (a b : Rˣ) :

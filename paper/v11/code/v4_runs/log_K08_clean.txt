@@ -1,0 +1,7 @@
+K_r08_clean delta=0.51170069: BH eps=7.37
+K_r08_clean delta=0.51170754: BH eps=7.38
+K_r08_clean delta=0.51169611: BH eps=7.36
+K_r08_clean delta=0.51169840: BH eps=7.37
+K_r08_clean delta=0.51169459: dispersed eps=7.36 (retry at CFL 0.3 after crash)
+K_r08_clean delta=0.51169535: dispersed eps=7.36
+RESULT K_r08_clean: delta_c = 0.51169573 +- 0.00000038  bracket [0.51169535, 0.51169611] (7.0 min)

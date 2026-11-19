@@ -1,0 +1,11 @@
+E_fnu020_ed2_n3 delta=0.50280: dispersed eps=5.72
+E_fnu020_ed2_n3 delta=0.50790: BH eps=4.81
+E_fnu020_ed2_n3 delta=0.50450: BH eps=5.90
+E_fnu020_ed2_n3 delta=0.50620: BH eps=5.15
+E_fnu020_ed2_n3 delta=0.50337: dispersed eps=6.00
+E_fnu020_ed2_n3 delta=0.50393: dispersed eps=6.84
+E_fnu020_ed2_n3 delta=0.50412: BH eps=6.44
+E_fnu020_ed2_n3 delta=0.50431: BH eps=6.10
+E_fnu020_ed2_n3 delta=0.50400: BH eps=7.23
+E_fnu020_ed2_n3 delta=0.50406: BH eps=6.66
+RESULT E_fnu020_ed2_n3: delta_c = 0.50396 +- 0.00003 (6.8 min)

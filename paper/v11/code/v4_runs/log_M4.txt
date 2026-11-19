@@ -1,0 +1,11 @@
+M_r4_K48 delta=0.50516667: dispersed eps=6.36
+M_r4_K48 delta=0.50583333: BH eps=6.19
+M_r4_K48 delta=0.50538889: dispersed eps=6.75
+M_r4_K48 delta=0.50561111: BH eps=6.66
+M_r4_K48 delta=0.50546296: dispersed eps=7.07
+M_r4_K48 delta=0.50553704: BH eps=7.07
+M_r4_K48 delta=0.50548765: dispersed eps=7.32
+M_r4_K48 delta=0.50551235: crash eps=7.36 (retry at CFL 0.3 after crash)
+M_r4_K48 delta=0.50550412: BH eps=7.36
+M_r4_K48 delta=0.50552058: BH eps=7.27
+RESULT M_r4_K48: delta_c = 0.50549588 +- 0.00000823  bracket [0.50548765, 0.50550412] (21.0 min)

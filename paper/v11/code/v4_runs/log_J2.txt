@@ -1,0 +1,11 @@
+J_r2 delta=0.50667: dispersed eps=5.78
+J_r2 delta=0.50833: BH eps=6.18
+J_r2 delta=0.50722: dispersed eps=6.02
+J_r2 delta=0.50778: dispersed eps=6.54
+J_r2 delta=0.50796: dispersed eps=7.19
+J_r2 delta=0.50815: BH eps=6.52
+J_r2 delta=0.50802: BH eps=7.07
+J_r2 delta=0.50809: BH eps=6.71
+J_r2 delta=0.50798: BH eps=7.36
+J_r2 delta=0.50800: BH eps=7.34
+RESULT J_r2: delta_c = 0.50797 +- 0.00001 (6.3 min)

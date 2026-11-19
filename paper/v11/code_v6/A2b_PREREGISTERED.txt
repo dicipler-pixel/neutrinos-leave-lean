@@ -1,0 +1,65 @@
+PREREGISTERED — Task A2b (the two decisive simulations proposed by A2)
+Written 2026-11-11T14:09Z, before any simulation in this folder was run and before the variant code was written.
+
+DISCLOSURE: A2's numbers are known (its REPORT.md and PREREGISTERED.txt were read): McCormick's measured thresholds at
+T_H = 1 MeV (T0 = 10, G = 6, x 0.4..20, N = 300, Nmu = 32): with nu-nu (nnmode 0) 0.51941 +- 0.00016, without 0.52639
++- 0.00011; delta_fluid = 0.49742; A2's delta_inst stand-in 0.53379.
+
+RUN 1 — variant 'r1' of McCormick's multigroup solver (copies in r1/; originals in orig/, unchanged).
+The nnmode-0 nu-nu term A kap_n (eps_s/4pi + c_s mu - I) is replaced (as nnmode = 2) by A kap_n (eps_s/4pi - I), and
+kap_n,s q_s is added to the momentum handed to the plasma (kq). Then for each group the collision operator is
+-(kap_e + kap_n)(1 - P0): flux and every l >= 2 relax at the same rate (link ratio r = 1), while the l >= 2 (isotropy)
+rate kap_e + kap_n is exactly the one of the archived nu-nu run, so the total isotropy history is unchanged.
+Why this decides: the timing reading says the threshold follows only the isotropy (total-rate) history, which is the
+same as in McCormick's nu-nu run, so it predicts the same threshold, 0.5194. The link law says the threshold reads the
+flux-shear link rapidity (1/2) ln r; at r = 1 with flux rate kap_e + kap_n it predicts about 0.5204 +- 0.0003 (A2).
+Bisection: T0 = 10 MeV, mode = phys, G = 6, x_lo = 0.4, x_hi = 20, N = 300, K = 32, nnmode = 2, start bracket
+0.517-0.523 (widened only if an endpoint check fails), tolerance width 2e-4 (+-1e-4), McCormick's bisect_mg logic:
+only BH moves hi, only dispersed moves lo, anything else stops the bisection.
+KILL LINES (A2's, copied):
+  result above 0.5194 by more than 0.0005 (delta_c > 0.5199)       -> favours the link law (A2 predicts 0.5204 +- 0.0003)
+  result within +-0.0003 of 0.5194 (0.5191 <= delta_c <= 0.5197)  -> favours timing
+  anything else (0.5197 < delta_c <= 0.5199, or delta_c < 0.5191) -> neither; reported as such.
+  The bisection half-width is reported with the result; if the bracket straddles a kill line, that is said.
+Gates before the bisection (setup, not deciding): single frozen group, discrete operator equals
+-(k_e+k_n) diag(0,1,1,...) in the discrete Legendre basis; energy conserved and momentum exchange balancing (neutrino
+momentum loss = momentum handed to plasma), to machine precision. Regression: with kappa_n = 0 (nunu = 0) the variant
+(nnmode 2) reproduces the unmodified code bit for bit up to eps = 0.6.
+
+RUN 2 — instantaneous free-streaming threshold at T_H = 1 MeV with the full EOS (McCormick's run_eos / bisect_eos,
+kind 'fs', T0 = 10, his defaults N = 400, K = 32), to +-2e-4 (tolerance width 4e-4). No kill line; it replaces A2's
+delta_inst stand-in 0.53379, and A2's step3/step4 scripts (copied) are rerun with it. Expectation (untested): near
+0.533, since R_nu = 0.488 at T > 1 MeV.
+
+Results are appended below this line; nothing above is edited afterwards.
+------------------------------------------------------------------------------------------------------------------
+
+[2026-11-11T14:50Z] GATES (setup; gate_operator.py -> gate_operator_r1.txt / gate_operator_orig.txt; regress.py, regress_compare.py)
+  r1 (nnmode 2), one frozen group, Nmu = 32, k_e = 0.7, k_n = 1.9, operator from the compiled rhs():
+    max |L - (-(k_e+k_n) diag(0,1,...,1))| = 5.3e-15 (entries 2.6); eigenvalues 0 and 31 x -2.6.
+    C(I) vs -(k_e+k_n)(I - eps/4pi) on random anisotropic I: rel err 1.2e-15. Energy moment of collisions 1.5e-16 (rel).
+    momentum: neutrino collisional loss -1.219742786974912e-01 = momentum handed to plasma -1.219742786974893e-01 (rel 1.5e-14).
+  orig (nnmode 0), same test: -diag(0, k_e, k_e+k_n, ...) to 7.8e-15; plasma receives only k_e q (rel 3.3e-14). (A2's result reproduced.)
+  regression, T0 = 10, delta = 0.52, G = 6, N = 300, K = 32, nunu = 0, to eps = 0.6 (3340 steps): r1 nnmode 2 vs unmodified
+    copy: I, e, eps, steps, peakC all bit-identical (max |diff| = 0.0). Gates PASS; bisection launched next.
+
+[2026-11-11T15:20Z] RUN 1 RESULT (r1/res_mg_r1_6_10.0.json, log_bisect_r1.txt; 5 runs, 28.9 min, first run 353 s)
+  log: 0.52000 BH (eps 6.10) | 0.51850 dispersed (5.53) | 0.51925 dispersed (5.85) | 0.519625 dispersed (6.23) | 0.5198125 BH (7.20)
+  delta_c(r1) = 0.51972 +- 0.00009 (bracket 0.519625 - 0.5198125), TH = 1.0029 MeV.
+  Against the kill lines: midpoint 0.51972 lies in the 'neither' band (0.5197 < d <= 0.5199). The bracket's lower end
+  (0.519625) is inside the timing band's top edge, its upper end (0.519813) is below the link-law line (0.5199); the
+  whole bracket lies below the link-law line. VERDICT: NEITHER (as pre-registered), link law NOT favoured; the result
+  sits at the top edge of the timing band.
+  Shift from McCormick's nnmode-0 bracket (0.51925 dispersed, 0.5195625 BH): r1 threshold is higher by +0.00006 to
+  +0.00056 (strictly positive: his 0.5195625 is BH, here 0.519625 disperses); midpoint shift +0.00031. Link law
+  predicted about +0.0010 (0.5204); timing predicted 0.
+
+[2026-11-11T15:30Z] RUN 2 RESULT (orig/res_eos_fs_10.0.json, log_bisect_fs.txt; 5 runs, 55-76 s each)
+  log: 0.533 dispersed | 0.535 BH | 0.534 BH | 0.5335 BH | 0.53325 BH.  delta_inst(T_H = 1.0030 MeV, full EOS) = 0.53313 +- 0.00012.
+  A2's stand-in 0.53379 was high by 0.00066. A2 step3/step4 rerun (copies, d_inst = 0.533125; step3_out_newdinst.txt,
+  step4_out_newdinst.txt): measured G 0.8114 -> 0.6158, shift -0.1956 +- 0.0053.
+  Reading 1 rate 1.11: shift -0.1804 (miss 7.8%), delta_c(with) 0.51995 (miss +0.00054) SURVIVES; rate 1.19: 0.51939
+  (miss -0.00002) SURVIVES; rate 1.20: 0.51932 SURVIVES. Reading 2 (timing): shift -0.1606 (miss 17.9%) SURVIVES.
+  Not pre-registered context (step5_r1_readout.py): G(r1) = 0.6245 vs G(nnmode0) = 0.6158: r1 undoes 4.5% of the
+  full nu-nu shift in G; it recovers 31% (25% anchored) of the move the link law predicted for r1 (0.5204), and 4.7%
+  of the move given by the tau route (removing u_eff = 0.8313 at rate 1.11 predicts 0.5260).

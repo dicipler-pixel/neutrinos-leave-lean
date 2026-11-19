@@ -1,0 +1,20 @@
+D2 kept=l0    profile-averaged  eps*=1.7 : g = [0.941 0.86  0.671 0.344 0.087 0.013]  max|err| = 0.103
+D2 kept=l0    profile-averaged  eps*=4.0 : g = [0.997 0.994 0.987 0.959 0.83  0.429]  max|err| = 0.640
+   fitted-epoch scan (diagnostic only): best eps* = 1.87 with max|err| = 0.065
+$NU_WORK/a_wb/wb_steve_03_paper_objects.py:46: RuntimeWarning: invalid value encountered in divide
+  A = avg_surv(ed, keep, single); curves[ed] = (1-A)/(1-Ai)
+D2 kept=l0    k r_m=2           eps*=1.7 : g = [1.    0.955 0.772 0.393 0.097 0.014]  max|err| = 0.093
+D2 kept=l0    k r_m=2           eps*=4.0 : g = [1.001 1.007 1.016 1.006 1.008 0.587]  max|err| = 0.818
+   fitted-epoch scan (diagnostic only): best eps* = 1.69 with max|err| = 0.095
+D2 kept=l0,1  profile-averaged  eps*=1.7 : g = [0.981 0.922 0.735 0.373 0.09  0.013]  max|err| = 0.100
+D2 kept=l0,1  profile-averaged  eps*=4.0 : g = [0.995 0.983 0.941 0.817 0.544 0.217]  max|err| = 0.386
+   fitted-epoch scan (diagnostic only): best eps* = 1.84 with max|err| = 0.082
+D2 kept=l0,1  k r_m=2           eps*=1.7 : g = [0.986 0.933 0.752 0.385 0.094 0.014]  max|err| = 0.096
+D2 kept=l0,1  k r_m=2           eps*=4.0 : g = [0.998 0.993 0.979 0.882 0.584 0.261]  max|err| = 0.451
+   fitted-epoch scan (diagnostic only): best eps* = 1.77 with max|err| = 0.089
+Steve G : [0.96, 0.868, 0.684, 0.431, 0.19, 0.063]
+$NU_WORK/a_wb/wb_steve_03_paper_objects.py:66: RuntimeWarning: invalid value encountered in divide
+  D3[ed] = hidden_energy(ed)/Xi
+D3 eps*=1.7 : g = [1.006e+00 9.420e-01 6.770e-01 2.620e-01 3.200e-02 1.000e-03]  max|err| = 0.169
+D3 eps*=4.0 : g = [1.024 1.071 1.154 1.168 0.872 0.198]  max|err| = 0.737
+D3 fitted-epoch scan (diagnostic only): best eps* = 1.92 with max|err| = 0.112

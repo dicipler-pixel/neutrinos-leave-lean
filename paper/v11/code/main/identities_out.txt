@@ -1,0 +1,17 @@
+I1  single rate: (1/8)|[L,L*]|^2 = kappa^2 k^2/3
+    k=1.0 kappa=0.3  lhs=0.030000000000  rhs=0.030000000000
+    k=2.0 kappa=1.5  lhs=3.000000000000  rhs=3.000000000000
+    k=0.7 kappa=4.0  lhs=2.613333333333  rhs=2.613333333333
+I2  split rates: (1/8)|[L,L*]|^2 = k^2 k1^2/3 + (4k^2/15)(k2-k1)^2
+    k=1.0 k1=0.3 k2=2.0 lhs=0.800666666667 rhs=0.800666666667
+    k=2.0 k1=1.5 k2=0.4 lhs=4.290666666667 rhs=4.290666666667
+    k=0.7 k1=4.0 k2=9.0 lhs=5.880000000000 rhs=5.880000000000
+I3  weight across the cut: |P (k mu) (1-P)|^2 = k^2/3, so sqrt(E_B) = k/sqrt3 = c_s k
+    k=1.0  E_B=0.333333333333  k^2/3=0.333333333333
+    k=2.5  E_B=2.083333333333  k^2/3=2.083333333333
+I4  monopole propagator <0|(s+i k mu+kappa(1-P))^-1|0> = g/(1-kappa g), g=arctan(k/(s+kappa))/k
+    k=1.0 kappa=0.5 s=0.3  matrix=1.623370180076  closed=1.623370180076
+    k=3.0 kappa=2.0 s=0.1  matrix=0.889069885739  closed=0.889069885739
+    k=0.5 kappa=0.2 s=1.0  matrix=0.937653083725  closed=0.937653083725
+I5  two-moment truncation: eigenvalues of [[0,-ik/sqrt3],[-ik/sqrt3,-kappa]] merge at kappa=2k/sqrt3
+    eigenvalues [-0.57735027+9.2e-09j -0.57735027-9.2e-09j]

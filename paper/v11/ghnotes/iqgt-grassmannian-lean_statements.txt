@@ -1,0 +1,345 @@
+IqgtGrassmannian/Basic.lean-28-/-- **Corollary 3.1.** If `Π² = Π` and `V = ΠV + VΠ`, then `ΠVΠ = 0`, `(1−Π)V(1−Π) = 0` and
+IqgtGrassmannian/Basic.lean-29-`V = ΠV(1−Π) + (1−Π)VΠ`. -/
+IqgtGrassmannian/Basic.lean:30:theorem tangent_offdiag (P V : Matrix n n ℂ) (hP : P * P = P) (hV : V = P * V + V * P) :
+--
+IqgtGrassmannian/Basic.lean-51-
+IqgtGrassmannian/Basic.lean-52-/-- **Theorem 3.2, metric.** For `V = [[0, X], [X†, 0]]`, `Tr V² = 2 Tr(XX†)`. -/
+IqgtGrassmannian/Basic.lean:53:theorem trace_sq_offdiag {m k : Type*} [Fintype m] [Fintype k] (X : Matrix m k ℂ) :
+--
+IqgtGrassmannian/Basic.lean-68-
+IqgtGrassmannian/Basic.lean-69-/-- `Q(V, W) = Tr((VΠ)†(WΠ))` for self-adjoint `V` and an orthogonal projector `Π`. -/
+IqgtGrassmannian/Basic.lean:70:theorem Q_eq (P V W : Matrix n n ℂ) (hP : Pᴴ = P) (hPP : P * P = P) (hV : Vᴴ = V) :
+--
+IqgtGrassmannian/Basic.lean-75-
+IqgtGrassmannian/Basic.lean-76-/-- The Frobenius pairing is Hermitian: `Tr(B†A) = conj Tr(A†B)`. -/
+IqgtGrassmannian/Basic.lean:77:theorem frob_herm (A B : Matrix n n ℂ) : trace (Bᴴ * A) = conj (trace (Aᴴ * B)) := by
+--
+IqgtGrassmannian/Basic.lean-79-
+IqgtGrassmannian/Basic.lean-80-/-- The Frobenius pairing as a sum of entries. -/
+IqgtGrassmannian/Basic.lean:81:theorem frob_sum (A B : Matrix n n ℂ) :
+--
+IqgtGrassmannian/Basic.lean-87-def cols (A B : Matrix n n ℂ) : Matrix (n × n) (Fin 2) ℂ := of fun p a => ![A, B] a p.1 p.2
+IqgtGrassmannian/Basic.lean-88-
+IqgtGrassmannian/Basic.lean:89:theorem gram_entries (A B : Matrix n n ℂ) :
+--
+IqgtGrassmannian/Basic.lean-96-/-- **The Gram determinant is nonnegative** (positive semidefiniteness of `Q`):
+IqgtGrassmannian/Basic.lean-97-`Q(V,V) Q(W,W) − Q(V,W) Q(W,V)` has nonnegative real part. -/
+IqgtGrassmannian/Basic.lean:98:theorem gram_det_nonneg (A B : Matrix n n ℂ) :
+--
+IqgtGrassmannian/Basic.lean-105-/-- **Theorem 6.1 (Metric control of Berry curvature).** With `g = Re Q` and `Ω = 2 Im Q`,
+IqgtGrassmannian/Basic.lean-106-`(Im Q(V,W))² ≤ g(V,V) g(W,W) − g(V,W)²`, i.e. `|Ω| ≤ 2√(g(V,V)g(W,W) − g(V,W)²)`. -/
+IqgtGrassmannian/Basic.lean:107:theorem metric_control (P V W : Matrix n n ℂ) (hP : Pᴴ = P) (hPP : P * P = P) (hV : Vᴴ = V)
+--
+IqgtGrassmannian/Basic.lean-129-
+IqgtGrassmannian/Basic.lean-130-/-- **Corollary 6.1.** Metric rigidity `g(V,V) = 0` forces `Ω(V,W) = 0`. -/
+IqgtGrassmannian/Basic.lean:131:theorem rigidity_kills_curvature (P V W : Matrix n n ℂ) (hP : Pᴴ = P) (hPP : P * P = P)
+--
+IqgtGrassmannian/Basic.lean-139-/-- **Two-level saturation.** Lagrange's identity `|A|²|B|² − (A·B)² = |A × B|²` in `ℝ³`, which
+IqgtGrassmannian/Basic.lean-140-makes the bound an equality for a two-band operator. -/
+IqgtGrassmannian/Basic.lean:141:theorem lagrange_identity (a1 a2 a3 b1 b2 b3 : ℝ) :
+--
+IqgtGrassmannian/Basic.lean-146-/-- **Lemma 3.1, residue step.** `1/((z−a)(z−b)) = (1/(z−a) − 1/(z−b))/(a−b)`, whose residue
+IqgtGrassmannian/Basic.lean-147-at `z = a` gives the inverse-gap weight `1/(λ_m − λ_n)`. -/
+IqgtGrassmannian/Basic.lean:148:theorem partial_fraction (z a b : ℂ) (hza : z ≠ a) (hzb : z ≠ b) (hab : a ≠ b) :
+--
+IqgtGrassmannian/Bounds.lean-19-/-- **Proposition 6.4, first step.** A positive semidefinite 2×2 Gram matrix satisfies
+IqgtGrassmannian/Bounds.lean-20-`a + d ≥ 2√(a d − b²)`, which is `tr g ≥ 2√det g`, i.e. `½ tr g ≥ √det g`. -/
+IqgtGrassmannian/Bounds.lean:21:theorem trace_ge_two_sqrt_det (a b d : ℝ) (ha : 0 ≤ a) (hd : 0 ≤ d) :
+--
+IqgtGrassmannian/Bounds.lean-37-/-- **Proposition 6.4, equality case.** Equality in the trace condition forces `g` to be
+IqgtGrassmannian/Bounds.lean-38-conformal: `b = 0` and `a = d`. -/
+IqgtGrassmannian/Bounds.lean:39:theorem trace_eq_two_sqrt_det_iff (a b d : ℝ) (hpsd : 0 ≤ a * d - b ^ 2) (ha : 0 ≤ a) (hd : 0 ≤ d) :
+--
+IqgtGrassmannian/Bounds.lean-76-part of `w` orthogonal to `v`: a nonnegative quadratic form in `w` whose kernel is exactly the
+IqgtGrassmannian/Bounds.lean-77-line of `v`. -/
+IqgtGrassmannian/Bounds.lean:78:theorem deficit_eq_sq_norm_sub_projection {E : Type*} [NormedAddCommGroup E]
+--
+IqgtGrassmannian/Bounds.lean-97-/-- **Identity (6.3): the kernel.** The deficit vanishes exactly on the line of `v`, so equality in
+IqgtGrassmannian/Bounds.lean-98-the curvature bound holds exactly when the two directions span a (complex) line. -/
+IqgtGrassmannian/Bounds.lean:99:theorem deficit_eq_zero_iff {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℝ E]
+--
+IqgtGrassmannian/Core.lean-30-open NCRing
+IqgtGrassmannian/Core.lean-31-
+IqgtGrassmannian/Core.lean:32:theorem sub_def (a b : R) : a - b = a + -b := rfl
+IqgtGrassmannian/Core.lean:33:theorem zero_add' (a : R) : 0 + a = a := NCRing.zero_add a
+IqgtGrassmannian/Core.lean:34:theorem add_zero' (a : R) : a + 0 = a := by rw [NCRing.add_comm]; exact NCRing.zero_add a
+IqgtGrassmannian/Core.lean:35:theorem neg_add' (a : R) : -a + a = 0 := NCRing.neg_add a
+IqgtGrassmannian/Core.lean:36:theorem add_neg' (a : R) : a + -a = 0 := by rw [NCRing.add_comm]; exact NCRing.neg_add a
+IqgtGrassmannian/Core.lean:37:theorem one_mul' (a : R) : 1 * a = a := NCRing.one_mul a
+IqgtGrassmannian/Core.lean:38:theorem mul_one' (a : R) : a * 1 = a := NCRing.mul_one a
+IqgtGrassmannian/Core.lean-39-
+IqgtGrassmannian/Core.lean:40:theorem add_left_cancel' {a b c : R} (h : a + b = a + c) : b = c := by
+--
+IqgtGrassmannian/Core.lean-43-  exact this
+IqgtGrassmannian/Core.lean-44-
+IqgtGrassmannian/Core.lean:45:theorem eq_zero_of_self_add {x : R} (h : x = x + x) : x = 0 := by
+--
+IqgtGrassmannian/Core.lean-47-  exact (add_left_cancel' h2).symm
+IqgtGrassmannian/Core.lean-48-
+IqgtGrassmannian/Core.lean:49:theorem mul_zero' (a : R) : a * 0 = 0 := by
+--
+IqgtGrassmannian/Core.lean-51-  rw [← NCRing.left_distrib, add_zero']
+IqgtGrassmannian/Core.lean-52-
+IqgtGrassmannian/Core.lean:53:theorem zero_mul' (a : R) : 0 * a = 0 := by
+--
+IqgtGrassmannian/Core.lean-55-  rw [← NCRing.right_distrib, add_zero']
+IqgtGrassmannian/Core.lean-56-
+IqgtGrassmannian/Core.lean:57:theorem neg_eq_of_add {a b : R} (h : a + b = 0) : -a = b := by
+--
+IqgtGrassmannian/Core.lean-60-  exact this.symm
+IqgtGrassmannian/Core.lean-61-
+IqgtGrassmannian/Core.lean:62:theorem neg_mul' (a b : R) : -a * b = -(a * b) := by
+--
+IqgtGrassmannian/Core.lean-64-  rw [← NCRing.right_distrib, add_neg', zero_mul']
+IqgtGrassmannian/Core.lean-65-
+IqgtGrassmannian/Core.lean:66:theorem mul_neg' (a b : R) : a * -b = -(a * b) := by
+--
+IqgtGrassmannian/Core.lean-68-  rw [← NCRing.left_distrib, add_neg', mul_zero']
+IqgtGrassmannian/Core.lean-69-
+IqgtGrassmannian/Core.lean:70:theorem neg_neg' (a : R) : -(-a) = a := neg_eq_of_add (neg_add' a)
+IqgtGrassmannian/Core.lean-71-
+IqgtGrassmannian/Core.lean:72:theorem neg_add_distrib (a b : R) : -(a + b) = -a + -b := by
+--
+IqgtGrassmannian/Core.lean-77-    _ = 0 := by rw [← NCRing.add_assoc a (-a) b, add_neg', zero_add', add_neg']
+IqgtGrassmannian/Core.lean-78-
+IqgtGrassmannian/Core.lean:79:theorem sub_mul' (a b c : R) : (a - b) * c = a * c - b * c := by
+IqgtGrassmannian/Core.lean-80-  rw [sub_def, sub_def, NCRing.right_distrib, neg_mul']
+IqgtGrassmannian/Core.lean-81-
+IqgtGrassmannian/Core.lean:82:theorem mul_sub' (a b c : R) : a * (b - c) = a * b - a * c := by
+IqgtGrassmannian/Core.lean-83-  rw [sub_def, sub_def, NCRing.left_distrib, mul_neg']
+IqgtGrassmannian/Core.lean-84-
+IqgtGrassmannian/Core.lean:85:theorem sub_self' (a : R) : a - a = 0 := add_neg' a
+IqgtGrassmannian/Core.lean-86-
+IqgtGrassmannian/Core.lean:87:theorem eq_of_sub_eq_zero {a b : R} (h : a - b = 0) : a = b := by
+--
+IqgtGrassmannian/Core.lean-98-def IsTangent (P V : R) : Prop := V = P * V + V * P
+IqgtGrassmannian/Core.lean-99-
+IqgtGrassmannian/Core.lean:100:theorem idem_left (P x : R) (hP : IsIdem P) : P * (P * x) = P * x := by
+IqgtGrassmannian/Core.lean-101-  rw [← NCRing.mul_assoc, hP]
+IqgtGrassmannian/Core.lean-102-
+IqgtGrassmannian/Core.lean:103:theorem add_left_comm' (a b c : R) : a + (b + c) = b + (a + c) := by
+--
+IqgtGrassmannian/Core.lean-105-
+IqgtGrassmannian/Core.lean-106-/-- Equation (2.1), first half: `P V P = 0`. -/
+IqgtGrassmannian/Core.lean:107:theorem tangent_PVP (P V : R) (hP : IsIdem P) (hV : IsTangent P V) : P * V * P = 0 := by
+--
+IqgtGrassmannian/Core.lean-115-
+IqgtGrassmannian/Core.lean-116-/-- Expansion used twice below: `(1-P) X (1-P) = X - (P X + X P) + P X P`. -/
+IqgtGrassmannian/Core.lean:117:theorem compl_sandwich (P X : R) : (1 - P) * X * (1 - P) = X + -(P * X + X * P) + P * X * P := by
+--
+IqgtGrassmannian/Core.lean-120-
+IqgtGrassmannian/Core.lean-121-/-- Equation (2.1), second half: `(1 - P) V (1 - P) = 0`. -/
+IqgtGrassmannian/Core.lean:122:theorem tangent_QVQ (P V : R) (hP : IsIdem P) (hV : IsTangent P V) :
+--
+IqgtGrassmannian/Core.lean-127-
+IqgtGrassmannian/Core.lean-128-/-- Converse (Section 2): block off-diagonal elements satisfy the tangent law. -/
+IqgtGrassmannian/Core.lean:129:theorem tangent_of_blocks (P V : R) (h1 : P * V * P = 0) (h2 : (1 - P) * V * (1 - P) = 0) :
+--
+IqgtGrassmannian/Core.lean-134-
+IqgtGrassmannian/Core.lean-135-/-- The tangent of the complement: if `V` moves `P`, then `-V` moves `1 - P` (so `g` agrees for `P` and `1-P`). -/
+IqgtGrassmannian/Core.lean:136:theorem tangent_compl (P V : R) (hV : IsTangent P V) : IsTangent (1 - P) (-V) := by
+--
+IqgtGrassmannian/Core.lean-146-def redist (Ω P : R) : R := (1 - P) * Ω * P + P * Ω * (1 - P)
+IqgtGrassmannian/Core.lean-147-
+IqgtGrassmannian/Core.lean:148:theorem redist_sum_form (Ω P : R) (hP : IsIdem P) :
+--
+IqgtGrassmannian/Core.lean-154-  simp only [NCRing.add_assoc, NCRing.add_comm, add_left_comm']
+IqgtGrassmannian/Core.lean-155-
+IqgtGrassmannian/Core.lean:156:theorem redist_double_bracket (Ω P : R) (hP : IsIdem P) :
+--
+IqgtGrassmannian/Core.lean-163-  simp only [NCRing.add_assoc, NCRing.add_comm, add_left_comm']
+IqgtGrassmannian/Core.lean-164-
+IqgtGrassmannian/Core.lean:165:theorem proj_mul_compl (P : R) (hP : IsIdem P) : P * (1 - P) = 0 := by
+IqgtGrassmannian/Core.lean-166-  rw [mul_sub', mul_one', hP, sub_self']
+IqgtGrassmannian/Core.lean-167-
+IqgtGrassmannian/Core.lean:168:theorem compl_mul_proj (P : R) (hP : IsIdem P) : (1 - P) * P = 0 := by
+--
+IqgtGrassmannian/Core.lean-170-
+IqgtGrassmannian/Core.lean-171-/-- The redistribution operator is a tangent vector at `P` (Section 4.4). -/
+IqgtGrassmannian/Core.lean:172:theorem redist_tangent (Ω P : R) (hP : IsIdem P) : IsTangent P (redist Ω P) := by
+--
+IqgtGrassmannian/Core.lean-183-
+IqgtGrassmannian/Core.lean-184-/-- `F(Ω,P) = 0` exactly when `Ω` commutes with `P` (Section 4.4). -/
+IqgtGrassmannian/Core.lean:185:theorem redist_eq_zero_iff (Ω P : R) (hP : IsIdem P) : redist Ω P = 0 ↔ Ω * P = P * Ω := by
+--
+IqgtGrassmannian/Core.lean-209-/-- Lemma 5.1: `L = 2V` solves the symmetric-logarithmic-derivative equation for a moving projector:
+IqgtGrassmannian/Core.lean-210-    `(V + V) P + P (V + V) = V + V` (the factor 1/k of `ρ = P/k` cancels on both sides). -/
+IqgtGrassmannian/Core.lean:211:theorem sld_two_tangent (P V : R) (hV : IsTangent P V) : (V + V) * P + P * (V + V) = V + V := by
+--
+IqgtGrassmannian/Rebuild.lean-32-
+IqgtGrassmannian/Rebuild.lean-33-/-- §2, converse of (2.1): if both diagonal blocks vanish, `V` is tangent. -/
+IqgtGrassmannian/Rebuild.lean:34:theorem tangent_of_blocks {P V : R} (h1 : P * V * P = 0) (h2 : (1 - P) * V * (1 - P) = 0) :
+--
+IqgtGrassmannian/Rebuild.lean-39-
+IqgtGrassmannian/Rebuild.lean-40-/-- §2: `-V` moves the complement `1 - Π`. -/
+IqgtGrassmannian/Rebuild.lean:41:theorem tangent_compl {P V : R} (hV : IsTangent P V) : IsTangent (1 - P) (-V) := by
+--
+IqgtGrassmannian/Rebuild.lean-47-def redist (Ω P : R) : R := (1 - P) * Ω * P + P * Ω * (1 - P)
+IqgtGrassmannian/Rebuild.lean-48-
+IqgtGrassmannian/Rebuild.lean:49:theorem redist_double_bracket (Ω P : R) (hP : IsIdempotentElem P) :
+--
+IqgtGrassmannian/Rebuild.lean-54-    _ = (Ω * P - P * Ω) * P - P * (Ω * P - P * Ω) := by noncomm_ring
+IqgtGrassmannian/Rebuild.lean-55-
+IqgtGrassmannian/Rebuild.lean:56:theorem proj_mul_compl {P : R} (hP : IsIdempotentElem P) : P * (1 - P) = 0 := by
+IqgtGrassmannian/Rebuild.lean-57-  rw [mul_sub, mul_one, hP.eq, sub_self]
+IqgtGrassmannian/Rebuild.lean-58-
+IqgtGrassmannian/Rebuild.lean:59:theorem compl_mul_proj {P : R} (hP : IsIdempotentElem P) : (1 - P) * P = 0 := by
+IqgtGrassmannian/Rebuild.lean-60-  rw [sub_mul, one_mul, hP.eq, sub_self]
+IqgtGrassmannian/Rebuild.lean-61-
+IqgtGrassmannian/Rebuild.lean:62:theorem proj_mul_redist (Ω P : R) (hP : IsIdempotentElem P) :
+--
+IqgtGrassmannian/Rebuild.lean-66-  rw [a, proj_mul_compl hP, hP.eq, zero_mul, zero_mul, zero_add]
+IqgtGrassmannian/Rebuild.lean-67-
+IqgtGrassmannian/Rebuild.lean:68:theorem redist_mul_proj (Ω P : R) (hP : IsIdempotentElem P) :
+--
+IqgtGrassmannian/Rebuild.lean-73-
+IqgtGrassmannian/Rebuild.lean-74-/-- §4.4: the redistribution operator is a tangent vector at `Π`. -/
+IqgtGrassmannian/Rebuild.lean:75:theorem redist_tangent (Ω P : R) (hP : IsIdempotentElem P) : IsTangent P (redist Ω P) := by
+--
+IqgtGrassmannian/Rebuild.lean-79-
+IqgtGrassmannian/Rebuild.lean-80-/-- §4.4: `F(Ω, Π) = 0` exactly when `Ω` commutes with `Π`. -/
+IqgtGrassmannian/Rebuild.lean:81:theorem redist_eq_zero_iff (Ω P : R) (hP : IsIdempotentElem P) :
+--
+IqgtGrassmannian/Rebuild.lean-94-
+IqgtGrassmannian/Rebuild.lean-95-/-- Lemma 5.1, algebraic core: `L = 2V` solves `Lρ + ρL = 2ρ'` for `ρ = Π/k` (the `1/k` cancels). -/
+IqgtGrassmannian/Rebuild.lean:96:theorem sld_two_tangent {P V : R} (hV : IsTangent P V) : (2 * V) * P + P * (2 * V) = 2 * V := by
+--
+IqgtGrassmannian/Rebuild.lean-104-
+IqgtGrassmannian/Rebuild.lean-105-/-- Remark 2.3: `Tr(ΠVW) + Tr(ΠWV) = Tr(VW)` as soon as `V` is tangent at `Π`. -/
+IqgtGrassmannian/Rebuild.lean:106:theorem trace_remark_2_3 {P V W : Matrix n n 𝕜} (hV : IsTangent P V) :
+--
+IqgtGrassmannian/Rebuild.lean-110-
+IqgtGrassmannian/Rebuild.lean-111-/-- Lemma 5.1, trace step: `2 Tr(ΠVV) = Tr(VV)` for tangent `V`, hence `F_Q = 4 g / k`. -/
+IqgtGrassmannian/Rebuild.lean:112:theorem two_trace_PVV {P V : Matrix n n 𝕜} (hV : IsTangent P V) :
+--
+IqgtGrassmannian/Rebuild.lean-117-`Tr((P - Q)²) = Tr P + Tr Q - 2 Tr(PQ)`. For orthogonal projectors of equal rank `k` this is
+IqgtGrassmannian/Rebuild.lean-118-`2k - 2 Tr(PQ) = 2 Σ sin²θⱼ`, the identity behind the Hamming count of a permutation. -/
+IqgtGrassmannian/Rebuild.lean:119:theorem hs_dist_proj {P Q : Matrix n n 𝕜} (hP : P * P = P) (hQ : Q * Q = Q) :
+--
+IqgtGrassmannian/Rebuild.lean-131-
+IqgtGrassmannian/Rebuild.lean-132-/-- Theorem 5.3(ii), the zero-temperature band: a reweighting of the metric by weights in `[lo, hi]`. -/
+IqgtGrassmannian/Rebuild.lean:133:theorem friction_band (s : Finset ι) (w g : ι → ℝ) (hg : ∀ i ∈ s, 0 ≤ g i)
+--
+IqgtGrassmannian/Rebuild.lean-141-
+IqgtGrassmannian/Rebuild.lean-142-/-- Theorem 5.3, length form (discretised): `(Σ √gᵢ)² ≤ N · Σ gᵢ`, the step `ℒ² ≤ T ∫ g`. -/
+IqgtGrassmannian/Rebuild.lean:143:theorem length_sq_le (s : Finset ι) (g : ι → ℝ) (hg : ∀ i ∈ s, 0 ≤ g i) :
+--
+IqgtGrassmannian/Rebuild.lean-154-/-- §7.2: friction read from the response function, one pair at a time:
+IqgtGrassmannian/Rebuild.lean-155-`2Δg·τ/(1+τ²Δ²) = τ·[2Δg − 2Δ³g/(Δ² + 1/τ²)]`, i.e. `ζ_rot = τ[α(0) − α(i/τ)]`. -/
+IqgtGrassmannian/Rebuild.lean:156:theorem friction_response_pair (Δ g τ : ℝ) (hτ : 0 < τ) :
+--
+IqgtGrassmannian/Rebuild.lean-162-
+IqgtGrassmannian/Rebuild.lean-163-/-- §7.5: the regularised pair metric is bounded at a closed gap: `a/(Δ² + η²) ≤ a/η²` for `a ≥ 0`. -/
+IqgtGrassmannian/Rebuild.lean:164:theorem eta_regularised_bound (a Δ η : ℝ) (ha : 0 ≤ a) (hη : 0 < η) :
+--
+IqgtGrassmannian/Rebuild.lean-169-/-- §8.3, total internal reflection: if `C = g∥ sin²θ` with `sin²θ ≤ 1` and `g∥ ≥ 0`, then the
+IqgtGrassmannian/Rebuild.lean-170-trajectory only visits `g∥ ≥ C`; at a stratum `g∥ = 0` it would need `C = 0`. -/
+IqgtGrassmannian/Rebuild.lean:171:theorem reflection_bound (gpar s2 : ℝ) (hg : 0 ≤ gpar) (hs : 0 ≤ s2) (hs1 : s2 ≤ 1) :
+--
+IqgtGrassmannian/Rebuild.lean-173-  nlinarith
+IqgtGrassmannian/Rebuild.lean-174-
+IqgtGrassmannian/Rebuild.lean:175:theorem stratum_needs_zero (s2 : ℝ) : (0 : ℝ) * s2 = 0 := zero_mul s2
+--
+IqgtGrassmannian/Rebuild.lean-182-/-- §9, Remark 9.2: anything of the form `Lρ + ρL` with `ρ` supported on `Ran Π` has no
+IqgtGrassmannian/Rebuild.lean-183-kernel–kernel block, so a variation with such a block can never solve the SLD equation. -/
+IqgtGrassmannian/Rebuild.lean:184:theorem sld_kernel_block {P L : R} (hP : IsIdempotentElem P) :
+--
+IqgtGrassmannian/Rebuild.lean-199-its operator), then `(QA'Q)(QP) − (QP)(PAP) = QEP`. The block `QP` measures how far the subspace
+IqgtGrassmannian/Rebuild.lean-200-moved; this Sylvester equation is what turns a gap into a bound on it. -/
+IqgtGrassmannian/Rebuild.lean:201:theorem gap_identity {P Q A A' : R} (hP : IsIdempotentElem P) (hQ : IsIdempotentElem Q)
+--
+IqgtGrassmannian/Rebuild.lean-224-/-- §10.2, the tip is free at a tie: inside an exactly degenerate eigenspace every combination is
+IqgtGrassmannian/Rebuild.lean-225-again an eigenvector, so no single vector is selected. Only the subspace is determined. -/
+IqgtGrassmannian/Rebuild.lean:226:theorem tip_free_at_tie {K V : Type*} [CommRing K] [AddCommGroup V] [Module K V]
+--
+IqgtGrassmannian/Rebuild.lean-233-/-- Appendix A, the second resolvent identity with its sign: for invertible `a = z - Σ` and
+IqgtGrassmannian/Rebuild.lean-234-`b = z - Σ - δΣ`, `a⁻¹ - b⁻¹ = a⁻¹ (b - a) b⁻¹`, and `b - a = -δΣ`. Holds in any ring. -/
+IqgtGrassmannian/Rebuild.lean:235:theorem second_resolvent {R : Type*} [Ring R] (a b : Rˣ) :
+--
+IqgtGrassmannian/Rebuild.lean-244-This is the step that bounds the Hilbert–Schmidt norm (dividing entries does not, in general,
+IqgtGrassmannian/Rebuild.lean-245-bound the operator norm). -/
+IqgtGrassmannian/Rebuild.lean:246:theorem gap_bound_hs_step (s : Finset ι) (a d : ι → ℝ) (Δ : ℝ) (hΔ : 0 < Δ)
+--
+IqgtGrassmannian/Rebuild.lean-260-
+IqgtGrassmannian/Rebuild.lean-261-/-- §12.4, lower half of the sandwich, one principal angle: `sin² θ ≤ θ²` on `[0, π/2]`. -/
+IqgtGrassmannian/Rebuild.lean:262:theorem sin_sq_le_angle_sq (x : ℝ) (h0 : 0 ≤ x) (h1 : x ≤ Real.pi / 2) :
+--
+IqgtGrassmannian/Rebuild.lean-269-/-- §12.4, upper half of the sandwich, one principal angle (Jordan's inequality):
+IqgtGrassmannian/Rebuild.lean-270-`θ² ≤ (π/2)² sin² θ` on `[0, π/2]`. -/
+IqgtGrassmannian/Rebuild.lean:271:theorem angle_sq_le_jordan (x : ℝ) (h0 : 0 ≤ x) (h1 : x ≤ Real.pi / 2) :
+--
+IqgtGrassmannian/Rebuild.lean-293-angles in `[0, π/2]`, `Σ sin² θ ≤ Σ θ² ≤ (π/2)² Σ sin² θ`. With `d_H = (2/n) Σ sin² θ` this is
+IqgtGrassmannian/Rebuild.lean-294-`d_H / 2 ≤ (1/n) Σ θ² ≤ (π²/8) d_H`. -/
+IqgtGrassmannian/Rebuild.lean:295:theorem sofic_sandwich (s : Finset ι) (θ : ι → ℝ) (h0 : ∀ i ∈ s, 0 ≤ θ i)
+--
+IqgtGrassmannian/Rebuild.lean-303-/-- §12.4, the displacement Gram eigenvalues of an `ℓ`-cycle come in pairs:
+IqgtGrassmannian/Rebuild.lean-304-`2 sin²(π(ℓ-j)/ℓ) = 2 sin²(πj/ℓ)`, the sine and cosine of one cyclic motion. -/
+IqgtGrassmannian/Rebuild.lean:305:theorem cycle_gram_pair (l j : ℝ) (hl : l ≠ 0) :
+--
+IqgtGrassmannian/Rebuild.lean-320-`Q(V,W) = ⟪y, x⟫`, `g_VV = ‖x‖²`, `g_WW = ‖y‖²`, `g_VW = Re Q` and `Ω = −2 Im Q`. Then
+IqgtGrassmannian/Rebuild.lean-321-`Ω² ≤ 4 (g_VV g_WW − g_VW²)`, which is Cauchy–Schwarz for the blocks. -/
+IqgtGrassmannian/Rebuild.lean:322:theorem curvature_bound (x y : EuclideanSpace ℂ ι) :
+--
+IqgtGrassmannian/Rebuild.lean-338-/-- §6.3 (i), one term of the gap bound: dividing by a gap at least `Δ` loses nothing exactly when
+IqgtGrassmannian/Rebuild.lean-339-the entry vanishes or its gap is exactly `Δ`. -/
+IqgtGrassmannian/Rebuild.lean:340:theorem gap_term_eq_iff (a d Δ : ℝ) (hΔ : 0 < Δ) (hd : Δ ≤ |d|) :
+--
+IqgtGrassmannian/Rebuild.lean-364-/-- §6.3 (i): equality in the Hilbert–Schmidt step of the gap bound holds exactly when every
+IqgtGrassmannian/Rebuild.lean-365-coupled pair sits at gap exactly `Δ`. -/
+IqgtGrassmannian/Rebuild.lean:366:theorem gap_bound_hs_step_eq_iff (s : Finset ι) (a d : ι → ℝ) (Δ : ℝ) (hΔ : 0 < Δ)
+--
+IqgtGrassmannian/Rebuild.lean-378-/-- §6.3 (iii) and (v), the two-number arithmetic–geometric mean step: `(a+b)² = 4ab` exactly
+IqgtGrassmannian/Rebuild.lean-379-when `a = b` (the metric is conformal to the reference metric). -/
+IqgtGrassmannian/Rebuild.lean:380:theorem am_gm_eq_iff (a b : ℝ) : (a + b) ^ 2 = 4 * a * b ↔ a = b := by
+--
+IqgtGrassmannian/Rebuild.lean-392-/-- §6.3 (iii), constant speed: for the discrete length form `(Σ xᵢ)² ≤ N Σ xᵢ²`, the gap
+IqgtGrassmannian/Rebuild.lean-393-`N Σ xᵢ² - (Σ xᵢ)²` is half the sum of all squared differences. -/
+IqgtGrassmannian/Rebuild.lean:394:theorem length_gap_identity (s : Finset ι) (x : ι → ℝ) :
+--
+IqgtGrassmannian/Rebuild.lean-402-/-- §6.3 (iii): the length form `(Σ xᵢ)² ≤ N Σ xᵢ²` is an equality exactly when the speed is
+IqgtGrassmannian/Rebuild.lean-403-constant. -/
+IqgtGrassmannian/Rebuild.lean:404:theorem constant_speed_iff (s : Finset ι) (x : ι → ℝ) :
+--
+IqgtGrassmannian/Rebuild.lean-426-/-- §6.3 (iv), Corollary 6.2: the curvature bound is met exactly on the complex line of `V`.
+IqgtGrassmannian/Rebuild.lean-427-This is equality in Cauchy–Schwarz over `ℂ` (Mathlib's `norm_inner_eq_norm_iff`), restated. -/
+IqgtGrassmannian/Rebuild.lean:428:theorem saturation_iff_complex_line {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℂ E]
+--
+IqgtGrassmannian/Rebuild.lean-433-/-- §8.5, Lemma 8.5: a curve of projectors whose derivative vanishes everywhere is constant
+IqgtGrassmannian/Rebuild.lean-434-(on a connected parameter line the whole stratum is one projector). -/
+IqgtGrassmannian/Rebuild.lean:435:theorem constant_of_silent {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E] {f : ℝ → E}
+--
+IqgtGrassmannian/Rebuild.lean-440-projector is itself block off-diagonal. Here `A = Π''` and `B = Π'`, and
+IqgtGrassmannian/Rebuild.lean-441-`Π'' = Π''Π + 2Π'Π' + ΠΠ''` is `Π² = Π` differentiated twice. -/
+IqgtGrassmannian/Rebuild.lean:442:theorem silent_second_order {R : Type*} [Ring R] {P A B : R} (hP : P * P = P)
+--
+IqgtGrassmannian/Rebuild.lean-458-
+IqgtGrassmannian/Rebuild.lean-459-/-- §8.5, Example 8.8: a triangle and its mirror image have the same mutual distances. -/
+IqgtGrassmannian/Rebuild.lean:460:theorem mirror_same_distance (z w : ℂ) :
+--
+IqgtGrassmannian/Rebuild.lean-467-
+IqgtGrassmannian/Rebuild.lean-468-/-- §12.4, Proposition 12.3, one angle: `sin² θ = θ²` on `[0, π/2]` only at `θ = 0`. -/
+IqgtGrassmannian/Rebuild.lean:469:theorem sin_sq_eq_angle_sq_iff (x : ℝ) (h0 : 0 ≤ x) (h1 : x ≤ Real.pi / 2) :
+--
+IqgtGrassmannian/Rebuild.lean-481-/-- §12.4, Proposition 12.3, one angle: Jordan's inequality `θ² ≤ (π/2)² sin² θ` is an equality
+IqgtGrassmannian/Rebuild.lean-482-on `[0, π/2]` only at the two ends. -/
+IqgtGrassmannian/Rebuild.lean:483:theorem jordan_eq_iff (x : ℝ) (h0 : 0 ≤ x) (h1 : x ≤ Real.pi / 2) :
+--
+IqgtGrassmannian/Rebuild.lean-510-/-- §12.4, Proposition 12.3: the upper half of the sandwich is an equality exactly when every
+IqgtGrassmannian/Rebuild.lean-511-principal angle is `0` or `π/2`. -/
+IqgtGrassmannian/Rebuild.lean:512:theorem sandwich_upper_eq_iff (s : Finset ι) (θ : ι → ℝ) (h0 : ∀ i ∈ s, 0 ≤ θ i)
+--
+IqgtGrassmannian/Rebuild.lean-520-/-- §12.4, Proposition 12.3: a principal angle `|φ|/2` with `φ ∈ (-π, π]` is a right angle
+IqgtGrassmannian/Rebuild.lean-521-exactly when the eigenphase is `π`. -/
+IqgtGrassmannian/Rebuild.lean:522:theorem half_phase_right_iff (φ : ℝ) (h1 : -Real.pi < φ) (h2 : φ ≤ Real.pi) :
+--
+IqgtGrassmannian/Rebuild.lean-531-
+IqgtGrassmannian/Rebuild.lean-532-/-- §12.4, Proposition 12.3: an eigenvalue of an involution is `±1`. -/
+IqgtGrassmannian/Rebuild.lean:533:theorem involution_eigenvalue (z : ℂ) : z ^ 2 = 1 ↔ z = 1 ∨ z = -1 := by
+--
+IqgtGrassmannian/Rebuild.lean-537-/-- §12.4, Example 12.4: multiplication by `2` on `ℤ/9ℤ` keeps `gcd(r, 9)`, so the families
+IqgtGrassmannian/Rebuild.lean-538-`{1,2,4,5,7,8}`, `{3,6}`, `{0}` never mix. -/
+IqgtGrassmannian/Rebuild.lean:539:theorem doubling_keeps_gcd (r : ℕ) : Nat.gcd (2 * r) 9 = Nat.gcd r 9 :=
+--
+IqgtGrassmannian/Rebuild.lean-542-/-- §12.4, Example 12.4: doubling six times returns every residue mod 9 (`2⁶ = 64 ≡ 1`), so its
+IqgtGrassmannian/Rebuild.lean-543-longest cycle has length six. -/
+IqgtGrassmannian/Rebuild.lean:544:theorem doubling_six_returns : ∀ r : Fin 9, (64 * r.val) % 9 = r.val % 9 := by decide

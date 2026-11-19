@@ -1,0 +1,114 @@
+PREREGISTERED.txt -- v6 task A1: the 1.11 law on stage-correct collision histories
+Written 2026-11-11T14:05Z, before any threshold search of this file was run.
+Results are appended below each test after it runs; nothing above an appended result is edited.
+
+SETUP (fixed before the runs)
+  Solver: ms_nuc_split.py and ms_nuc_shear.py, byte copies of v5.1 (v4_runs), with McCormick's ms_fluid.py at commit 41a0f83.
+  Runner: run_split_stage.py / run_shear_stage.py = v5.1's run_split_v2.py / run_shear_v2.py with ONE change:
+    kappa(t) = (1/2t) min[(eps_dec/eps(t))^3, 5e5] is evaluated at each SSPRK3 stage time (t, t+dt, t+dt/2) instead of
+    once per step at t.  The stiff time-step cap 0.5/(kappa max(1,r) max A) still uses the stage-start kappa(t).
+  Physics fixed as v5.1: eps_dec = 2, n = 3, Gaussian profile (q = 1), R_nu = 0.409, eps0 = 0.1, eps_max = 15, N = 400, Nmu = 32,
+    Courant 0.4/0.4, cH = 0.005.
+  Endpoint rule (v5.1): a run moves a bracket only if it ends in a detected horizon (2M/R >= 1 with U < 0) -> 'BH', or in
+    dispersal.  'crash' or 'BH_breakdown' (breakdown after 2M/R > 0.95 without a detected horizon) is retried once at
+    Courant 0.3; if it fails again it is reported and never moves the bracket.
+  Search: ONE simulation process at a time (house rule), so the two-points-per-round trisection is replaced by sequential
+    bisection with the same endpoint rule.  Each search first runs both ends of its starting bracket: the lower end must
+    disperse and the upper end must form a horizon; if an end gives the other outcome the bracket is extended outward by
+    3e-4 (that run's outcome is kept as a bracket edge) and the new end is run.  Bisection stops at bracket width <= 1e-6.
+    An undecided midpoint is replaced by the points at 0.4 and then 0.6 of the bracket; if all three fail the search stops
+    and is reported.
+  Starting brackets: v5.1 midpoints +- 3e-4.
+    r = 1      : 0.51074074 (v5.1 H1 bracket [0.51072222, 0.51075926])
+    r = 1.2    : 0.51001486      r = 1/1.2 : 0.51151453      (all l >= 2 family)
+    r = 1.25   : 0.50984070      r = 0.8   : 0.51169573      (all l >= 2 family)
+    r = 1.2    : 0.50995416      r = 1/1.2 : 0.51157480      (shear-only family)
+  References (v5.1, McCormick's archive): delta_fluid = 0.49773, delta_inst = 0.52832.
+    G = (dc - df)/(di - df); tau_G = ln[(1-G)/G]; odd rate = [tau_G(r) - tau_G(1/r)]/ln r.
+    Ranges are hard four-corner ranges over the two brackets (v5.1 App. A.11).  Every rate is also reported with the fluid
+    reference shifted by +7.8e-5 and -7.8e-5 (archive uncertainty).
+  Check before the runs (oddrate_v51_check.txt): oddrate.py reproduces v5.1's 1.1006 [1.1000,1.1011], 1.1128 [1.1124,1.1131]
+    and shear 1.1895 [1.1892,1.1898] from v5.1's stored brackets.
+
+REGRESSION (run before this file was written, at 14:00Z; it decides nothing and is recorded here for completeness)
+  r = 1, delta = 0.5109, v5.1 runner against the stage-correct runner, same process.  Result in log_regress.txt:
+  v5.1 runner: BH at eps = 6.6147 (v5.1 reports 6.61); stage-correct: BH at eps = 6.6176.  Move +2.9e-3 in eps at stop.
+  Max relative field differences: 1e-6 at eps = 1-2, 1.2e-4 (e, I) at eps = 4, 3.4e-3 (e) at eps = 6, 4.7e-3 at stop.
+
+TEST S1 (the inner pairs, all l >= 2 family, and the r = 1 anchor)
+  Thresholds: r = 1, 1.2, 1/1.2, 1.25, 0.8, each to bracket width <= 1e-6.
+  Kill lines for the statement "inside the admissible window the odd rate is 1.11 +- 0.01":
+   (a) the statement is withdrawn if either inner odd rate (central value, v5.1 references) moves by more than 0.01 from
+       v5.1: 1.1006 at r = 1.2 pair, 1.1128 at r = 1.25 pair;
+   (b) the statement is withdrawn if the two inner pairs' odd rates (central values) still differ by more than 0.01 after
+       the stage fix.
+  Opposite reading, stated before the runs: if the stage fix pulls the two pairs together (their difference falls well
+   below v5.1's 0.0122, i.e. below 0.005), the old spread was the first-order collision-history error, not a per-point
+   systematic of the threshold itself; if it leaves the difference near 0.012, the spread is not from the history order.
+  Prediction (expectation, not a kill line): each threshold moves by less than 2e-5 from v5.1 (the history error is
+   O(dt) in kappa, and dt/t = 0.01); the r = 1 threshold stays inside v5.1's bracket [0.51072222, 0.51075926].
+  The anchor tau_G(1) cancels from the odd rate; r = 1 enters only G(1) and the even parts.
+
+TEST S2 (shear-only pair, r = 1.2 and 1/1.2)
+  Statement under test: "shear-only damping gives 1.19-1.20" at the inner pair (v5.1: 1.1895 [1.1892, 1.1898]).
+  Kill: withdrawn at the inner pair if the stage-correct shear-only odd rate moves by more than 0.01 from 1.1895.
+  Second line: the gap shear-only minus all-l>=2 at the same pair (v5.1: 0.089) must stay above 0.05; else the statement
+   "damping the shear alone moves the threshold more than damping the shear and every higher moment together" is withdrawn
+   at the inner pair.
+
+TEST S3 (simultaneous refinement, r = 1.25 and 0.8 only)
+  N = 600, Nmu = 48, cH (the H time-step limit) and the Courant numbers halved together: cH = 0.0025, Courant 0.2/0.2;
+   the retry rule halves too (Courant 0.15).  The stiff collision cap is left as it is (task specification: only the H and
+   Courant limits are halved).  Stage-correct runner.  Starting brackets: the S1 stage-correct thresholds +- 3e-4.
+  Prediction / kill: refinement shifts the r = 1.25 pair's odd rate by less than 0.005 from its S1 stage-correct value.
+   Fail: the shift is >= 0.005; then that shift is carried as a resolution error on every inner rate, and the +-0.01 is
+   re-judged with it added.
+
+TEST S1 RESULT (appended 2026-11-11 ~15:20Z; all five searches to width <= 1e-6, logs log_S1_*.txt, res_S1_*.json)
+  r = 1     : [0.51077824, 0.51077883]  dc = 0.51077853  (v5.1 0.51074074; shift +3.8e-5, OUTSIDE v5.1's bracket)  G(1) = 0.42656
+  r = 1.2   : [0.51000783, 0.51000841]  dc = 0.51000812  (shift -6.7e-6)
+  r = 1/1.2 : [0.51151547, 0.51151641]  dc = 0.51151594  (shift +1.4e-6; one point 0.51152391 crashed twice, reported, skipped)
+  r = 1.25  : [0.50984129, 0.50984187]  dc = 0.50984158  (shift +0.9e-6)
+  r = 0.8   : [0.51169198, 0.51169268]  dc = 0.51169233  (shift -3.4e-6; one point crashed twice, reported, skipped)
+  Odd rates: r = 1.2 pair 1.1066, range [1.1061, 1.1072] (v5.1 1.1006: change +0.0060)
+             r = 1.25 pair 1.1102, range [1.1098, 1.1106] (v5.1 1.1128: change -0.0026)
+  (a) both changes < 0.01: the +-0.01 statement survives line (a).
+  (b) the pairs now differ by 0.0036 (v5.1: 0.0122), < 0.01: survives line (b).
+  Opposite reading: the difference fell below 0.005, so on the pre-stated reading the old 0.012 spread was mostly the
+   first-order collision-history error.  The expectation "each threshold moves < 2e-5" held for the four inner thresholds
+   and FAILED at r = 1 (+3.8e-5); not a kill line (the anchor cancels from the odd rate) but it is flagged and checked below.
+
+CONTROL C1 (written 2026-11-11 ~15:22Z, before it runs; queued after S3): is the r = 1 shift the stage fix?
+  Rerun the r = 1 threshold with v5.1's own runner (orig/run_split_v2.py, kappa once per step), same bisection driver, from
+  [0.51072222, 0.51078883], to width <= 1e-6.  Reading: if the v5.1-runner threshold lies inside v5.1's bracket
+  [0.51072222, 0.51075926], the +3.8e-5 is (nearly all) the stage fix at r = 1; if it lands within 5e-6 of 0.51077853,
+  the v5.1 r = 1 bracket (tolerance 1e-4 era) was off and the stage fix is small at r = 1 too.  Affects G(1) and the even
+  parts only; the odd rates do not use r = 1.
+
+TEST S2 RESULT (appended ~15:41Z; logs log_S2_*.txt)
+  shear only r = 1.2   : [0.50995416, 0.50995510]  dc = 0.50995463 (shift +0.5e-6; one point crashed twice, reported, skipped)
+  shear only r = 1/1.2 : [0.51157949, 0.51158007]  dc = 0.51157978 (shift +5.0e-6)
+  Odd rate 1.1928, range [1.1922, 1.1933] (v5.1 1.1895: change +0.0033 < 0.01): survives.
+  Shear-only minus all-l>=2 at the same pair: 0.0862 (v5.1 0.0889) > 0.05: survives.
+
+TEST S3 RESULT (appended ~20:35Z; logs log_S3_*.txt, point_S3_r08.txt)
+  refined r = 1.25 : [0.50991658, 0.50991716]  dc = 0.50991687  (N=400 stage value 0.50984158: shift +7.53e-5)
+  refined r = 0.8  : [0.51175608, 0.51175678]  dc = 0.51175643  (N=400 stage value 0.51169233: shift +6.41e-5)
+    One point (0.51175620) never ended: Courant 0.2 attempt not decisive, Courant 0.15 retry cut at 33 min by the queue
+    window, rerun from scratch stopped by hand at 70 min.  Reported undecided; per the pre-stated rule the 0.4 point
+    (0.51175608) was run instead and dispersed (run_point.py, one attempt, Courant 0.2).
+  Odd rate refined 1.1020, range [1.1016, 1.1024]; N = 400 stage value 1.1102.  Shift -0.0082 (corner range of the shift
+   [-0.0090, -0.0074]).  |shift| >= 0.005: the refinement prediction FAILS.
+  Per the pre-stated fail branch, the shift is carried as a resolution error on every inner rate and the +-0.01 re-judged:
+   central inner values across stage fix and refinement: 1.1066 (r=1.2, N=400), 1.1102 (r=1.25, N=400), 1.1020 (r=1.25,
+   refined).  Errors: pair spread 0.0036, fluid reference +-0.0038 (common), resolution 0.0082.  In quadrature 0.0097,
+   linear 0.0156.  The band 1.11 +- 0.01 still contains every measured value, but the +-0.01 is no longer an error bar
+   with margin: it is the size of the error budget itself, now dominated by resolution, and one refinement level cannot
+   say whether the rate has converged (untested).  The two thresholds both rose by 6.4-7.5e-5 under refinement; the
+   rate moved because they rose by different amounts (1.1e-5).
+
+CONTROL C1 RESULT (appended ~20:45Z; log_C1_r1_v51runner.txt)
+  v5.1 runner (kappa once per step), r = 1, same bisection driver: [0.51075657, 0.51075709], dc = 0.51075683.
+  It lies inside v5.1's bracket [0.51072222, 0.51075926].  So of the +3.78e-5 move at r = 1, +2.17e-5 is the stage fix
+  (0.51075683 -> 0.51077853) and +1.61e-5 is the offset of v5.1's tolerance-1e-4 midpoint from the threshold.
+  The stage fix still moves r = 1 more (2.2e-5) than any inner threshold (0.9-6.7e-6).  No effect on any odd rate.

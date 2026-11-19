@@ -1,0 +1,17 @@
+A1_all_r083 delta=0.51146667: dispersed eps=6.97 minI=1.011e-08 max2M/R=8100.0000
+A1_all_r083 delta=0.51213333: BH eps=5.93 minI=1.799e-08 max2M/R=8100.0000
+A1_all_r083 delta=0.51168889: BH eps=6.53 minI=1.272e-08 max2M/R=8100.0000
+A1_all_r083 delta=0.51191111: BH eps=6.15 minI=1.578e-08 max2M/R=8100.0000
+A1_all_r083 delta=0.51154074: crash eps=7.37 minI=5.274e-10 max2M/R=8100.0000 (retry at CFL 0.3 after crash)
+A1_all_r083 delta=0.51161481: BH eps=6.77 minI=1.088e-08 max2M/R=8100.0000
+A1_all_r083 delta=0.51151605: BH eps=7.36 minI=1.246e-09 max2M/R=8100.0000
+A1_all_r083 delta=0.51156543: BH eps=7.07 minI=3.547e-09 max2M/R=8100.0000
+A1_all_r083 delta=0.51148313: dispersed eps=7.06 minI=8.900e-09 max2M/R=8100.0000
+A1_all_r083 delta=0.51149959: dispersed eps=7.18 minI=4.545e-09 max2M/R=8100.0000
+A1_all_r083 delta=0.51150508: dispersed eps=7.23 minI=3.165e-09 max2M/R=8100.0000
+A1_all_r083 delta=0.51151056: dispersed eps=7.30 minI=1.958e-09 max2M/R=8100.0000
+A1_all_r083 delta=0.51151239: dispersed eps=7.32 minI=1.628e-09 max2M/R=8100.0000
+A1_all_r083 delta=0.51151422: dispersed eps=7.35 minI=1.303e-09 max2M/R=8100.0000
+A1_all_r083 delta=0.51151483: BH eps=7.36 minI=1.223e-09 max2M/R=8100.0000
+A1_all_r083 delta=0.51151544: BH eps=7.36 minI=1.234e-09 max2M/R=8100.0000
+RESULT A1_all_r083: delta_c = 0.51151453 +- 0.00000030  bracket [0.51151422, 0.51151483] (8.4 min)

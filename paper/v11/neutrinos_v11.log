@@ -1,0 +1,606 @@
+**
+(neutrinos_v11.tex
+LaTeX2e <2021-11-15> patch level 1
+L3 programming layer <2022-02-24> (article.cls
+Document Class: article 2021/10/04 v1.4n Standard LaTeX document class
+(size11.clo
+File: size11.clo 2021/10/04 v1.4n Standard LaTeX file (size option)
+)
+\c@part=\count181
+\c@section=\count182
+\c@subsection=\count183
+\c@subsubsection=\count184
+\c@paragraph=\count185
+\c@subparagraph=\count186
+\c@figure=\count187
+\c@table=\count188
+\abovecaptionskip=\skip47
+\belowcaptionskip=\skip48
+\bibindent=\dimen138
+) (geometry.sty
+Package: geometry 2020/01/02 v5.9 Page Geometry
+ (keyval.sty
+Package: keyval 2014/10/28 v1.15 key=value parser (DPC)
+\KV@toks@=\toks16
+) (ifvtex.sty
+Package: ifvtex 2019/10/25 v1.7 ifvtex legacy package. Use iftex instead.
+ (iftex.sty
+Package: iftex 2022/02/03 v1.0f TeX engine tests
+))
+\Gm@cnth=\count189
+\Gm@cntv=\count190
+\c@Gm@tempcnt=\count191
+\Gm@bindingoffset=\dimen139
+\Gm@wd@mp=\dimen140
+\Gm@odd@mp=\dimen141
+\Gm@even@mp=\dimen142
+\Gm@layoutwidth=\dimen143
+\Gm@layoutheight=\dimen144
+\Gm@layouthoffset=\dimen145
+\Gm@layoutvoffset=\dimen146
+\Gm@dimlist=\toks17
+) (amsmath.sty
+Package: amsmath 2021/10/15 v2.17l AMS math features
+\@mathmargin=\skip49
+For additional information on amsmath, use the `?' option.
+(amstext.sty
+Package: amstext 2021/08/26 v2.01 AMS text
+ (amsgen.sty
+File: amsgen.sty 1999/11/30 v2.0 generic functions
+\@emptytoks=\toks18
+\ex@=\dimen147
+)) (amsbsy.sty
+Package: amsbsy 1999/11/29 v1.2d Bold Symbols
+\pmbraise@=\dimen148
+) (amsopn.sty
+Package: amsopn 2021/08/26 v2.02 operator names
+)
+\inf@bad=\count192
+LaTeX Info: Redefining \frac on input line 234.
+\uproot@=\count193
+\leftroot@=\count194
+LaTeX Info: Redefining \overline on input line 399.
+\classnum@=\count195
+\DOTSCASE@=\count196
+LaTeX Info: Redefining \ldots on input line 496.
+LaTeX Info: Redefining \dots on input line 499.
+LaTeX Info: Redefining \cdots on input line 620.
+\Mathstrutbox@=\box50
+\strutbox@=\box51
+\big@size=\dimen149
+LaTeX Font Info:    Redeclaring font encoding OML on input line 743.
+LaTeX Font Info:    Redeclaring font encoding OMS on input line 744.
+\macc@depth=\count197
+\c@MaxMatrixCols=\count198
+\dotsspace@=\muskip16
+\c@parentequation=\count199
+\dspbrk@lvl=\count266
+\tag@help=\toks19
+\row@=\count267
+\column@=\count268
+\maxfields@=\count269
+\andhelp@=\toks20
+\eqnshift@=\dimen150
+\alignsep@=\dimen151
+\tagshift@=\dimen152
+\tagwidth@=\dimen153
+\totwidth@=\dimen154
+\lineht@=\dimen155
+\@envbody=\toks21
+\multlinegap=\skip50
+\multlinetaggap=\skip51
+\mathdisplay@stack=\toks22
+LaTeX Info: Redefining \[ on input line 2938.
+LaTeX Info: Redefining \] on input line 2939.
+) (amssymb.sty
+Package: amssymb 2013/01/14 v3.01 AMS font symbols
+
+(amsfonts.sty
+Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
+\symAMSa=\mathgroup4
+\symAMSb=\mathgroup5
+LaTeX Font Info:    Redeclaring math symbol \hbar on input line 98.
+LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
+(Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
+)) (graphicx.sty
+Package: graphicx 2021/09/16 v1.2d Enhanced LaTeX Graphics (DPC,SPQR)
+ (graphics.sty
+Package: graphics 2021/03/04 v1.4d Standard LaTeX Graphics (DPC,SPQR)
+ (trig.sty
+Package: trig 2021/08/11 v1.11 sin cos tan (DPC)
+) (graphics.cfg
+File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
+)
+Package graphics Info: Driver file: xetex.def on input line 107.
+
+(xetex.def
+File: xetex.def 2021/03/18 v5.0k Graphics/color driver for xetex
+))
+\Gin@req@height=\dimen156
+\Gin@req@width=\dimen157
+) (booktabs.sty
+Package: booktabs 2020/01/12 v1.61803398 Publication quality tables
+\heavyrulewidth=\dimen158
+\lightrulewidth=\dimen159
+\cmidrulewidth=\dimen160
+\belowrulesep=\dimen161
+\belowbottomsep=\dimen162
+\aboverulesep=\dimen163
+\abovetopsep=\dimen164
+\cmidrulesep=\dimen165
+\cmidrulekern=\dimen166
+\defaultaddspace=\dimen167
+\@cmidla=\count270
+\@cmidlb=\count271
+\@aboverulesep=\dimen168
+\@belowrulesep=\dimen169
+\@thisruleclass=\count272
+\@lastruleclass=\count273
+\@thisrulewidth=\dimen170
+) (multirow.sty
+Package: multirow 2021/03/15 v2.8 Span multiple rows of a table
+\multirow@colwidth=\skip52
+\multirow@cntb=\count274
+\multirow@dima=\skip53
+\bigstrutjot=\dimen171
+) (listings.sty
+\lst@mode=\count275
+\lst@gtempboxa=\box52
+\lst@token=\toks23
+\lst@length=\count276
+\lst@currlwidth=\dimen172
+\lst@column=\count277
+\lst@pos=\count278
+\lst@lostspace=\dimen173
+\lst@width=\dimen174
+\lst@newlines=\count279
+\lst@lineno=\count280
+\lst@maxwidth=\dimen175
+ (lstmisc.sty
+File: lstmisc.sty 2020/03/24 1.8d (Carsten Heinz)
+\c@lstnumber=\count281
+\lst@skipnumbers=\count282
+\lst@framebox=\box53
+)
+(listings.cfg
+File: listings.cfg 2020/03/24 1.8d listings configuration
+))
+Package: listings 2020/03/24 1.8d (Carsten Heinz)
+ (xcolor.sty
+Package: xcolor 2021/10/31 v2.13 LaTeX color extensions (UK)
+ (color.cfg
+File: color.cfg 2016/01/02 v1.6 sample color configuration
+)
+Package xcolor Info: Driver file: xetex.def on input line 227.
+Package xcolor Info: Model `cmy' substituted by `cmy0' on input line 1352.
+Package xcolor Info: Model `RGB' extended on input line 1368.
+Package xcolor Info: Model `HTML' substituted by `rgb' on input line 1370.
+Package xcolor Info: Model `Hsb' substituted by `hsb' on input line 1371.
+Package xcolor Info: Model `tHsb' substituted by `hsb' on input line 1372.
+Package xcolor Info: Model `HSB' substituted by `hsb' on input line 1373.
+Package xcolor Info: Model `Gray' substituted by `gray' on input line 1374.
+Package xcolor Info: Model `wave' substituted by `hsb' on input line 1375.
+) (hyperref.sty
+Package: hyperref 2022-02-21 v7.00n Hypertext links for LaTeX
+ (ltxcmds.sty
+Package: ltxcmds 2020-05-10 v1.25 LaTeX kernel commands for general use (HO)
+)
+(pdftexcmds.sty
+Package: pdftexcmds 2020-06-27 v0.33 Utility functions of pdfTeX for LuaTeX (HO
+)
+ (infwarerr.sty
+Package: infwarerr 2019/12/03 v1.5 Providing info/warning/error messages (HO)
+)
+Package pdftexcmds Info: \pdf@primitive is available.
+Package pdftexcmds Info: \pdf@ifprimitive is available.
+Package pdftexcmds Info: \pdfdraftmode not found.
+) (kvsetkeys.sty
+Package: kvsetkeys 2019/12/15 v1.18 Key value parser (HO)
+) (kvdefinekeys.sty
+Package: kvdefinekeys 2019-12-19 v1.6 Define keys (HO)
+)
+(pdfescape.sty
+Package: pdfescape 2019/12/09 v1.15 Implements pdfTeX's escape features (HO)
+) (hycolor.sty
+Package: hycolor 2020-01-27 v1.10 Color options for hyperref/bookmark (HO)
+) (letltxmacro.sty
+Package: letltxmacro 2019/12/03 v1.6 Let assignment for LaTeX macros (HO)
+) (auxhook.sty
+Package: auxhook 2019-12-17 v1.6 Hooks for auxiliary files (HO)
+) (kvoptions.sty
+Package: kvoptions 2020-10-07 v3.14 Key value format for package options (HO)
+)
+\@linkdim=\dimen176
+\Hy@linkcounter=\count283
+\Hy@pagecounter=\count284
+
+(pd1enc.def
+File: pd1enc.def 2022-02-21 v7.00n Hyperref: PDFDocEncoding definition (HO)
+) (intcalc.sty
+Package: intcalc 2019/12/15 v1.3 Expandable calculations with integers (HO)
+) (etexcmds.sty
+Package: etexcmds 2019/12/15 v1.7 Avoid name clashes with e-TeX commands (HO)
+)
+\Hy@SavedSpaceFactor=\count285
+ (puenc.def
+File: puenc.def 2022-02-21 v7.00n Hyperref: PDF Unicode definition (HO)
+)
+Package hyperref Info: Hyper figures OFF on input line 4137.
+Package hyperref Info: Link nesting OFF on input line 4142.
+Package hyperref Info: Hyper index ON on input line 4145.
+Package hyperref Info: Plain pages OFF on input line 4152.
+Package hyperref Info: Backreferencing OFF on input line 4157.
+Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
+Package hyperref Info: Bookmarks ON on input line 4390.
+\c@Hy@tempcnt=\count286
+ (url.sty
+\Urlmuskip=\muskip17
+Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
+)
+LaTeX Info: Redefining \url on input line 4749.
+\XeTeXLinkMargin=\dimen177
+ (bitset.sty
+Package: bitset 2019/12/09 v1.3 Handle bit-vector datatype (HO)
+
+(bigintcalc.sty
+Package: bigintcalc 2019/12/15 v1.5 Expandable calculations on big integers (HO
+)
+))
+\Fld@menulength=\count287
+\Field@Width=\dimen178
+\Fld@charsize=\dimen179
+Package hyperref Info: Hyper figures OFF on input line 6027.
+Package hyperref Info: Link nesting OFF on input line 6032.
+Package hyperref Info: Hyper index ON on input line 6035.
+Package hyperref Info: backreferencing OFF on input line 6042.
+Package hyperref Info: Link coloring OFF on input line 6047.
+Package hyperref Info: Link coloring with OCG OFF on input line 6052.
+Package hyperref Info: PDF/A mode OFF on input line 6057.
+LaTeX Info: Redefining \ref on input line 6097.
+LaTeX Info: Redefining \pageref on input line 6101.
+ (atbegshi-ltx.sty
+Package: atbegshi-ltx 2021/01/10 v1.0c Emulation of the original atbegshi
+package with kernel methods
+)
+\Hy@abspage=\count288
+\c@Item=\count289
+\c@Hfootnote=\count290
+)
+Package hyperref Info: Driver (autodetected): hxetex.
+ (hxetex.def
+File: hxetex.def 2022-02-21 v7.00n Hyperref driver for XeTeX
+ (stringenc.sty
+Package: stringenc 2019/11/29 v1.12 Convert strings between diff. encodings (HO
+)
+)
+\pdfm@box=\box54
+\c@Hy@AnnotLevel=\count291
+\HyField@AnnotCount=\count292
+\Fld@listcount=\count293
+\c@bookmark@seq@number=\count294
+
+(rerunfilecheck.sty
+Package: rerunfilecheck 2019/12/05 v1.9 Rerun checks for auxiliary files (HO)
+ (atveryend-ltx.sty
+Package: atveryend-ltx 2020/08/19 v1.0a Emulation of the original atveryend pac
+kage
+with kernel methods
+) (uniquecounter.sty
+Package: uniquecounter 2019/12/15 v1.4 Provide unlimited unique counter (HO)
+)
+Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
+86.
+)
+\Hy@SectionHShift=\skip54
+)
+(l3backend-xetex.def
+File: l3backend-xetex.def 2022-02-07 L3 backend support: XeTeX
+\c__kernel_sys_dvipdfmx_version_int=\count295
+\l__color_backend_stack_int=\count296
+\g__color_backend_stack_int=\count297
+\g__graphics_track_int=\count298
+\l__pdf_internal_box=\box55
+\g__pdf_backend_object_int=\count299
+\g__pdf_backend_annotation_int=\count300
+\g__pdf_backend_link_int=\count301
+) (neutrinos_v11.aux)
+\openout1 = `neutrinos_v11.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 17.
+LaTeX Font Info:    ... okay on input line 17.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 17.
+LaTeX Font Info:    ... okay on input line 17.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 17.
+LaTeX Font Info:    ... okay on input line 17.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 17.
+LaTeX Font Info:    ... okay on input line 17.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 17.
+LaTeX Font Info:    Trying to load font information for TS1+cmr on input line 1
+7.
+ (ts1cmr.fd
+File: ts1cmr.fd 2019/12/16 v2.5j Standard LaTeX font definitions
+)
+LaTeX Font Info:    ... okay on input line 17.
+LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 17.
+LaTeX Font Info:    ... okay on input line 17.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 17.
+LaTeX Font Info:    ... okay on input line 17.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 17.
+LaTeX Font Info:    ... okay on input line 17.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 17.
+LaTeX Font Info:    ... okay on input line 17.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 17.
+LaTeX Font Info:    ... okay on input line 17.
+
+*geometry* driver: auto-detecting
+*geometry* detected driver: xetex
+*geometry* verbose mode - [ preamble ] result:
+* driver: xetex
+* paper: <default>
+* layout: <same size as paper>
+* layoutoffset:(h,v)=(0.0pt,0.0pt)
+* modes: 
+* h-part:(L,W,R)=(72.26999pt, 469.75502pt, 72.26999pt)
+* v-part:(T,H,B)=(72.26999pt, 650.43001pt, 72.26999pt)
+* \paperwidth=614.295pt
+* \paperheight=794.96999pt
+* \textwidth=469.75502pt
+* \textheight=650.43001pt
+* \oddsidemargin=0.0pt
+* \evensidemargin=0.0pt
+* \topmargin=-37.0pt
+* \headheight=12.0pt
+* \headsep=25.0pt
+* \topskip=11.0pt
+* \footskip=30.0pt
+* \marginparwidth=59.0pt
+* \marginparsep=10.0pt
+* \columnsep=10.0pt
+* \skip\footins=10.0pt plus 4.0pt minus 2.0pt
+* \hoffset=0.0pt
+* \voffset=0.0pt
+* \mag=1000
+* \@twocolumnfalse
+* \@twosidefalse
+* \@mparswitchfalse
+* \@reversemarginfalse
+* (1in=72.27pt=25.4mm, 1cm=28.453pt)
+
+\c@lstlisting=\count302
+Package hyperref Info: Link coloring OFF on input line 17.
+(nameref.sty
+Package: nameref 2021-04-02 v2.47 Cross-referencing by name of section
+ (refcount.sty
+Package: refcount 2019/12/15 v3.6 Data extraction from label references (HO)
+) (gettitlestring.sty
+Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
+)
+\c@section@level=\count303
+)
+LaTeX Info: Redefining \ref on input line 17.
+LaTeX Info: Redefining \pageref on input line 17.
+LaTeX Info: Redefining \nameref on input line 17.
+ (neutrinos_v11.out)
+(neutrinos_v11.out)
+\@outlinefile=\write3
+\openout3 = `neutrinos_v11.out'.
+
+LaTeX Font Info:    Trying to load font information for U+msa on input line 19.
+
+ (umsa.fd
+File: umsa.fd 2013/01/14 v3.01 AMS symbols A
+)
+LaTeX Font Info:    Trying to load font information for U+msb on input line 19.
+
+ (umsb.fd
+File: umsb.fd 2013/01/14 v3.01 AMS symbols B
+) [1
+
+] [2] (sec_v11_frame
+Underfull \hbox (badness 4168) in paragraph at lines 5--6
+\TU/lmtt/m/n/10.95 present_observation_closes_iff\TU/lmr/m/n/10.95 ; repository
+ \TU/lmtt/m/n/10.95 dicipler-pixel/dirac-time-lean\TU/lmr/m/n/10.95 , commit
+ []
+
+[3]) [4] (sec_physics_v11
+Overfull \hbox (20.00621pt too wide) in paragraph at lines 16--25
+ [] 
+ []
+
+[5] [6] [7]) [8]
+File: figs/fig2_chain.png Graphic file (type bmp)
+<figs/fig2_chain.png>
+File: figs/fig_v7_onset.png Graphic file (type bmp)
+<figs/fig_v7_onset.png>
+ [9] [10]
+File: figs/fig3_clock.png Graphic file (type bmp)
+<figs/fig3_clock.png>
+ [11] [12]
+File: figs/fig4_tests.png Graphic file (type bmp)
+<figs/fig4_tests.png>
+File: figs/fig5_killlines.png Graphic file (type bmp)
+<figs/fig5_killlines.png>
+ [13] [14]
+File: figs/fig6_door.png Graphic file (type bmp)
+<figs/fig6_door.png>
+ [15] [16] [17] [18]
+Overfull \hbox (2.90561pt too wide) in paragraph at lines 250--255
+ [] 
+ []
+
+[19] [20]
+File: figs/fig7_link_v5.png Graphic file (type bmp)
+<figs/fig7_link_v5.png>
+ (sec_new_gramian_v11 [21] [22]
+File: figs/fig10_gramian_order.png Graphic file (type bmp)
+<figs/fig10_gramian_order.png>
+) (sec_new_door_v11 [23] [24]
+File: figs/fig8_door_nonlinear.png Graphic file (type bmp)
+<figs/fig8_door_nonlinear.png>
+)
+(sec_new_mcc_v11 [25] [26] [27]
+File: figs/fig9_selfscatter.png Graphic file (type bmp)
+<figs/fig9_selfscatter.png>
+File: figs/fig11_keptshare_mcc.png Graphic file (type bmp)
+<figs/fig11_keptshare_mcc.png>
+) [28] [29] (sec_v11_added [30] [31]
+Overfull \hbox (65.80576pt too wide) in paragraph at lines 47--48
+ []\TU/lmr/bx/n/10.95 The rigidity wall.[] \TU/lmr/m/n/10.95 The statements use
+d below are machine-checked in \TU/lmtt/m/n/10.95 dicipler-pixel/event-horizon-
+lean\TU/lmr/m/n/10.95 ,
+ []
+
+[32]
+Overfull \hbox (108.67859pt too wide) in paragraph at lines 58--59
+ []\TU/lmr/bx/n/10.95 The black-hole recovery ledger.[] \TU/lmr/m/n/10.95 Branc
+h \TU/lmtt/m/n/10.95 claude/bh-recovery-20261116 \TU/lmr/m/n/10.95 of \TU/lmtt/
+m/n/10.95 dicipler-pixel/event-horizon-lean\TU/lmr/m/n/10.95 ,
+ []
+
+
+Underfull \hbox (badness 1062) in paragraph at lines 60--61
+\TU/lmr/m/n/10.95 transmit form, $\OT1/cmr/m/n/10.95 2 \OMS/cmsy/m/n/10.95 ^^@ 
+\OT1/cmr/m/n/10.95 4 [][](\OML/cmm/m/it/10.95 r=\OT1/cmr/m/n/10.95 2) = 2 \OMS/
+cmsy/m/n/10.95 ^^@ \OT1/cmr/m/n/10.95 4(\OML/cmm/m/it/10.95 R=T\OT1/cmr/m/n/10.
+95 )[]$\TU/lmr/m/n/10.95 , as \TU/lmtt/m/n/10.95 trace_reflect_transmit \TU/lmr
+/m/n/10.95 (“J4”), in
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 60--61
+\TU/lmtt/m/n/10.95 research/2026-11-10/BallJoins.lean \TU/lmr/m/n/10.95 on bran
+ch \TU/lmtt/m/n/10.95 claude/votkp-research-20261110 \TU/lmr/m/n/10.95 of
+ []
+
+[33]) [34]
+Underfull \hbox (badness 10000) in paragraph at lines 308--309
+[]\TU/lmr/m/n/10.95 S. McCormick, PBH_neutrino_simulation (code and threshold
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 308--309
+\TU/lmr/m/n/10.95 data), v1.0, github.com/quasilocal/PBH_neutrino_simulation, c
+ommit
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 308--309
+\TU/lmtt/m/n/10.95 4cdc165c960a0bfb69db19e17ecc7c98cb873fdf \TU/lmr/m/n/10.95 (
+2026); Zenodo record 23808376,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 314--315
+[]\TU/lmr/m/n/10.95 J. Beasley, \TU/lmr/m/it/10.95 Non-Normality Is Connection 
+Energy \TU/lmr/m/n/10.95 (2026), Zenodo,
+ []
+
+[35] [36] [37] [38] (app_new_proofs_v11 [39]) [40]
+Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on i
+nput line 413.
+ (code/main/identities.py)
+(code/main/identities_out.txt) (code/bisect_beyond.py [41])
+(code/trisect_beyond.py) (code/PREREGISTERED.txt) (results/log_repro.txt
+[42]) (results/log_A4.txt) (results/log_A8.txt) (results/log_A8b.txt)
+(results/log_B2.txt) (results/log_B3.txt) (code/main/memory_curve.py) [43]
+(code/main/memory_curve_out.txt) (code/wb_checks/wb_steve_03_paper_objects.py
+[44]) (code/wb_checks/wb_steve_03_out.txt)
+(code/wb_checks/wb_steve_07_history.py [45])
+(code/wb_checks/wb_steve_07_out.txt) (results/provenance_wb07.txt)
+(code/wb_checks/wb_steve_01_algebra.py [46] [47] [48])
+(code/wb_checks/wb_steve_01_out.txt [49])
+(code/wb_checks/wb_steve_04_channels.py [50])
+(code/wb_checks/wb_steve_04_out.txt [51])
+(code/osl_checks/osl_b_ep_full_operator.py) (code/osl_checks/osl_b_out.txt
+[52]) (code/osl_checks/osl_c_speed_contest_eos.py [53])
+(code/osl_checks/osl_c_out.txt) (code/linear_solver/lin.py [54])
+(code/linear_solver/grad.py [55]) (code/linear_solver/grad.out) (code/fixed.py)
+(code/fixed_out.txt [56]) (code/main/lone_pass_check.py)
+(code/main/lone_pass_check_out.txt) (code/csl_checks/k6_diffusion_leader.py
+[57]) (code/csl_checks/k6_diffusion_leader_out.txt)
+(code/v3_runs/PREREGISTERED_NEXT.txt) (code/v3_runs/trisect3.py [58] [59])
+(results/v3/log_Bcap_part1.txt) (results/v3/log_Bcap2.txt)
+(results/v3/log_Bres.txt) (results/v3/log_Bres2.txt) (results/v3/log_C.txt
+[60]) (results/v3/log_D.txt) (code/witness/PREREGISTERED_WITNESS.txt [61])
+(code/witness/witness_run.py [62]) (code/witness/witness_kernel.py [63])
+(code/witness/witness_conv.py) (code/witness/witness_kernel.json [64])
+(code/witness/prod.log [65]) (code/witness/convLM.log [66])
+(code/witness/convTol.log) (code/v4_runs/ms_nuc_split.py [67] [68] [69])
+(code/v4_runs/ms_nuc_shear.py [70] [71]) (code/v4_runs/run_split_v2.py [72])
+(code/v4_runs/trisect_v2.py [73]) (code/v4_runs/trisect_clean.py)
+(code/v4_runs/trisect_split.py [74]) (code/v4_runs/trisect_fnu.py)
+(code/v4_runs/memory_split.py) (code/v4_runs/log_repro.txt)
+(code/v4_runs/log_F_regress.txt) (code/v4_runs/log_L_regress.txt) [75]
+(code/v4_runs/log_E.txt) (code/v4_runs/log_F025.txt) (code/v4_runs/log_F4.txt)
+(code/v4_runs/log_F2a.txt) (code/v4_runs/log_F2b.txt) (code/v4_runs/log_H1.txt
+[76]) (code/v4_runs/log_I.txt) (code/v4_runs/log_J2.txt)
+(code/v4_runs/log_J05.txt) (code/v4_runs/log_K125_clean.txt)
+(code/v4_runs/log_K08_clean.txt) (code/v4_runs/log_L4.txt [77])
+(code/v4_runs/log_L025.txt) (code/v4_runs/log_M4.txt)
+(code/v4_runs/log_M025.txt) (code/v4_runs/log_A1_shear_r12.txt) [78]
+(code/v4_runs/log_A1_shear_r083.txt) (code/v4_runs/log_A1_all_r12.txt)
+(code/v4_runs/log_A1_all_r083.txt) (code/v4_runs/log_B1_edges.txt [79])
+(code/v4_runs/run_step.py [80]) (code/v4_runs/queue_G.sh)
+(code/v4_runs/log_G.txt) [81] (code/v4_runs/ruler/PREREGISTERED_RULER.txt
+[82] [83]) (code/v4_runs/ruler/ruler_check.py [84] [85])
+(code/v4_runs/ruler/diag_modes.py [86]) (code/v4_runs/ruler/ruler_state.py
+[87]) (code/v4_runs/ruler/out_state.txt) (code/main/make_figures.py [88])
+(code/main/make_figures_v3.py [89] [90] [91] [92]) (code/main/make_fig6_door.py
+) (code/v4_runs/make_fig7_link_v5.py [93])
+(code/v4_runs/make_fig7_link_v5_out.txt) (app_new_evidence_v11
+(code_v6/A1_stage_fix.diff) (code_v6/A1_PREREGISTERED.txt [94] [95] [96])
+(code_v6/A1_search.py [97]) (code_v6/A1_oddrate.py) (code_v6/A1_RUNLOG.txt
+[98] [99] [100]) (code_v6/A2_PREREGISTERED.txt [101]
+Overfull \hbox (14.5171pt too wide) in paragraph at lines 65--67
+[][][][] 
+ []
+
+[102]) (code_v6/A2_step2_algebra.py [103] [104]) (code_v6/A2_step2_out.txt)
+(code_v6/A2_step3_predict.py [105] [106]) (code_v6/A2_step4_compare.py [107])
+(code_v6/A2b_ms_mg_r1.diff [108]) (code_v6/A2b_gate_operator.py [109])
+(code_v6/A2b_PREREGISTERED.txt [110]
+Overfull \hbox (14.5171pt too wide) in paragraph at lines 35--37
+[][][][] 
+ []
+
+) (code_v6/A2b_log_bisect_r1.txt [111]) (code_v6/A2b_log_bisect_fs.txt)
+(code_v6/A3_PREREGISTERED.txt [112]) (code_v6/A3_analyse.py [113] [114])
+(code_v6/A4_PREREGISTERED.txt [115] [116] [117] [118]) (code_v6/A4_restart.py
+[119] [120] [121]) (code_v6/A4_screen.py [122]) (code_v6/A4_trisect.py [123])
+(code_v6/A5_PREREGISTERED.txt [124] [125]) (code_v6/A5_chain_lib.py [126])
+(code_v6/A5_t1_order.py [127]) (code_v6/A5_t2_gramian.py [128])
+(code_v6/A5_t3_closures.py [129]) (code_v6/make_figs_v6.py [130] [131])
+(code/v7/onset_exact.py) (code/v7/onset_exact_out.txt) (code/v7/fig_onset.py
+[132]) (code/A6/PREREGISTERED.txt [133] [134]) (code/A6/queue.sh)
+(code/A6/queue2.sh) (code/A6/RUNLOG.txt [135]) (code/A6/res_L3_r125.json
+[136]) (code/A6/res_L3_r08.json [137]) (code/A6/level3_rates.py [138])
+(code/A6/level3_rates_out.txt) (code/A6/richardson.py [139])
+(code/A6/richardson_out.json [140] [141])) [142]
+Underfull \hbox (badness 10000) in paragraph at lines 544--545
+[]\TU/lmtt/m/n/10.95 testK_clean_range\TU/lmr/m/n/10.95 , \TU/lmtt/m/n/10.95 te
+stK_clean_below_sqrt\TU/lmr/m/n/10.95 , \TU/lmtt/m/n/10.95 testK_clean_above_tr
+end\TU/lmr/m/n/10.95 : at
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 544--545
+\OML/cmm/m/it/10.95 r \OT1/cmr/m/n/10.95 = 1\OML/cmm/m/it/10.95 :\OT1/cmr/m/n/1
+0.95 25$ \TU/lmr/m/n/10.95 against $\OT1/cmr/m/n/10.95 0\OML/cmm/m/it/10.95 :\O
+T1/cmr/m/n/10.95 8$ \TU/lmr/m/n/10.95 the odd rate lies in $\OT1/cmr/m/n/10.95 
+[1\OML/cmm/m/it/10.95 :\OT1/cmr/m/n/10.95 112\OML/cmm/m/it/10.95 ; \OT1/cmr/m/n
+/10.95 1\OML/cmm/m/it/10.95 :\OT1/cmr/m/n/10.95 114]$ \TU/lmr/m/n/10.95 over th
+e whole
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 544--545
+\TU/lmr/m/n/10.95 bracket pair; \TU/lmtt/m/n/10.95 testK_crash_edge_false_kill\
+TU/lmr/m/n/10.95 , \TU/lmtt/m/n/10.95 testK_first_sqrt_window\TU/lmr/m/n/10.95 
+,
+ []
+
+(app_v11_corrections [143]) [144] (neutrinos_v11.aux)
+Package rerunfilecheck Info: File `neutrinos_v11.out' has not changed.
+(rerunfilecheck)             Checksum: 3986F614B2E150C85C893738558086ED;4989.
+ )
+Output written on neutrinos_v11.xdv (144 pages, 6554484 bytes).

@@ -1,0 +1,10 @@
+B1 (log I)'' = Var_p(r) = Fisher speed of the shape: worst relative difference 2.9e-11
+B2 mixtures with negative determinant: 0 of 2000; chain determinant -5.260219099736e-03 vs predicted -5.260219099736e-03
+B3 preparation (0.9, 0.1): I(0) = 1.00, initial slope -0.91
+B3 preparation (0.1, 0.9): I(0) = 1.00, initial slope -0.19
+B4 E_minus = 2k(1-p), E_plus = 2k(1+p) on an edge carrying P and R: worst absolute error 7.1e-15 over 300 pairs
+B5 three-port: G12 - G21 = -2i bc sin(phi)/p(z) (derived; the extracted text read abc), worst relative error 1.8e-15
+B6 trefoil: |X^2 + I| = 0.0e+00, |Y^3 + I| = 4.1e-16, Tr(commutator) = -1.000000 (abelian count gives 2)
+B7 theta = 0.3: V = 0.955336 (cos 0.955336), D = 0.295520 (sin 0.295520), V^2 + D^2 = 1.000000000000
+B7 theta = 0.9: V = 0.621610 (cos 0.621610), D = 0.783327 (sin 0.783327), V^2 + D^2 = 1.000000000000
+B7 theta = 1.4: V = 0.169967 (cos 0.169967), D = 0.985450 (sin 0.985450), V^2 + D^2 = 1.000000000000
