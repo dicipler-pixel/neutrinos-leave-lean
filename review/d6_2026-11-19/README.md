@@ -30,3 +30,14 @@ equals the Petermann factor of the least-damped mode of the 200-moment chain to 
 
 ## Not checked this turn
 Refs [7] (Hu, SciPost 2026), [10] (Escriva arXiv:2504.05814), [11] author list, [12] (arXiv:2607.03138); McCormick's Table II values.
+
+## Addendum (19 Nov, evening): the items left unchecked are now checked
+- McCormick's Table II, from his archived result files (quasilocal/PBH_neutrino_simulation, simulation/res_dec_*.json, res_fluid.json, res_nu32.json):
+  G = 0.960, 0.868, 0.684, 0.431, 0.190, 0.063 at eps_dec = 0.25-8 against the paper's 0.959, 0.867, 0.683, 0.431, 0.190, 0.063 (rounding);
+  res_dec_2.0 bracket (0.51074, 0.51109) matches the reproduction run; broad references 0.448047 / 0.477471 match.
+- NEW MUST-FIX: the paper says "An uncertainty for his instantaneous reference is not given in the files we used". It is in his archive:
+  res_nu32.json gives 0.5283203 +- 1.95e-4, and his finer pair res_nu409_fine.json 0.5283188 +- 3.1e-5 and res_pf_fine.json 0.4976719 +- 1.6e-5.
+  With the res_nu32 half-width the level-3 odd rate moves +-0.0053 (1.0961 / 1.1067), not in the +-0.01 budget.
+  With the fine pair: G_C, G_B, G_D, S1 = 0.6489, 0.3184, 0.1559, 0.4277; level-3 odd rate 1.0986 (corners 1.0970-1.1002, so the reference term shrinks from +-0.0038 to about +-0.0016);
+  levels 1, 2, 3 = 1.1074, 1.0992, 1.0986. Rate one is still excluded and "1.10 +- 0.01" still covers it; the paper should either use the fine pair or carry the instantaneous width.
+- Refs [7] (SciPost Phys. 20, 020; arXiv:2409.05131), [10] (arXiv:2504.05814) and [12] (arXiv:2607.03138) exist with the cited titles. Author lists of [11], [12] not checked.
